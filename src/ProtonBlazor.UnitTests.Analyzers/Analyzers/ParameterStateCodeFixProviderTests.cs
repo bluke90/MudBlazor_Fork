@@ -247,8 +247,8 @@ class ComponentB
         // SyntaxGenerator.AddNamespaceImports appends at the end
         var fixedSource = @"using System;
 using ProtonBlazor;
-using ProtonBlazor.Extensions;
 using ProtonBlazor.State;
+using ProtonBlazor.Extensions;
 
 class ComponentA : ComponentBaseWithState
 {

@@ -78,8 +78,8 @@ namespace ProtonBlazor.UnitTests.Utilities
 
             ProColor DeserializeXml(string toDeserialize)
             {
-                using var reader = System.Xml.XmlReader.Create(textReader);
                 using var textReader = new StringReader(toDeserialize);
+                using var reader = System.Xml.XmlReader.Create(textReader);
 
                 return (ProColor)dataContractSerializer.ReadObject(reader);
             }
