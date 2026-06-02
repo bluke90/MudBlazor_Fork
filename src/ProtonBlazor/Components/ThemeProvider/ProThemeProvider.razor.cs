@@ -21,7 +21,7 @@ partial class ProThemeProvider : ComponentBaseWithState, IAsyncDisposable
     private const string Ripple = "pro-ripple";
     private const string Elevation = "pro-elevation";
     private const string Typography = "pro-typography";
-    private const string LayoutProperties = "mud";
+    private const string LayoutProperties = "pro";
     private const string Zindex = "pro-zindex";
 
     private readonly ProTheme _originalMudTheme = new();
