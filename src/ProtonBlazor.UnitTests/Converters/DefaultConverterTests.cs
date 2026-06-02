@@ -5,10 +5,10 @@
 using System.Globalization;
 using System.Numerics;
 using AwesomeAssertions;
+using NUnit.Framework;
 using ProtonBlazor.Resources;
 using ProtonBlazor.Utilities;
 using ProtonBlazor.Utilities.Exceptions;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Converters;
 

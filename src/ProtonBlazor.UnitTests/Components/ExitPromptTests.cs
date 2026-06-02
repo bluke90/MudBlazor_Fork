@@ -10,8 +10,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
-using ProtonBlazor.Resources;
 using NUnit.Framework;
+using ProtonBlazor.Resources;
 
 #nullable enable
 

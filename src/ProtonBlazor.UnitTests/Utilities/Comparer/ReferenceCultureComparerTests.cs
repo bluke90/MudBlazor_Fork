@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Runtime.CompilerServices;
 using AwesomeAssertions;
-using ProtonBlazor.Utilities.Comparer;
 using NUnit.Framework;
+using ProtonBlazor.Utilities.Comparer;
 
 namespace ProtonBlazor.UnitTests.Utilities.Comparer;
 

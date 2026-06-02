@@ -6,10 +6,10 @@ using AngleSharp.Dom;
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components;
+using NUnit.Framework;
 using ProtonBlazor.Charts;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.Components;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Charts
 {

@@ -4,8 +4,8 @@ using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Time.Testing;
-using ProtonBlazor.UnitTests.TestComponents.Snackbar;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Snackbar;
 
 namespace ProtonBlazor.UnitTests.Components
 {

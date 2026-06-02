@@ -2,8 +2,8 @@
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.UnitTests.TestComponents.TimePicker;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.TimePicker;
 
 namespace ProtonBlazor.UnitTests.Components
 {

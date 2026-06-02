@@ -4,9 +4,9 @@
 
 using AwesomeAssertions;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.State;
 using ProtonBlazor.State.Builder;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.State.Builder;
 

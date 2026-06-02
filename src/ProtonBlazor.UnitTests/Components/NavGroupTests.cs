@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.NavMenu;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.NavMenu;
 
 namespace ProtonBlazor.UnitTests.Components
 {

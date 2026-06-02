@@ -6,8 +6,8 @@ using AngleSharp.Css.Dom;
 using AngleSharp.Html.Dom;
 using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.Timeline;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Timeline;
 
 namespace ProtonBlazor.UnitTests.Components
 {

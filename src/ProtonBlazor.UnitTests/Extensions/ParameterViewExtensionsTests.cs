@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Microsoft.AspNetCore.Components;
-using ProtonBlazor.UnitTests.Mocks;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.Mocks;
 
 namespace ProtonBlazor.UnitTests.Extensions;
 

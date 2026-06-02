@@ -3,8 +3,8 @@ using AwesomeAssertions;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using ProtonBlazor.Resources;
 using NUnit.Framework;
+using ProtonBlazor.Resources;
 
 namespace ProtonBlazor.UnitTests.Services.Localization;
 

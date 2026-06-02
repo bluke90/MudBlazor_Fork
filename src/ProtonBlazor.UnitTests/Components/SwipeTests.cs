@@ -1,8 +1,8 @@
 ﻿using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.UnitTests.TestComponents.SwipeArea;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.SwipeArea;
 
 namespace ProtonBlazor.UnitTests.Components
 {

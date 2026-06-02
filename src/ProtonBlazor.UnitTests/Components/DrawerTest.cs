@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.JSInterop;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.TestComponents.Drawer;
-using NUnit.Framework;
 
 #nullable enable
 namespace ProtonBlazor.UnitTests.Components

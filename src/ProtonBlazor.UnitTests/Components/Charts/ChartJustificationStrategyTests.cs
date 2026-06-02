@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using AwesomeAssertions;
+using NUnit.Framework;
 using ProtonBlazor.Justification.BarGroup;
 using ProtonBlazor.Justification.StackedBars;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Charts;
 

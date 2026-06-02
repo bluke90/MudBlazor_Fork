@@ -5,9 +5,9 @@ using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.TestComponents.Tooltip;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

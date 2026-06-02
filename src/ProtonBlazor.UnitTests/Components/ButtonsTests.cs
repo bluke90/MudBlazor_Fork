@@ -4,9 +4,9 @@ using AwesomeAssertions;
 using Bunit;
 using Bunit.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Docs.Examples;
 using ProtonBlazor.UnitTests.TestComponents.Button;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

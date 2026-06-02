@@ -3,8 +3,8 @@
 // See https://github.com/EdCharbeneau
 
 using AwesomeAssertions;
-using ProtonBlazor.Utilities;
 using NUnit.Framework;
+using ProtonBlazor.Utilities;
 
 namespace UtilityTests
 {

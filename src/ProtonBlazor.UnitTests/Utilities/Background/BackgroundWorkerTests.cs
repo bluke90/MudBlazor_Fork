@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using AwesomeAssertions;
-using ProtonBlazor.UnitTests.Utilities.Background.Mocks;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.Utilities.Background.Mocks;
 
 namespace ProtonBlazor.UnitTests.Utilities.Background;
 

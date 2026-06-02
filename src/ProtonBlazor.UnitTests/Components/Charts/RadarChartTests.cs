@@ -8,9 +8,9 @@ using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Charts;
 using ProtonBlazor.Extensions;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Charts;
 

@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
+using NUnit.Framework;
 using ProtonBlazor.State;
 using ProtonBlazor.State.Rule;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.State.Rule;
 

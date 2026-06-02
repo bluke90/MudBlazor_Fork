@@ -5,9 +5,9 @@ using AngleSharp.Html.Dom;
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.TestComponents.DatePicker;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

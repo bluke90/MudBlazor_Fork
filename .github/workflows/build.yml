@@ -28,14 +28,15 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  # ── Library: build across all target frameworks ────────────────────────────
+  # ── Library: cross-targeting build (all frameworks in one pass) ───────────
+  # A per-framework (-f) build skips the outer cross-targeting build, which
+  # means BuildWebAssetsInner only fires for net10.0 (_IsFirstTfm). net8/net9
+  # inner builds then fail because RegisterGeneratedAssets declares the Bun
+  # outputs as Content before they exist. Building without -f lets MSBuild run
+  # the outer BuildWebAssets target first so all inner builds see the files.
   library:
-    name: Library (${{ matrix.framework }})
+    name: Library (all frameworks)
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        framework: [net8.0, net9.0, net10.0]
 
     steps:
       - uses: actions/checkout@v4
@@ -48,17 +49,22 @@ jobs:
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
-          key: ${{ github.repository }}-nuget-${{ matrix.framework }}-${{ hashFiles('**/*.csproj') }}
-          restore-keys: ${{ github.repository }}-nuget-${{ matrix.framework }}-
+          key: ${{ github.repository }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: ${{ github.repository }}-nuget-
           path: ${{ env.NUGET_PACKAGES }}
+
+      - name: Cache Bun binary
+        uses: actions/cache@v4
+        with:
+          key: ${{ github.repository }}-bun-${{ hashFiles('**/Directory.Build.props') }}
+          path: ./tools/BunDotNet
 
       - name: Restore
         run: dotnet restore src/ProtonBlazor/ProtonBlazor.csproj
 
-      - name: Build
+      - name: Build (cross-targeting — net8.0 + net9.0 + net10.0)
         run: |
           dotnet build src/ProtonBlazor/ProtonBlazor.csproj \
-            -f ${{ matrix.framework }} \
             --configuration Release \
             --no-restore \
             -warnaserror

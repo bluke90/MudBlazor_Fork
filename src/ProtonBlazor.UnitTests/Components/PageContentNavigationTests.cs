@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using ProtonBlazor.Interfaces;
 using ProtonBlazor.UnitTests.Mocks;
 using ProtonBlazor.UnitTests.Shared.Mocks;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

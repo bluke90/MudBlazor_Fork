@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.CodeAnalysis;
-using ProtonBlazor.UnitTests.Analyzers.Verifiers;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.Analyzers.Verifiers;
 
 namespace ProtonBlazor.UnitTests.Analyzers;
 
@@ -436,8 +436,8 @@ class MyComponent : ComponentBaseWithState
         var source = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {

@@ -6,10 +6,10 @@ using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.TestComponents.Tabs;
 using ProtonBlazor.UnitTests.TestComponents.Tabs.KeepTabsAlive;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

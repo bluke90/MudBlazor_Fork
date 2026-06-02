@@ -4,8 +4,8 @@ using AngleSharp.Html.Dom;
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components;
-using ProtonBlazor.UnitTests.TestComponents.Slider;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Slider;
 
 #nullable enable
 namespace ProtonBlazor.UnitTests.Components

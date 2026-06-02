@@ -4,8 +4,8 @@
 
 using AwesomeAssertions;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.Services;
 using NUnit.Framework;
+using ProtonBlazor.Services;
 
 namespace ProtonBlazor.UnitTests.Services.KeyInterceptor;
 

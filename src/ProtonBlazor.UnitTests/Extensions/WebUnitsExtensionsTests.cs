@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using AwesomeAssertions;
-using ProtonBlazor.Utilities;
 using NUnit.Framework;
+using ProtonBlazor.Utilities;
 
 namespace ProtonBlazor.UnitTests.Extensions
 {

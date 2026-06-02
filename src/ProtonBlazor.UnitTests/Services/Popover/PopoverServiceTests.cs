@@ -10,10 +10,10 @@ using Microsoft.Extensions.Time.Testing;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.Interop;
 using ProtonBlazor.UnitTests.Services.Popover.Mocks;
 using ProtonBlazor.Utilities.Background.Batch;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Services.Popover;
 

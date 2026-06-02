@@ -2,9 +2,9 @@
 using AwesomeAssertions;
 using Bunit;
 using Bunit.Rendering;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.Utilities;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.State;
 

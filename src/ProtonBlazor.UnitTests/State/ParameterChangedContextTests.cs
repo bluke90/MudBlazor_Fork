@@ -4,8 +4,8 @@
 
 using AwesomeAssertions;
 using Microsoft.AspNetCore.Components;
-using ProtonBlazor.State;
 using NUnit.Framework;
+using ProtonBlazor.State;
 
 namespace ProtonBlazor.UnitTests.State;
 

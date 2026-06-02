@@ -2,11 +2,11 @@
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.Dummy;
 using ProtonBlazor.UnitTests.TestComponents.Select;
 using ProtonBlazor.UnitTests.TestData;
-using NUnit.Framework;
 using static ProtonBlazor.UnitTests.TestComponents.Select.SelectWithEnumTest;
 
 namespace ProtonBlazor.UnitTests.Components

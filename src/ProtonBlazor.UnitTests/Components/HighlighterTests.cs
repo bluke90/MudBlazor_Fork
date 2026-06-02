@@ -1,8 +1,8 @@
 ﻿using AwesomeAssertions;
 using Bunit;
+using NUnit.Framework;
 using ProtonBlazor.Components.Highlighter;
 using ProtonBlazor.UnitTests.TestComponents.Highlighter;
-using NUnit.Framework;
 using static ProtonBlazor.Components.Highlighter.Splitter;
 
 namespace ProtonBlazor.UnitTests.Components

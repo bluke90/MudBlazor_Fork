@@ -1,8 +1,8 @@
 ﻿using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.UnitTests.TestComponents.Badge;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Badge;
 
 namespace ProtonBlazor.UnitTests.Components
 {

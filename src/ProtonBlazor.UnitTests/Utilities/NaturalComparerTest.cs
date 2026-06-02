@@ -4,8 +4,8 @@
 
 using System.Text;
 using AwesomeAssertions;
-using ProtonBlazor.Utilities;
 using NUnit.Framework;
+using ProtonBlazor.Utilities;
 
 namespace ProtonBlazor.UnitTests.Utilities
 {

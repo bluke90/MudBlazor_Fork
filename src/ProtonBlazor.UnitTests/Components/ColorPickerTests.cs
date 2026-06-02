@@ -7,11 +7,11 @@ using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.Resources;
 using ProtonBlazor.UnitTests.TestComponents.ColorPicker;
 using ProtonBlazor.Utilities;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

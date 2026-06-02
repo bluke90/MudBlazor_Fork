@@ -7,8 +7,8 @@ using AwesomeAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using ProtonBlazor.Utilities.ObserverManager;
 using NUnit.Framework;
+using ProtonBlazor.Utilities.ObserverManager;
 
 namespace ProtonBlazor.UnitTests.Utilities.ObserverManager;
 

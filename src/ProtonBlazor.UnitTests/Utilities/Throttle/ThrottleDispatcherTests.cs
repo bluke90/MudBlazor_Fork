@@ -4,8 +4,8 @@
 
 using AwesomeAssertions;
 using Microsoft.Extensions.Time.Testing;
-using ProtonBlazor.Utilities.Throttle;
 using NUnit.Framework;
+using ProtonBlazor.Utilities.Throttle;
 
 namespace ProtonBlazor.UnitTests.Utilities.Throttle;
 
@@ -217,8 +217,8 @@ public class ThrottleDispatcherTests
     public void ThrottleAsync_CancellationToken_PreventsNewExecution()
     {
         // Arrange
-        using var dispatcher = new ThrottleDispatcher(1000);
         using var cts = new CancellationTokenSource();
+        using var dispatcher = new ThrottleDispatcher(1000);
         var executed = false;
 
         Task Invoke()

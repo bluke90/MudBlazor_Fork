@@ -2,8 +2,8 @@
 // ProtonBlazor licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using ProtonBlazor.UnitTests.Analyzers.Verifiers;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.Analyzers.Verifiers;
 
 namespace ProtonBlazor.UnitTests.Analyzers;
 
@@ -25,8 +25,8 @@ public class ParameterStateCodeFixProviderTests
         var source = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -47,8 +47,8 @@ class ComponentB
         var fixedSource = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -75,8 +75,8 @@ class ComponentB
         var source = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -97,8 +97,8 @@ class ComponentB
         var fixedSource = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -125,8 +125,8 @@ class ComponentB
         var source = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -149,8 +149,8 @@ class ComponentB
         var fixedSource = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -179,8 +179,8 @@ class ComponentB
         var source = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -200,8 +200,8 @@ class ComponentB
         var fixedSource = @"
 using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {
@@ -247,8 +247,8 @@ class ComponentB
         // SyntaxGenerator.AddNamespaceImports appends at the end
         var fixedSource = @"using System;
 using ProtonBlazor;
-using ProtonBlazor.State;
 using ProtonBlazor.Extensions;
+using ProtonBlazor.State;
 
 class ComponentA : ComponentBaseWithState
 {

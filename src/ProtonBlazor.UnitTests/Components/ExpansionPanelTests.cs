@@ -2,8 +2,8 @@
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.UnitTests.TestComponents.ExpansionPanel;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.ExpansionPanel;
 
 namespace ProtonBlazor.UnitTests.Components
 {

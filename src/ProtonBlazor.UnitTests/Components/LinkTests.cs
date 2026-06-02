@@ -3,8 +3,8 @@ using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.UnitTests.TestComponents.Link;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Link;
 
 namespace ProtonBlazor.UnitTests.Components;
 

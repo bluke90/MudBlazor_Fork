@@ -5,8 +5,8 @@
 using AwesomeAssertions;
 using Microsoft.Extensions.Time.Testing;
 using Moq;
-using ProtonBlazor.Utilities.Background.Batch;
 using NUnit.Framework;
+using ProtonBlazor.Utilities.Background.Batch;
 
 namespace ProtonBlazor.UnitTests.Utilities.Background;
 

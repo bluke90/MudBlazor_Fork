@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.ButtonGroup;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.ButtonGroup;
 
 namespace ProtonBlazor.UnitTests.Components
 {

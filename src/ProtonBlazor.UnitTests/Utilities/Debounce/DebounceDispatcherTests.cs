@@ -5,8 +5,8 @@
 using System.Reflection;
 using AwesomeAssertions;
 using Microsoft.Extensions.Time.Testing;
-using ProtonBlazor.Utilities.Debounce;
 using NUnit.Framework;
+using ProtonBlazor.Utilities.Debounce;
 
 namespace ProtonBlazor.UnitTests.Utilities.Debounce;
 
@@ -140,8 +140,8 @@ public class DebounceDispatcherTests
     public async Task DebounceAsync_CancellationToken_CancelsOperation()
     {
         // Arrange
-        using var debounceDispatcher = new DebounceDispatcher(1000);
         using var cts = new CancellationTokenSource();
+        using var debounceDispatcher = new DebounceDispatcher(1000);
         var executed = false;
         Task Invoke()
         {
@@ -258,8 +258,8 @@ public class DebounceDispatcherTests
     {
         // Arrange
         var timeProvider = new FakeTimeProvider();
-        using var debounceDispatcher = new DebounceDispatcher(200, false, timeProvider);
         using var cts = new CancellationTokenSource();
+        using var debounceDispatcher = new DebounceDispatcher(200, false, timeProvider);
         var executed = false;
 
         Task Invoke()
@@ -290,8 +290,8 @@ public class DebounceDispatcherTests
     {
         // Arrange
         var timeProvider = new FakeTimeProvider();
-        using var debounceDispatcher = new DebounceDispatcher(200, leading: true, timeProvider);
         using var cts = new CancellationTokenSource();
+        using var debounceDispatcher = new DebounceDispatcher(200, leading: true, timeProvider);
         var executionCount = 0;
 
         Task TrackingAction()

@@ -10,13 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.Dummy;
 using ProtonBlazor.UnitTests.TestComponents.Field;
 using ProtonBlazor.UnitTests.TestComponents.Form;
 using ProtonBlazor.UnitTests.TestComponents.TextField;
 using ProtonBlazor.UnitTests.Utilities;
-using NUnit.Framework;
 
 #nullable enable
 namespace ProtonBlazor.UnitTests.Components

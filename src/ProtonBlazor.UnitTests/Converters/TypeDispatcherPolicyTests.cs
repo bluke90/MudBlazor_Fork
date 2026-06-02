@@ -3,10 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using AwesomeAssertions;
+using NUnit.Framework;
 using ProtonBlazor.Resources;
 using ProtonBlazor.Utilities.Converter.Dispatcher;
 using ProtonBlazor.Utilities.Exceptions;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Converters;
 

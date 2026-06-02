@@ -2,8 +2,8 @@
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
-using ProtonBlazor.UnitTests.TestComponents.Virtualize;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Virtualize;
 
 namespace ProtonBlazor.UnitTests.Components;
 

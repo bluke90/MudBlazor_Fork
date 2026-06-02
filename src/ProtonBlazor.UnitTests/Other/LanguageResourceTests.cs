@@ -5,8 +5,8 @@
 using System.Collections;
 using System.Globalization;
 using AwesomeAssertions;
-using ProtonBlazor.Resources;
 using NUnit.Framework;
+using ProtonBlazor.Resources;
 
 namespace ProtonBlazor.UnitTests.Other;
 

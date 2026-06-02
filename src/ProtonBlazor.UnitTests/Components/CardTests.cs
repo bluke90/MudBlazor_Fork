@@ -4,8 +4,8 @@
 
 using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.Card;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Card;
 
 namespace ProtonBlazor.UnitTests.Components
 {

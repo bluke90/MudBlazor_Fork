@@ -2,8 +2,8 @@
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.Extensions.DependencyInjection;
-using ProtonBlazor.UnitTests.TestComponents.Popover;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Popover;
 
 namespace ProtonBlazor.UnitTests.Components
 {

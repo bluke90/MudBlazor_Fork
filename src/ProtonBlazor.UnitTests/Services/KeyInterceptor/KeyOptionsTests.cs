@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using AwesomeAssertions;
-using ProtonBlazor.Services;
 using NUnit.Framework;
+using ProtonBlazor.Services;
 
 namespace ProtonBlazor.UnitTests.Services.KeyInterceptor;
 

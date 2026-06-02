@@ -4,9 +4,9 @@ using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.TestComponents.Tabs;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

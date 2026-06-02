@@ -3,9 +3,9 @@ using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.TestComponents.Stepper;
-using NUnit.Framework;
 
 #nullable enable
 namespace ProtonBlazor.UnitTests.Components

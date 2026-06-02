@@ -6,8 +6,8 @@ using AwesomeAssertions;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
-using ProtonBlazor.UnitTests.Mocks;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.Mocks;
 
 namespace ProtonBlazor.UnitTests
 {

@@ -4,9 +4,9 @@
 
 using AwesomeAssertions;
 using Bunit;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.TestComponents.Navigation;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components;
 

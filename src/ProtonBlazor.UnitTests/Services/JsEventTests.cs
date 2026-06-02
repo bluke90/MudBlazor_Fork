@@ -5,8 +5,8 @@
 using AwesomeAssertions;
 using Microsoft.JSInterop;
 using Moq;
-using ProtonBlazor.Services;
 using NUnit.Framework;
+using ProtonBlazor.Services;
 
 namespace ProtonBlazor.UnitTests.Services
 {

@@ -6,11 +6,11 @@ using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.Dummy;
 using ProtonBlazor.UnitTests.TestComponents.Form;
 using ProtonBlazor.Utilities;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

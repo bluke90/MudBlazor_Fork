@@ -9,9 +9,9 @@ using Bunit;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NUnit.Framework;
 using ProtonBlazor.UnitTests.Mocks;
 using ProtonBlazor.UnitTests.TestComponents.ToggleGroup;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

@@ -4,9 +4,9 @@
 
 #nullable enable
 using AwesomeAssertions;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.Services;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests;
 

@@ -6,9 +6,9 @@ using System.Buffers.Binary;
 using System.Globalization;
 using System.Text;
 using AwesomeAssertions;
+using NUnit.Framework;
 using ProtonBlazor.UnitTests.Dummy;
 using ProtonBlazor.Utilities;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Utilities
 {
@@ -78,8 +78,8 @@ namespace ProtonBlazor.UnitTests.Utilities
 
             ProColor DeserializeXml(string toDeserialize)
             {
-                using var textReader = new StringReader(toDeserialize);
                 using var reader = System.Xml.XmlReader.Create(textReader);
+                using var textReader = new StringReader(toDeserialize);
 
                 return (ProColor)dataContractSerializer.ReadObject(reader);
             }

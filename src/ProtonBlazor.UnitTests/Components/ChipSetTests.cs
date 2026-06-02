@@ -1,8 +1,8 @@
 ﻿using AwesomeAssertions;
 using Bunit;
+using NUnit.Framework;
 using ProtonBlazor.Docs.Examples;
 using ProtonBlazor.UnitTests.TestComponents.ChipSet;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

@@ -4,8 +4,8 @@
 
 using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.Utilities;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Utilities;
 
 namespace ProtonBlazor.UnitTests.Converters;
 

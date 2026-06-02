@@ -6,8 +6,8 @@ using AngleSharp.Dom;
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.UnitTests.TestComponents.DataGrid;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.DataGrid;
 
 #nullable enable
 namespace ProtonBlazor.UnitTests.Components

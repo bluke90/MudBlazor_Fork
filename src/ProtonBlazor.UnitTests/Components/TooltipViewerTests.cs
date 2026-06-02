@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.Tooltip;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Tooltip;
 
 namespace ProtonBlazor.UnitTests.Components
 {

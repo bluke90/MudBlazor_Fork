@@ -1,8 +1,8 @@
 ﻿using System.IO.Compression;
 using System.Text;
 using AwesomeAssertions;
-using ProtonBlazor.Docs.Models;
 using NUnit.Framework;
+using ProtonBlazor.Docs.Models;
 
 namespace ProtonBlazor.UnitTests.Docs.Utilities;
 

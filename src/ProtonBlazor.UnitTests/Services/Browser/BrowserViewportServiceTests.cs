@@ -9,11 +9,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.Services.Browser.Mocks;
 using ProtonBlazor.UnitTests.TestData;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Services.Browser;
 

@@ -1,8 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
+using NUnit.Framework;
 using ProtonBlazor.Analyzers.TestComponents;
 using ProtonBlazor.UnitTests.Analyzers.Internal;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Analyzers;
 

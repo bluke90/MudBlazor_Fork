@@ -1,6 +1,6 @@
 ﻿using AwesomeAssertions;
-using ProtonBlazor.Docs.Compiler;
 using NUnit.Framework;
+using ProtonBlazor.Docs.Compiler;
 
 namespace ProtonBlazor.UnitTests.Docs.Utilities
 {

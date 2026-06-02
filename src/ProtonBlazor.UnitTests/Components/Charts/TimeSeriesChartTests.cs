@@ -4,9 +4,9 @@
 using AngleSharp.Dom;
 using AwesomeAssertions;
 using Bunit;
+using NUnit.Framework;
 using ProtonBlazor.Charts;
 using ProtonBlazor.Interop;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Charts
 {

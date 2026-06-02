@@ -5,9 +5,9 @@
 using AwesomeAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NUnit.Framework;
 using ProtonBlazor.UnitTests.Mocks;
 using ProtonBlazor.UnitTests.TestComponents.Logger;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Utilities
 {

@@ -2,9 +2,9 @@
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.TestComponents.Pagination;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

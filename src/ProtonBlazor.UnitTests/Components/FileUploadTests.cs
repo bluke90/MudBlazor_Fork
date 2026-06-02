@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.Dummy;
 using ProtonBlazor.UnitTests.Mocks;
 using ProtonBlazor.UnitTests.TestComponents.FileUpload;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

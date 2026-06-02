@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.SplitPanel;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.SplitPanel;
 
 namespace ProtonBlazor.UnitTests.Components;
 

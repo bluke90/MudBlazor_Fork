@@ -14,11 +14,11 @@ using Bunit;
 using Bunit.Rendering;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.Interfaces;
 using ProtonBlazor.UnitTests.TestComponents.DataGrid;
 using ProtonBlazor.Utilities.Clone;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

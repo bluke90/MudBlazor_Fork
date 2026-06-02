@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Microsoft.AspNetCore.Components;
-using ProtonBlazor.State.Comparer;
 using NUnit.Framework;
+using ProtonBlazor.State.Comparer;
 
 namespace ProtonBlazor.UnitTests.State.Comparer;
 

@@ -2,10 +2,10 @@
 using Bunit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.TestComponents;
 using ProtonBlazor.UnitTests.TestComponents.TreeView;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

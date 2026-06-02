@@ -5,9 +5,9 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.TestComponents.Hidden;
-using NUnit.Framework;
 
 #nullable enable
 namespace ProtonBlazor.UnitTests.Components

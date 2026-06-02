@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.Services.KeyInterceptor.Mocks;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Services.KeyInterceptor;
 

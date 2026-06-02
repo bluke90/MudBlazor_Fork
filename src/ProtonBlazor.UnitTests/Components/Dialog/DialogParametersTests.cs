@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using AwesomeAssertions;
-using ProtonBlazor.UnitTests.TestComponents.Dialog;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Dialog;
 
 namespace ProtonBlazor.UnitTests.Components.Dialog;
 

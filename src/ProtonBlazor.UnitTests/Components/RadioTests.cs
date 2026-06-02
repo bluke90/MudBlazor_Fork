@@ -1,10 +1,10 @@
 ﻿using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.UnitTests.TestComponents.Radio;
 using ProtonBlazor.UnitTests.TestComponents.RadioGroup;
 using ProtonBlazor.UnitTests.Utilities;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

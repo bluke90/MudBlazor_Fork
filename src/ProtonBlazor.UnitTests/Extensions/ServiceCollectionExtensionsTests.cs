@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
+using NUnit.Framework;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.Mocks;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests;
 

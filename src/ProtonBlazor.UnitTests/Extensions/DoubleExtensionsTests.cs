@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using AwesomeAssertions;
-using ProtonBlazor.Extensions;
 using NUnit.Framework;
+using ProtonBlazor.Extensions;
 
 namespace ProtonBlazor.UnitTests.Extensions;
 

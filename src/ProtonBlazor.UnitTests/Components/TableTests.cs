@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
-using ProtonBlazor.UnitTests.TestComponents.Table;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Table;
 
 namespace ProtonBlazor.UnitTests.Components
 {

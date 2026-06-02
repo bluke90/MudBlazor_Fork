@@ -5,11 +5,11 @@
 using System.Collections;
 using AwesomeAssertions;
 using Microsoft.AspNetCore.Components;
+using NUnit.Framework;
 using ProtonBlazor.State;
 using ProtonBlazor.State.Builder;
 using ProtonBlazor.UnitTests.Comparer;
 using ProtonBlazor.UnitTests.State.Mocks;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.State;
 

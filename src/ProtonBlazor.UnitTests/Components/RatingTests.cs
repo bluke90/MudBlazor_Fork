@@ -2,8 +2,8 @@
 using AwesomeAssertions;
 using Bunit;
 using Microsoft.AspNetCore.Components.Web;
-using ProtonBlazor.Extensions;
 using NUnit.Framework;
+using ProtonBlazor.Extensions;
 
 namespace ProtonBlazor.UnitTests.Components
 {

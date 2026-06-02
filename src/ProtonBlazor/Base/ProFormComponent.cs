@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq.Expressions;
+using static System.String;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Logging;
@@ -14,7 +15,6 @@ using ProtonBlazor.Interfaces;
 using ProtonBlazor.State;
 using ProtonBlazor.Utilities.Comparer;
 using ProtonBlazor.Utilities.Converter.Base;
-using static System.String;
 
 namespace ProtonBlazor
 {

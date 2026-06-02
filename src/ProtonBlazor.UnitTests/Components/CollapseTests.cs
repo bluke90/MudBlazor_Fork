@@ -5,8 +5,8 @@
 using AngleSharp.Dom;
 using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.Collapse;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Collapse;
 
 namespace ProtonBlazor.UnitTests.Components
 {

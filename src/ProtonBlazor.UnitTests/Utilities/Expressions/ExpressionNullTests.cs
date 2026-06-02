@@ -4,8 +4,8 @@
 
 using System.Linq.Expressions;
 using AwesomeAssertions;
-using ProtonBlazor.Utilities.Expressions;
 using NUnit.Framework;
+using ProtonBlazor.Utilities.Expressions;
 
 namespace ProtonBlazor.UnitTests.Utilities.Expressions;
 

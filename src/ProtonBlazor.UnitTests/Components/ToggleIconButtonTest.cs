@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.ToggleIconButton;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.ToggleIconButton;
 
 namespace ProtonBlazor.UnitTests.Components
 {

@@ -3,11 +3,11 @@ using Bunit;
 using Bunit.TestDoubles;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using ProtonBlazor.Docs.Pages.Api;
 using ProtonBlazor.Docs.Services;
 using ProtonBlazor.Services;
 using ProtonBlazor.UnitTests.Mocks;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Docs.Generated
 {

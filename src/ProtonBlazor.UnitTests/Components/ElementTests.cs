@@ -1,7 +1,7 @@
 ﻿using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.Element;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Element;
 namespace ProtonBlazor.UnitTests.Components
 {
     [TestFixture]

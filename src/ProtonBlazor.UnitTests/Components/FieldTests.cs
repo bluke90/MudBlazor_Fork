@@ -4,8 +4,8 @@
 
 using AwesomeAssertions;
 using Bunit;
-using ProtonBlazor.UnitTests.TestComponents.Field;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.TestComponents.Field;
 
 namespace ProtonBlazor.UnitTests.Components
 {

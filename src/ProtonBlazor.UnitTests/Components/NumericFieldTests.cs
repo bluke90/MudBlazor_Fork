@@ -9,10 +9,10 @@ using Bunit;
 using FluentValidation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NUnit.Framework;
 using ProtonBlazor.Extensions;
 using ProtonBlazor.UnitTests.Dummy;
 using ProtonBlazor.UnitTests.TestComponents.NumericField;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.Components
 {

@@ -11,9 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.UnitTests.Dummy;
 using ProtonBlazor.UnitTests.TestComponents.Autocomplete;
-using NUnit.Framework;
 using static ProtonBlazor.UnitTests.TestComponents.Autocomplete.AutocompleteSetParametersInitialization;
 
 namespace ProtonBlazor.UnitTests.Components

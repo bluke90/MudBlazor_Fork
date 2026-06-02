@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
+using NUnit.Framework;
 using ProtonBlazor.Interop;
 using ProtonBlazor.Services;
-using NUnit.Framework;
 using static ProtonBlazor.Services.ResizeObserver;
 
 namespace ProtonBlazor.UnitTests.Services

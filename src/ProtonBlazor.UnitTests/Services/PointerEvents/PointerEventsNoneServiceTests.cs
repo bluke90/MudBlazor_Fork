@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.JSInterop;
 using Microsoft.JSInterop.Infrastructure;
 using Moq;
-using ProtonBlazor.UnitTests.Services.PointerEvents.Mocks;
 using NUnit.Framework;
+using ProtonBlazor.UnitTests.Services.PointerEvents.Mocks;
 
 namespace ProtonBlazor.UnitTests.Services.PointerEvents;
 

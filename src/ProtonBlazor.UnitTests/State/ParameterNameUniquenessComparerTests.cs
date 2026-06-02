@@ -3,10 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using AwesomeAssertions;
+using NUnit.Framework;
 using ProtonBlazor.State;
 using ProtonBlazor.State.Builder;
 using ProtonBlazor.State.Comparer;
-using NUnit.Framework;
 
 namespace ProtonBlazor.UnitTests.State;
 
