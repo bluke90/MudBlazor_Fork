@@ -442,10 +442,10 @@ namespace ProtonBlazor.UnitTests.Components
         [Test]
         public void ProHighlighterMarkupRenderFragment()
         {
-            var searchFor = "mud";
+            var searchFor = "pro";
             var markupText = $"<i>ProtonBlazor</i>";
-            var rawOutput = "&lt;i&gt;<mark>Mud</mark>Blazor&lt;/i&gt;";
-            var formattedOutput = "<i><mark>Mud</mark>Blazor</i>";
+            var rawOutput = "&lt;i&gt;<mark>Pro</mark>tonBlazor&lt;/i&gt;";
+            var formattedOutput = "<i><mark>Pro</mark>tonBlazor</i>";
 
             var comp = Context.Render<BasicHighlighterTest>(parameters => parameters
                 .Add(p => p.Text, markupText)
