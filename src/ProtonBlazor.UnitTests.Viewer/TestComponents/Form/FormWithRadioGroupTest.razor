@@ -1,0 +1,13 @@
+﻿<ProForm ValidationDelay="0">
+    <ProRadioGroup T="string" Required="true" @bind-Value="Selected">
+        <ProRadio Value="@("A")">Option A</ProRadio>
+        <ProRadio Value="@("B")">Option B</ProRadio>
+    </ProRadioGroup>
+</ProForm>
+
+@code {
+    public static string __description__ = "Clearing the value of a required radiogroup should set form's isvalid to false.";
+
+    [Parameter]
+    public string? Selected { get; set; }
+}

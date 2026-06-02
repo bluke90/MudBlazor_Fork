@@ -1,0 +1,46 @@
+﻿@using System.Net.Http.Json
+@using ProtonBlazor.Examples.Data.Models
+@namespace ProtonBlazor.Docs.Examples
+@inject HttpClient httpClient
+
+<ProTable Items="@Elements" FixedHeader="@fixed_header" FixedFooter="@fixed_footer" Height="@(fixed_header || fixed_footer ?"400px":"")">
+    <HeaderContent>
+        <ProTh>Nr</ProTh>
+        <ProTh>Sign</ProTh>
+        <ProTh>Name</ProTh>
+        <ProTh>Position</ProTh>
+        <ProTh>Molar mass</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">@context.Sign</ProTd>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowTemplate>
+    <FooterContent>
+        <ProTd>Nr</ProTd>
+        <ProTd>Sign</ProTd>
+        <ProTd>Name</ProTd>
+        <ProTd>Position</ProTd>
+        <ProTd>Molar mass</ProTd>
+    </FooterContent>
+    <PagerContent>
+        <ProTablePager PageSizeOptions="new int[]{50, 100}" />
+    </PagerContent>
+</ProTable>
+
+<ProSwitch @bind-Value="fixed_header" Color="Color.Primary">Fixed Header</ProSwitch>
+<ProSwitch @bind-Value="fixed_footer" Color="Color.Primary">Fixed Footer</ProSwitch>
+
+@code {
+    bool fixed_header = true;
+    bool fixed_footer = false;
+
+    private IEnumerable<Element> Elements = new List<Element>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Elements = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable");
+    }
+}

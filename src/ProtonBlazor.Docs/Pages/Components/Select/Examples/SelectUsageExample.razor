@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Components
+@using System.Globalization;
+@namespace ProtonBlazor.Docs.Examples
+
+<ProSelect @bind-Value="stringValue" Label="Select fast-food" HelperText="String" Placeholder="Please Select" AdornmentIcon="@Icons.Material.Filled.Fastfood" AdornmentColor="Color.Primary">
+    <ProSelectItem Value="@("Pizza")" Disabled="true">Pizza (Disabled)</ProSelectItem>
+    <ProSelectItem Value="@("Burger")">Burger</ProSelectItem>
+    <ProSelectItem Value="@("Hotdog")">Hot Dog</ProSelectItem>
+</ProSelect>
+
+<ProSelect @bind-Value="enumValue" Label="Select drink" HelperText="Enum" OpenIcon="@Icons.Material.Filled.LocalDrink" AdornmentColor="Color.Secondary">
+    @foreach (Drink item in Enum.GetValues(typeof(Drink))) {
+        <ProSelectItem Value="@item">@item</ProSelectItem>
+    }
+</ProSelect>
+
+<ProSelect Placeholder="Select culture" @bind-Value="cultureValue" HelperText="CultureInfo" ToStringFunc="@convertFunc" CloseIcon="@Icons.Material.Filled.Flag" AdornmentColor="Color.Tertiary">
+    <ProSelectItem Value="@(CultureInfo.GetCultureInfo("en-US"))" />
+    <ProSelectItem Value="@(CultureInfo.GetCultureInfo("de-AT"))" />
+    <ProSelectItem Value="@(CultureInfo.GetCultureInfo("pt-BR"))" />
+    <ProSelectItem Value="@(CultureInfo.GetCultureInfo("zh-CN"))" />
+</ProSelect>
+
+<div class="d-flex pro-width-full align-center mt-8">
+    <ProText Typo="Typo.subtitle1" Class="mr-2">Selected values: </ProText>
+    <ProChip T="string">@(stringValue ?? "Select fast-food")</ProChip>
+    <ProChip T="string" Color="Color.Primary">@enumValue</ProChip>
+    <ProChip T="string" Color="Color.Secondary">@(cultureValue?.DisplayName ?? "Select culture")</ProChip>
+</div>
+
+@code {
+    private string stringValue { get; set; }
+    private Drink enumValue { get; set; } = Drink.HotWater;
+    public enum Drink { Tea, SparklingWater, SoftDrink, Cider, Beer, Wine, Moonshine, Wodka, Cola, GreeTea, FruitJuice, Lemonade, HotWater, SpringWater, IceWater, }
+    private CultureInfo cultureValue { get; set; }
+    private Func<CultureInfo, string> convertFunc = ci => ci?.DisplayName;
+}

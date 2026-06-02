@@ -1,0 +1,51 @@
+﻿<ProGrid>
+    <ProItem xs="12">
+        <ProChipSet T="Coffee" SelectionMode="SelectionMode.MultiSelection" CheckMark SelectedValues="@Selected" SelectedValuesChanged="SelectedChanged" Comparer="@_comparer">
+            <ProChip T="Coffee" Text="Cappuccino" Value="@(new Coffee("cap","Cappuccino"))" />
+            <ProChip T="Coffee" Text="Cafe Latte" Value="@(new Coffee("lat","Cafe Latte"))" />
+            <ProChip T="Coffee" Text="Espresso" Value="@(new Coffee("esp","Espresso"))" />
+            <ProChip T="Coffee" Text="Irish Coffee" Value="@(new Coffee("ire","Irish Coffee"))" />
+        </ProChipSet>
+    </ProItem>
+    <ProItem xs="12">
+        <ProButton OnClick="SetSelection">Set Selection</ProButton>
+    </ProItem>
+    <br />
+    <p class="sel">
+        Selection: @(string.Join(", ", Selected.Select(x => x.Name).OrderBy(x => x)))
+    </p>
+</ProGrid>
+
+@code {
+    public static string __description__ = "The comparer should be used to compare coffee objects in chipset";
+    
+    private readonly CoffeeComparer _comparer = new();
+    private IReadOnlyCollection<Coffee> Selected { get; set; } = Array.Empty<Coffee>();
+
+    private void SelectedChanged(IEnumerable<Coffee> newSelected)
+    {
+        Selected = newSelected.ToHashSet();
+    }
+
+    private void SetSelection()
+    {
+        Selected = 
+        [
+            new Coffee("lat", "Cafe Latte!"),
+            new Coffee("esp", "Espresso!")
+        ];
+    }
+
+    private class Coffee(string key, string name)
+    {
+        public string Key { get; } = key;
+        public string Name { get; } = name;
+    }
+
+    private class CoffeeComparer : IEqualityComparer<Coffee>
+    {
+        public bool Equals(Coffee? a, Coffee? b) => a?.Key == b?.Key;
+        public int GetHashCode(Coffee x) => HashCode.Combine(x.Key);
+    }
+}
+

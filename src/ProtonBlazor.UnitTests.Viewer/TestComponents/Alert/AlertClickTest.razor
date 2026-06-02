@@ -1,0 +1,9 @@
+﻿<ProAlert Severity="Severity.Normal" CloseIconClicked="TestClick">The reactor type is RBMK-1000</ProAlert>
+<ProNumericField @bind-Value="_value" />
+
+@code
+{
+    public static string __description__ = "Badge test";
+    private int _value = 0;
+    private void TestClick() => _value = 1;
+}

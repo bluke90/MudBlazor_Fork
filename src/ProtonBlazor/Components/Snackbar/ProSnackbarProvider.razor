@@ -1,0 +1,17 @@
+﻿@*
+    Copyright (c) Alessandro Ghidini. All rights reserved.
+    Changes and improvements Copyright (c) The ProtonBlazor Team.
+*@
+
+@namespace ProtonBlazor
+@inherits ProComponentBase
+
+@{
+}
+
+<div @attributes="UserAttributes" id="pro-snackbar-container" class="@Classname" style="@Style">
+    @foreach (var snackbar in Snackbar)
+    {
+        <ProSnackbarElement @key="snackbar" Snackbar="@snackbar"></ProSnackbarElement>
+    }
+</div>

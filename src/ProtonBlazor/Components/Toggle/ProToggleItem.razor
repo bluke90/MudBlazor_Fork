@@ -1,0 +1,33 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+@typeparam T
+
+<ProButton role="checkbox"
+           aria-checked="@(Selected.ToString().ToLower())"
+           @attributes="UserAttributes"
+           Class="@Classname"
+           Style="@Style"
+           OnClick="HandleOnClickAsync"
+           Size="AssertedParent.Size"
+           Color="AssertedParent.Color"
+           Variant="@(Selected ? Variant.Filled : Variant.Outlined)"
+           Disabled="Disabled || AssertedParent.Disabled"
+           Ripple="AssertedParent.Ripple">
+    @if (!string.IsNullOrWhiteSpace(GetCurrentIcon()))
+    {
+        <ProIcon Class="@CheckMarkClassname"
+                 Disabled="Disabled"
+                 Icon="@GetCurrentIcon()"
+                 Size="AssertedParent.Size" />
+    }
+    @if (ChildContent is not null)
+    {
+        <div class="pro-toggle-item-content">
+            @ChildContent(Selected)
+        </div>
+    }
+    else
+    {
+        @(Text == null ? Value : Text)
+    }
+</ProButton>

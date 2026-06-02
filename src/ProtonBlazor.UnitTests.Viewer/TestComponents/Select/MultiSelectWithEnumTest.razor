@@ -1,0 +1,20 @@
+﻿<ProPopoverProvider />
+
+<ProSelect MultiSelection="true" @bind-SelectedValues="@_selected">
+    @foreach (MyEnum item in Enum.GetValues(typeof(MyEnum)))
+    {
+        <ProSelectItem Value="@item">@item</ProSelectItem>
+    }
+</ProSelect>
+
+@code {
+    public static string __description__ = "Multiselection with enums should not automatically show the default(T) as selected";
+
+    private IReadOnlyCollection<MyEnum> _selected = [];
+
+    public enum MyEnum
+    {
+        First,
+        Second,
+    }
+}

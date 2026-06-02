@@ -1,0 +1,14 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<a @attributes="Attributes" @onclick="this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickHandler)" class="@Classname" style="@Style">
+    @if (!string.IsNullOrWhiteSpace(StartIcon))
+    {
+        <ProIcon Icon="@StartIcon" Class="@StartIconClassname" />
+    }
+    @ChildContent
+    @if (!string.IsNullOrWhiteSpace(EndIcon))
+    {
+        <ProIcon Icon="@EndIcon" Class="@EndIconClassname" />
+    }
+</a>

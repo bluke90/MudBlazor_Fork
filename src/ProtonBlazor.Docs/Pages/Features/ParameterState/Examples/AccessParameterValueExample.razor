@@ -1,0 +1,40 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProContainer Class="mt-8" Style="justify-items: center">
+    <ProPaper Class="mt-4 px-8">
+        <ProStepper @ref="_stepper" NonLinear Class="mr-4">
+            <ChildContent>
+                <ProStep Title="Step 1" CompletedChanged="@(() => StateHasChanged())">Introductory Step</ProStep>
+                <ProStep Title="Step 2" CompletedChanged="@(() => StateHasChanged())">More Details</ProStep>
+                <ProStep Title="Step 3" CompletedChanged="@(() => StateHasChanged())">Wrap things up</ProStep>
+            </ChildContent>
+        </ProStepper>
+
+        @if (_stepper is not null)
+        {
+            <ProStack Row Class="justify-center">
+                @foreach (var step in _stepper.Steps)
+                {
+                    <ProChip T="string" Color="@GetColor(step.Completed)">
+                        @step.Title
+                    </ProChip>
+                }
+            </ProStack>
+
+            <ProStack Row Class="justify-center">
+                @foreach (var step in _stepper.Steps)
+                {
+                    <ProChip T="string" Color="@GetColor(step.Completed)">
+                        @step.Title
+                    </ProChip>
+                }
+            </ProStack>
+        }
+    </ProPaper>
+</ProContainer>
+
+@code {
+    private ProStepper _stepper = null!;
+
+    private static Color GetColor(bool completed) => completed ? Color.Success : Color.Error;
+}

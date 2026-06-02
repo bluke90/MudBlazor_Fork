@@ -1,0 +1,209 @@
+﻿@* MODE SELECTORS *@
+
+<ProStack Row AlignItems="AlignItems.End">
+    <ProSelect T="Margin" Label="Margin size" @bind-Value="Margin" Variant="Variant.Outlined" Margin="Margin.Dense">
+        @foreach (Margin margin in Enum.GetValues(typeof(Margin)))
+        {
+            <ProSelectItem Value="@margin">@margin</ProSelectItem>
+        }
+    </ProSelect>
+    <ProSelect T="AlignItems" Label="Align" @bind-Value="Align" Variant="Variant.Outlined" Margin="Margin.Dense">
+        @foreach (AlignItems align in Enum.GetValues(typeof(AlignItems)))
+        {
+            <ProSelectItem Value="@align">@align</ProSelectItem>
+        }
+    </ProSelect>
+</ProStack>
+
+@* INPUT EXAMPLES FOR EACH VARIANT *@
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProField</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProField Variant="Variant.Text" Margin="@Margin">Field value</ProField>
+    <ProField Variant="Variant.Filled" Margin="@Margin">Field value</ProField>
+    <ProField Variant="Variant.Outlined" Margin="@Margin">Field value</ProField>
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProField Label="With Label" Variant="Variant.Text" Margin="@Margin">Field value</ProField>
+    <ProField Label="With Label" Variant="Variant.Filled" Margin="@Margin">Field value</ProField>
+    <ProField Label="With Label" Variant="Variant.Outlined" Margin="@Margin">Field value</ProField>
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProField HelperText="With Helper" Variant="Variant.Text" Margin="@Margin">Field value</ProField>
+    <ProField HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin">Field value</ProField>
+    <ProField HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin">Field value</ProField>
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProTextField</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProTextField T="string" Variant="Variant.Text" Margin="@Margin" />
+    <ProTextField T="string" Variant="Variant.Filled" Margin="@Margin" />
+    <ProTextField T="string" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProTextField T="string" Label="With Label" Variant="Variant.Text" Margin="@Margin" />
+    <ProTextField T="string" Label="With Label" Variant="Variant.Filled" Margin="@Margin" />
+    <ProTextField T="string" Label="With Label" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProTextField T="string" HelperText="With Helper" Variant="Variant.Text" Margin="@Margin" />
+    <ProTextField T="string" HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin" />
+    <ProTextField T="string" HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProDatePicker</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProDatePicker Variant="Variant.Text" Margin="@Margin" />
+    <ProDatePicker Variant="Variant.Filled" Margin="@Margin" />
+    <ProDatePicker Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProDatePicker Label="With Label" Variant="Variant.Text" Margin="@Margin" />
+    <ProDatePicker Label="With Label" Variant="Variant.Filled" Margin="@Margin" />
+    <ProDatePicker Label="With Label" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProDatePicker HelperText="With Helper" Variant="Variant.Text" Margin="@Margin" />
+    <ProDatePicker HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin" />
+    <ProDatePicker HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProTimePicker</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProTimePicker Variant="Variant.Text" Margin="@Margin" />
+    <ProTimePicker Variant="Variant.Filled" Margin="@Margin" />
+    <ProTimePicker Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProTimePicker Label="With Label" Variant="Variant.Text" Margin="@Margin" />
+    <ProTimePicker Label="With Label" Variant="Variant.Filled" Margin="@Margin" />
+    <ProTimePicker Label="With Label" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProTimePicker HelperText="With Helper" Variant="Variant.Text" Margin="@Margin" />
+    <ProTimePicker HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin" />
+    <ProTimePicker HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProNumericField</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProNumericField T="int" Variant="Variant.Text" Margin="@Margin" />
+    <ProNumericField T="int" Variant="Variant.Filled" Margin="@Margin" />
+    <ProNumericField T="int" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProNumericField T="int" Label="With Label" Variant="Variant.Text" Margin="@Margin" />
+    <ProNumericField T="int" Label="With Label" Variant="Variant.Filled" Margin="@Margin" />
+    <ProNumericField T="int" Label="With Label" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProNumericField T="int" HelperText="With Helper" Variant="Variant.Text" Margin="@Margin" />
+    <ProNumericField T="int" HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin" />
+    <ProNumericField T="int" HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProSelect</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProSelect T="string" Variant="Variant.Text" Margin="@Margin"></ProSelect>
+    <ProSelect T="string" Variant="Variant.Filled" Margin="@Margin"></ProSelect>
+    <ProSelect T="string" Variant="Variant.Outlined" Margin="@Margin"></ProSelect>
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProSelect T="string" Label="With Label" Variant="Variant.Text" Margin="@Margin"></ProSelect>
+    <ProSelect T="string" Label="With Label" Variant="Variant.Filled" Margin="@Margin"></ProSelect>
+    <ProSelect T="string" Label="With Label" Variant="Variant.Outlined" Margin="@Margin"></ProSelect>
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProSelect T="string" HelperText="With Helper" Variant="Variant.Text" Margin="@Margin"></ProSelect>
+    <ProSelect T="string" HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin"></ProSelect>
+    <ProSelect T="string" HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin"></ProSelect>
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProColorPicker</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProColorPicker Variant="Variant.Text" Margin="@Margin" />
+    <ProColorPicker Variant="Variant.Filled" Margin="@Margin" />
+    <ProColorPicker Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProColorPicker Label="With Label" Variant="Variant.Text" Margin="@Margin" />
+    <ProColorPicker Label="With Label" Variant="Variant.Filled" Margin="@Margin" />
+    <ProColorPicker Label="With Label" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProColorPicker HelperText="With Helper" Variant="Variant.Text" Margin="@Margin" />
+    <ProColorPicker HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin" />
+    <ProColorPicker HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProAutocomplete</ProText>
+<ProStack Row AlignItems="@Align">
+    <ProAutocomplete T="string" Variant="Variant.Text" Margin="@Margin" />
+    <ProAutocomplete T="string" Variant="Variant.Filled" Margin="@Margin" />
+    <ProAutocomplete T="string" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProAutocomplete T="string" Label="With Label" Variant="Variant.Text" Margin="@Margin" />
+    <ProAutocomplete T="string" Label="With Label" Variant="Variant.Filled" Margin="@Margin" />
+    <ProAutocomplete T="string" Label="With Label" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+<ProStack Row AlignItems="@Align">
+    <ProAutocomplete T="string" HelperText="With Helper" Variant="Variant.Text" Margin="@Margin" />
+    <ProAutocomplete T="string" HelperText="With Helper" Variant="Variant.Filled" Margin="@Margin" />
+    <ProAutocomplete T="string" HelperText="With Helper" Variant="Variant.Outlined" Margin="@Margin" />
+</ProStack>
+
+@* CHECKBOX, RADIOBUTTONS, SWITCHES *@
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProCheckBox</ProText>
+<ProCheckBox T="bool" />
+<ProCheckBox T="bool" Label="With Label" />
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProRadio</ProText>
+<ProRadioGroup T="string" Class="some-main-class" InputClass="some-input-class">
+    <ProRadio Value="@("1")" LabelPlacement="Placement.Left" />
+    <ProRadio Value="@("2")" LabelPlacement="Placement.Top" />
+    <ProRadio Value="@("3")" />
+</ProRadioGroup>
+<ProRadioGroup T="string" Class="some-main-class" InputClass="some-input-class">
+    <ProRadio Value="@("1")" LabelPlacement="Placement.Left">With Content</ProRadio>
+    <ProRadio Value="@("2")" LabelPlacement="Placement.Top">With Content</ProRadio>
+    <ProRadio Value="@("3")">With Content</ProRadio>
+</ProRadioGroup>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">ProSwitch</ProText>
+<ProSwitch T="bool" />
+<ProSwitch T="bool" Label="With Label" />
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">Using a ProStack to align items that have no label</ProText>
+<ProStack Row AlignItems="AlignItems.Center">
+    <ProTextField T="string" />
+    <ProDatePicker />
+    <ProNumericField T="int" />
+    <ProSelect T="string"></ProSelect>
+    <ProColorPicker />
+    <ProCheckBox T="bool" />
+    <ProRadio Value="@("1")" LabelPlacement="Placement.Left" />
+    <ProSwitch T="bool" />
+    <ProButton Variant="Variant.Filled">Text</ProButton>
+</ProStack>
+
+<ProText Typo="Typo.h6" Class="mt-6 mb-2">Boolean Input</ProText>
+<ProRadioGroup T="int" Class="some-main-class" InputClass="some-input-class">
+    <ProRadio Value="1" LabelPlacement="Placement.Right">With Content</ProRadio>
+    <ProRadio Value="2" LabelPlacement="Placement.Right"></ProRadio>
+</ProRadioGroup>
+<ProCheckBox T="bool" LabelPlacement="Placement.Right" />
+<ProCheckBox T="bool" LabelPlacement="Placement.Right" Label="With Label" />
+<ProSwitch T="bool" />
+<ProSwitch T="bool" Label="With Label" />
+
+@code {
+    public static string __description__ = "Test used to validate any inputs leyout in a single place.";
+
+    [Parameter]
+    public Margin Margin { get; set; } = Margin.Dense;
+
+    [Parameter]
+    public AlignItems Align { get; set; } = AlignItems.End;
+}

@@ -1,0 +1,31 @@
+﻿@inject IDialogService DialogService
+
+
+<div style="display: flex; flex-direction: row">
+    <ProTextField Margin="Margin.None" T="string" Variant="Variant.Text" />
+    <ProTextField Margin="Margin.None" T="string" Variant="Variant.Outlined" AutoGrow="true" />
+</div>
+<div style="display: flex; flex-direction: row">
+    <ProTextField Margin="Margin.Dense" T="string" Variant="Variant.Text" />
+    <ProTextField Margin="Margin.Dense" T="string" Variant="Variant.Filled" AutoGrow="true" />
+</div>
+
+
+<ProButton @onclick="OpenDialogAsync" Variant="Variant.Filled" Color="Color.Primary">
+    Open simple dialog
+</ProButton>
+
+<ProTextField T="string" Variant="Variant.Outlined" Label="Minimal Disabled Auto-Grow" Disabled="true" Class="mt-3" AutoGrow="true" />
+
+<ProTextField T="string" Variant="Variant.Outlined" Label="Normal Auto-Grow" Disabled="false" Class="mt-3" AutoGrow="true" />
+
+
+@code {
+
+    private Task OpenDialogAsync()
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        return DialogService.ShowAsync<DialogUsageExample_TextDialog>("Simple Dialog", options);
+    }
+}

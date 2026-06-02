@@ -1,0 +1,184 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@using ProtonBlazor.Utilities
+@inherits ProComponentBase
+
+@inject InternalMudLocalizer Localizer
+
+<div @attributes="@UserAttributes" class="@Classname" style="@Style">
+    <div class="@NavClassname" role="tablist">
+        @foreach (var step in _steps)
+        {
+            bool isActive = ActiveStep == step;
+            string stepClassname = new CssBuilder()
+                .AddClass("pro-step")
+                .AddClass("active", isActive)
+                .AddClass("pro-ripple", Ripple)
+                .AddClass("pro-clickable", NonLinear && !step.DisabledState.Value)
+                .AddClass("pro-step-error", step.HasErrorState.Value)
+                .AddClass("pro-step-completed", step.CompletedState.Value)
+                .AddClass("pro-step-skipped", step.SkippedState.Value)
+                .Build();
+
+            <button class="@stepClassname" role="tab" type="button" id="@GetStepButtonId(step)" aria-controls="@GetStepPanelIdIfRendered(step)" aria-selected="@(isActive.ToString().ToLower())"
+                    @onclick="@(async e => await OnStepClickAsync(step, e))" disabled="@step.DisabledState.Value">
+                @RenderStepLabel(step, isActive)
+            </button>
+
+            @if (Vertical && !(IsCompleted && CompletedContent is not null)) 
+            {
+                @StepContent(step)
+            }
+
+            @if (_steps[^1] != step)
+            {
+                @if (ConnectorTemplate is not null)
+                {
+                    @ConnectorTemplate(step)
+                }
+                else
+                {
+                    <div class="pro-stepper-nav-connector">
+                        <div class="pro-stepper-nav-connector-line"></div>
+                    </div>
+                }
+            }
+        }
+    </div>
+
+    @if (IsCompleted && CompletedContent is not null)
+    {
+        <div class="@StepClassname pro-stepper-complete">
+            @CompletedContent
+        </div>
+    }
+    else if (!Vertical && _activeStep is not null) {
+        @StepContent(_activeStep)
+    }
+
+    <CascadingValue Value="this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+
+    <ProCardActions Class="pro-stepper-actions">
+        @if (ActionContent == null)
+        {
+            @if (ShowResetButton)
+            {
+                @* Reset Button *@
+                <ProButton StartIcon="@ResetButtonIcon" Class="pro-stepper-button-reset" Disabled="@(!CanReset)" OnClick="@(async () => await ResetAsync())">
+                    @Localizer[LanguageResource.ProStepper_Reset]
+                </ProButton>
+            }
+
+            @if (!IsCompleted)
+            {
+                @* Previous Button *@
+                <ProButton StartIcon="@PreviousButtonIcon" Class="pro-stepper-button-previous" OnClick="PreviousStepAsync" Disabled="@(!PreviousStepEnabled)">
+                    @Localizer[LanguageResource.ProStepper_Previous]
+                </ProButton>
+            }
+
+            <ProSpacer/>
+
+            @if (!IsCompleted)
+            {
+                @if (IsCurrentStepSkippable)
+                {
+                    @* Skip Button *@
+                    <ProButton StartIcon="@SkipButtonIcon" Class="pro-stepper-button-skip" OnClick="SkipCurrentStepAsync">
+                        @Localizer[LanguageResource.ProStepper_Skip]
+                    </ProButton>
+                }
+                @if (ShowCompleteInsteadOfNext)
+                {
+                    @* Complete Button *@
+                    <ProButton StartIcon="@CompleteButtonIcon" Class="pro-stepper-button-complete" OnClick="NextStepAsync" Color="Color.Primary">
+                        @Localizer[LanguageResource.ProStepper_Complete]
+                    </ProButton>
+                }
+                else 
+                {
+                    @* Next Button *@
+                    <ProButton StartIcon="@NextButtonIcon" Class="pro-stepper-button-next" OnClick="NextStepAsync" Color="Color.Primary" Disabled="@(!CanGoToNextStep)">
+                        @Localizer[LanguageResource.ProStepper_Next]
+                    </ProButton>
+                }
+            }
+        }
+        else
+        {
+            @ActionContent(this)
+        }
+    </ProCardActions>
+</div>
+
+@code {
+    private RenderFragment RenderStepLabel(ProStep step, bool isActive) =>
+        @<div class="@step.LabelClassname">
+            @if (LabelTemplate is not null)
+            {
+                @LabelTemplate(step)
+            }
+            else
+            {
+                <div class="@step.LabelIconClassname">
+                    @if(step.HasErrorState.Value)
+                    {
+                        <ProIcon Size="Size.Small" Icon="@StepErrorIcon" />
+                    }
+                    else if(step.SkippedState.Value && ShowSkip)
+                    {
+                        <ProIcon Size="Size.Small" Icon="@StepSkippedIcon" />
+                    }
+                    else if (step.CompletedState.Value)
+                    {
+                        <ProIcon Size="Size.Small" Icon="@StepCompleteIcon" />
+                    }
+                    else
+                    {
+                        <ProText Typo="Typo.caption">@(_steps.IndexOf(step) + 1)</ProText>
+                    }
+                </div>
+            }
+
+            @if (TitleTemplate is not null)
+            {
+                @TitleTemplate(step)
+            }
+            else
+            {
+                <div class="@step.LabelContentClassname">
+                    <ProText Typo="@(isActive ? Typo.subtitle2 : Typo.body2)" Class="pro-step-label-content-title">
+                        @step.Title
+                    </ProText>
+
+                    @if (!string.IsNullOrEmpty(step.SecondaryText))
+                    {
+                        <ProText Typo="Typo.caption" Class="pro-step-label-content-secondary-text">@step.SecondaryText</ProText>
+                    }
+                </div>
+            }
+        </div>;
+
+    private RenderFragment StepContent(ProStep step) =>
+        @<CascadingValue Value="@CreateStepContext(step)">
+            <div @attributes="@step.UserAttributes" id="@GetStepPanelId(step)" class="@step.Classname" style="@step.Styles" role="tabpanel" aria-labelledby="@GetStepButtonId(step)" tabindex="0">
+                @if (step.ChildContent is not null)
+                {
+                    if (Vertical)
+                    {
+                        <ProCollapse Expanded="step == ActiveStep">
+                            @step.ChildContent
+                        </ProCollapse>
+                    }
+                    else
+                    {
+                        @step.ChildContent
+                    }
+                }
+            </div>
+        </CascadingValue>;
+
+    private ProStepContext CreateStepContext(ProStep step) => new(this, step);
+}

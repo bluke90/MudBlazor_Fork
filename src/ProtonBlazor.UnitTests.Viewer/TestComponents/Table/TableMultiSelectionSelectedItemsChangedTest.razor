@@ -1,0 +1,21 @@
+﻿<ProTable T="int" Items="_items" MultiSelection="true" SelectedItemsChanged="SelectedItemsChanged">
+    <HeaderContent>
+        <ProTh>#</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+        </RowTemplate>
+</ProTable>
+<ProText id="counter">@_counter</ProText>
+
+@code {
+    public static string __description__ = "Selecting the 'Select All' checkbox should trigger the 'SelectedItemsChanged' event only once";
+
+    private int _counter = 0;
+    private readonly int[] _items = [0, 1];
+
+    private void SelectedItemsChanged(HashSet<int> selectedItems)
+    {
+        _counter++;
+    }
+}

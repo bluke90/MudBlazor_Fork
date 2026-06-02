@@ -1,0 +1,30 @@
+﻿@using ProtonBlazor.Utilities;
+@namespace ProtonBlazor.Docs.Examples
+
+@{var DarkModeClass = new CssBuilder()
+.AddClass("pro-dark-palette-example-dark-mode", _darkMode)
+.AddClass("pro-dark-palette-example-light-mode", !_darkMode)
+.Build();}
+<ProPaper Width="500px" Class="@DarkModeClass">
+<ProSwitch Color="Color.Primary" Class="ma-4" T="bool" @bind-Value="_darkMode" Label="Toggle Light/Dark Mode"/>
+    <ProText Class="ma-4">This is an example text!</ProText>
+</ProPaper>
+
+@code{
+    private bool _darkMode;
+}
+<style>
+    .pro-dark-palette-example-dark-mode.pro-paper {
+        background-color: #32333d;
+    }
+    .pro-dark-palette-example-dark-mode .pro-typography {
+        color: #ffffffb2;
+    }
+    
+    .pro-dark-palette-example-light-mode.pro-paper {
+            background-color: #ffffffff;
+    }
+    .pro-dark-palette-example-light-mode .pro-typography {
+            color: #424242ff;
+    }
+</style>

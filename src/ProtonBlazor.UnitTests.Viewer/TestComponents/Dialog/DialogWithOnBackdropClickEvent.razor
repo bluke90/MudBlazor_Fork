@@ -1,0 +1,18 @@
+﻿<ProDialog OnBackdropClick="@OnBackdropClick">
+    <TitleContent>
+        Title: @_textTest
+    </TitleContent>
+</ProDialog>
+
+@code {
+    private string? _textTest;
+
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; } = null!;
+
+    private void OnBackdropClick()
+    {
+        _textTest = "Backdrop clicked";
+        ProDialog.StateHasChanged();
+    }
+}

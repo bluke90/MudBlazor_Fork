@@ -1,0 +1,296 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@using ProtonBlazor.Utilities
+@inherits ProPicker<ProColor>
+@inject InternalMudLocalizer Localizer
+
+@Render
+
+@code {
+
+    protected override RenderFragment PickerContent =>
+    @<CascadingValue Value="@this" IsFixed="true">
+        <ProPickerToolbar ShowToolbar="@ShowToolbar" Class="pro-picker-color-toolbar">
+            @if (PickerVariant != PickerVariant.Static)
+            {
+                <ProIconButton Class="pa-1 pro-close-picker-button"
+                               Size="Size.Small"
+                               Color="Color.Inherit"
+                               Icon="@CloseIcon"
+                               OnClick="@GetEventCallback()"
+                               aria-label="@Localizer[LanguageResource.ProColorPicker_Close]" />
+            }
+            <ProSpacer />
+
+        <ProTooltip Text="@((ShowTooltips ? Localizer[LanguageResource.ProColorPicker_SpectrumView] : string.Empty))">
+            <ProIconButton Class="pa-1"
+                           Size="Size.Small"
+                           Color="GetButtonColor(ColorPickerView.Spectrum)"
+                           Icon="@SpectrumIcon"
+                           OnClick="() => ChangeViewAsync(ColorPickerView.Spectrum)"
+                           aria-label="@Localizer[LanguageResource.ProColorPicker_SpectrumView]" />
+        </ProTooltip>
+
+        <ProTooltip Text="@((ShowTooltips ? Localizer[LanguageResource.ProColorPicker_GridView] : string.Empty))">
+            <ProIconButton Class="pa-1 mx-1"
+                           Size="Size.Small"
+                           Color="GetButtonColor(ColorPickerView.Grid)"
+                           Icon="@GridIcon"
+                           OnClick="() => ChangeViewAsync(ColorPickerView.Grid)"
+                           aria-label="@Localizer[LanguageResource.ProColorPicker_GridView]" />
+        </ProTooltip>
+
+        <ProTooltip Text="@((ShowTooltips ? Localizer[LanguageResource.ProColorPicker_PaletteView] : string.Empty))">
+            <ProIconButton Class="pa-1"
+                           Size="Size.Small"
+                           Color="GetButtonColor(ColorPickerView.Palette)"
+                           Icon="@PaletteIcon"
+                           OnClick="() => ChangeViewAsync(ColorPickerView.Palette)"
+                           aria-label="@Localizer[LanguageResource.ProColorPicker_PaletteView]" />
+        </ProTooltip>
+        </ProPickerToolbar>
+        <ProPickerContent Class="pro-picker-color-content">
+            @if (ShowColorField)
+            {
+                <div class="pro-picker-color-picker">
+                    @if (_colorPickerViewState.Value == ColorPickerView.Spectrum)
+                    {
+                        <div class="pro-picker-color-overlay" style="@($"background-color: {_baseColor?.ToString(ProColorOutputFormats.RGB)}")">
+                            <div class="pro-picker-color-overlay pro-picker-color-overlay-white">
+                                <div class="pro-picker-color-overlay pro-picker-color-overlay-black">
+                                    <div class="pro-picker-color-overlay"
+                                         id="@_id"
+                                         @onpointerdown="OnColorOverlayClick"
+                                         @onpointerup="OnColorOverlayClick"
+                                         @onpointermove="OnPointerMoveAsync"
+                                         @onpointerleave="OnPointerLeaveAsync">
+                                        <svg class="pro-picker-color-selector"
+                                             height="26"
+                                             width="26"
+                                             style="transform: @GetSelectorLocation()">
+                                            <defs>
+                                                <filter id="pro-picker-color-selector-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                                                    <feGaussianBlur in="SourceAlpha" stdDeviation="1" />
+                                                    <feOffset dx="0" dy="5" result="offsetblur" />
+                                                    <feOffset dx="0" dy="-5" result="offsetblur" />
+                                                    <feMerge>
+                                                        <feMergeNode />
+                                                        <feMergeNode in="SourceGraphic" />
+                                                    </feMerge>
+                                                </filter>
+                                            </defs>
+                                            <circle r="10" cx="13" cy="13" stroke="white" stroke-width="1" fill="transparent" style="filter: url(#pro-picker-color-selector-shadow)" />
+                                            <circle r="11" cx="13" cy="13" stroke="white" stroke-width="1.5" fill="transparent" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (_colorPickerViewState.Value is ColorPickerView.Grid or ColorPickerView.GridCompact)
+                    {
+                        <div class="pro-picker-color-grid">
+                            @foreach (var item in _gridList)
+                            {
+                                <div class="@GetColorDotClass(item)"
+                                     style="@($"background: {item.ToString(ProColorOutputFormats.RGBA)};")"
+                                     @onclick="@GetSelectPaletteColorCallback(item)"
+                                     aria-label="@item.ToString(ProColorOutputFormats.HexA)"></div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            @if (_colorPickerViewState.Value != ColorPickerView.GridCompact)
+            {
+                @if (ShowSliders || ShowInputs || ShowPreview)
+                {
+                    <div class="pro-picker-color-controls">
+                        @if (ShowSliders || ShowPreview)
+                        {
+                            <div class="pro-picker-color-controls-row">
+                                @if (ShowPreview)
+                                {
+                                    <div class="pro-picker-color-dot pro-picker-color-dot-current pro-ripple"
+                                         @onclick="ToggleCollection"
+                                         aria-label="@(_collectionOpen ? @Localizer[LanguageResource.ProColorPicker_HideSwatches] : @Localizer[LanguageResource.ProColorPicker_ShowSwatches])">
+                                        <div class="pro-picker-color-fill" style="@($"background: {ValueOrDefault.ToString(ProColorOutputFormats.RGBA)};")"></div>
+                                    </div>
+                                }
+                                @if (ShowSliders && !_collectionOpen)
+                                {
+                                    <div class="pro-picker-color-sliders">
+                                        @if (_colorPickerViewState.Value != ColorPickerView.Grid)
+                                        {
+                                            <ProSlider Class="pro-picker-color-slider hue"
+                                                       dir="ltr"
+                                                       T="int"
+                                                       Value="ReadHueInt"
+                                                       ValueChanged="@UpdateBaseColorSliderAsync"
+                                                       Step="1"
+                                                       Min="0"
+                                                       Max="360"
+                                                       aria-label="@Localizer[LanguageResource.ProColorPicker_HueSlider]" />
+                                        }
+                                        @if (_alphaState.Value)
+                                        {
+                                            <ProSlider Class="pro-picker-color-slider alpha"
+                                                       Value="ReadAlpha"
+                                                       ValueChanged="@SetAlphaAsync"
+                                                       T="int"
+                                                       Min="0"
+                                                       Max="255"
+                                                       Step="1"
+                                                       Style="@AlphaSliderStyle"
+                                                       aria-label="@Localizer[LanguageResource.ProColorPicker_AlphaSlider]" />
+                                        }
+                                    </div>
+                                }
+                                @if (_collectionOpen)
+                                {
+                                    <div class="pro-picker-color-collection">
+                                        @foreach (var item in Palette.Take(5))
+                                        {
+                                            <div class="@GetColorDotClass(item)"
+                                                 style="@($"background: {item.ToString(ProColorOutputFormats.RGBA)};")"
+                                                 @onclick="@GetSelectPaletteColorCallback(item)"
+                                                 aria-label="@item.ToString(ProColorOutputFormats.HexA)"></div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                        @if (ShowInputs)
+                        {
+                            <div class="pro-picker-color-controls-row">
+                                <div class="pro-picker-color-inputs">
+                                    @switch (ColorPickerMode)
+                                    {
+                                        case ColorPickerMode.RGB:
+                                            <ProNumericField T="int"
+                                                             Value="ReadRed"
+                                                             ValueChanged="@SetRedAsync"
+                                                             Class="pro-picker-color-inputfield"
+                                                             HelperText="R"
+                                                             Min="0"
+                                                             Max="255"
+                                                             Variant="Variant.Outlined"
+                                                             HideSpinButtons="true"
+                                                             Required="@Required" />
+                                            <ProNumericField T="int"
+                                                             Value="ReadGreen"
+                                                             ValueChanged="@SetGreenAsync"
+                                                             Class="pro-picker-color-inputfield"
+                                                             HelperText="G"
+                                                             Min="0"
+                                                             Max="255"
+                                                             Variant="Variant.Outlined"
+                                                             HideSpinButtons="true"
+                                                             Required="@Required" />
+                                            <ProNumericField T="int"
+                                                             Value="ReadBlue"
+                                                             ValueChanged="@SetBlueAsync"
+                                                             Class="pro-picker-color-inputfield"
+                                                             HelperText="B"
+                                                             Min="0"
+                                                             Max="255"
+                                                             Variant="Variant.Outlined"
+                                                             HideSpinButtons="true"
+                                                             Required="@Required" />
+                                            break;
+                                        case ColorPickerMode.HSL:
+                                            <ProNumericField T="double"
+                                                             Value="ReadHue"
+                                                             ValueChanged="@SetHueAsync"
+                                                             Class="pro-picker-color-inputfield"
+                                                             HelperText="H"
+                                                             Step="1"
+                                                             Min="0"
+                                                             Max="360"
+                                                             Variant="Variant.Outlined"
+                                                             HideSpinButtons="true"
+                                                             Required="@Required" />
+                                            <ProNumericField T="double"
+                                                             Value="@ReadSaturation"
+                                                             ValueChanged="@SetSaturationAsync"
+                                                             Class="pro-picker-color-inputfield"
+                                                             HelperText="S"
+                                                             Step="0.01"
+                                                             Min="0"
+                                                             Max="100"
+                                                             Variant="Variant.Outlined"
+                                                             HideSpinButtons="true"
+                                                             Required="@Required" />
+                                            <ProNumericField T="double"
+                                                             Value="ReadLightness"
+                                                             ValueChanged="@SetLightnessAsync"
+                                                             Class="pro-picker-color-inputfield"
+                                                             HelperText="L"
+                                                             Step="0.01"
+                                                             Min="0"
+                                                             Max="100"
+                                                             Variant="Variant.Outlined"
+                                                             HideSpinButtons="true"
+                                                             Required="@Required" />
+                                            break;
+                                        case ColorPickerMode.HEX:
+                                            <ProTextField T="string"
+                                                          @key="@_inputResetKey"
+                                                          Value="@GetColorTextValue(_valueState.Value)"
+                                                          ValueChanged="SetInputStringAsync"
+                                                          Class="pro-picker-color-inputfield"
+                                                          Variant="Variant.Outlined"
+                                                          MaxLength="@GetHexColorInputMaxLength()"
+                                                          HelperText="HEX"
+                                                          Required="@Required" />
+                                            break;
+                                    }
+
+                                    @if (_alphaState.Value && ColorPickerMode != ColorPickerMode.HEX)
+                                    {
+                                        <ProNumericField T="double"
+                                                         Value="ReadAlphaPercentage"
+                                                         ValueChanged="@SetAlphaAsync"
+                                                         Class="pro-picker-color-inputfield input-field-alpha"
+                                                         HelperText="A"
+                                                         Min="0"
+                                                         Max="1"
+                                                         Step="0.01"
+                                                         Variant="Variant.Outlined"
+                                                         HideSpinButtons="true"
+                                                         Required="@Required" />
+                                    }
+                                </div>
+                                @if (ShowModeSwitch)
+                                {
+                                    <div class="pro-picker-control-switch">
+                                        <ProTooltip Text="@((ShowTooltips ? Localizer[LanguageResource.ProColorPicker_ModeSwitch] : string.Empty))">
+                                            <ProIconButton OnClick="ChangeMode"
+                                                           Icon="@ImportExportIcon"
+                                                           Class="pa-1 me-n1"
+                                                           aria-label="@Localizer[LanguageResource.ProColorPicker_ModeSwitch]" />
+                                        </ProTooltip>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+                @if (_colorPickerViewState.Value == ColorPickerView.Palette)
+                {
+                    <div class="pro-picker-color-view">
+                        <div class="pro-picker-color-view-collection">
+                            @foreach (var item in Palette)
+                            {
+                                <div class="@GetColorDotClass(item)"
+                                     style="@($"background: {item.ToString(ProColorOutputFormats.RGBA)};")"
+                                     @onclick="@GetSelectPaletteColorCallback(item)"
+                                     aria-label="@item.ToString(ProColorOutputFormats.HexA)"></div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </ProPickerContent>
+    </CascadingValue>;
+}

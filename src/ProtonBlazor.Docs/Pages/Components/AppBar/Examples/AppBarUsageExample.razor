@@ -1,0 +1,22 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProAppBar Color="Color.Primary" Fixed="false" Dense="@dense" Elevation="@elevation">
+    <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+    <ProSpacer />
+    <ProIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
+</ProAppBar>
+
+<ProGrid>
+    <ProItem md="6" sm="12">
+        <ProSlider @bind-Value="@elevation" Min="0" Max="24" ValueLabel="true">Elevation</ProSlider>
+    </ProItem>
+    <ProItem md="6" sm="12">
+        <ProSwitch @bind-Value="@dense" Label="Dense" Class="mt-6" Color="Color.Primary"></ProSwitch>
+    </ProItem>
+</ProGrid>
+
+@code
+{
+    int elevation = 4;
+    bool dense = false;
+}

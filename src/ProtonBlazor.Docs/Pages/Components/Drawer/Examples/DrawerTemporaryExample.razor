@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.Start))">Start</ProButton>
+<ProButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.End))">End</ProButton>
+<ProButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.Top))">Top</ProButton>
+<ProButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.Bottom))">Bottom</ProButton>
+<ProSwitch @bind-Value="_overlayAutoClose" Label="Overlay Autoclose" Color="Color.Secondary" />
+<ProDrawer @bind-Open="@_open" Anchor="@_anchor" Elevation="1" Variant="@DrawerVariant.Temporary" OverlayAutoClose="@_overlayAutoClose">
+    <ProDrawerHeader>
+        <ProText Typo="Typo.h6">My App</ProText>
+    </ProDrawerHeader>
+    <ProNavMenu>
+        <ProNavLink Match="NavLinkMatch.All">Store</ProNavLink>
+        <ProNavLink Match="NavLinkMatch.All">Library</ProNavLink>
+        <ProNavLink Match="NavLinkMatch.All">Community</ProNavLink>
+        <ProNavLink OnClick="_ => _open = false">Close Drawer</ProNavLink>
+    </ProNavMenu>
+</ProDrawer>
+
+@code{ 
+    private bool _open;
+    private Anchor _anchor;
+    private bool _overlayAutoClose = true;
+
+    private void OpenDrawer(Anchor anchor)
+    {
+        _open = true;
+        _anchor = anchor;
+    }
+}

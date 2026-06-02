@@ -1,0 +1,12 @@
+<ProList T="string">
+    <ProListItem Text="Inbox" Icon="@Icons.Material.Filled.Inbox" Ripple="@Ripple"/>
+    <ProListItem Text="Sent" Icon="@Icons.Material.Filled.Send" Ripple="@Ripple"/>
+    <ProDivider/>
+    <ProListItem Text="Trash" Ripple="@Ripple"/>
+    <ProListItem Text="Spam" Ripple="@Ripple"/>
+</ProList>
+
+@code {
+    [Parameter]
+    public required bool Ripple { get; set; }
+}

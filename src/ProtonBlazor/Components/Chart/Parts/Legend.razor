@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Charts
+
+@inherits ProChartBase<T, IChartOptions>
+
+@typeparam T
+
+@if (ShowLegend is not false)
+{
+    <div @attributes="UserAttributes" class="pro-chart-legend">
+        @foreach (var item in Data)        
+        {
+            <div class="@($"pro-chart-legend-item {(CanHideSeries ? "" : "pa-1")}")"
+                 @onclick:stopPropagation=@(ChartContainer!=null)
+                 @onclick=@(async () => { if (OnLegendSelected.HasDelegate) { await OnLegendSelected.InvokeAsync(item.Index); }})>
+                @if(!CanHideSeries)
+                {
+                    <span class="pro-chart-legend-marker" style="@($"background-color:{ChartPalette!.GetValue(item.Index % ChartPalette.Length)}")"></span>
+                    <ProText Typo="Typo.body2" HtmlTag="span">@item.Labels</ProText>
+                }
+                else
+                {   
+                    <div class="pro-chart-legend-checkbox" style="@GetCheckBoxStyle(item.Index)">    
+                        <ProCheckBox Value="@item.Visible" ValueChanged="@((bool _) => item.HandleCheckboxChangeAsync())" Size="Size.Small" Dense/>
+                        <ProText Typo="Typo.body2" Class="ml-n2 align-self-center" HtmlTag="span">@item.Labels</ProText>
+                    </div> 
+                }                 
+            </div>
+        }
+    </div>
+}

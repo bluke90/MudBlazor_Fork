@@ -1,0 +1,18 @@
+<ProMenu AriaLabel="@AriaLabel"
+         Icon="@Icon"
+         Label="@Label" />
+
+<ProPopoverProvider />
+
+@code {
+    public static string __description__ = "Covers various accessibility tests for ProMenu.";
+
+    [Parameter]
+    public string? AriaLabel { get; set; }
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+}

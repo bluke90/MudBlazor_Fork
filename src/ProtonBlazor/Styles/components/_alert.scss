@@ -1,0 +1,116 @@
+@import '../abstracts/variables';
+
+.pro-alert {
+  display: flex;
+  padding: 6px 16px;
+  border-radius: var(--pro-default-borderradius);
+  background-color: transparent;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &.pro-square {
+    border-radius: 0px;
+  }
+
+  &.pro-dense {
+    padding: 0px 12px;
+  }
+}
+
+.pro-alert-text {
+  &-normal {
+    color: var(--pro-palette-text-primary);
+    background-color: var(--pro-palette-dark-hover);
+  }
+
+  @each $color in $pro-palette-colors {
+    &-#{$color} {
+      color: var(--pro-palette-#{$color}-darken);
+      background-color: var(--pro-palette-#{$color}-hover);
+
+      & .pro-alert-icon {
+        color: var(--pro-palette-#{$color});
+      }
+    }
+  }
+}
+
+.pro-alert-outlined {
+  &-normal {
+    color: var(--pro-palette-text-primary);
+    border: 1px solid rgba(var(--pro-palette-text-primary-rgb), var(--pro-palette-border-opacity));
+  }
+
+  @each $color in $pro-palette-colors {
+    &-#{$color} {
+      color: var(--pro-palette-#{$color}-darken);
+      border: 1px solid rgba(var(--pro-palette-#{$color}-rgb), var(--pro-palette-border-opacity));
+
+      & .pro-alert-icon {
+        color: var(--pro-palette-#{$color});
+      }
+    }
+  }
+}
+
+.pro-alert-filled {
+  &-normal {
+    color: var(--pro-palette-dark-text);
+    font-weight: 500;
+    background-color: var(--pro-palette-dark);
+
+    & .pro-alert-close .pro-button-root {
+      color: currentColor;
+    }
+  }
+
+  @each $color in $pro-palette-colors {
+    &-#{$color} {
+      color: var(--pro-palette-#{$color}-text);
+      font-weight: 500;
+      background-color: var(--pro-palette-#{$color});
+
+      & .pro-button-root {
+        color: currentColor;
+      }
+    }
+  }
+}
+
+.pro-alert-icon {
+  display: flex;
+  opacity: 0.9;
+  padding: 7px 0;
+  font-size: 22px;
+  margin-right: 12px;
+  margin-inline-end: 12px;
+  margin-inline-start: unset;
+
+  &.pro-alert-icon-left {
+    margin-right: 12px;
+    margin-inline-end: 12px;
+    margin-inline-start: unset;
+  }
+
+  &.pro-alert-icon-right {
+    margin-left: 12px;
+    margin-inline-start: 12px;
+    margin-inline-end: unset;
+  }
+}
+
+.pro-alert-message {
+  padding: 9px 0;
+}
+
+.pro-alert-position {
+  flex: 1;
+  display: flex;
+  align-items: start;
+}
+
+.pro-alert-close {
+  display: flex;
+  flex: 0;
+  align-items: center;
+  margin-left: 8px;
+}

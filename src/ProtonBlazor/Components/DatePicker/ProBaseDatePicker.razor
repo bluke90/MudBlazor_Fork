@@ -1,0 +1,153 @@
+﻿@using ProtonBlazor.Internal
+@using ProtonBlazor.Resources
+@namespace ProtonBlazor
+@inherits ProPicker<DateTime?>
+@inject InternalMudLocalizer Localizer
+
+@Render
+
+@code {
+
+    protected override RenderFragment PickerContent =>
+    @<CascadingValue Value="@this" IsFixed="true">
+        <ProPickerToolbar Class="pro-picker-datepicker-toolbar" ShowToolbar="@ShowToolbar" Orientation="@Orientation" PickerVariant="@PickerVariant" Color="@Color" @onmousedown:preventDefault="true">
+            <ProButton Variant="Variant.Text" Color="Color.Inherit" Class="pro-button-year" OnClick="GoToSelectedYear">@GetFormattedYearString()</ProButton>
+            <ProButton Variant="Variant.Text" Color="Color.Inherit" Class="pro-button-date" OnClick="OnFormattedDateClick">@GetTitleDateString()</ProButton>
+        </ProPickerToolbar>
+        <ProPickerContent>
+            <div id="@_proPickerCalendarContentElementId" class="pro-picker-calendar-content @($"pro-picker-calendar-content-{MaxMonthColumns ?? DisplayMonths}")" @onmousedown:preventDefault="true">
+                @{
+                    int dayId = 0; 
+                    var culture = GetCulture();
+                    var calendar = culture.Calendar;
+                    @if (_picker_month.HasValue && calendar.GetYear(_picker_month.Value) == 1 && calendar.GetMonth(_picker_month.Value) == 1)
+                    {
+                        dayId = -1;
+                    }
+                }
+                @for (int displayMonth = 0; displayMonth < DisplayMonths; ++displayMonth)
+                {
+                    int tempMonth = displayMonth; //without local variable month names are wrong
+
+                    <div class="pro-picker-calendar-container">
+                        @if (tempMonth == 0 && CurrentView == OpenTo.Year)
+                        {
+                            <div id="pickerYears" class="pro-picker-year-container">
+                                @for (int i = GetMinYear(); i <= GetMaxYear(); i++)
+                                {
+                                    var year = i;
+                                    <div class="pro-picker-year" id="@(_componentId + year)" @onclick="@(async () => await OnYearClickedAsync(year))" @onclick:stopPropagation="true">
+                                        <ProText Typo="@GetYearTypo(year)" Class="@GetYearClasses(year)">@year</ProText>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else if (tempMonth == 0 && CurrentView == OpenTo.Month)
+                        {
+                            var calendarYear = GetCalendarYear(PickerMonth ?? TimeProvider.GetLocalNow().Date);
+
+                            <div class="pro-picker-calendar-header">
+                                <div class="pro-picker-calendar-header-switch">
+                                    @if (!FixYear.HasValue)
+                                    {
+                                        <ProIconButton aria-label="@Localizer[LanguageResource.ProBaseDatePicker_PrevYear, $"({calendarYear - 1})"]" Icon="@PreviousIcon" OnClick="OnPreviousYearClick" Class="pro-flip-x-rtl" />
+                                        <button type="button" class="pro-picker-slide-transition pro-picker-calendar-header-transition" @onclick="OnYearClick" @onclick:stopPropagation="true">
+                                            <ProText Typo="Typo.body1" Align="Align.Center">@calendarYear</ProText>
+                                        </button>
+                                        <ProIconButton aria-label="@Localizer[LanguageResource.ProBaseDatePicker_NextYear, $"({calendarYear + 1})"]" Icon="@NextIcon" OnClick="OnNextYearClick" Class="pro-flip-x-rtl" />
+                                    }
+                                    else
+                                    {
+                                        <ProText Class="pro-picker-calendar-header-transition" Typo="Typo.body1" Align="Align.Center">@calendarYear</ProText>
+                                    }
+                                </div>
+                            </div>
+                            <div class="pro-picker-month-container">
+                                @foreach (var month in GetAllMonths())
+                                {
+                                    <button type="button" aria-label="@GetMonthName(month)" disabled="@IsMonthDisabled(month)"
+                                    class="pro-picker-month pro-button-root" @onclick="@(async () => await OnMonthSelectedAsync(month))" @onclick:stopPropagation="true">
+                                        <ProText Typo="@GetMonthTypo(month)" Class="@GetMonthClasses(month)">@GetAbbreviatedMonthName(month)</ProText>
+                                    </button>
+                                }
+                            </div>
+                        }
+                        else if (CurrentView == OpenTo.Date || tempMonth > 0)
+                        {
+                            <div class="@GetCalendarHeaderClasses(tempMonth)">
+                                <div class="pro-picker-calendar-header-switch">
+                                    @if (!FixMonth.HasValue)
+                                    {
+                                        <ProIconButton aria-label="@Localizer[LanguageResource.ProBaseDatePicker_PrevMonth, $"({GetMonthName((tempMonth - 1) % 12)})"]" Class="pro-picker-nav-button-prev pro-flip-x-rtl" Icon="@PreviousIcon" OnClick="@OnPreviousMonthClick" />
+                                        <button type="button" class="pro-picker-slide-transition pro-picker-calendar-header-transition pro-button-month" @onclick="(() => OnMonthClicked(tempMonth))" @onclick:stopPropagation="true">
+                                            <ProText Typo="Typo.body1" Align="Align.Center">@GetMonthName(tempMonth)</ProText>
+                                        </button>
+                                        <ProIconButton aria-label="@Localizer[LanguageResource.ProBaseDatePicker_NextMonth, $"({GetMonthName((tempMonth + 1) % 12)})"]" Class="pro-picker-nav-button-next pro-flip-x-rtl" Icon="@NextIcon" OnClick="@OnNextMonthClick" />
+                                    }
+                                    else
+                                    {
+                                        <ProText Class="pro-picker-calendar-header-transition" Typo="Typo.body1" Align="Align.Center">@GetMonthName(tempMonth)</ProText>
+                                    }
+                                </div>
+                                <div class="pro-picker-calendar-header-day">
+                                    @if (ShowWeekNumbers)
+                                    {
+                                        <div class="pro-picker-calendar-week">
+                                            <ProText Typo="Typo.caption" Class="pro-picker-calendar-week-text"></ProText>
+                                        </div>
+                                    }
+                                    @foreach (var dayName in GetAbbreviatedDayNames())
+                                    {
+                                        <ProText Typo="Typo.caption" Class="pro-day-label">@dayName</ProText>
+                                    }
+                                </div>
+                            </div>
+                            <div class="pro-picker-calendar-transition pro-picker-slide-transition">
+                                <div class="pro-picker-calendar">
+                                    @for (int week = 0; week < 6; week++)
+                                    {
+                                        int tempWeek = week;
+                                        var firstMonthFirstYear = _picker_month.HasValue && calendar.GetYear(_picker_month.Value) == 1 && calendar.GetMonth(_picker_month.Value) == 1;
+
+                                        @if (ShowWeekNumbers)
+                                        {
+                                            <div class="pro-picker-calendar-week">
+                                                <ProText class="pro-picker-calendar-week-text" Typo="Typo.caption">@GetWeekNumber(tempMonth, tempWeek)</ProText>
+                                            </div>
+                                        }
+                                        var wasMaxValue = false;
+                                        @foreach (var day in GetWeek(tempMonth, tempWeek))
+                                        {
+                                            var tempId = ++dayId;
+
+                                            @if ((tempId != 0 || !firstMonthFirstYear) && !wasMaxValue)
+                                            {
+                                                var selectedDay = !firstMonthFirstYear ? day : day.AddDays(-1);
+                                                <button @key="@(!firstMonthFirstYear ? selectedDay : tempId)" type="button" style="--day-id: @(!firstMonthFirstYear ? tempId : tempId + 1);"
+                                                        class="pro-button-root pro-icon-button pro-ripple pro-ripple-icon pro-picker-calendar-day @(!firstMonthFirstYear || day.Day == _picker_month!.Value.Day ? GetDayClasses(tempMonth, day) : GetDayClasses(tempMonth, selectedDay))"
+                                                        @onclick="@(async () => { var d = selectedDay; await OnDayClickedAsync(d); })"
+                                                        @onclick:stopPropagation="true"
+                                                        onpointerover="@(async () => await HandleMouseoverOnPickerCalendarDayButton(!firstMonthFirstYear ? tempId : tempId + 1))"
+                                                        disabled="@IsDayDisabled(selectedDay)">
+                                                    <p class="pro-typography pro-typography-body2 pro-inherit-text">@GetCalendarDayOfMonth(selectedDay)</p>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button @key="0" type="button" disabled style="--day-id: 1;"
+                                                        class="pro-button-root pro-icon-button pro-ripple pro-ripple-icon pro-picker-calendar-day pro-day">
+                                                    <p class="pro-typography pro-typography-body2 pro-inherit-text"></p>
+                                                </button>
+                                            }
+                                            wasMaxValue = day == calendar.MaxSupportedDateTime;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </ProPickerContent>
+    </CascadingValue>;
+}

@@ -1,0 +1,45 @@
+@inject IScrollManager ScrollManager
+
+@* https://github.com/ProtonBlazor/ProtonBlazor/issues/6517 *@
+
+<ProStack Row="true">
+    <button type="button" @onclick="ScrollBottom">Scroll bottom</button>
+    <ProText id="scroll_on_top_scroll_event_raised" Typo="Typo.subtitle1" Align="Align.Center">@Scrolled</ProText>
+    <ProText id="scroll_on_top_click_event_raised" Typo="Typo.subtitle1" Align="Align.Center">@Clicked</ProText>
+</ProStack>
+<div id="unique_id_scroll_section" class="ma-0" style="height:300px;overflow: auto;">
+    <ProPaper Elevation="0" Height="1500px" Class="d-flex flex-column justify-space-between py-6">
+        <ProText id="scroll_on_top_text_must_be_in_view" Typo="Typo.h3" Align="Align.Center">@_text</ProText>
+        <ProText Typo="Typo.h3" Align="Align.Center">Middle text</ProText>
+        <ProText id="scroll_to_top_bottom_text" Typo="Typo.h3" Align="Align.Center">Bottom text</ProText>
+        <ProScrollToTop Selector="#unique_id_scroll_section" OnClick="@Click" OnScroll="@Scroll">
+            <ProFab Color="@Color.Primary" StartIcon="@Icons.Material.Filled.ArrowCircleUp"/>
+        </ProScrollToTop>
+    </ProPaper>
+</div>
+
+@code {
+    public static string __description__ = "Scroll down. ProScrollToTop element must appear. After clicking fab button view must scroll to the top and first line of text must change.";
+    
+    private string _text = "Scroll and click fab, this text must change afterwards.";
+
+    public bool Clicked { get; set; }
+
+    public bool Scrolled { get; set; }
+
+    private void Click()
+    {
+        _text = @"Text changed. All is OK.";
+        Clicked = true;
+    }
+
+    private void Scroll()
+    {
+        Scrolled = true;
+    }
+
+    private async Task ScrollBottom()
+    {
+        await ScrollManager.ScrollIntoViewAsync("h3[id='scroll_to_top_bottom_text']", ScrollBehavior.Smooth);
+    }
+}

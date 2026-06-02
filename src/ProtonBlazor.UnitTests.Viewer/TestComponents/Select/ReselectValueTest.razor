@@ -1,0 +1,19 @@
+﻿<ProPopoverProvider />
+
+<div>
+    <ProSelect T="string" Variant="Variant.Text" @bind-Value="_fruit" Dense SelectedValuesChanged="@(() => FruitChanged(null))">
+        <ProSelectItem Value="@("Apple")">Apple</ProSelectItem>
+        <ProSelectItem Value="@("Orange")">Orange</ProSelectItem>
+    </ProSelect>
+</div>
+
+@code{
+    private string _fruit = "Apple";
+
+    public int ChangeCount { get; private set; }
+
+    private void FruitChanged(IReadOnlyCollection<string>? fruits)
+    {
+        ChangeCount++;
+    }
+}

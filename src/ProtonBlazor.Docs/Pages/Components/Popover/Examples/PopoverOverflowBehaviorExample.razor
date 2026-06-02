@@ -1,0 +1,16 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Outlined="true" Class="px-12 py-6">
+    <ProButton Variant="Variant.Filled" Color="Color.Primary" DropShadow="false" OnClick="@ToggleOpen">@(_open? "Close" : "Open")</ProButton>
+	<ProPopover Open="_open" OverflowBehavior="OverflowBehavior.FlipAlways" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter" Paper="false">
+        <ProPaper Outlined="true" Class="px-4 py-8">
+            <ProText>Scroll your browser to see effect.</ProText>
+        </ProPaper>
+	</ProPopover>
+</ProPaper>
+
+@code {
+    private bool _open = true;
+
+    private void ToggleOpen() => _open = !_open;
+}

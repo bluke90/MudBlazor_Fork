@@ -1,0 +1,14 @@
+﻿<ProPopoverProvider />
+
+<ProSelect @bind-Value="_value" PopoverClass="select-popover-class">
+    <ProSelectItem Value="@("1")"/>
+    <ProSelectItem Value="@("2")"/>
+    <ProSelectItem Value="@("3")"/>
+    <ProSelectItem Value="@("4")" Disabled="true"/>
+</ProSelect>
+
+@code {
+    public static string __description__ = "Value 2 should be selected initially and highlighted.";
+
+    private string? _value = "2";
+}

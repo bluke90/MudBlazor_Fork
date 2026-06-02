@@ -1,0 +1,8 @@
+﻿<ProCheckBox  @bind-Value="_isChecked">Synced</ProCheckBox>
+<ProCheckBox @bind-Value="_isChecked">Synced</ProCheckBox>
+
+@code {
+    public static string __description__ = "Clicking any checkbox should toggle both.";
+
+    private bool _isChecked = true;
+}

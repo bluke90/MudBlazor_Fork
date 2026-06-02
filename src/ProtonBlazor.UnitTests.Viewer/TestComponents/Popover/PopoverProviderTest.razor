@@ -1,0 +1,14 @@
+﻿<CascadingValue Value="ProviderEnabled" Name="UsePopoverProvider">
+	<ProPopoverProvider />
+</CascadingValue>
+
+<div class="popoverparent">
+	<ProPopover Open="true">
+		<ProText id="my-content">Popover content</ProText>
+	</ProPopover>
+</div>
+
+@code {
+	[Parameter]
+	public bool ProviderEnabled { get; set; } = true;
+}

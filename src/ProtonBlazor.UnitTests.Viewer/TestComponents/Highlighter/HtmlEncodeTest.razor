@@ -1,0 +1,34 @@
+﻿<ProTextField Style="max-width:250px" @bind-Value="highlightedText" Immediate="true" Label="Highlighted Text" />
+<ProPaper Class="pa-4 mt-4" Elevation="0">
+    @foreach (var paragraph in paragraphs)
+    {
+        <ProText @key="paragraph" Class="ma-2">
+            <ProHighlighter Text="@paragraph"
+                            HighlightedText="@highlightedText"
+                            UntilNextBoundary="@untilNextBoundary"
+                            CaseSensitive="@caseSensitive"
+                            Markup="@markup"
+                            Class="@(untilNextBoundary ? "pa-1 pro-elevation-2 pro-theme-primary":"")" />
+        </ProText>
+    }
+
+</ProPaper>
+<ProSwitch @bind-Value="untilNextBoundary" Label="UntilNextBoundary" Color="Color.Primary" />
+<ProSwitch @bind-Value="caseSensitive" Label="CaseSensitive" Color="Color.Primary" />
+<ProSwitch @bind-Value="markup" Label="Markup" Color="Color.Primary" />
+
+@code {
+    public static string __description__ = "Style (color and formatting) should be present";
+
+    string highlightedText = "'";
+    bool untilNextBoundary;
+    bool caseSensitive;
+    bool markup = true;
+    IEnumerable<string> paragraphs = new List<string>
+    {
+        $"<i>ProtonBlazor</i> is an <ambitious> <span style='color:{Colors.Purple.Default}'>Material Design</span> component framework for Blazor with an <span style='color:{Colors.Green.Default}'>emphasis</span> on <em>ease of use and clear structure</em>.",
+        $"ProLists are easily <span style='color:{Colors.Orange.Default}'>customizable</span> and <span style='color:{Colors.Red.Default}'>scrollable</span> lists. Make them suit your needs with <i>avatars</i>, <i>icons</i>, or something like <i>checkboxes</i>.",
+        $"Use <b>mud</b>-* classes to <span style='color:{Colors.Blue.Default}'>customize your ProtonBlazor components</span>.",
+        $"'text in single quote'"
+    };
+}

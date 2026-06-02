@@ -1,0 +1,10 @@
+﻿<ProTable Items="_states" RowsPerPage="@_rows">
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate> 
+    <PagerContent>
+        <ProTablePager />
+    </PagerContent>
+</ProTable>
+
+<ProButton Disabled="false" OnClick="@(() => ToggleRows())" Variant="Variant.Outlined">Toggle Rows</ProButton>

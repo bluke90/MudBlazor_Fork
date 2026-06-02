@@ -1,0 +1,62 @@
+﻿@page "/mud/announcements"
+
+<DocsPage DisplayFooter="true">
+    <DocsPageHeader Title="Announcements" SubTitle="Discover articles from ProtonBlazor team.">
+        <SpecialHeaderContent>
+            <ProText Typo="Typo.h2" Class="docs-title">Announcements&nbsp;</ProText>
+            <ProText Typo="Typo.subtitle1" Class="docs-title-description">Discover articles from ProtonBlazor team.</ProText>
+        </SpecialHeaderContent>
+    </DocsPageHeader>
+    <DocsPageContent>
+        @if (_messages == null)
+        {
+            <ProProgressCircular Color="Color.Default" Indeterminate="true"/>
+        }
+        else if (_messages.Count == 0)
+        {
+            <ProText Typo="Typo.h6">No announcements yet.</ProText>
+        }
+        else
+        {
+            <ProGrid>
+                @foreach (var (message, _) in _messages)
+                {
+                    <ProItem xs="12" sm="6" md="4">
+                        <a href="@($"/mud/announcements/{message.Id}")">
+                            <ProCard Class="announcement-card rounded-lg">
+                                <ProCardMedia Image="@message.ImgUrl" Height="175"/>
+                                <ProCardContent Class="pa-4">
+                                    <ProText Typo="Typo.subtitle2" Class="pro-text-secondary">@message.Category</ProText>
+                                    <ProText Typo="Typo.h6" GutterBottom="true">@message.Title</ProText>
+                                    <ProText Typo="Typo.body2">@message.Except</ProText>
+                                </ProCardContent>
+                                <ProCardActions Class="pa-4">
+                                    <ProAvatarGroup Max="6" Spacing="3" MaxColor="Color.Primary">
+                                        @foreach (var author in message.Authors)
+                                        {
+                                            <ProAvatar>
+                                                <ProImage Src="@author.AvatarUrl"/>
+                                            </ProAvatar>
+                                        }
+                                    </ProAvatarGroup>
+                                    <div class="mx-4 d-flex flex-column">
+                                        @if (message.Authors.Count() > 1)
+                                        {
+                                            <ProText Typo="Typo.subtitle2">Multiple Authors</ProText>
+                                            <ProText Typo="Typo.subtitle2" Class="pro-text-secondary">@message.PublishDate.ToString("MMM dd, yyyy")</ProText>
+                                        }
+                                        else
+                                        {
+                                            <ProText Typo="Typo.subtitle2">@message.Authors.FirstOrDefault()?.DisplayName</ProText>
+                                            <ProText Typo="Typo.subtitle2" Class="pro-text-secondary">@message.PublishDate.ToString("MMM dd, yyyy")</ProText>
+                                        }
+                                    </div>
+                                </ProCardActions>
+                            </ProCard>
+                        </a>
+                    </ProItem>
+                }
+            </ProGrid>
+        }
+    </DocsPageContent>
+</DocsPage>

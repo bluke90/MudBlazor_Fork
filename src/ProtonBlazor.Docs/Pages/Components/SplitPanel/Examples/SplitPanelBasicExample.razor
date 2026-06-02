@@ -1,0 +1,51 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Class="pro-width-full pro-height-full" Justify="Justify.Center" AlignItems="AlignItems.Center" Style="height: 500px;">
+    <ProSplitPanel @ref="_splitPanel"
+                   Class="pro-width-full pro-height-full"
+                   Horizontal="_horizontal"
+                   ResetOnDoubleClick="_resetOnDoubleClick"
+                   Rounded="_rounded"
+                   Transparent="_transparent"
+                   Elevation="@(_elevation ? 1 : 0)">
+        <FirstPanel>
+            <ProStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="pro-width-full pro-height-full">
+                <ProText Typo="Typo.h6">First Panel</ProText>
+            </ProStack>
+        </FirstPanel>
+        <SecondPanel>
+            <ProStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="pro-width-full pro-height-full">
+                <ProText Typo="Typo.h6">Second Panel</ProText>
+            </ProStack>
+        </SecondPanel>
+    </ProSplitPanel>
+    <ProButtonGroup Variant="Variant.Filled">
+        <ProTooltip Text="Toggle orientation">
+            <ProToggleIconButton @bind-Toggled="_horizontal" Icon="@Icons.Material.Outlined.Pause" ToggledIcon="@Icons.Material.Outlined.DragHandle" ToggledColor="@Color.Info"/>
+        </ProTooltip>
+        <ProTooltip Text="Reset on double click">
+            <ProToggleIconButton @bind-Toggled="_resetOnDoubleClick" Icon="@Icons.Material.Outlined.RestartAlt" ToggledColor="@Color.Info"/>
+        </ProTooltip>
+        <ProTooltip Text="Rounded">
+            <ProToggleIconButton @bind-Toggled="_rounded" Icon="@Icons.Material.Outlined.RoundedCorner" ToggledColor="@Color.Info"/>
+        </ProTooltip>
+        <ProTooltip Text="Elevation">
+            <ProToggleIconButton @bind-Toggled="_elevation" Icon="@Icons.Material.Outlined.Landscape" ToggledColor="@Color.Info"/>
+        </ProTooltip>
+        <ProTooltip Text="Transparent">
+            <ProToggleIconButton @bind-Toggled="_transparent" Icon="@Icons.Material.Outlined.Visibility" ToggledColor="@Color.Info"/>
+        </ProTooltip>
+        <ProTooltip Text="Reset sizes">
+            <ProIconButton OnClick="@_splitPanel.ResetDividerPositionAsync" Icon="@Icons.Material.Outlined.Replay" Variant="Variant.Filled"/>
+        </ProTooltip>
+    </ProButtonGroup>
+</ProStack>
+
+@code {
+    private ProSplitPanel _splitPanel;
+    private bool _horizontal;
+    private bool _resetOnDoubleClick = true;
+    private bool _rounded = true;
+    private bool _elevation = true;
+    private bool _transparent;
+}

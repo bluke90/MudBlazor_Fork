@@ -1,0 +1,32 @@
+﻿// Ripple effect container
+.pro-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+// Individual ripple effect element (created dynamically by JS)
+.pro-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--pro-ripple-color);
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+}
+
+// Expanding animation - starts on pointerdown
+.pro-ripple-effect-expanding {
+  opacity: var(--pro-ripple-opacity);
+  transform: scale(1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.1s linear;
+}
+
+// Fading animation - starts on pointerup (after minimum duration)
+.pro-ripple-effect-fading {
+  opacity: 0;
+  transition: opacity 0.4s linear;
+}
+
+.pro-ripple-switch {
+  position: absolute;
+}

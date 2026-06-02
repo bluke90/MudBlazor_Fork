@@ -1,0 +1,20 @@
+﻿@using ProtonBlazor
+
+<div class="viewer-root">
+    <ProTooltip Inline="true" Text="Delete">
+        <ProButton Id="btn-inline-full" FullWidth="true" Variant="Variant.Filled" Color="Color.Primary">
+            Delete
+        </ProButton>
+    </ProTooltip>
+
+    <ProTooltip Inline="false" Text="Delete">
+        <ProButton Id="btn-block-full" FullWidth="true" Variant="Variant.Filled" Color="Color.Primary">
+            Delete
+        </ProButton>
+    </ProTooltip>
+</div>
+
+@code {
+    public static string __description__ =
+        "Verifies ProTooltip with Inline=true stretches a FullWidth child without changing default inline layout.";
+}

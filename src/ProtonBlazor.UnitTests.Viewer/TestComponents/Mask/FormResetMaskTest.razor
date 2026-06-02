@@ -1,0 +1,27 @@
+﻿<ProForm @ref="_form" ValidationDelay="0">
+    <ProTextField Label="Phone" T="string" Required Immediate @bind-Value="@_phone" Mask="_phoneMask" />
+</ProForm>
+<br>
+<br>
+<span>Phone: @_phone</span>
+<br>
+<br>
+<ProButton Class="reset" OnClick="@ResetFormAsync">Reset</ProButton>
+
+@code
+{ 
+    public static string __description__ = "Calling Form.Reset() should clear the masked text field.";
+
+    private string? _phone;
+    private ProForm _form = null!;
+    private readonly PatternMask _phoneMask = new("(###) ###-####")
+    {
+        MaskChars = [new MaskChar('#', @"[0-9]")]
+    };
+
+    private async Task ResetFormAsync()
+    {
+        await _form.ResetAsync();
+        StateHasChanged();
+    }
+}

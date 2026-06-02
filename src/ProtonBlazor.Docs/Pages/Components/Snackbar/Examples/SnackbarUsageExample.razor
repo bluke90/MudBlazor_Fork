@@ -1,0 +1,7 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@inject ISnackbar Snackbar
+
+<ProButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(() => Snackbar.Add("Simple Snackbar"))">
+    Open snackbar
+</ProButton>

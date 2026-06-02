@@ -1,0 +1,26 @@
+﻿<ProText>SelectedItems { @string.Join(", ", _selectedItems) }</ProText>
+<ProTable Items="_items" @bind-SelectedItems="_selectedItems" MultiSelection="true">
+    <HeaderContent>
+        <ProTh>Nr</ProTh>
+        <ProTh></ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+        <ProTd>
+            <ProButton OnClick="(() => DeleteItem(context))">Delete</ProButton>
+        </ProTd>
+    </RowTemplate>
+</ProTable>
+
+@code {
+    public static string __description__ = "SelectedItems should update when rows are removed and the header should remain checked.";
+
+    private HashSet<int> _selectedItems = [];
+    private readonly List<int> _items = [0, 1, 2, 3, 4];
+
+    private void DeleteItem(int i)
+    {
+        _items.Remove(i);
+        StateHasChanged();
+    }
+}

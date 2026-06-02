@@ -1,0 +1,43 @@
+﻿@inherits LayoutComponentBase
+@layout MainLayout
+
+<ProLayout Class="protonblazor-docs">
+    <ProAppBar Class="docs-appbar-filter" Color="Color.Transparent" Elevation="0"></ProAppBar>
+    <ProAppBar Class="docs-appbar" Elevation="0">
+        <Appbar DrawerToggleCallback="ToggleDrawer" />
+    </ProAppBar>
+    <ProDrawer Open="@_drawerOpen" OpenChanged="OnDrawerOpenChanged" ClipMode="DrawerClipMode.Docked" Elevation="0" Breakpoint="Breakpoint.Md" aria-label="Navigation Drawer">
+        <div class="d-block d-md-none">
+            <ProToolBar Dense="true" Gutters="false" Class="docs-gray-bg">
+                <ProIconButton Icon="@Icons.Material.Rounded.Close" Color="Color.Inherit" OnClick="ToggleDrawer" aria-label="Toggle drawer" />
+                <ProSpacer />
+                <AppbarButtons />
+            </ProToolBar>
+
+            @if (_topMenuOpen == true)
+            {
+                <ProNavMenu Color="Color.Primary" Margin="Margin.Dense" Rounded="true" Class="pa-2">
+                    <ProNavLink Href="/getting-started/installation">Get Started</ProNavLink>
+                    <ProNavLink Href="/docs/overview">Docs</ProNavLink>
+                    <ProNavLink Href="/mud/introduction" Match="NavLinkMatch.All">Learn More</ProNavLink>
+                    <ProNavGroup Title="Projects" ExpandIcon="@Icons.Material.Filled.ExpandMore">
+                        <ProListSubheader Class="mt-4 pl-8 pb-2"><b>Official</b></ProListSubheader>
+                        <ProNavLink Href="https://protonblazor.com/">ProtonBlazor</ProNavLink>
+                        <ProNavLink Href="https://try.protonblazor.com/">TryProtonBlazor</ProNavLink>
+                        <ProNavLink Href="https://github.com/ProtonBlazor/ThemeManager">ThemeManager</ProNavLink>
+                        <ProNavLink Href="https://github.com/ProtonBlazor/Templates">Templates</ProNavLink>
+                        <ProListSubheader Class="mt-4 pl-8 pb-2"><b>Community</b></ProListSubheader>
+                        <ProNavLink Href="/mud/community/extensions">CommunityExtensions</ProNavLink>
+                    </ProNavGroup>
+                </ProNavMenu>
+            }
+        </div>
+        <ProNavMenu Color="Color.Primary" Rounded="true" Dense="true" Margin="Margin.Dense" Class="pa-2 overflow-auto mb-3">
+            <NavMenu @ref="@_navMenuRef" />
+        </ProNavMenu>
+    </ProDrawer>
+    @Body
+    <ProScrollToTop TopOffset="400" Style="z-index:2000;">
+        <ProFab StartIcon="@Icons.Material.Filled.KeyboardArrowUp" Color="Color.Primary" />
+    </ProScrollToTop>
+</ProLayout>

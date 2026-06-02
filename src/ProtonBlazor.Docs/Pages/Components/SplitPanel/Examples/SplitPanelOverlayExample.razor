@@ -1,0 +1,36 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Class="pro-width-full pro-height-full relative">
+    <ProSplitPanel Class="pro-height-full"
+                   UseAsOverlay="true"
+                   Elevation="8"
+                   FirstPanelInitialSize="150"
+                   MinPanelSize="150"
+                   Padding="4"
+                   Rounded="true">
+        <FirstPanel>
+            <div style="display: grid; grid-template-rows: auto 1fr;" class="pro-height-full">
+                <ProText Typo="Typo.h6">Toolbox</ProText>
+                <ProStack Row="true" Wrap="Wrap.Wrap" Class="overflow-y-auto mt-2" AlignItems="AlignItems.Start" Style="align-content: flex-start;">
+                    @for (var i = 0; i < 20; i++)
+                    {
+                        var iLocal = i;
+                        <ProText>Some item @iLocal</ProText>
+                    }
+                </ProStack>
+            </div>
+        </FirstPanel>
+    </ProSplitPanel>
+    <ProStack Class="pa-4" Style="margin-left: 150px;">
+        <ProText Typo="Typo.h6">Content</ProText>
+        <ProText>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+            duo
+            dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            tempor
+            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+            ipsum
+            dolor sit amet.
+        </ProText>
+    </ProStack>
+</ProPaper>

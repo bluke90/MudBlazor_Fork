@@ -1,0 +1,37 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@using ProtonBlazor.Utilities
+
+<ProStack>
+    <ProStack Row="true">
+        <ProSelect Label="Key" @bind-Value="@_selectedKey" Style="width: 200px;">
+            @foreach (var key in Enum.GetValues<JsKey>())
+            {
+                <ProSelectItem Value="@key">@Enum.GetName(typeof(JsKey), key)</ProSelectItem>
+            }
+        </ProSelect>
+        <ProSelect T="JsKeyModifier" Label="Modifier" @bind-SelectedValues="@_selectedKeyModifiers" MultiSelection="true" Style="min-width: 200px;">
+            @foreach (var keyModifier in Enum.GetValues<JsKeyModifier>())
+            {
+                <ProSelectItem T="JsKeyModifier" Value="@keyModifier">@Enum.GetName(typeof(JsKeyModifier), keyModifier)</ProSelectItem>
+            }
+        </ProSelect>
+        <ProStack Spacing="0">
+            <ProCheckBox @bind-Value="@_hideChildContentOnRepress" Label="Hide child content on repress" Class="mt-n3"/>
+            <ProCheckBox @bind-Value="@_disabled" Label="Disabled" Class="mt-n5"/>
+        </ProStack>
+    </ProStack>
+    <ProAlert Severity="Severity.Info">Press the selected key-combination to toggle the button.</ProAlert>
+    <ProHotkey Key="@_selectedKey" KeyModifiers="@_selectedKeyModifiers" HideChildContentOnRepress="@_hideChildContentOnRepress" Disabled="@_disabled">
+        <ProButton EndIcon="@Icons.Material.Outlined.EmojiEmotions" Color="Color.Primary" Variant="Variant.Filled">
+            I'm a button
+        </ProButton>
+    </ProHotkey>
+</ProStack>
+
+@code {
+    private bool _disabled;
+    private JsKey _selectedKey = JsKey.KeyA;
+    private bool _hideChildContentOnRepress = true;
+    private IReadOnlyCollection<JsKeyModifier> _selectedKeyModifiers = [JsKeyModifier.ControlLeft];
+}

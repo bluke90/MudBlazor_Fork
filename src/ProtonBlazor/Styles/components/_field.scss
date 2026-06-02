@@ -1,0 +1,33 @@
+﻿.pro-input-control.pro-field {
+  .pro-input-slot {
+    height: auto;
+    min-height: 19px;
+
+    &.pro-input-root-outlined.pro-input-adorned-start {
+      padding-left: 0;
+      padding-inline-start: 0;
+      padding-inline-end: 14px;
+    }
+
+    &.pro-input-root-filled.pro-input-adorned-start {
+      padding-left: 0;
+      padding-inline-start: 0;
+      padding-inline-end: 12px;
+    }
+
+    &.pro-input-slot-nopadding {
+      padding-top: 0px;
+      padding-bottom: 0px;
+
+      &.pro-input-root-filled {
+        padding-top: 21px;
+        padding-bottom: 2px;
+      }
+
+      &.pro-input-root-outlined {
+        padding-top: 7px;
+        padding-bottom: 2px;
+      }
+    }
+  }
+}

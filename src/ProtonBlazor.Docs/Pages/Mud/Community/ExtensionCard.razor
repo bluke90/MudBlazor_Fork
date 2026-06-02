@@ -1,0 +1,40 @@
+﻿<ProCard Class="docs-extensions-card">
+    <ProCardHeader>
+        <CardHeaderAvatar>
+            <ProAvatar Style="background: transparent" Square="true">
+                <ProImage Src="@Extension.AvatarImageSrc" Alt="@_avatarAlt" />
+            </ProAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <ProText Class="docs-extensions-clamp" role="heading" Typo="Typo.h6">@Extension.Name</ProText>          
+        </CardHeaderContent>
+    </ProCardHeader>
+    <ProCardContent>
+        <ProText Typo="Typo.button" Class="pro-text-disabled">@CategoryName</ProText>
+        <ProPaper Class="d-flex justify-center pa-2 docs-extensions-paper" Elevation="0">
+            <ProText Typo="Typo.body2">@Extension.Description</ProText>
+        </ProPaper>        
+    </ProCardContent>
+    <ProCardActions>
+        <ProButton Variant="Variant.Text" Color="Color.Primary" EndIcon="@Icons.Material.Filled.ArrowForward"
+        FullWidth="false" Target="_blank" Href="@Extension.Link" aria-label="@_ariaDetailsButton">
+            Details
+        </ProButton>
+        <ProSpacer />
+        <ProButton Href="@Extension.GitHubLink" Target="_blank">        
+            <ProImage alt="@_gitHubAlt" Src="@($"https://img.shields.io/github/stars/{Extension.GitHubUserPath}/{Extension.GitHubRepoPath}")" />
+        </ProButton>
+    </ProCardActions>
+</ProCard>
+
+@code {
+    [Parameter]
+    public CommunityExtension Extension { get; set; }
+
+    [Parameter]
+    public string CategoryName { get; set; }
+
+    private string _avatarAlt => $"Avatar for {Extension.Name}";
+    private string _ariaDetailsButton => $"Visit the {Extension.Name} official website.";
+    private string _gitHubAlt => $"GitHub Repo Stars for {Extension.Name}";
+}

@@ -1,0 +1,259 @@
+﻿@namespace ProtonBlazor
+@inherits ProTableBase
+@using ProtonBlazor.Utilities
+@using ProtonBlazor.Resources
+@inject InternalMudLocalizer Localizer
+@typeparam T
+
+@(ClearFilterCache()) @*Clear filtered items cache for this render*@
+
+<div @attributes="UserAttributes" class="@Classname" style="@Style">
+    @if (Items != null || ServerData != null)
+    {
+        <CascadingValue Value="TableContext" IsFixed="true">
+            @if (ToolBarContent != null)
+            {
+                <ProToolBar Class="pro-table-toolbar">
+                    @ToolBarContent
+                </ProToolBar>
+            }
+            @if (Context.SortLabels.Any())
+            {
+                <div Class="pro-table-smalldevices-sortselect">
+                    <CascadingValue Name="SubscribeToParentForm" Value="false" IsFixed>
+                        <ProSelect Value="@Context.CurrentSortLabel" Label="@SortLabel" ValueChanged="@(v => Context.SetSortFunc(v, overrideDirectionNone: true))" T="ProTableSortLabel<T>">
+                            @foreach (var label in Context.SortLabels)
+                            {
+                                <ProSelectItem Value="@label">@label.ChildContent</ProSelectItem>
+                            }
+                        </ProSelect>
+                    </CascadingValue>
+                </div>
+            }
+            <div id="@_tableId" class="pro-table-container @TableContainerClass" style="@TableContainerStyle @(GetHorizontalScrollbarStyle())">
+                <table class="@TableClassname" aria-label="@AriaLabel">
+                    @if (ColGroup != null)
+                    {
+                        <colgroup>
+                            @ColGroup
+                        </colgroup>
+                    }
+                    @if (HeaderContent != null || Columns != null)
+                    {
+                        <thead class="@HeadClassname">
+                            @if (CustomHeader)
+                            {
+                                @HeaderContent
+                            }
+                            else
+                            {
+                                <ProTHeadRow Checkable="MultiSelection" SelectionChangeable="SelectionChangeable" Expandable="@(GroupBy?.Expandable ?? false)">
+                                    @if (HeaderContent != null)
+                                    {
+                                        @HeaderContent
+                                    }
+
+                                    @if (Columns != null)
+                                    {
+                                        @Columns(Def)
+                                    }
+                                </ProTHeadRow>
+                            }
+                            @if (Loading)
+                            {
+                                <tr class="pro-table-loading-row">
+                                    <th colspan="1000" class="@(CurrentPageItems.Any() || (LoadingContent is not null || LoadingContentBody is not null) ? "pro-table-loading" : "")">
+                                        <ProProgressLinear Color="@LoadingProgressColor" Class="pro-table-loading-progress" Indeterminate="true" aria-label="@Localizer[LanguageResource.ProTable_Loading]" />
+                                    </th>
+                                </tr>
+                            }
+                        </thead>
+                    }
+                    else if (Loading)
+                    {
+                        <thead class="@HeadClassname">
+                            <tr class="pro-table-loading-row">
+                                <th colspan="1000" class="@(CurrentPageItems.Any() || (LoadingContent is not null || LoadingContentBody is not null) ? "pro-table-loading" : "")">
+                                    <ProProgressLinear Color="@LoadingProgressColor" Class="pro-table-loading-progress" Indeterminate="true" aria-label="@Localizer[LanguageResource.ProTable_Loading]" />
+                                </th>
+                            </tr>
+                        </thead>
+                    }
+                    <tbody class="pro-table-body">
+                        @if (GroupBy != null)
+                        {
+                            foreach (var group in GroupItemsPage)
+                            {
+                                <ProTableGroupRow @key="group.Key" T="T" GroupDefinition="GroupBy" Items="group"
+                                                  Checkable="MultiSelection" SelectionChangeable="SelectionChangeable"
+                                                  HeaderClass="@GroupHeaderClass" HeaderStyle="@GroupHeaderStyle" HeaderTemplate="@GroupHeaderTemplate"
+                                                  FooterClass="@GroupFooterClass" FooterStyle="@GroupFooterStyle" FooterTemplate="@GroupFooterTemplate"/>
+                            }
+                        }
+                        else
+                        {
+                            if (CurrentPageItems != null && CurrentPageItems.Any())
+                            {
+                                <ProVirtualize Enabled="@Virtualize" Items="@CurrentPageItems?.ToList()" OverscanCount="@OverscanCount" ItemSize="@ItemSize" Context="item">
+                                    @{
+                                        var itemIndex = FilteredItems.ToList().IndexOf(item);
+                                        var generatedRowId = itemIndex != -1 ? $"{_tableId}_row_{itemIndex}" : null;
+                                        var rowClass = new CssBuilder(RowClass)
+                                            .AddClass(RowClassFunc?.Invoke(item, itemIndex))
+                                            .AddClass("pro-table-row-clickable", OnRowClick.HasDelegate && !IsRowDisabled(item))
+                                            .Build();
+                                        var rowStyle = new StyleBuilder().AddStyle(RowStyle).AddStyle(RowStyleFunc?.Invoke(item, itemIndex)).Build();
+                                    }
+                                    <ProTr Class="@rowClass" Style="@rowStyle" Item="item" @key="item" RowId="@generatedRowId"
+                                           Checkable="MultiSelection" SelectionChangeable="SelectionChangeable" Editable="IsItemEditable(item)"
+                                           Disabled="IsRowDisabled(item)" DisabledClass="@DisabledRowClass" Checked="@(IsCheckedRow(item))"
+                                           CheckedChanged="@(value => OnRowCheckboxChanged(value, item))">
+                                        @if (!ReadOnly && Editable && Equals(_editingItem, item))
+                                        {
+                                            <CascadingValue Value="@Validator" IsFixed="true">
+                                                @if (RowEditingTemplate != null)
+                                                {
+                                                    @RowEditingTemplate(item)
+                                                }
+                                                @if (Columns != null)
+                                                {
+                                                    @Columns(item)
+                                                }
+                                            </CascadingValue>
+                                        }
+                                        else
+                                        {
+                                            if (RowTemplate != null)
+                                            {
+                                                @RowTemplate(item)
+                                            }
+
+                                            if (Columns != null)
+                                            {
+                                                @Columns(item)
+                                            }
+                                        }
+                                    </ProTr>
+                                    @if (ChildRowContent != null)
+                                    {
+                                        @ChildRowContent(item)
+                                    }
+                                </ProVirtualize>
+                            }
+                        }
+                        @if (!(CurrentPageItems is not null && CurrentPageItems.Any()))
+                        {
+                            if (Loading && LoadingContentBody != null)
+                            {
+                                @LoadingContentBody
+                            }
+                            else if (Loading ? LoadingContent != null : NoRecordsContent != null)
+                            {
+                                <tr>
+                                    <th colspan="1000" class="pro-table-empty-row">
+                                        <div Class="my-3">
+                                            @if (Loading)
+                                            {
+                                                @LoadingContent
+                                            }
+                                            else
+                                            {
+                                                @NoRecordsContent
+                                            }
+                                        </div>
+                                    </th>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    @if (FooterContent != null || Columns != null)
+                    {
+                        <tfoot class="@FootClassname">
+                            @if (CustomFooter)
+                            {
+                                @FooterContent
+                            }
+                            else
+                            {
+                                <ProTFootRow Checkable="MultiSelection" SelectionChangeable="SelectionChangeable" Expandable="@(GroupBy?.Expandable ?? false)">
+                                    @if (FooterContent != null)
+                                    {
+                                        @FooterContent
+                                    }
+                                    @if (Columns != null)
+                                    {
+                                        @Columns(Def)
+                                    }
+                                </ProTFootRow>
+                            }
+                        </tfoot>
+                    }
+                </table>
+            </div>
+            @if (PagerContent != null)
+            {
+                <div class="pro-table-pagination">
+                    @PagerContent
+                </div>
+            }
+        </CascadingValue>
+    }
+</div>
+
+@code
+{
+    // Moved to code to avoid code repetition in the markup-block
+    internal RenderFragment RenderRows(IEnumerable<T>? source, string? customClass = null, bool expandable = false)
+    {
+        RenderFragment rootNode =
+            @<text>
+                 <ProVirtualize Enabled="@Virtualize" Items="@source?.ToList()" OverscanCount="@OverscanCount" ItemSize="@ItemSize" Context="item" ChildContent="@child()"/>
+            </text>;
+
+        RenderFragment<T> child() => item =>
+            @<text>
+                 @{
+                     var itemIndexForId = FilteredItems.ToList().IndexOf(item);
+                     var generatedRowId = itemIndexForId != -1 ? $"{_tableId}_row_{itemIndexForId}" : null;
+
+                     var rowClass = new CssBuilder(RowClass).AddClass(RowClassFunc?.Invoke(item, itemIndexForId)).AddClass(customClass, !string.IsNullOrEmpty(customClass)).AddClass("pro-table-row-clickable", OnRowClick.HasDelegate && !IsRowDisabled(item)).Build();
+                     var rowStyle = new StyleBuilder().AddStyle(RowStyle).AddStyle(RowStyleFunc?.Invoke(item, itemIndexForId)).Build();
+                 }
+                 <ProTr Class="@rowClass" Style="@rowStyle" Item="item" @key="item" RowId="@generatedRowId" Checkable="MultiSelection" SelectionChangeable="SelectionChangeable"
+                        Editable="IsItemEditable(item)" Expandable="expandable" Disabled="IsRowDisabled(item)" DisabledClass="@DisabledRowClass"
+                        Checked="Context.Selection.Contains(item)" CheckedChanged="((value) => { OnRowCheckboxChanged(value, item); })">
+                     @if (!ReadOnly && Editable && Equals(_editingItem, item))
+                     {
+                         <CascadingValue Value="@Validator" IsFixed="true">
+                             @if (RowEditingTemplate != null)
+                             {
+                                 @RowEditingTemplate(item)
+                             }
+                             @if (Columns != null)
+                             {
+                                 @Columns(item)
+                             }
+                         </CascadingValue>
+                     }
+                     else
+                     {
+                         if (RowTemplate != null)
+                         {
+                             @RowTemplate(item)
+                         }
+
+                         if (Columns != null)
+                         {
+                             @Columns(item)
+                         }
+                     }
+                 </ProTr>
+                 @if (ChildRowContent != null)
+                 {
+                     @ChildRowContent(item)
+                 }
+            </text>;
+
+        return rootNode;
+    }
+}

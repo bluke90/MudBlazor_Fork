@@ -1,0 +1,22 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div class="d-flex justify-center">
+    <ProImage ObjectFit="@ImageFit" Height="200" Width="400" Src="images/castle.jpg" Alt="Örebro Slott"  Elevation="25" Class="rounded-lg"/>
+</div>
+
+<ProChipSet T="string" CheckMark Class="mt-12">
+    <ProChip Text="None" OnClick="@(() => SetImageFit(ObjectFit.None))" SelectedColor="Color.Primary" />
+    <ProChip Text="Cover" OnClick="@(() => SetImageFit(ObjectFit.Cover))" SelectedColor="Color.Primary" Default="true"/>
+    <ProChip Text="Contain" OnClick="@(() => SetImageFit(ObjectFit.Contain))" SelectedColor="Color.Primary" />
+    <ProChip Text="Fill" OnClick="@(() => SetImageFit(ObjectFit.Fill))" SelectedColor="Color.Primary" />
+    <ProChip Text="ScaleDown" OnClick="@(() => SetImageFit(ObjectFit.ScaleDown))" SelectedColor="Color.Primary" />
+</ProChipSet>
+
+@code {
+    ObjectFit ImageFit = ObjectFit.Cover;
+
+    void SetImageFit(ObjectFit value)
+    {
+        ImageFit = value;
+    }
+}

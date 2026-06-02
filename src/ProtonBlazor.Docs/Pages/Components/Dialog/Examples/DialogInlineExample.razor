@@ -1,0 +1,33 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div class="d-flex">
+    <ProButton OnClick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">
+        Edit rating
+    </ProButton>
+    <ProRating SelectedValue="_rating" Disabled="true" Class="mt-1 ml-3" />
+</div>
+
+<ProDialog @bind-Visible="_visible" Options="_dialogOptions">
+    <TitleContent>
+        <ProText Typo="Typo.h6">
+            <ProIcon Icon="@Icons.Material.Filled.Edit" Class="mr-3" /> Edit rating
+        </ProText>
+    </TitleContent>
+    <DialogContent>
+        <p>How awesome are inline dialogs?</p>
+        <ProRating @bind-SelectedValue="_rating" Class="mt-3" />
+    </DialogContent>
+    <DialogActions>
+        <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Submit" Class="px-10">Close</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    private bool _visible;
+    private int _rating;
+    private readonly DialogOptions _dialogOptions = new() { FullWidth = true };
+
+    private void OpenDialog() => _visible = true;
+
+    private void Submit() => _visible = false;
+}

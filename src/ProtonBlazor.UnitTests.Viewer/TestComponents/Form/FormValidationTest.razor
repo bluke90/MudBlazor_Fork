@@ -1,0 +1,10 @@
+﻿<ProForm ValidationDelay="0">
+    <ProTextField T="string" Required="true" RequiredError="Enter a star" Validation="@Validation"></ProTextField>
+</ProForm>
+
+@code {
+    public static string __description__ = "Supplied validation func should be called.";
+
+    [Parameter]
+    public object? Validation { get; set; }
+}

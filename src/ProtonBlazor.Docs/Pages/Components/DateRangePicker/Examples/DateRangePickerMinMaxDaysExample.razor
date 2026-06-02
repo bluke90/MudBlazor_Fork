@@ -1,0 +1,14 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack>
+    <ProDateRangePicker @bind-DateRange="@_dateRange" MinDays="_minDays" MaxDays="@_maxDays" Margin="Margin.Dense" HelperText="@HelperText"
+    Variant="Variant.Outlined" Label="Range" />
+</ProStack>
+
+@code {
+    private DateRange _dateRange { get; set; }
+    private int _minDays = 3;
+    private int _maxDays = 7;
+
+    private string HelperText => $"Range: {_minDays} to {_maxDays} days";
+}

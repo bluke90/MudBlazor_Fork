@@ -1,0 +1,49 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" md="8" Class="d-flex justify-center align-center" Style="height:500px;">
+        <ProImage ObjectFit="ImageFit" Height="@(SetHeight ? ImageHeight : null)" Width="@(SetWidth ? ImageWidth : null)" Src="@($"images/{Image}")" Alt="Mony the dog" Elevation="25" Class="rounded-lg"/>
+    </ProItem>
+    <ProItem xs="12" md="4">
+        <ProPaper Class="pa-4 mt-6 mt-lg-16" Elevation="0">
+            <ProText Typo="Typo.h6">Options</ProText>
+            <ProSelect Label="Image" Dense="true" Margin="Margin.Dense" @bind-Value="Image" Class="mt-4">
+                <ProSelectItem T="string" Value="@("tractor.jpg")">Tractor</ProSelectItem>
+                <ProSelectItem T="string" Value="@("door.jpg")">Door</ProSelectItem>
+                <ProSelectItem T="string" Value="@("castle.jpg")">Castle</ProSelectItem>
+                <ProSelectItem T="string" Value="@("iceland.jpg")">Iceland</ProSelectItem>
+                <ProSelectItem T="string" Value="@("pilars.jpg")">Pilars</ProSelectItem>
+                <ProSelectItem T="string" Value="@("sweden.jpg")">Sweden</ProSelectItem>
+            </ProSelect>
+            <ProSelect Label="Image Fit" Dense="true" Margin="Margin.Dense" @bind-Value="ImageFit" Class="mt-4">
+                <ProSelectItem T="ObjectFit" Value="ObjectFit.None">None</ProSelectItem>
+                <ProSelectItem T="ObjectFit" Value="ObjectFit.Cover">Cover</ProSelectItem>
+                <ProSelectItem T="ObjectFit" Value="ObjectFit.Contain">Contain</ProSelectItem>
+                <ProSelectItem T="ObjectFit" Value="ObjectFit.Fill">Fill</ProSelectItem>
+                <ProSelectItem T="ObjectFit" Value="ObjectFit.ScaleDown">ScaleDown</ProSelectItem>
+            </ProSelect>
+            <div class="d-flex justify-space-between align-center mt-4">
+                <ProText>Width: @(SetWidth ? $"{ImageWidth}px" : "Auto")</ProText>
+                <ProSwitch @bind-Value="SetWidth" Color="Color.Primary" Class="mr-0" />
+            </div>
+            <ProSlider @bind-Value="ImageWidth" Disabled="@(!SetWidth)" Max="400" Color="Color.Primary"/>
+            <div class="d-flex justify-space-between align-center mt-4">
+                <ProText>Height: @(SetHeight ? $"{ImageHeight}px" : "Auto")</ProText>
+                <ProSwitch @bind-Value="SetHeight" Color="Color.Secondary" Class="mr-0" />
+            </div>
+            <ProSlider @bind-Value="ImageHeight" Disabled="@(!SetHeight)" Max="350" Color="Color.Secondary"/>
+        </ProPaper>
+    </ProItem>
+</ProGrid>
+
+@code {
+    public string Image { get; set; } = "tractor.jpg";
+    
+    public bool SetHeight { get; set; } = false;
+    public bool SetWidth { get; set; } = true;
+    
+    public int ImageHeight { get; set; } = 300;
+    public int ImageWidth { get; set; } = 300;
+
+    public ObjectFit ImageFit { get; set; } = ObjectFit.Cover;
+}

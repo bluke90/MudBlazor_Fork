@@ -1,0 +1,25 @@
+﻿<ProTreeView T="string" ExpandOnClick="true" Ripple="@Ripple" Disabled="@Disabled">
+    <ProTreeViewItem Value='"content"'>
+        <ProTreeViewItem Value='"logo.png"' Selected="true" />
+        <ProTreeViewItem Value='"ProtonBlazor.svg"' />
+        <ProTreeViewItem Value='"Nuget.png"' />
+    </ProTreeViewItem>
+    <ProTreeViewItem Value='"src"'>
+        <ProTreeViewItem Value='"ProtonBlazor"' />
+        <ProTreeViewItem Value='"ProtonBlazor.Docs"'>
+            <ProTreeViewItem Value='"wwwroot"'>
+                <ProTreeViewItem Value='"ProAppbarCorner.svg"' />
+                <ProTreeViewItem Value='"ProtonBlazorDocs.min.css"' />
+            </ProTreeViewItem>
+        </ProTreeViewItem>
+    </ProTreeViewItem>
+</ProTreeView>
+
+@code
+{
+    [Parameter]
+    public bool Ripple { get; set; } = true;
+    
+    [Parameter]
+    public bool Disabled { get; set; }
+}

@@ -1,0 +1,14 @@
+﻿<ProDialog>
+    <DialogContent>
+        <ProText>This Dialog returns a string as return value</ProText>
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="() => ProDialog.Close(DialogResult.Cancel())">Cancel</ProButton>
+        <ProButton OnClick="@(() => ProDialog.Close("Closed via OK"))">OK</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; } = null!;
+}

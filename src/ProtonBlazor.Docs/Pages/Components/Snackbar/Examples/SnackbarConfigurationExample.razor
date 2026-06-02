@@ -1,0 +1,7 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@inject ISnackbar Snackbar
+
+<ProButton @onclick="@(() => Snackbar.Add("My Close button is gone!", Severity.Normal, config => { config.ShowCloseIcon = false; }))" Variant="Variant.Filled" Color="Color.Primary">
+    Open modified snackbar
+</ProButton>

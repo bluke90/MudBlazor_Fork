@@ -1,0 +1,181 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+@using System.Diagnostics
+@using ProtonBlazor.Resources
+@using Microsoft.JSInterop
+@typeparam T
+
+@inject InternalMudLocalizer Localizer
+@inject IJSRuntime JSRuntime
+
+@if (IsOnlyHeader)
+{
+    <th scope="col" class="pro-table-cell @Classname" style="" @attributes="@UserAttributes">
+        @ChildContent
+    </th>
+}
+else if (Column != null && !Column.HiddenState.Value)
+{
+    <th @ref=@_headerElement scope="col" class="@Classname" style="@Stylename" colspan="@Column.HeaderColSpan" @attributes="@UserAttributes">
+        @if (DataGrid.DragDropColumnReordering)
+        {
+            <ProDropZone CanDrop="@((item) => (Column.DragAndDropEnabled ?? true))" ItemDisabled="@((item) => !item.DragAndDropEnabled ?? false)" T="Column<T>" Identifier="@(Column.PropertyName ?? _id)">
+
+            </ProDropZone>
+        }
+        else
+        {
+            @TableHeader()
+        }
+        @if (resizable)
+        {
+            <div @ref="_resizerElement"
+                 @onpointerdown="this.AsNonRenderingEventHandler<PointerEventArgs>(OnResizerPointerDown)" 
+                 @onpointerdown:stopPropagation="true"
+                 @onpointermove="this.AsNonRenderingEventHandler<PointerEventArgs>(OnResizerPointerMove)" 
+                 @onpointerup="this.AsNonRenderingEventHandler<PointerEventArgs>(OnResizerPointerUp)"
+                 @onpointerover="@OnResizerPointerOver"
+                 @onpointerleave="this.AsNonRenderingEventHandler(OnResizerPointerLeave)"
+                 class="@ResizerClass" style="@ResizerStyle" />
+        }
+    </th>
+}
+
+@code {
+
+    internal RenderFragment TableHeader()
+    {
+        Debug.Assert(Column is not null);
+        Debug.Assert(DataGrid is not null);
+        var headerTemplate = Column.GetHeaderTemplate();
+
+        return
+        @<text>
+        <span class="column-header">
+            @if (sortable)
+            {
+                <span class="@SortHeaderClass" @onclick="SortChangedAsync">
+                    @if (headerTemplate != null)
+                    {
+                        @headerTemplate(Column.headerContext);
+                    }
+                    else if (IncludeHierarchyToggle)
+                    {
+                        @HierarchyToggle
+                    }
+                    else 
+                    {
+                        @computedTitle
+                    }
+                </span>
+            }
+            else
+            { 
+                @if (headerTemplate != null)
+                {
+                    @headerTemplate(Column.headerContext);
+                }
+                else if (IncludeHierarchyToggle)
+                {
+                    @HierarchyToggle
+                }
+                else 
+                {
+                    @computedTitle
+                }
+            }
+            <span class="@OptionsClass">
+                @if (sortable)
+                {
+                    <ProIconButton Icon="@DataGrid.SortIcon" Class="@sortIconClass" Size="@Size.Small" OnClick="@SortChangedAsync" aria-label="@Localizer[LanguageResource.ProDataGrid_Sort]"></ProIconButton>
+
+                    if (DataGrid.SortMode == SortMode.Multiple)
+                    {
+                        if (Column.SortIndex < 0)
+                        {
+                            <span class="pro-sort-index pro-text-disabled invisible">@(Column.SortIndex + 1)</span>
+                        }
+                        else
+                        {
+                            <span class="pro-sort-index pro-text-disabled">@(Column.SortIndex + 1)</span>
+                        }
+                    }
+                }
+
+                @if (DataGrid.FilterMode != DataGridFilterMode.ColumnFilterRow)
+                {
+                    if (hasFilter)
+                    {
+                        <ProIconButton Class="filter-button filtered" Icon="@DataGrid.FilterIconFilled" Size="@Size.Small" OnClick="@OpenFilters" aria-label="@Localizer[LanguageResource.ProDataGrid_OpenFilters]"></ProIconButton>
+                    }
+                    else if (showFilterIcon)
+                    {
+                        <ProIconButton Class="filter-button" Icon="@DataGrid.FilterIconEmpty" Size="@Size.Small" OnClick="@AddFilter" aria-label="@Localizer[LanguageResource.ProDataGrid_AddFilter]"></ProIconButton>
+                    }
+                }
+
+                @if (showColumnOptions)
+                {
+                    <ProMenu Icon="@DataGrid.ColumnOptionsIcon" Size="Size.Small" Dense="true" AriaLabel="@Localizer[LanguageResource.ProDataGrid_ShowColumnOptions]">
+                        <ProMenuItem Disabled="@(SortDirection == SortDirection.None)" OnClick="@RemoveSortAsync">@Localizer[LanguageResource.ProDataGrid_Unsort]</ProMenuItem>
+                        @if (filterable && DataGrid.FilterMode != DataGridFilterMode.ColumnFilterRow)
+                        {
+                            <ProMenuItem OnClick="@AddFilter">@Localizer[LanguageResource.ProDataGrid_Filter]</ProMenuItem>
+                        }
+                        @if (hideable)
+                        {
+                            <ProMenuItem OnClick="@HideColumnAsync">@Localizer[LanguageResource.ProDataGrid_Hide]</ProMenuItem>
+                        }
+                        @if (groupable)
+                        {
+                            if (Column?.GroupingState.Value ?? false)
+                            {
+                                <ProMenuItem OnClick="@UngroupColumnAsync">@Localizer[LanguageResource.ProDataGrid_Ungroup]</ProMenuItem>
+                            }
+                            else
+                            {
+                                <ProMenuItem OnClick="@GroupColumnAsync">@Localizer[LanguageResource.ProDataGrid_Group]</ProMenuItem>
+                            }
+                        }
+                    </ProMenu>
+                }
+                @if (DataGrid.DragDropColumnReordering && (Column.DragAndDropEnabled ?? true))
+                {
+                    <ProIconButton Icon="@DataGrid.DragIndicatorIcon" Size="@DataGrid.DragIndicatorSize" Class="drag-icon-options"></ProIconButton>
+                }
+            </span>
+        </span>
+        @if (filterable && DataGrid.FilterMode == DataGridFilterMode.ColumnFilterMenu)
+        {
+            <ProOverlay @bind-Visible="@_filtersMenuVisible" AutoClose />
+            <ProPopover UserAttributes="@PositionAttributes" Open="@_filtersMenuVisible" OverflowBehavior="OverflowBehavior.FlipOnOpen" AnchorOrigin="@Origin.BottomRight" TransformOrigin="@Origin.TopRight" Class="pa-4 column-filter-popup pro-popover-position-override">
+                @if (Column.FilterTemplate != null)
+                {
+                    @Column.FilterTemplate(Column.FilterContext) 
+                }
+                else
+                {
+                    <ProGrid>
+                        <ProItem xs="12">
+                            @DataGrid?.Filter(Column.FilterContext.FilterDefinition!, Column)
+                        </ProItem>
+                        <ProItem xs="12" Class="d-flex justify-end">
+                            <ProButton Class="clear-filter-button" OnClick="@ClearFilterAsync">@Localizer[LanguageResource.ProDataGrid_Clear]</ProButton>
+                            <ProButton Class="apply-filter-button" Color="@Color.Primary" OnClick="@ApplyFilterAsync">@Localizer[LanguageResource.ProDataGrid_Filter]</ProButton>
+                        </ProItem>
+                    </ProGrid>
+                }
+            </ProPopover>
+        }
+        </text>;
+    }
+
+    private RenderFragment HierarchyToggle =>
+        @<text>
+             <ProIconButton Icon="@GetGroupIcon()"
+                            Class="ma-n3 pa-1 pro-hierarchy-toggle-button"
+                            OnClick="@ToggleHierarchyAsync"
+                            aria-label="@(Expanded ? @Localizer[LanguageResource.ProDataGrid_CollapseAllGroups] : @Localizer[LanguageResource.ProDataGrid_ExpandAllGroups])"/>
+         </text>;
+
+}

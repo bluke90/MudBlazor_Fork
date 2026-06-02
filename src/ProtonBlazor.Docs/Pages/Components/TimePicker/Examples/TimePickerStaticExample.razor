@@ -1,0 +1,11 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<ProTimePicker PickerVariant="PickerVariant.Static" @bind-Time="_time" AmPm="true" />
+<ProHidden Breakpoint="@Breakpoint.Xs">
+    <ProTimePicker PickerVariant="PickerVariant.Static" Orientation="Orientation.Landscape" @bind-Time="_time" />
+</ProHidden>
+
+@code{
+    private TimeSpan? _time = new TimeSpan(13, 37, 00);
+}

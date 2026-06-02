@@ -1,0 +1,49 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div class="mx-auto"  style="max-width: 400px;">
+    <ProExpansionPanels>
+        <ProExpansionPanel>
+            <TitleContent>
+                <div class="d-flex">
+                    <ProIcon Icon="@Icons.Material.Filled.Info" class="mr-3"></ProIcon>
+                    <ProText>Panel header as <strong>RenderFragment</strong></ProText>
+                </div>
+            </TitleContent>
+            <ChildContent>
+                Panel Content
+            </ChildContent>
+        </ProExpansionPanel>
+        <ProExpansionPanel Text="The icon of this panel is hidden" HideIcon="true">
+            Panel Content
+        </ProExpansionPanel>
+        <ProExpansionPanel HideIcon="true">
+            <TitleContent>
+                <div class="d-flex">
+                    <ProText Class="mt-1">Inbox</ProText>
+                    <ProBadge Content="3" Color="Color.Primary" Overlap="true" Class="d-flex ml-auto">
+                        <ProIcon Icon="@Icons.Material.Filled.Email" Color="Color.Default" />
+                    </ProBadge>
+                </div>
+            </TitleContent>
+            <ChildContent>
+                Panel Content
+            </ChildContent>
+        </ProExpansionPanel>
+        <ProExpansionPanel @bind-Expanded="@open" HideIcon="true">
+            <TitleContent>
+                <div class="d-flex">
+                    <ProText>Overriding standard icon with own icon</ProText>
+                    <ProIcon Icon="@(open ? Icons.Material.Filled.Close : Icons.Material.Filled.Add)" class="ml-auto"></ProIcon>
+                </div>
+            </TitleContent>
+            <ChildContent>
+                Panel Content
+            </ChildContent>
+        </ProExpansionPanel>
+    </ProExpansionPanels>
+</div>
+
+@code
+{
+    bool open;
+}

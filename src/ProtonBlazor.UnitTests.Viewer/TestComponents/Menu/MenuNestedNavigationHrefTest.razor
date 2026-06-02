@@ -1,0 +1,60 @@
+@page "/test/{Id:int}"
+
+@* 
+   Repro for #12741:
+   Clicking a nested ProMenuItem with an in-app Href can throw
+   InvalidOperationException (InvalidOperation_EnumFailedVersion) during menu close.
+
+   There is intentionally no associated bUnit test because the failure depends on
+   browser anchor-navigation timing while an async click handler is still running.
+   bUnit's click pipeline does not reproduce that browser disposal timing reliably.
+*@
+
+@if (Id == 0)
+{
+    <ProPopoverProvider />
+
+    <ProMenu Dense="true"
+             Icon="@Icons.Material.Filled.MoreVert"
+             Variant="Variant.Filled"
+             AnchorOrigin="Origin.BottomLeft"
+             TransformOrigin="Origin.TopLeft"
+             Color="Color.Primary"
+             Size="Size.Medium">
+        <ProMenu ActivationEvent="MouseEvent.MouseOver"
+                 AnchorOrigin="Origin.TopRight"
+                 TransformOrigin="Origin.TopLeft"
+                 Dense="true"
+                 Label="File Items">
+            <ChildContent>
+                <ProMenuItem Href="test/1">
+                    Test 1
+                </ProMenuItem>
+                <ProMenuItem Href="test/2">
+                    Test 2
+                </ProMenuItem>
+                <ProMenuItem Href="test/3">
+                    Test 3
+                </ProMenuItem>
+                <ProMenuItem Href="unknown">
+                    Test 4
+                </ProMenuItem>
+            </ChildContent>
+        </ProMenu>
+    </ProMenu>
+}
+else
+{
+    <h1>Menu navigation target</h1>
+    <h1>Product @Id</h1>
+}
+
+@code {
+    public static string __description__ = "Repro for nested menu item navigation with in-app href targets.";
+
+    /// <summary>
+    /// Gets or sets the product identifier from the <c>/test/{id:int}</c> route.
+    /// </summary>
+    [Parameter]
+    public int Id { get; set; }
+}

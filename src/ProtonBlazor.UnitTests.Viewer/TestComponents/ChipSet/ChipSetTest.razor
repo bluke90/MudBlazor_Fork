@@ -1,0 +1,30 @@
+﻿<ProChipSet @bind-SelectedValues="_selected" SelectionMode="@GetSelectionMod()" CheckMark="_checkMark">
+    <ProChip Value="@("Milk")" />
+    <ProChip Value="@("Eggs")" />
+    <ProChip Value="@("Soap")" />
+    <ProChip Value="@("Corn flakes")"/>
+    <ProChip Value="@("Salad")" />
+    <ProChip Value="@("Apples")" />
+    <ProChip Value="@("Red wine")" />
+</ProChipSet>
+
+@if (_selected is { Count: > 0 }) {
+    <ProText>You selected @string.Join(", ", _selected).</ProText>
+}
+else {
+    <ProText>Nothing selected.</ProText>
+}
+<ProCheckBox @bind-Value="_checkMark">CheckMark</ProCheckBox>
+
+@code
+{
+    [Parameter]
+    public bool MultiSelection { get; set; }
+
+    private bool _checkMark;
+    private IReadOnlyCollection<string> _selected = ["Milk", "Cornflakes"];
+
+    private SelectionMode GetSelectionMod() => MultiSelection
+        ? SelectionMode.MultiSelection
+        : SelectionMode.SingleSelection;
+}

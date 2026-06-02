@@ -1,0 +1,15 @@
+﻿<div style="max-width: 400px;">
+    <ProForm @bind-IsValid="@_valid" ValidationDelay="300" >
+        <ProTextField T="string" Label="First Name" />
+        <ProTextField T="string" Label="Last Name" />
+    </ProForm>
+    <div class="d-flex mt-3">
+        <ProSwitch @bind-Value="@_valid" Label="IsValid " Color="Color.Info" />
+    </div>
+</div>
+
+@code {
+    public static string __description__ = "Form should update the bound variable valid to true even though it is set false upon calling form.Validate().";
+    
+    private bool _valid;
+}

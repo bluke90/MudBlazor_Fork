@@ -1,0 +1,44 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="250px" Class="py-3" Elevation="0">
+    <ProNavMenu>
+        <ProText Typo="Typo.h6" Class="px-4">My Application</ProText>
+        <ProText Typo="Typo.body2" Class="px-4 pro-text-secondary">Secondary Text</ProText>
+        <ProDivider Class="my-2" />
+        <ProNavLink Href="/dashboard">Dashboard</ProNavLink>
+        <ProNavLink Href="/servers">Servers</ProNavLink>
+        <ProNavLink Href="/billing" Disabled="true">Billing</ProNavLink>
+        <ProNavGroup Title="Settings" HeaderClass="settings-error" Expanded="true">
+            <TitleContent>
+                <ProBadge Icon="@Icons.Material.Filled.ErrorOutline" 
+                          Color="Color.Error" 
+                          Origin="@(RightToLeft ? Origin.CenterLeft : Origin.CenterRight)" 
+                          BadgeClass="mx-2">
+                    Settings
+                </ProBadge>
+            </TitleContent>
+            <ChildContent>
+                <ProNavLink Href="/users">Users</ProNavLink>
+                <ProNavLink Href="/security">
+                    <ProBadge Content="3" 
+                              Color="Color.Error" 
+                              Origin="@(RightToLeft ? Origin.CenterLeft : Origin.CenterRight)" 
+                              BadgeClass="mx-2">
+                        Security
+                    </ProBadge>
+                </ProNavLink>
+            </ChildContent>
+        </ProNavGroup>
+        <ProNavLink Href="/about">About</ProNavLink>
+    </ProNavMenu>
+</ProPaper>
+
+@code {
+    [CascadingParameter(Name = "RightToLeft")] public bool RightToLeft { get; set; }
+}
+
+<style>    
+    .settings-error {
+        color: red;
+    }
+</style>

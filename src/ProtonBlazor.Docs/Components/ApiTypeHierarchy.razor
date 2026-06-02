@@ -1,0 +1,13 @@
+﻿<ProTreeView Class="api-type-hierarchy" T="DocumentedType" Items="@Root" SelectionMode="SelectionMode.SingleSelection" @bind-SelectedValue="@SelectedType">
+    <ItemTemplate>
+        <ProTreeViewItem T="DocumentedType" Expanded="@context.Expanded" Text="@context.Text" Items="@context.Children" ReadOnly>
+            <Content>
+                <ProIcon Icon="@GetIcon(context)" Size="Size.Small" />
+
+                <ProLink Href="@context.Value.ApiUrl" Disabled="GetReadOnly(context)">
+                    @context.Text
+                </ProLink>
+            </Content>
+        </ProTreeViewItem>
+    </ItemTemplate>
+</ProTreeView>

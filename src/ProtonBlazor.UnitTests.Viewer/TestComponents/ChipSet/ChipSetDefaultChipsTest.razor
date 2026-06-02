@@ -1,0 +1,42 @@
+﻿<ProChipSet @bind-SelectedValue="_selectedValue" @bind-SelectedValues="_selectedValues" SelectionMode="@SelectionMode" CheckMark="_checkMark">
+    <ProChip Value="@("Milk")" Default="true" />
+    <ProChip Value="@("Eggs")" />
+    <ProChip Value="@("Soap")" Default="false" />
+    <ProChip Value="@("Corn flakes")" Default="true" />
+    <ProChip Value="@("Salad")" />
+    <ProChip Value="@("Apples")" />
+    <ProChip Value="@("Red wine")" />
+</ProChipSet>
+
+<div class="selected-value">
+    <ProText>@_selectedValue</ProText>
+</div>
+<div class="selected-values">
+    @if (_selectedValues is { Count: > 0 }) {
+        <ProText>@string.Join(", ", _selectedValues.OrderBy(x => x))</ProText>
+    }
+    else {
+        <ProText>Nothing selected</ProText>
+    }
+</div>
+
+<ProCheckBox @bind-Value="_checkMark">CheckMark</ProCheckBox>
+
+@code
+{
+    [Parameter]
+    public SelectionMode SelectionMode { get; set; } = SelectionMode.ToggleSelection;
+
+    [Parameter]
+    public string[]? InitialValues { get; set; }
+
+    private bool _checkMark = false;
+    private IReadOnlyCollection<string>? _selectedValues;
+    private string? _selectedValue;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _selectedValues = InitialValues;
+    }
+}

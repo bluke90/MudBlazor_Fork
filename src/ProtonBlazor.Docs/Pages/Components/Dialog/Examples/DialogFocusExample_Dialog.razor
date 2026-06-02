@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDialog DefaultFocus="DefaultFocus.LastChild">
+    <DialogContent>
+        Dialog content
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="Submit">OK</ProButton>
+        <ProButton Color="Color.Success" >Focused Button</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; }
+
+    private void Submit() => ProDialog.Close(DialogResult.Ok(true));
+
+    private void Cancel() => ProDialog.Cancel();
+}

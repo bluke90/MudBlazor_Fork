@@ -1,0 +1,34 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@using ProtonBlazor.Utilities
+@inject ISnackbar SnackbarService
+
+<ProStack>
+    <ProStack Row="true">
+        <ProSelect T="JsKey" Label="Key" @bind-Value="@_selectedKey" Style="width: 200px;">
+            @foreach (var key in Enum.GetValues<JsKey>())
+            {
+                <ProSelectItem T="JsKey" Value="@key">@Enum.GetName(typeof(JsKey), key)</ProSelectItem>
+            }
+        </ProSelect>
+        <ProSelect T="JsKeyModifier" Label="Modifier" @bind-SelectedValues="@_selectedKeyModifiers" MultiSelection="true" Style="min-width: 200px;">
+            @foreach (var keyModifier in Enum.GetValues<JsKeyModifier>())
+            {
+                <ProSelectItem T="JsKeyModifier" Value="@keyModifier">@Enum.GetName(typeof(JsKeyModifier), keyModifier)</ProSelectItem>
+            }
+        </ProSelect>
+    </ProStack>
+    <ProAlert Severity="Severity.Info">Press the selected key-combination to show the snackbar.</ProAlert>
+</ProStack>
+
+<ProHotkey Key="@_selectedKey" KeyModifiers="@_selectedKeyModifiers" OnHotkeyPressed="OnHotKey" />
+
+@code {
+    private JsKey _selectedKey = JsKey.KeyB;
+    private IReadOnlyCollection<JsKeyModifier> _selectedKeyModifiers = [JsKeyModifier.ControlLeft];
+
+    private void OnHotKey()
+    {
+        SnackbarService.Add("Hotkey pressed", Severity.Success);
+    }
+}

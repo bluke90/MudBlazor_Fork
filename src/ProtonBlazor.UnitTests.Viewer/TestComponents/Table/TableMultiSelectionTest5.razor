@@ -1,0 +1,20 @@
+﻿<ProText>SelectedItems { @string.Join(", ", _selectedItems) }</ProText>
+<ProTable Items="_items" @bind-SelectedItems="_selectedItems" MultiSelection="true" RowsPerPage="2">
+    <HeaderContent>
+        <ProTh>#</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProTablePager PageSizeOptions="_pageSizeOptions"/>
+    </PagerContent>
+</ProTable>
+
+@code {
+    public static string __description__ = "Multiselection should work with paging.";
+
+    private readonly int[] _pageSizeOptions = [2];
+    private readonly int[] _items = [0, 1, 2, 3];
+    private HashSet<int> _selectedItems = [0, 1, 2, 3];
+}

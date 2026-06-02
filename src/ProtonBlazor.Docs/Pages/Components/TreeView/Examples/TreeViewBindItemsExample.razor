@@ -1,0 +1,29 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="300px" Elevation="0">
+    <ProTreeView T="string" Hover SelectionMode="@SelectionMode.ToggleSelection" Color="Color.Tertiary">
+        <ProTreeViewItem Text="config" @bind-Expanded="ConfigExpanded" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+            <ProTreeViewItem Text="launch.json" @bind-Selected="LaunchSelected"  Icon="@Icons.Custom.FileFormats.FileCode" />
+            <ProTreeViewItem Text="tasks.json" @bind-Selected="TasksSelected" Icon="@Icons.Custom.FileFormats.FileCode" />
+        </ProTreeViewItem>
+        <ProTreeViewItem Text="images" @bind-Expanded="ImagesExpanded" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+            <ProTreeViewItem Text="logo.png" @bind-Selected="LogoSelected" Icon="@Icons.Custom.FileFormats.FileImage" />
+        </ProTreeViewItem>
+    </ProTreeView>
+</ProPaper>
+
+<ProStack Row Justify="Justify.Center" AlignItems="AlignItems.Center" Style="width: 100%" Wrap="Wrap.Wrap">
+    <ProSwitch @bind-Value="ConfigExpanded" Color="Color.Tertiary">config</ProSwitch>
+    <ProSwitch @bind-Value="ImagesExpanded" Color="Color.Tertiary">images</ProSwitch>
+    <ProCheckBox @bind-Value="LaunchSelected" Color="Color.Tertiary">launch.json</ProCheckBox>
+    <ProCheckBox @bind-Value="TasksSelected" Color="Color.Tertiary">tasks.json</ProCheckBox>
+    <ProCheckBox @bind-Value="LogoSelected" Color="Color.Tertiary">logo.png</ProCheckBox>
+</ProStack>
+
+@code {
+    public bool ConfigExpanded;
+    public bool ImagesExpanded;
+    public bool LaunchSelected = true;
+    public bool TasksSelected;
+    public bool LogoSelected;
+}

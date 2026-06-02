@@ -1,0 +1,51 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Row Justify="Justify.SpaceAround" AlignItems="AlignItems.Start" Class="pro-width-full">
+    <ProFileUpload T="IReadOnlyList<IBrowserFile>" AppendMultipleFiles="true">
+        <CustomContent>
+            <ProButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       OnClick="@context.OpenFilePickerAsync"
+                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                AppendMultipleFiles = true
+            </ProButton>
+        </CustomContent>
+        <SelectedTemplate>
+            @if (context != null)
+            {
+                @foreach (var file in context)
+                {
+                    <ProText>@file.Name</ProText>
+                }
+            }
+            else
+            {
+                <ProText>No files selected</ProText>
+            }
+        </SelectedTemplate>
+    </ProFileUpload>
+
+    <ProFileUpload T="IReadOnlyList<IBrowserFile>" AppendMultipleFiles="false">
+        <CustomContent>
+            <ProButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       OnClick="@context.OpenFilePickerAsync"
+                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                AppendMultipleFiles = false
+            </ProButton>
+        </CustomContent>
+        <SelectedTemplate>
+            @if (context != null)
+            {
+                @foreach (var file in context)
+                {
+                    <ProText>@file.Name</ProText>
+                }
+            }
+            else
+            {
+                <ProText>No files selected</ProText>
+            }
+        </SelectedTemplate>
+    </ProFileUpload>
+</ProStack>

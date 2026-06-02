@@ -1,0 +1,26 @@
+<ProPopoverProvider/>
+<ProStack>
+    <ProDateRangePicker Class="hsx-daterange"
+                        @bind-DateRange="_dateRange"
+                        Clearable="true"
+                        PlaceholderStart="PlaceholderFrom"
+                        PlaceholderEnd="PlaceholderTo"
+                        ShowToolbar="false"
+                        Variant="Variant.Outlined"
+    />
+    <ProDateRangePicker Class="hsx-daterange"
+                        @bind-DateRange="_dateRange"
+                        Clearable="true"
+                        PlaceholderStart="PlaceholderFrom"
+                        PlaceholderEnd="PlaceholderTo"
+                        ShowToolbar="false"
+                        Variant="Variant.Outlined"
+                        DateFormat="dd-MMM-yyyy"
+    />
+    <ProSwitch @bind-Value="_autoClose" Color="Color.Secondary">AutoClose</ProSwitch>
+</ProStack>
+
+@code {
+    private DateRange? _dateRange;
+    private bool _autoClose;
+}

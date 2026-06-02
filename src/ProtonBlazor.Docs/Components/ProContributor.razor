@@ -1,0 +1,32 @@
+﻿<ProCard>
+    <ProCardHeader>
+        <CardHeaderAvatar>
+            <ProAvatar Size="Size.Large" Class="pro-elevation-4">
+                <ProImage Src="@AvatarLink" />
+            </ProAvatar>
+        </CardHeaderAvatar>
+
+        <CardHeaderContent>
+            <ProText Typo="Typo.body1">@Firstname @Lastname</ProText>
+        </CardHeaderContent>
+
+        <CardHeaderActions>
+            <ProIconButton Icon="@Icons.Custom.Brands.GitHub" Href="@GitHubLink" Color="Color.Inherit" Target="_blank" />
+        </CardHeaderActions>
+    </ProCardHeader>
+
+    @if (ChildContent != null)
+    {
+        <ProCardContent Class="pt-0">
+            @ChildContent
+        </ProCardContent>
+    }
+</ProCard>
+
+@code {
+    [Parameter] public string AvatarLink { get; set; }
+    [Parameter] public string GitHubLink { get; set; }
+    [Parameter] public string Firstname { get; set; }
+    [Parameter] public string Lastname { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

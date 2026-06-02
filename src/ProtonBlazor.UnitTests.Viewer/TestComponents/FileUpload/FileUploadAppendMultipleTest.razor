@@ -1,0 +1,38 @@
+<ProFileUpload @ref="@_fileUpload"
+               T="IReadOnlyList<IBrowserFile>"
+               AppendMultipleFiles="AppendMultipleFiles"
+               @bind-Files="Files"
+               @bind-Files:after="@OnFilesChangedAsync">
+    <CustomContent>
+        <ProButton OnClick="@context.OpenFilePickerAsync">
+            Open file picker
+        </ProButton>
+    </CustomContent>
+</ProFileUpload>
+
+<ProButton OnClick="@ClearAsync">
+    Clear
+</ProButton>
+
+@code {
+    public static string __description__ = "Tests appending files across selections and clearing uploaded files.";
+
+    private ProFileUpload<IReadOnlyList<IBrowserFile>> _fileUpload = null!;
+
+    [Parameter]
+    public bool AppendMultipleFiles { get; set; } = true;
+
+    public IReadOnlyList<IBrowserFile>? Files { get; private set; } = [];
+
+    private async Task OnFilesChangedAsync()
+    {
+        // reading files with every change should not throw errors in the console
+        foreach (var file in Files ?? [])
+        {
+            var content = new byte[file.Size];
+            _ = await file.OpenReadStream(long.MaxValue).ReadAsync(content);
+        }
+    }
+
+    private Task ClearAsync() => _fileUpload.ClearAsync();
+}

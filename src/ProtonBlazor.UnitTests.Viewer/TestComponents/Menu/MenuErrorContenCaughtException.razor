@@ -1,0 +1,22 @@
+﻿<ErrorBoundary>
+    <ChildContent>
+        <ProPopoverProvider></ProPopoverProvider>
+        <ProMenu Label="Open Menu">
+            <ChildContent>
+                <ProMenuItem @onclick="@HandleClickAsync">Throw error</ProMenuItem>
+            </ChildContent>
+        </ProMenu>
+        <br/>
+    </ChildContent>
+    <ErrorContent>
+        <ProAlert Severity="Severity.Error">Oh my! We caught an error and handled it!</ProAlert>
+    </ErrorContent>
+</ErrorBoundary>
+
+@code {
+    public async Task HandleClickAsync()
+    {
+        await Task.Delay(100);
+        throw new Exception("Something went wrong...");
+    }
+}

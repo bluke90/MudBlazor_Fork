@@ -1,0 +1,26 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack>
+    <ProPaper Class="pa-4">
+        <ProStack Row="true">
+            <ProAvatar Size="Size.Large">
+                <ProImage Src="images/mony.jpg" />
+            </ProAvatar>
+            <ProStack Justify="Justify.Center" Spacing="0">
+                <ProText Typo="Typo.body1">Mony Larsson</ProText>
+                <ProText Typo="Typo.body2">onebiteonekill@mony.dog</ProText>
+            </ProStack>
+        </ProStack>
+    </ProPaper>
+
+    <ProPaper Class="pa-4">
+        <ProStack Spacing="4">
+            <ProTextField T="string" Label="Card number" Mask="@(new PatternMask("0000 0000 0000 0000"))" />
+            <ProStack Row="true">
+                <ProTextField T="string" Label="Expires" Mask="@(new DateMask("MM/YY", 'Y', 'M'))" />
+                <ProTextField T="string" Label="CVC" Mask="@(new PatternMask("000"))" />
+            </ProStack>
+            <ProButton Variant="Variant.Filled" Color="Color.Primary" DropShadow="false">Pay Now</ProButton>
+        </ProStack>
+    </ProPaper>
+</ProStack>

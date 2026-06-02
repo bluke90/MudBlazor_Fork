@@ -1,0 +1,9 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProSwipeArea OnSwipeEnd="@(e => _swipeDirection = e.SwipeDirection)" Style="width: 100%; height: 300px; background-color:var(--pro-palette-surface)">
+    <ProText Style="user-select: none;" Typo="@Typo.body1">@_swipeDirection</ProText>
+</ProSwipeArea>
+
+@code {
+    private SwipeDirection _swipeDirection;
+}

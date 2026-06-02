@@ -1,0 +1,21 @@
+﻿<ProText>SelectedItems { @string.Join(", ", _selectedItems) }</ProText>
+<ProTable Items="_items" @bind-SelectedItems="_selectedItems" MultiSelection="true" CustomFooter="true">
+    <HeaderContent>
+        <ProTh>#</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate>
+    <FooterContent>
+        <ProTFootRow Checkable="true">
+            <ProTd>F</ProTd>
+        </ProTFootRow>
+    </FooterContent>
+</ProTable>
+
+@code {
+    public static string __description__ = "the selected items (check-box click or row click) should be represented in SelectedItems.";
+
+    private readonly int[] _items = [0, 1, 2];
+    private HashSet<int> _selectedItems = [];
+}

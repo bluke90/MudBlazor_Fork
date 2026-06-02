@@ -1,0 +1,54 @@
+﻿<ProDataGrid @ref="_dataGrid" Items="@_fruits" Filterable="true" Hideable="true" Groupable="true"
+             GroupExpanded="false">
+    <ToolBarContent>
+        <ProText Typo="Typo.h6">Fruits</ProText>
+        <ProSpacer />
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Name" Title="Name" Filterable="false" Groupable="false" />
+        <PropertyColumn Property="x => x.Count" />
+        <PropertyColumn Property="x => x.Category" Title="Category" Grouping="true" GroupBy="@_groupBy">
+            <GroupTemplate>
+                <span style="font-weight:bold">Category: @context.Grouping.Key</span>
+            </GroupTemplate>
+        </PropertyColumn>
+    </Columns>
+</ProDataGrid>
+
+<div class="d-flex flex-wrap mt-4">
+    <ProButton Class="expand-all" OnClick="@ExpandAllGroups" Color="@Color.Primary">Expand All</ProButton>
+    <ProButton OnClick="@CollapseAllGroups" Color="@Color.Primary">Collapse All</ProButton>
+    <ProButton Class="add-button" OnClick="@AddFruit" Color="@Color.Primary">Add Fruit</ProButton>
+</div>
+
+@code {
+    private ProDataGrid<Fruit> _dataGrid = null!;
+    private readonly List<Fruit> _fruits = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(100); // Simulate async data loading
+        _fruits.Add(new Fruit("Apple", 2, "Pome"));
+        _fruits.Add(new Fruit("Pear", 4, "Pome"));
+        _fruits.Add(new Fruit("Orange", 4, "Citrus"));
+    }
+
+    readonly Func<Fruit, object> _groupBy = x => x.Category;
+
+    public void AddFruit()
+    {
+        _fruits.Add(new Fruit("Banana", 5, "Musa"));
+    }
+
+    public Task ExpandAllGroups()
+    {
+        return _dataGrid.ExpandAllGroupsAsync();
+    }
+
+    public Task CollapseAllGroups()
+    {
+        return _dataGrid.CollapseAllGroupsAsync();
+    }
+
+    public record Fruit(string Name, int Count, string Category);
+}

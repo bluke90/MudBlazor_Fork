@@ -1,0 +1,12 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTextField @ref="multilineReference" T="string" Label="Multiline Select" Lines="3" Variant="Variant.Outlined" Text="@sampleText" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => multilineReference.SelectAsync())" />
+<ProTextField @ref="singleLineReference" T="string" Label="Single Select" Variant="Variant.Outlined" Text="@sampleText" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Api" OnAdornmentClick="@(() => singleLineReference.SelectAsync())" />
+
+@code
+{
+    private ProTextField<string> multilineReference;
+    private ProTextField<string> singleLineReference;
+
+    string sampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+}

@@ -1,0 +1,45 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="300px">
+    <ProList T="string" @bind-SelectedValues="SelectedValues" SelectionMode="SelectionMode.MultiSelection" ReadOnly="@ReadOnly" CheckBoxColor="Color.Tertiary">
+        <ProListSubheader>
+            Select your favourite drinks:
+        </ProListSubheader>
+        <ProListItem Text="Milk" />
+        <ProListItem Text="Sparkling Water" Value='"Carbonated H²O"' />
+        <ProListItem Text="Teas">
+            <NestedList>
+                <ProListItem Text="English Tea" Value='"Earl Grey"' />
+                <ProListItem Text="Chinese Tea" Value='"Gunpowder Tea"' />
+                <ProListItem Text="Bubble Tea" />
+            </NestedList>
+        </ProListItem>
+        <ProListItem Text="Coffees">
+            <NestedList>
+                <ProListItem Text="Irish Coffee" />
+                <ProListItem Text="Double Espresso" />
+                <ProListItem Text="Cafe Latte" />
+            </NestedList>
+        </ProListItem>
+    </ProList>
+</ProPaper>
+
+<ProStack Row Justify="Justify.Center" Style="width: 100%" Wrap="Wrap.Wrap">
+    <ProChipSet T="string" @bind-SelectedValues="SelectedValues" SelectionMode="SelectionMode.MultiSelection" Color="Color.Tertiary" Variant="Variant.Text">
+        <ProChip Text="Milk"/>
+        <ProChip Text="Carbonated H²O"/>
+        <ProChip Text="Earl Grey"/>
+        <ProChip Text="Gunpowder Tea" />
+        <ProChip Text="Bubble Tea" />
+        <ProChip Text="Irish Coffee" />
+        <ProChip Text="Double Espresso"/>
+        <ProChip Text="Cafe Latte"/>
+    </ProChipSet>
+    <ProSwitch @bind-Value="ReadOnly" Color="Color.Info">ReadOnly</ProSwitch>    
+</ProStack>
+
+@code
+{
+    public IReadOnlyCollection<string> SelectedValues = ["Milk", "Cafe Latte"];
+    public bool ReadOnly;
+}

@@ -1,0 +1,35 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDropContainer T="DropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
+    <ChildContent>
+        <ProDropZone T="DropItem" Identifier="Drop Zone 1" Class="rounded pro-background-gray pa-6 ma-8 flex-grow-1">
+            <ProText Typo="Typo.h6" Class="mb-4">Drop Zone 1</ProText>
+         </ProDropZone>
+        <ProDropZone T="DropItem" Identifier="Drop Zone 2" Class="rounded pro-background-gray pa-6 ma-8 flex-grow-1">
+            <ProText Typo="Typo.h6" Class="mb-4">Drop Zone 2</ProText>
+        </ProDropZone>
+    </ChildContent>
+    <ItemRenderer>
+        <ProPaper Elevation="25" Class="pa-4 my-4">@context.Name</ProPaper>
+    </ItemRenderer>
+</ProDropContainer>
+
+@code {
+    private void ItemUpdated(ProItemDropInfo<DropItem> dropItem)
+    {
+        dropItem.Item.Identifier = dropItem.DropzoneIdentifier;
+    }
+    
+    private List<DropItem> _items = new()
+    {
+        new DropItem(){ Name = "Drag me!", Identifier = "Drop Zone 1" },
+        new DropItem(){ Name = "Or me!", Identifier = "Drop Zone 2" },
+        new DropItem(){ Name = "Just Mud", Identifier = "Drop Zone 1" },
+    };
+    
+    public class DropItem
+    {
+        public string Name { get; init; }
+        public string Identifier { get; set; }
+    }
+}

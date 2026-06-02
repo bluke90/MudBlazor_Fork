@@ -1,0 +1,8 @@
+﻿@namespace ProtonBlazor
+@inherits ProBaseItemsControl<ProTimelineItem>
+
+<div @attributes="UserAttributes" class="@Classnames" style="@Style">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>

@@ -1,0 +1,29 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Height="200px" Style="overflow:hidden; position:relative;">
+    <ProDrawerContainer Class="pro-height-full">
+        <ProDrawer @bind-Open="@_open" Elevation="0" Variant="@DrawerVariant.Persistent" Color="Color.Primary">
+            <ProDrawerHeader>
+                <ProText Typo="Typo.h6">My App</ProText>
+            </ProDrawerHeader>
+            <ProNavMenu>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard" IconColor="Color.Inherit">Dashboard</ProNavLink>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.LocalLibrary" IconColor="Color.Inherit">Library</ProNavLink>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.People" IconColor="Color.Inherit">Community</ProNavLink>
+            </ProNavMenu>
+        </ProDrawer>
+        <div class="d-flex justify-center align-center pro-height-full">
+            <ProButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="@ToggleDrawer">Persistent drawer</ProButton>
+        </div>
+    </ProDrawerContainer>
+</ProPaper>
+
+@code
+{
+    private bool _open = false;
+
+    private void ToggleDrawer()
+    {
+        _open = !_open;
+    }
+}

@@ -1,0 +1,42 @@
+﻿<ProText>Latest button click item: @LatestButtonClickItem</ProText>
+<ProTable T="string" Items="_items" EditTrigger="TableEditTrigger.EditButton" EditButtonPosition="EditButtonPosition" ApplyButtonPosition="ApplyButtonPosition">
+    <HeaderContent>
+        <ProTh>#</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>
+            <div>
+                @context
+            </div>
+        </ProTd>
+    </RowTemplate>
+    <RowEditingTemplate>
+        <ProTd>
+            <ProTextField T="string" @bind-Value="@context"></ProTextField>
+        </ProTd>
+    </RowEditingTemplate>
+    <EditButtonContent Context="button">
+        <ProButton Size="@Size.Small" Class="pa-0" OnClick="@(() => CustomButtonClick(button.Item))">
+            Custom Button
+        </ProButton>
+    </EditButtonContent>
+</ProTable>
+
+@code {
+    public static string __description__ = "Inline Edit Table: Custom edit button - Item context";
+
+    private readonly string[] _items = ["A", "B", "C"];
+    
+    [Parameter]
+    public TableApplyButtonPosition ApplyButtonPosition { get; set; } = TableApplyButtonPosition.End;
+
+    [Parameter]
+    public TableEditButtonPosition EditButtonPosition { get; set; } = TableEditButtonPosition.End;
+
+    public object? LatestButtonClickItem { get; private set; }
+
+    private void CustomButtonClick(object? item)
+    {
+        LatestButtonClickItem = item;
+    } 
+}

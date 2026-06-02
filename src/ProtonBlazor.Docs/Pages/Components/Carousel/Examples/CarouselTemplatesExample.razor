@@ -1,0 +1,42 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCarousel Class="pro-width-full" Style="height:200px;" AutoCycle="false" TData="object">
+    <BulletTemplate Context="selected">
+        <div Class="pro-button-root pro-icon-button pro-icon-button-color-inherit pro-ripple pro-ripple-icon">
+            <span class="pro-icon-button-label">
+                <ProIcon Icon="@(selected ? Icons.Material.Filled.CheckCircle : Icons.Material.Filled.Circle)" Color="@Color.Inherit" />
+            </span>
+        </div>
+    </BulletTemplate>
+    <PreviousButtonTemplate>
+        <div Class="pro-button-root pro-icon-button pro-icon-button-color-inherit pro-ripple pro-ripple-icon">
+            <span class="pro-icon-button-label">
+                <ProIcon Class="pro-ripple pro-ripple-icon pro-icon-button-size-medium" Icon="@Icons.Material.Filled.SkipPrevious" Color="@Color.Inherit" />
+            </span>
+        </div>
+    </PreviousButtonTemplate>
+    <NextButtonTemplate>
+        <div Class="pro-button-root pro-icon-button pro-icon-button-color-inherit pro-ripple pro-ripple-icon">
+            <span class="pro-icon-button-label">
+                <ProIcon Class="pro-ripple pro-ripple-icon pro-icon-button-size-medium" Icon="@Icons.Material.Filled.SkipNext" Color="@Color.Inherit" />
+            </span>
+        </div>
+    </NextButtonTemplate>
+    <ChildContent>
+        <ProCarouselItem Color="@Color.Primary">
+            <div class="d-flex" style="height:100%">
+                <ProIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.ProtonBlazor" Size="@Size.Large" />
+            </div>
+        </ProCarouselItem>
+        <ProCarouselItem Color="@Color.Secondary">
+            <div class="d-flex" style="height:100%">
+                <ProIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.ProtonBlazor" Size="@Size.Large" />
+            </div>
+        </ProCarouselItem>
+        <ProCarouselItem>
+            <div class="d-flex" style="height:100%">
+                <ProIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.ProtonBlazor" Color="@Color.Primary" Size="@Size.Large" />
+            </div>
+        </ProCarouselItem>
+    </ChildContent>
+</ProCarousel>

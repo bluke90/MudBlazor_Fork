@@ -1,0 +1,38 @@
+﻿<ProPopoverProvider />
+
+<ProTooltip Arrow Disabled="@TooltipDisabled" ShowOnHover="@ShowOnHover" ShowOnFocus="@ShowOnFocus">
+    <ChildContent>
+        <ProButton Disabled="@ButtonDisabled">My Button</ProButton>
+    </ChildContent>
+    <TooltipContent>
+        <div id="my-tooltip-content">
+            <p>Some Text</p>
+        </div>
+    </TooltipContent>
+</ProTooltip>
+
+<ProStack Row>
+    <ProSwitch @bind-Value="@ShowOnHover">ShowOnHover: @ShowOnHover</ProSwitch>
+    <ProSwitch @bind-Value="@ShowOnFocus">ShowOnFocus: @ShowOnFocus</ProSwitch>
+</ProStack>
+<ProStack Row>
+    <ProSwitch @bind-Value="@TooltipDisabled">Tooltip disabled: @TooltipDisabled</ProSwitch>
+    <ProSwitch @bind-Value="@ButtonDisabled">Button disabled: @ButtonDisabled</ProSwitch>
+</ProStack>
+
+@code
+{
+    public static string __description__ = "Test used to validate a disabled tooltip";
+
+    [Parameter]
+    public bool TooltipDisabled { get; set; }
+
+    [Parameter]
+    public bool ButtonDisabled { get; set; }
+
+    [Parameter]
+    public bool ShowOnHover { get; set; } = true; // Default
+
+    [Parameter]
+    public bool ShowOnFocus { get; set; } = true; // Default
+}

@@ -1,0 +1,29 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<div @attributes="UserAttributes" class="@Classname" style="@Style">
+    <div class="@HeaderClassname" @onclick="ToggleExpansionAsync" tabindex="@(Disabled ? null : "0")" @onkeydown="HandleKeyDownAsync">
+        <div class="pro-expand-panel-text">
+            @if (TitleContent is not null)
+            {
+                @TitleContent
+            }
+            else
+            {
+                @Text
+            }
+        </div>
+        @if (!HideIcon)
+        {
+            <ProIcon Icon="@Icon" class="@(_expandedState.Value ? "pro-expand-panel-icon pro-transform" : "pro-expand-panel-icon")" />
+        }
+    </div>
+    <ProCollapse Expanded="_expandedState.Value" MaxHeight="@MaxHeight">
+        @if (KeepContentAlive || _expandedState.Value)
+        {
+            <div class="@PanelContentClassname">
+                @ChildContent
+            </div>
+        }
+    </ProCollapse>
+</div>

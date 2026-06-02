@@ -1,0 +1,23 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center" Style="width:400px;" Breakpoint="Breakpoint.SmAndDown">
+    <ProStack>
+        <ProText>Direction: @_direction</ProText>
+        <ProToggleGroup T="Direction" SelectionMode="SelectionMode.SingleSelection" @bind-Value="_direction" Color="Color.Primary" CheckMark FixedContent Vertical>
+            <ProToggleItem Value="@Direction.Top" Text="Top" />
+            <ProToggleItem Value="@Direction.Right" Text="Right" />
+            <ProToggleItem Value="@Direction.Bottom" Text="Bottom" />
+            <ProToggleItem Value="@Direction.Left" Text="Left" />
+        </ProToggleGroup>
+    </ProStack>
+    <ProFabMenu StartIcon="@Icons.Material.Outlined.Send" Color="Color.Primary" Direction="@_direction">
+        <ProFabMenuItem StartIcon="@Icons.Custom.Brands.Slack" Color="Color.Secondary" />
+        <ProFabMenuItem StartIcon="@Icons.Custom.Brands.Discord" Color="Color.Secondary" />
+        <ProFabMenuItem StartIcon="@Icons.Custom.Brands.Gmail" Color="Color.Secondary" />
+    </ProFabMenu>
+</ProStack>
+
+
+@code {
+    private Direction _direction = Direction.Top;
+}

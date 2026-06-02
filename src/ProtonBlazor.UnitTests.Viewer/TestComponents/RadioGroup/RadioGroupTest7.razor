@@ -1,0 +1,22 @@
+﻿<ProForm>
+    <ProRadioGroup @bind-Value="SelectedOption">
+        <ProRadio Value="@("Radio 1")" Color="Color.Primary">Primary</ProRadio>
+        <ProRadio Value="@("Radio 2")" Color="Color.Secondary">Secondary</ProRadio>
+        <ProRadio Value="@("Radio 3")">Default</ProRadio>
+        <ProRadio Value="@("Radio 4")" Color="Color.Primary" Disabled="true">Disabled</ProRadio>
+    </ProRadioGroup>
+</ProForm>
+
+<div class="d-flex align-center">
+    <ProButton Variant="Variant.Outlined" OnClick="Reset">Reset</ProButton>
+    <ProText Class="ml-4">Selected Option: @SelectedOption</ProText>
+</div>
+
+@code {
+    public string? SelectedOption { get; private set; }
+
+    private void Reset()
+    {
+        SelectedOption = null;
+    }
+}

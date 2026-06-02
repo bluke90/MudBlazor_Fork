@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProSelect @bind-Value="_value" Strict="true">
+    <ProSelectItem T="int" Value="1"/>
+    <ProSelectItem T="int" Value="2"/>
+    <ProSelectItem T="int" Value="3"/>
+</ProSelect>
+
+@code {
+    public static string __description__ = "Don't show initial value which is not in list because of Strict=true.";
+
+    private int _value = 17;
+}

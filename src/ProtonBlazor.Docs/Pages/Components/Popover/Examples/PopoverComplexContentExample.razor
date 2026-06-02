@@ -1,0 +1,25 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div class="d-flex">
+	<ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@ToggleOpen">
+		@(_open? "Close" : "Open")
+	</ProButton>
+	<ProPopover Open="@_open" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
+		<div class="d-flex flex-column pa-1">
+			<PopoverDynamicContentExample />
+		</div>
+	</ProPopover>
+</div>
+
+@code {
+
+	public bool _open;
+
+	public void ToggleOpen()
+	{
+		if (_open)
+			_open = false;
+		else
+			_open = true;
+	}
+}

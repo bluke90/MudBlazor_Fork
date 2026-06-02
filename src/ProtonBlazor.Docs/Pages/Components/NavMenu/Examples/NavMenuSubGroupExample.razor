@@ -1,0 +1,20 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
+    <ProNavMenu Class="pro-width-full">
+        <ProText Typo="Typo.h6" Class="px-4">My Application</ProText>
+        <ProText Typo="Typo.body2" Class="px-4 pro-text-secondary">Secondary Text</ProText>
+        <ProDivider Class="my-2" />
+        <ProNavLink Href="/dashboard" Icon="@Icons.Material.Filled.Dashboard">Dashboard</ProNavLink>
+        <ProNavGroup Title="Level 0" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+            <ProNavGroup Title="Level 1" Icon="@Icons.Material.Filled.AdminPanelSettings" Expanded="true">
+                <ProNavGroup Title="Level 2" Icon="@Icons.Material.Filled.People" Expanded="true">
+                    <ProNavGroup Title="Level 3" Icon="@Icons.Material.Filled.Lock" Expanded="true">
+                        <ProNavLink Href="/delete" Icon="@Icons.Material.Filled.DeleteForever">Delete Password</ProNavLink>
+                    </ProNavGroup>
+                </ProNavGroup>
+            </ProNavGroup>
+        </ProNavGroup>
+        <ProNavLink Href="/billing" Icon="@Icons.Material.Filled.Receipt">Billing</ProNavLink>
+    </ProNavMenu>
+</ProPaper>

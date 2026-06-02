@@ -1,0 +1,45 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<ProMenu FullWidth="true" ActivationEvent="@MouseEvent.LeftClick">
+    <ActivatorContent>
+        <ProChip T="string" Icon="@Icons.Material.Filled.Mouse" Color="Color.Primary" OnClick="@(() => context.ToggleAsync())">Left Click</ProChip>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem Label="Profile" />
+        <ProMenuItem Label="Theme" />
+        <ProMenuItem Label="Usage" />
+        <ProMenuItem Label="Sign Out" />
+    </ChildContent>
+</ProMenu>
+
+<ProMenu ActivationEvent="@MouseEvent.RightClick">
+    <ActivatorContent>
+        <div @oncontextmenu="@context.ToggleAsync" @oncontextmenu:preventDefault>
+            <ProChip T="string" Icon="@Icons.Material.Filled.Mouse" Color="Color.Primary">Right Click</ProChip>
+        </div>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem Label="Profile" />
+        <ProMenuItem Label="Theme" />
+        <ProMenuItem Label="Usage" />
+        <ProMenuItem Label="Sign Out" />
+    </ChildContent>
+</ProMenu>
+
+<ProMenu FullWidth="true" ActivationEvent="@MouseEvent.MouseOver" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
+    <ActivatorContent>
+        <div @onpointerenter="@context.OpenAsync" @onpointerleave="@context.CloseAsync">
+            <ProChip T="string" Icon="@Icons.Material.Filled.Mouse" Color="Color.Primary">Mouse Over</ProChip>
+        </div>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem Label="Profile" />
+        <ProMenuItem Label="Theme" />
+        <ProMenuItem Label="Usage" />
+        <ProMenuItem Label="Sign Out" />
+    </ChildContent>
+</ProMenu>
+
+
+

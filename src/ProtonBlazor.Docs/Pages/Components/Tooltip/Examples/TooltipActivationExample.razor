@@ -1,0 +1,26 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" sm="6" md="9" Class="d-flex flex-column align-center justify-center">
+        <ProButton Class="mb-4" tabindex="-1" Variant="Variant.Outlined" OnClick="@(async() => await _iconButton1.FocusAsync())">Focus the element</ProButton>
+        <ProTooltip ShowOnClick="_click" ShowOnFocus="_focus" ShowOnHover="_hover" Text="Im Mud Tooltip">
+            <ProIconButton @ref="_iconButton1" Icon="@Icons.Custom.Brands.ProtonBlazor" Color="Color.Primary" Size="Size.Large" />
+        </ProTooltip>
+    </ProItem>
+
+    <ProItem xs="12" sm="6" md="3">
+        <ProCheckBox @bind-Value="_focus" Label="Show On Focus" Color="Color.Primary" />
+        <ProCheckBox @bind-Value="_hover" Label="Show On Hover" Color="Color.Primary" />
+        <ProCheckBox @bind-Value="_click" Label="Click" Color="Color.Primary" />
+    </ProItem>
+</ProGrid>
+
+
+@code {
+
+    bool _click = false;
+    bool _hover = true;
+    bool _focus = true;
+
+    ProIconButton _iconButton1;
+}

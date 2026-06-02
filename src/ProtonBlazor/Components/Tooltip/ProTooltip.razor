@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<div @attributes="UserAttributes" class="@ContainerClass" style="@RootStyle" @onpointerenter="@HandlePointerEnterAsync" @onpointerleave="@HandlePointerLeaveAsync" @onpointerup="@HandlePointerUpAsync" @onfocusin="@HandleFocusInAsync" @onfocusout="@HandleFocusOutAsync">
+    <ProTooltipChildContainer ChildContent="@ChildContent" UpdateCount="@_parentUpdateCount" />
+    @if (ShowToolTip())
+    {
+        <ProPopover Open="@_visibleState.Value" Duration="@Duration" Delay="@Delay" AnchorOrigin="@_anchorOrigin" TransformOrigin="@_transformOrigin" Class="@Classname" Style="@Style" Paper="false">
+            @if (TooltipContent is not null)
+            {
+                <div class="d-block">
+                    <ProTooltipChildContainer ChildContent="@TooltipContent" UpdateCount="@_parentUpdateCount" />
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(Text))
+            {
+                @Text
+            }
+        </ProPopover>
+    }
+</div>

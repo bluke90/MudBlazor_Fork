@@ -1,0 +1,14 @@
+﻿<ProPopoverProvider />
+
+<ProSelect @bind-Value="_value" Label="Select">
+    <ProSelectItem T="@(int?)" Value="@(null)">None</ProSelectItem>
+    <ProSelectItem T="@(int?)" Value="@(1)">One</ProSelectItem>
+    <ProSelectItem T="@(int?)" Value="@(2)">Two</ProSelectItem>
+</ProSelect>
+
+@code {
+    public static string __description__ =
+        "When the select has a null value, the text should be displayed, and the pro-shrink class should be applied.";
+
+    private int? _value;
+}

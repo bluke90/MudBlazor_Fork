@@ -1,0 +1,15 @@
+﻿<ProDialog ContentClass="@ContentClass" Gutters="@Gutters">
+    <DialogContent>
+    </DialogContent>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; } = null!;
+
+    [Parameter]
+    public string ContentClass { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool Gutters { get; set; } = true;
+}

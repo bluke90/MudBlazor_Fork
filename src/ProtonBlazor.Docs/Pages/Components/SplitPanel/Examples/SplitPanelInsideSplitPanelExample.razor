@@ -1,0 +1,25 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProSplitPanel Class="pro-width-full pro-height-full" Horizontal="true" Transparent="true" Rounded="true" Elevation="1">
+    <FirstPanel>
+        <ProSplitPanel Class="pro-width-full pro-height-full" Rounded="true" Elevation="1">
+            <FirstPanel>
+                <ProStack Style="height: 100%; min-height: 200px;" AlignItems="AlignItems.Center" Justify="Justify.Center">
+                    <ProText Typo="Typo.h6">Content 1</ProText>
+                </ProStack>
+            </FirstPanel>
+            <SecondPanel>
+                <ProStack Style="height: 100%; min-height: 200px;" AlignItems="AlignItems.Center" Justify="Justify.Center">
+                    <ProText Typo="Typo.h6">Content 2</ProText>
+                </ProStack>
+            </SecondPanel>
+        </ProSplitPanel>
+    </FirstPanel>
+    <SecondPanel>
+        <ProPaper Class="pro-height-full pro-width-full" Style="background-color: var(--pro-palette-surface);">
+            <ProStack Style="height: 100%; min-height: 200px;" AlignItems="AlignItems.Center" Justify="Justify.Center">
+                <ProText Typo="Typo.h6">Content 3</ProText>
+            </ProStack>
+        </ProPaper>
+    </SecondPanel>
+</ProSplitPanel>

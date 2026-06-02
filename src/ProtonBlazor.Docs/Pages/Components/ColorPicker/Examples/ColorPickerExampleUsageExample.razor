@@ -1,0 +1,63 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+@using ProtonBlazor.Utilities
+
+
+<ProPaper Elevation="0" Class="pro-width-full pro-height-full d-flex justify-center align-end pb-8" MinHeight="600px" Style="@($"background-image:linear-gradient({_degrees}deg, {_gradientPrimary.ToString(ProColorOutputFormats.RGBA)} 0%, {_gradientSecondary.ToString(ProColorOutputFormats.RGBA)} 100%);")">
+    <ProPaper Class="d-flex">
+        <ProColorPicker Rounded="true" Class="rounded-tr-0" PickerVariant="PickerVariant.Static" ShowModeSwitch="false" Value="_pickerColor" ValueChanged="UpdateSelectedColor" />
+        <div class="pa-2">
+            <ProText Typo="Typo.h6" Class="mx-1">Gradient Colors</ProText>
+
+            <ProList T="string" SelectedValueChanged="ChangeSelectedColor">
+                <ProListItem Text="1">
+                    <div class="pro-width-full rounded py-4" style="@($"background-color:{_gradientPrimary};")"></div>
+                </ProListItem>
+                <ProListItem Text="2">
+                    <div class="pro-width-full rounded py-4" style="@($"background-color:{_gradientSecondary};")"></div>
+                </ProListItem>
+            </ProList>
+            <ProSlider Min="0" Max="360" Step="1" @bind-Value="_degrees" Class="px-2">Degrees</ProSlider>
+        </div>
+    </ProPaper>
+</ProPaper>
+
+
+@code {
+    private ProColor _gradientPrimary = "#594AE2";
+    private ProColor _gradientSecondary = "#FF4081";
+    private ProColor _pickerColor = "#594AE2";
+
+    private int _degrees = 90;
+
+    bool _isFirstColor = true;
+
+    public void ChangeSelectedColor(string item)
+    {
+        if (item == "1")
+        {
+            _isFirstColor = true;
+            _pickerColor = _gradientPrimary;
+            UpdateSelectedColor(_gradientPrimary);
+        }
+        else if (item == "2")
+        {
+            _isFirstColor = false;
+            _pickerColor = _gradientSecondary;
+            UpdateSelectedColor(_gradientSecondary);
+        }
+    }
+
+    public void UpdateSelectedColor(ProColor value)
+    {
+        _pickerColor = value;
+
+        if (_isFirstColor)
+        {
+            _gradientPrimary = value;
+        }
+        else
+        {
+            _gradientSecondary = value;
+        }
+    }
+}

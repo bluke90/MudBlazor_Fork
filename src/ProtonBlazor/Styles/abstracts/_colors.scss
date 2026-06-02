@@ -1,0 +1,94 @@
+@import 'variables';
+
+@each $color in $pro-palette-colors {
+  .pro-#{$color} {
+    background-color: var(--pro-palette-#{$color}) !important;
+  }
+
+  .pro-#{$color}-text {
+    color: var(--pro-palette-#{$color}) !important;
+    --pro-ripple-color: var(--pro-palette-#{$color}) !important;
+  }
+
+  .pro-#{$color}-hover {
+    background-color: var(--pro-palette-#{$color}-hover) !important;
+  }
+
+  .hover\:pro-#{$color}-hover {
+    @media(hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: var(--pro-palette-#{$color}-hover) !important;
+      }
+    }
+
+    &:focus-visible, &:active {
+      background-color: var(--pro-palette-#{$color}-hover) !important;
+    }
+  }
+
+  .pro-border-#{$color} {
+    border-color: var(--pro-palette-#{$color}) !important;
+  }
+
+  .pro-theme-#{$color} {
+    color: var(--pro-palette-#{$color}-text) !important;
+    background-color: var(--pro-palette-#{$color}) !important;
+  }
+}
+
+.pro-inherit-text {
+  color: inherit !important;
+}
+
+.pro-border-lines-default {
+  border-color: var(--pro-palette-lines-default);
+}
+
+.pro-background {
+  background-color: var(--pro-palette-background) !important;
+}
+
+.pro-background-gray {
+  background-color: var(--pro-palette-background-gray) !important;
+}
+
+.pro-theme-transparent {
+  color: inherit !important;
+  background-color: transparent !important;
+}
+
+.pro-transparent {
+  background-color: transparent !important;
+}
+
+.pro-transparent-text {
+  color: transparent !important;
+}
+
+.pro-text-primary {
+  color: var(--pro-palette-text-primary);
+}
+
+.pro-text-secondary {
+  color: var(--pro-palette-text-secondary);
+}
+
+.pro-text-disabled {
+  color: var(--pro-palette-text-disabled);
+}
+
+.white {
+  background-color: #FFFFFF !important;
+}
+
+.white-text {
+  color: #FFFFFF !important;
+}
+
+.black {
+  background-color: #000000 !important;
+}
+
+.black-text {
+  color: #000000 !important;
+}

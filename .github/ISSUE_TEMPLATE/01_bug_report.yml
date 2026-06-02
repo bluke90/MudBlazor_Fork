@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Report **a problem** in MudBlazor. For questions, use [Discussions](https://github.com/MudBlazor/MudBlazor/discussions) or [Discord](https://discord.gg/mudblazor).
+        Report **a problem** in ProtonBlazor. For questions, use [Discussions](https://github.com/ProtonBlazor/ProtonBlazor/discussions) or [Discord](https://discord.gg/protonblazor).
   - type: checkboxes
     id: preconditions
     attributes:
@@ -26,8 +26,8 @@ body:
     id: repro-link
     attributes:
       label: Reproduction link
-      description: Share a live example on [try.mudblazor.com](https://try.mudblazor.com).
-      placeholder: https://try.mudblazor.com/snippet/...
+      description: Share a live example on [try.protonblazor.com](https://try.protonblazor.com).
+      placeholder: https://try.protonblazor.com/snippet/...
     validations:
       required: true
   - type: textarea

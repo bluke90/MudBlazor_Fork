@@ -1,0 +1,710 @@
+﻿@page "/docs"
+@page "/docs/overview"
+
+<DocsPage DisplayFooter="true">
+    <DocsPageHeader Title="Explore ProtonBlazor">
+        <SpecialHeaderContent>
+            <ProText Typo="Typo.h2" Class="docs-title d-inline">Explore&nbsp;</ProText>
+            <ProText Typo="Typo.h2" Class="docs-title d-inline" Color="Color.Primary">ProtonBlazor</ProText>
+            <br>
+            <ProText Typo="Typo.subtitle1" Class="docs-title-description">Discover our library and all its components to power your next project.</ProText>
+        </SpecialHeaderContent>
+    </DocsPageHeader>
+    <DocsPageContent>
+        <DocsPageSection>
+            <ProGrid>
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Foundation</ProText>
+                        <ProText Typo="Typo.subtitle1">Theming, Colors, Typography…</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="Colors" Link="/features/colors">
+                            <ProPaper Height="24px" Width="24px" Class="relative mb-n6 ml-n8">
+                                <ProPaper Elevation="25" Height="68px" Width="24px" Class="pro-theme-dark absolute" Style="bottom:0;left: 0; transform: rotate(0deg);transform-origin: bottom center;"/>
+                                <ProPaper Elevation="25" Height="68px" Width="24px" Class="pro-theme-tertiary absolute" Style="bottom:0;left: 0; transform: rotate(30deg);transform-origin: bottom center;"/>
+                                <ProPaper Elevation="25" Height="68px" Width="24px" Class="pro-theme-secondary absolute" Style="bottom:0;left: 0; transform: rotate(60deg);transform-origin: bottom center;"/>
+                                <ProPaper Elevation="25" Height="68px" Width="24px" Class="pro-theme-primary d-flex justify-center align-end absolute" Style="bottom:0;left: 0; transform: rotate(90deg);transform-origin: bottom center;">
+                                    <ProPaper Elevation="0" Height="8px" Width="8px" Class="rounded-circle ma-2"/>
+                                </ProPaper>
+                            </ProPaper>
+                        </DocsExploreCard>
+        
+                        <DocsExploreCard Title="Typography" Link="/components/typography">
+                            <ProIcon Icon="@Icons.Material.Filled.TextFields" Color="Color.Primary" Style="font-size:64px;"/>
+                        </DocsExploreCard>
+                        
+                        <DocsExploreCard Title="Shadows" Link="/features/elevation">
+                            <ProPaper Elevation="25" Height="68px" Width="68px" Class="rounded-lg "/>
+                        </DocsExploreCard>
+                        
+                        <DocsExploreCard Title="Icons" Link="/features/icons">
+                            <ProPaper Elevation="25" Class="d-flex justify-center align-center rounded-circle pa-4">
+                                <ProIcon Icon="@Icons.Custom.Brands.ProtonBlazor" Color="Color.Primary" Size="Size.Large" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+                
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Layout</ProText>
+                        <ProText Typo="Typo.subtitle1">Container, Grid, Surfaces…</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="App Bar">
+                            <ProPaper Elevation="25" Width="100%" Height="68px">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Square="true" Class="pro-theme-primary rounded-t"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Container">
+                            <ProPaper Elevation="25" Width="100%" Height="68px" Class="px-3">
+                                <ProPaper Elevation="0" Width="100%" Height="100%" Square="true" Class="pro-theme-primary"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Drawer">
+                            <ProPaper Elevation="25" Width="100%" Height="68px">
+                                <ProPaper Elevation="0" Width="24px" Height="100%" Square="true" Class="pro-theme-primary rounded-l"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Grid">
+                            <div class="d-block">
+                                <ProPaper Elevation="25" Class="pa-4 mx-1 flex-grow-1"/>
+                                <ProPaper Elevation="25" Class="pa-4 mx-1 mt-2 flex-grow-1"/>
+                            </div>
+                            <div class="d-block">
+                                <ProPaper Elevation="25" Class="pa-4 mx-1 flex-grow-1 pro-theme-primary"/>
+                                <ProPaper Elevation="25" Class="pa-4 mx-1 mt-2 flex-grow-1"/>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Hidden"/>
+                        <DocsExploreCard Title="Paper">
+                            <ProPaper Height="80%" Width="80%" Elevation="25" />
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Divider">
+                            <ProPaper Width="100%" Height="1px" Elevation="25" Class="flex-grow-1 pro-theme-primary"/>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Stack">
+                            <ProStack>
+                                <ProPaper Elevation="25" Class="py-2 px-4"/>
+                                <ProPaper Elevation="25" Class="py-2 px-4"/>
+                                <ProPaper Elevation="25" Class="py-2 px-4"/>
+                            </ProStack>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="ToolBar">
+                            <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex align-center">
+                                <ProPaper Elevation="0" Width="8px" Height="8px" Square="true" Class="pro-theme-primary"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+                
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Buttons</ProText>
+                        <ProText Typo="Typo.subtitle1">Regular, Icon, FAB…</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="Button">
+                            <ProPaper Elevation="25" Class="px-5 py-2 flex-grow-1 rounded-lg pro-theme-primary">
+                                <ProPaper Elevation="0" Class="px-2 py-1" Style="border-radius: 2px;" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Button Group">
+                            <ProPaper Elevation="25" Class="pa-2 flex-grow-1 pro-theme-primary d-flex">
+                                <ProPaper Elevation="0" Class="px-2 py-1 flex-grow-1" Style="border-radius: 2px;" />
+                                <ProPaper Elevation="0" Class="px-2 py-1 mx-3 flex-grow-1" Style="border-radius: 2px;" />
+                                <ProPaper Elevation="0" Class="px-2 py-1 flex-grow-1" Style="border-radius: 2px;" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Button FAB">
+                            <ProPaper Elevation="25" Class="d-flex justify-center align-center rounded-circle pa-2 pro-theme-primary">
+                                <ProIcon Icon="@Icons.Material.Filled.Add" Color="Color.Inherit" Size="Size.Small" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Icon Button">
+                            <ProIcon Icon="@Icons.Material.Filled.Delete" Color="Color.Primary" Size="Size.Small" />
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Toggle Icon Button">
+                            <ProIcon Icon="@Icons.Material.Outlined.DarkMode" Color="Color.Dark" Size="Size.Small" />
+                            <ProIcon Icon="@Icons.Material.Rounded.ArrowRightAlt" Color="Color.Dark" Size="Size.Small" Class="mx-1" />
+                            <ProIcon Icon="@Icons.Material.Outlined.LightMode" Color="Color.Warning" Size="Size.Medium" />
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Scroll To Top">
+                            <ProPaper Elevation="25" Class="d-flex justify-center align-center rounded-circle pa-2 pro-theme-primary">
+                                <ProIcon Icon="@Icons.Material.Rounded.KeyboardArrowUp" Color="Color.Inherit" Size="Size.Small" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+                
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Inputs</ProText>
+                        <ProText Typo="Typo.subtitle1">Forms, Fields, Pickers…</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="Autocomplete">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex align-center">
+                                    <ProIcon Icon="@Icons.Material.Rounded.Search" Color="Color.Primary" Style="font-size:12px;"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="ml-1 docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column align-start mt-2">
+                                    <ProPaper Elevation="0" Width="80%" Height="8px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg mt-2"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Check Box">
+                            <ProPaper Elevation="25" Class="pa-2 rounded-lg d-flex justify-center align-center">
+                                <ProIcon Icon="@Icons.Material.Rounded.Check" Color="Color.Primary" Size="Size.Large" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Color Picker">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 rounded-lg d-flex align-center">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="mr-1 docs-gray-bg"/>
+                                <ProIcon Icon="@Icons.Material.Outlined.Palette" Color="Color.Primary" Class="my-n2 mr-n1" Size="Size.Small"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Date Picker">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 rounded-lg d-flex align-center">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="mr-1 docs-gray-bg"/>
+                                <ProIcon Icon="@Icons.Material.Filled.Event" Color="Color.Primary" Class="my-n2 mr-n1" Size="Size.Small"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Field">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 rounded-lg d-flex align-center">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="File Upload">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 rounded-lg d-flex align-center">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="mr-1 docs-gray-bg"/>
+                                <ProIcon Icon="@Icons.Material.Filled.FileUpload" Color="Color.Primary" Class="my-n2 mr-n1" Size="Size.Small"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Form">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column align-start">
+                                <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg mt-2"/>
+                                <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg mt-2"/>
+                                <ProPaper Elevation="0" Width="50%" Height="8px" Class="docs-gray-bg mt-2"/>
+                                <ProPaper Elevation="0" Width="30%" Height="8px" Class="pro-theme-primary ml-auto mt-2"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Focus Trap">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                                <ProPaper Outlined="true" Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg my-2" Style="border-color:var(--pro-palette-primary);"/>
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Highlighter">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column align-start">
+                                <ProPaper Elevation="0" Width="80%" Height="8px" Class="docs-gray-bg"/>
+                                <div class="d-flex pro-width-full mt-2">
+                                    <ProPaper Elevation="0" Width="20%" Height="8px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="8px" Class="pro-theme-warning mr-1"/>
+                                    <ProPaper Elevation="0" Width="40%" Height="8px" Class="docs-gray-bg"/>
+                                </div>
+                                <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg mt-2"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Numeric Field">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 rounded-lg d-flex align-center">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                                <ProIcon Icon="@Icons.Material.Rounded.UnfoldMore" Color="Color.Primary" Class="my-n2 mr-n1" Size="Size.Small"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Radio">
+                            <ProPaper Elevation="25" Class="d-flex justify-center align-center rounded-circle pa-1 pro-theme-primary">
+                                <ProPaper Elevation="0" Class="d-flex justify-center align-center rounded-circle docs-gray-bg pa-1">
+                                    <ProPaper Elevation="25" Class="rounded-circle pa-2 pro-theme-primary" />
+                                </ProPaper>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Rating">
+                            <ProIcon Icon="@Icons.Material.Rounded.Star" Color="Color.Warning" Size="Size.Small" />
+                            <ProIcon Icon="@Icons.Material.Rounded.Star" Color="Color.Warning" Size="Size.Small" />
+                            <ProIcon Icon="@Icons.Material.Rounded.StarHalf" Color="Color.Warning" Size="Size.Small" />
+                            <ProIcon Icon="@Icons.Material.Rounded.StarOutline" Color="Color.Warning" Size="Size.Small" />
+                            <ProIcon Icon="@Icons.Material.Rounded.StarOutline" Color="Color.Warning" Size="Size.Small" />
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Select">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex align-center">
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                    <ProIcon Icon="@Icons.Material.Rounded.ArrowDropDown" Color="Color.Primary" Class="my-n2 mr-n1" Size="Size.Small"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column align-start mt-2">
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg mt-2"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Slider">
+                            <ProPaper Elevation="25" Width="100%" Height="4px" Class="rounded-lg">
+                                <ProPaper Elevation="25" Width="50%" Height="100%" Class="rounded-lg d-flex align-center justify-end pro-theme-primary relative">
+                                    <ProPaper Elevation="25" Class="pa-2 my-n4 rounded-circle pro-theme-primary"/>
+                                </ProPaper>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Switch">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-1 mx-2 rounded-lg d-flex align-center justify-end rounded-pill">
+                                <ProPaper Elevation="25" Class="pa-3 ma-n1 rounded-circle pro-theme-primary"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Text Field">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 rounded-lg d-flex align-center">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Time Picker">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 rounded-lg d-flex align-center">
+                                <ProPaper Elevation="0" Width="100%" Height="12px" Class="mr-1 docs-gray-bg"/>
+                                <ProIcon Icon="@Icons.Material.Rounded.Schedule" Color="Color.Primary" Class="my-n2 mr-n1" Size="Size.Small"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+                
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Data Display</ProText>
+                        <ProText Typo="Typo.subtitle1">Lists, Tables, Tabs…</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="Avatar">
+                            <ProAvatar Elevation="25" Color="Color.Primary">
+                                <ProIcon Icon="@Icons.Material.Rounded.Person"/>
+                            </ProAvatar>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Card">
+                            <ProPaper Elevation="25" Width="100%" Class="d-flex flex-column align-start">
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.False" Width="100%" Height="42px" Class="rounded-t" />
+                                <div class="px-2 pro-width-full">
+                                    <ProPaper Elevation="0" Width="80%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                </div>
+                                <div class="px-2 pb-2 d-flex mt-2 pro-width-full">
+                                    <ProPaper Elevation="0" Width="20%" Height="6px" Class="pro-theme-primary mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="6px" Class="pro-theme-primary"/>
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Carousel">
+                            <ProPaper Elevation="25" Width="100%" Class="d-flex flex-column align-start flex-grow-1">
+                                <div class="d-flex justify-space-between align-center pro-height-full pro-width-full py-5">
+                                    <ProIcon Icon="@Icons.Material.Rounded.KeyboardArrowLeft" Color="Color.Primary" Size="Size.Small"/>
+                                    <ProIcon Icon="@Icons.Material.Rounded.KeyboardArrowRight" Color="Color.Primary" Size="Size.Small"/>
+                                </div>
+                                <div class="d-flex justify-center pro-width-full pb-1">
+                                    <ProPaper Elevation="25" Class="rounded-circle pro-theme-primary pa-1" />
+                                    <ProPaper Elevation="25" Class="rounded-circle docs-gray-bg pa-1 mx-2" />
+                                    <ProPaper Elevation="25" Class="rounded-circle docs-gray-bg pa-1" />
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Chat">
+                            <ProStack Class="pa-6">
+                                <ProStack Row Class="overflow-hidden" Spacing="0">
+                                    <ProPaper Elevation="25" Width="16px" Height="16px"
+                                              Class="pro-theme-primary rounded-0 z-10"
+                                              Style="transform: rotate(45deg) translate(0px, -12px)"/>
+                                    <ProPaper Elevation="25" Width="96px" Height="32px"
+                                              Class="pro-theme-primary z-20 mr-3"/>
+                                </ProStack>
+                                <ProStack Row Class="overflow-hidden" Spacing="0">
+                                    <ProPaper Elevation="25" Width="96px" Height="32px"
+                                              Class="pro-theme-primary z-20 ml-3"/>
+                                    <ProPaper Elevation="25" Width="16px" Height="16px"
+                                              Class="pro-theme-primary rounded-0 z-10"
+                                              Style="transform: rotate(45deg) translate(-12px, 0px)"/>
+                                </ProStack>
+                            </ProStack>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Chips">
+                            <ProPaper Elevation="25" Class="px-2 py-1 d-flex rounded-pill">
+                                <ProPaper Elevation="0" Width="100%" Class="docs-gray-bg px-4 py-1 rounded-pill mr-1" />
+                                <ProPaper Elevation="25" Class="rounded-circle pa-1 pro-theme-primary mr-n1" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Chip Set">
+                            <ProPaper Elevation="25" Class="px-1 py-1 d-flex rounded-pill">
+                                <ProIcon Icon="@Icons.Material.Rounded.Check" Color="Color.Primary" Style="font-size:10px;"/>
+                                <ProPaper Elevation="0" Width="100%" Class="docs-gray-bg px-4 py-1 rounded-pill ml-1"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Data Grid">
+                            <ProPaper Elevation="25" Width="100%" Class="px-2 pb-2 pt-3 rounded-lg">
+                                <div class="d-flex">
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="pro-theme-primary"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="pro-theme-primary mx-1"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                                </div>
+                                <div class="d-flex my-1">
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="pro-theme-primary"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg mx-1"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                                </div>
+                                <div class="d-flex">
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg mx-1"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg"/>
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Drop Zone">
+                            <ProPaper Elevation="25" Class="d-flex flex-wrap pa-1 rounded-lg relative">
+                                <ProPaper Elevation="0" Width="34px" Height="34px" Class="border-2 border-dashed pro-border-primary ma-1"/>
+                                <ProPaper Elevation="0" Width="34px" Height="34px" Class="border-2 border-dashed pro-border-lines-default ma-1"/>
+                                <ProPaper Elevation="0" Width="34px" Height="34px" Class="border-2 border-dashed pro-border-lines-default ma-1"/>
+                                <ProPaper Elevation="0" Width="34px" Height="34px" Class="border-2 border-dashed pro-border-lines-default ma-1"/>
+                                <div class="absolute pro-width-full pro-height-full d-flex justify-center align-center">
+                                    <ProPaper Elevation="25" Width="34px" Height="34px" Class="ml-n6 mt-n6 d-flex justify-center align-center">
+                                        <ProIcon Icon="@Icons.Material.Outlined.Image" Class="pro-text-secondary"/>
+                                    </ProPaper>
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Expansion Panels">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex align-center">
+                                    <ProPaper Elevation="0" Width="30%" Height="8px" Class="docs-gray-bg mr-auto"/>
+                                    <ProIcon Icon="@Icons.Material.Rounded.ArrowDropDown" Class="my-n2 mr-n1" Size="Size.Small"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex flex-column mt-2">
+                                    <div class="d-flex flex-grow-1">
+                                        <ProPaper Elevation="0" Width="40%" Height="8px" Class="docs-gray-bg mr-auto"/>
+                                        <ProIcon Icon="@Icons.Material.Rounded.ArrowDropUp" Color="Color.Primary" Class="my-n2 mr-n1" Size="Size.Small"/>
+                                    </div>
+                                    <ProPaper Elevation="0" Width="80%" Height="8px" Class="docs-gray-bg mr-auto mt-2"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Image">
+                            <ProPaper Elevation="25" Width="100%" Class="px-2 py-9 rounded-lg overflow-hidden relative">
+                                <ProPaper Elevation="25" Class="rounded-circle absolute pro-theme-warning" Width="12px" Height="12px" Style=" left: 8px;top: 8px;"/>
+                                <ProPaper Elevation="25" Class="rounded-lg absolute z-10" Width="52px" Height="52px" Style="background-color: var(--pro-palette-primary-lighten); transform: rotate(45deg); left: 0;bottom: -32px;"/>
+                                <ProPaper Elevation="25" Class="rounded-lg absolute z-0 pro-theme-primary" Width="72px" Height="72px" Style="transform: rotate(45deg); right: 0;bottom: -42px;"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="List">
+                            <div class="d-flex flex-column justify-center align-center">
+                                <div class="d-flex flex-grow-1">
+                                    <ProPaper Elevation="25" Class="rounded-circle pa-1 pro-theme-primary"/>
+                                    <ProPaper Elevation="25" Class="py-1 px-8 ml-1 rounded-pill"/>
+                                </div>
+                                <div class="d-flex flex-grow-1 my-2">
+                                    <ProPaper Elevation="25" Class="rounded-circle pa-1 pro-theme-primary"/>
+                                    <ProPaper Elevation="25" Class="py-1 px-8 ml-1 rounded-pill"/>
+                                </div>
+                                <div class="d-flex flex-grow-1">
+                                    <ProPaper Elevation="25" Class="rounded-circle pa-1 pro-theme-primary"/>
+                                    <ProPaper Elevation="25" Class="py-1 px-8 ml-1 rounded-pill"/>
+                                </div>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Pagination">
+                            <ProPaper Elevation="25" Class="rounded-circle pa-2 mr-1" />
+                            <ProPaper Elevation="25" Class="rounded-circle pa-2 pro-theme-primary mr-1" />
+                            <ProPaper Elevation="25" Class="rounded-circle pa-2 mr-1" />
+                            <ProPaper Elevation="25" Class="rounded-circle pa-2" />
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Popover">
+                            <div class="d-flex flex-column">
+                                <ProPaper Elevation="25" Class="mx-4 px-3 py-1 flex-grow-0">
+                                    <ProPaper Elevation="0" Class="px-2 py-1 docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="100%" Class="px-10 py-5 d-flex flex-column mt-2 pro-theme-primary"/>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Simple Table">
+                            <ProPaper Elevation="25" Width="100%" Class="px-2 pb-2 pt-3 rounded-lg">
+                                <div class="d-flex">
+                                    <ProPaper Elevation="0" Width="40%" Height="12px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg ml-1"/>
+                                </div>
+                                <div class="d-flex my-1">
+                                    <ProPaper Elevation="0" Width="40%" Height="12px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg ml-1"/>
+                                </div>
+                                <div class="d-flex">
+                                    <ProPaper Elevation="0" Width="40%" Height="12px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg ml-1"/>
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Stepper">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex">
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="pro-theme-primary mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex flex-column mt-1">
+                                    <ProPaper Elevation="0" Width="80%" Height="4px" Class="docs-gray-bg mr-auto"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="4px" Class="docs-gray-bg mr-auto mt-2"/>
+                                    <ProPaper Elevation="0" Width="60%" Height="4px" Class="docs-gray-bg mr-auto mt-2"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Table">
+                            <ProPaper Elevation="25" Width="100%" Class="px-2 pb-2 pt-3 rounded-lg">
+                                <div class="d-flex">
+                                    <ProPaper Elevation="0" Width="40%" Height="12px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="pro-theme-primary ml-1"/>
+                                </div>
+                                <div class="d-flex my-1">
+                                    <ProPaper Elevation="0" Width="40%" Height="12px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="pro-theme-primary ml-1"/>
+                                </div>
+                                <div class="d-flex">
+                                    <ProPaper Elevation="0" Width="40%" Height="12px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="12px" Class="docs-gray-bg ml-1"/>
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Tabs">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex">
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="pro-theme-primary mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="30%" Height="12px" Class="docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex flex-column mt-1">
+                                    <ProPaper Elevation="0" Width="80%" Height="4px" Class="docs-gray-bg mr-auto"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="4px" Class="docs-gray-bg mr-auto mt-2"/>
+                                    <ProPaper Elevation="0" Width="60%" Height="4px" Class="docs-gray-bg mr-auto mt-2"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Timeline">
+                            <div class="d-flex flex-column justify-center align-center">
+                                <div class="d-flex">
+                                    <ProPaper Elevation="25" Class="py-1 px-4 rounded-pill"/>
+                                    <ProPaper Elevation="25" Class="rounded-circle pa-1 mx-1"/>
+                                    <ProPaper Elevation="0" Class="pa-1 px-4 pro-transparent"/>
+                                </div>
+                                <div class="d-flex mt-2">
+                                    <ProPaper Elevation="0" Class="pa-1 px-4 pro-transparent"/>
+                                    <ProPaper Elevation="25" Class="rounded-circle pa-1 mx-1 pro-theme-primary"/>
+                                    <ProPaper Elevation="25" Class="py-1 px-4 rounded-pill"/>
+                                </div>
+                                <div class="d-flex mt-2">
+                                    <ProPaper Elevation="25" Class="py-1 px-4 rounded-pill"/>
+                                    <ProPaper Elevation="25" Class="rounded-circle pa-1 mx-1"/>
+                                    <ProPaper Elevation="0" Class="pa-1 px-4 pro-transparent"/>
+                                </div>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Tooltip">
+                            <div class="d-flex flex-column align-center flex-grow-1 px-3">
+                                <ProPaper Elevation="25" Class="d-flex justify-center align-center rounded-circle pa-1">
+                                    <ProIcon Icon="@Icons.Material.Filled.Add" Color="Color.Inherit" Size="Size.Medium" Style="font-size:14px;"/>
+                                </ProPaper>
+                                <ProPaper Elevation="0" Width="100%" Class="pa-2 d-flex flex-column align-start mt-3 pro-theme-primary z-20">
+                                    <ProPaper Elevation="0" Width="100%" Height="4px" Class="docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="0" Width="18px" Height="18px" Class="pro-theme-primary rounded-0 mt-n6 z-10" Style="transform:rotate(45deg);"/>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Tree View">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <ProPaper Elevation="25" Width="100%" Class="px-2 py-1 d-flex align-center">
+                                    <ProIcon Icon="@Icons.Material.Rounded.KeyboardArrowDown" Color="Color.Primary" Class="my-n2 ml-n2" Size="Size.Small"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="80%" Class="px-2 py-1 d-flex align-center ml-auto mt-2">
+                                    <ProIcon Icon="@Icons.Material.Rounded.KeyboardArrowRight" Color="Color.Default" Class="my-n2 ml-n2" Size="Size.Small"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="80%" Class="px-2 py-1 d-flex align-center ml-auto mt-2">
+                                    <ProIcon Icon="@Icons.Material.Rounded.KeyboardArrowRight" Color="Color.Default" Class="my-n2 ml-n2" Size="Size.Small"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+                
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Navigation</ProText>
+                        <ProText Typo="Typo.subtitle1">Links, Menus, Navigation</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="Breadcrumbs">
+                            <div class="d-flex align-center">
+                                <ProPaper Elevation="25" Width="24px" Height="24px" Class="pro-theme-primary z-20"></ProPaper>
+                                <ProPaper Elevation="25" Width="18px" Height="18px" Class="pro-theme-primary ml-n3 z-10" Style="transform:rotate(45deg);"></ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Link">
+                            <ProIcon Icon="@Icons.Material.Filled.Link" Size="Size.Large" Color="Color.Primary" />
+
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Menu">
+                            <div class="d-flex flex-column">
+                                <ProPaper Elevation="25" Class="mx-4 px-3 py-1 flex-grow-0 pro-theme-primary">
+                                    <ProPaper Elevation="0" Height="4px" Class="px-2 docs-gray-bg"/>
+                                </ProPaper>
+                                <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column align-start mt-2">
+                                    <ProPaper Elevation="0" Width="80%" Height="8px" Class="docs-gray-bg"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg mt-2"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Nav Menu">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column align-start">
+                                <div class="d-flex align-center  pro-width-full">
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                    <ProIcon Icon="@Icons.Material.Rounded.ArrowDropDown" Class="my-n2 mr-n2" Size="Size.Small"/>
+                                </div>
+                                <div class="d-flex align-center pro-width-full mt-3">
+                                    <ProPaper Elevation="0" Width="100%" Height="8px" Class="docs-gray-bg"/>
+                                    <ProIcon Icon="@Icons.Material.Rounded.ArrowDropUp" Color="Color.Primary" Class="my-n2 mr-n2" Size="Size.Small"/>
+                                </div>
+                                <ProPaper Elevation="0" Height="8px" Class="pro-theme-primary mt-3 ml-auto mr-3 px-6"/>
+                                <ProPaper Elevation="0" Height="8px" Class="docs-gray-bg mt-3 ml-auto mr-3 px-6"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Feedback</ProText>
+                        <ProText Typo="Typo.subtitle1">Alerts, Progress, Information</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="Alert">
+                            <ProPaper Elevation="25" Class="pa-2 d-flex">
+                                <ProIcon Icon="@Icons.Material.Rounded.WarningAmber" Color="Color.Warning" Class="ml-n1 my-n1" Size="Size.Small"/>
+                                <ProPaper Elevation="0" Width="100%" Class="docs-gray-bg px-8 py-1 ml-1"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Badge">
+                            <ProPaper Elevation="25" Class="px-3 py-1 flex-grow-0 d-flex">
+                                <ProPaper Elevation="0" Class="px-4 py-1 docs-gray-bg"/>
+                            </ProPaper>
+                            <ProPaper Elevation="25" Height="12px" Width="12px" Class="rounded-circle ml-n2 mt-n3 pro-theme-primary"/>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Dialog">
+                            <ProPaper Elevation="25" Width="100%" Class="d-flex flex-column align-start">
+                                <div class="px-2 pro-width-full">
+                                    <ProPaper Elevation="0" Width="60%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="80%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="40%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                </div>
+                                <div class="px-2 pb-2 d-flex justify-end mt-4 pro-width-full">
+                                    <ProPaper Elevation="0" Width="20%" Height="6px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="20%" Height="6px" Class="pro-theme-primary"/>
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Message Box">
+                            <ProPaper Elevation="25" Width="100%" Class="d-flex flex-column align-start">
+                                <div class="px-2 pro-width-full">
+                                    <ProPaper Elevation="0" Width="60%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                </div>
+                                <div class="px-2 pb-2 d-flex justify-end mt-2 pro-width-full">
+                                    <ProPaper Elevation="0" Width="20%" Height="6px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="20%" Height="6px" Class="pro-theme-primary"/>
+                                </div>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Progress">
+                            <ProPaper Elevation="25" Width="100%" Class="pr-6 rounded-pill">
+                                <ProPaper Elevation="0" Class="px-3 py-1 pro-theme-primary rounded-pill"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Skeleton">
+                            <ProPaper Elevation="25" Width="100%" Class="pa-2 d-flex flex-column align-start">
+                                <ProPaper Elevation="0" Width="60%" Height="8px" Class="docs-gray-bg"/>
+                                <ProPaper Elevation="0" Width="14px" Height="14px" Class="docs-gray-bg rounded-circle mt-1"/>
+                                <ProPaper Elevation="0" Width="100%" Height="30px" Class="docs-gray-bg mt-1"/>
+                            </ProPaper>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Snackbar">
+                            <div class="d-flex justify-end align-start pro-height-full pro-width-full">
+                                <ProPaper Elevation="25" Class="pa-1 d-flex mt-n6 align-center mr-n6">
+                                    <ProIcon Icon="@Icons.Material.Rounded.EventNote" Color="Color.Primary" Style="font-size:14px;"/>
+                                    <ProPaper Elevation="0" Width="100%" Class="docs-gray-bg px-6 pt-2 mx-1"/>
+                                    <ProIcon Icon="@Icons.Material.Rounded.Close" Style="font-size:14px;"/>
+                                </ProPaper>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Overlay">
+                            <ProPaper Elevation="25" Width="100%" Class="d-flex flex-column align-start relative">
+                                <div class="px-2 pro-width-full">
+                                    <ProPaper Elevation="0" Width="60%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="100%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="80%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                    <ProPaper Elevation="0" Width="40%" Height="4px" Class="docs-gray-bg mt-2"/>
+                                </div>
+                                <div class="px-2 pb-2 d-flex justify-end mt-4 pro-width-full">
+                                    <ProPaper Elevation="0" Width="20%" Height="6px" Class="docs-gray-bg mr-1"/>
+                                    <ProPaper Elevation="0" Width="20%" Height="6px" Class="pro-theme-primary"/>
+                                </div>
+                                <ProOverlay Visible="true" DarkBackground="true" Absolute="true" />
+                            </ProPaper>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+                
+                <ProItem xs="12" md="3" Class="mt-16">
+                    <div class="docs-sticky-info explore-text">
+                        <ProText Typo="Typo.h5">Utilities</ProText>
+                        <ProText Typo="Typo.subtitle1">CSS Class Utilities</ProText>
+                    </div>
+                </ProItem>
+                <ProItem xs="12" md="9" Class="mt-16">
+                    <div class="explore-protonblazor-items">
+                        <DocsExploreCard Title="Border Radius" Link="/utilities/border-radius">
+                            <ProPaper Elevation="25" Height="68px" Width="68px" Class="rounded-tr-xl rounded-bl-xl rounded-tl-lg rounded-br-lg"/>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Display" Link="/utilities/display">
+                            <div>
+                                <ProPaper Elevation="25" Height="32px" Width="32px"/>
+                                <ProPaper Elevation="25" Height="32px" Width="32px" Class="mt-2"/>
+                            </div>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Flex" Link="/utilities/flex">
+                            <ProPaper Elevation="25" Height="32px" Width="32px"/>
+                            <ProPaper Elevation="25" Height="32px" Width="32px" Class="ml-2"/>
+                        </DocsExploreCard>
+                        <DocsExploreCard Title="Spacing" Link="/utilities/spacing">
+                            <ProPaper Elevation="25" Class="pa-2 ma-2"/>
+                            <ProPaper Elevation="25" Class="pa-3 ma-2"/>
+                            <ProPaper Elevation="25" Class="pa-4 ma-2"/>
+                        </DocsExploreCard>
+                    </div>
+                </ProItem>
+            </ProGrid>
+        </DocsPageSection>
+    </DocsPageContent>
+</DocsPage>
+
+@code {
+    [Inject] IMenuService MenuService { get; set; } 
+}

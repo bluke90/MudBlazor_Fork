@@ -1,0 +1,77 @@
+﻿<ProCard Style="height: 100%">
+    <ProCardHeader>
+        <CardHeaderAvatar>
+            <ProAvatar Size="Size.Large" Class="pro-elevation-4">
+                <ProImage Src="@Member.Avatar" Alt="GitHub Avatar" />
+            </ProAvatar>
+        </CardHeaderAvatar>
+
+        <CardHeaderContent>
+            <div class="d-flex flex-row justify-space-between">
+                <div class="d-flex flex-column">
+                    <ProStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                        <ProText Typo="Typo.h6">@Member.Name</ProText>
+                        @if (!DisplayTeam && Member.Team == Team.CoreMaintainer)
+                        {
+                            <ProChip T="string" Variant="Variant.Text" Color="Color.Primary">@Member.Team.ToStringFast(true)</ProChip>
+                        }
+                    </ProStack>
+                    
+                    <ProStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                        <ProText Typo="Typo.body2" Class="pro-text-secondary">@Member.GitHub</ProText>
+                        @if (DisplayTeam)
+                        {
+                            <ProChip T="string" Variant="Variant.Text" Color="@(Member.Team == Team.Contribution ? Color.Secondary : Color.Primary)" Size="Size.Small">@Member.Team.ToStringFast(true)</ProChip>
+                        }
+                    </ProStack>
+                    
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Member.From))
+                {
+                    <div class="d-flex flex-row align-self-start align-center justify-center pro-text-secondary">
+                        <ProIcon Icon="@Icons.Material.Filled.Place" Color="Color.Inherit" Class="me-1" />
+
+                        <ProText Typo="Typo.body2">
+                            @Member.From
+                        </ProText>
+                    </div>
+                }
+                
+            </div>
+        </CardHeaderContent>
+    </ProCardHeader>
+
+    <ProCardContent Class="py-0">
+        @if (!string.IsNullOrWhiteSpace(Member.Bio))
+        {
+            <ProText Typo="Typo.body2">@Member.Bio</ProText>
+        }
+    </ProCardContent>
+
+    <ProCardActions>
+        <ProChip T="string" Variant="Variant.Outlined" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Target="_blank" Href="@($"https://github.com/{Member.GitHub}")">
+            GitHub
+        </ProChip>
+
+        @if (Member.GitHubSponsor)
+        {
+            <ProChip T="string" Variant="Variant.Outlined" Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Secondary" Target="_blank" Href="@($"https://github.com/sponsors/{Member.GitHub}")">
+                Sponsor
+            </ProChip>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Member.LinkedIn))
+        {
+            <ProChip T="string" Variant="Variant.Outlined" Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Primary" Target="_blank" Href="@Member.LinkedIn">
+                LinkedIn
+            </ProChip>
+        }
+    </ProCardActions>
+</ProCard>
+
+@code {
+
+    [Parameter] public TeamMember Member { get; set; }
+    [Parameter] public bool DisplayTeam { get; set; }
+}

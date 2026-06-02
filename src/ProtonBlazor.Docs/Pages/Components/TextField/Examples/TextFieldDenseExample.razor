@@ -1,0 +1,9 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTextField @bind-Value="TextValue" Label="Standard" Variant="Variant.Text" Margin="Margin.Dense"></ProTextField>
+<ProTextField @bind-Value="TextValue" Label="Filled" Variant="Variant.Filled" Margin="Margin.Dense"></ProTextField>
+<ProTextField @bind-Value="TextValue" Label="Outlined" Variant="Variant.Outlined" Margin="Margin.Dense"></ProTextField>
+
+@code {
+    public string TextValue { get; set; }
+}

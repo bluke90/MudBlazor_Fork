@@ -1,0 +1,23 @@
+﻿
+@* The input element will be tested to see if it gets recreated when row order changes. *@
+<ProDataGrid Items="@_items" ReadOnly="false" EditMode="DataGridEditMode.Cell" GroupExpanded>
+    <Columns>
+        <PropertyColumn Property="x => x" Grouping="@Group" Title="test">
+            <EditTemplate>
+                <ProInput T="string" @bind-Value="@context.Item"></ProInput>
+            </EditTemplate>
+        </PropertyColumn>
+    </Columns>
+</ProDataGrid>
+
+@code {
+
+    [Parameter]
+    public bool Group { get; set; }
+
+    private readonly IEnumerable<string> _items = new List<string>
+    {
+        "Item1", 
+        "Item2",
+    };
+}

@@ -1,0 +1,24 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" md="1">
+        <ProRadioGroup @bind-Value="Placement">
+            <ProRadio Color="Color.Primary" Value="@(Placement.Top)">Top</ProRadio>
+            <ProRadio Color="Color.Primary" Value="@(Placement.Bottom)">Bottom</ProRadio>
+            <ProRadio Color="Color.Primary" Value="@(Placement.Start)">Start</ProRadio>
+            <ProRadio Color="Color.Primary" Value="@(Placement.End)">End</ProRadio>
+            <ProRadio Color="Color.Primary" Value="@(Placement.Left)">Left</ProRadio>
+            <ProRadio Color="Color.Primary" Value="@(Placement.Right)">Right</ProRadio>
+        </ProRadioGroup>
+    </ProItem>
+    <ProItem xs="12" md="9" Class="d-flex justify-center align-center my-auto">
+        <ProRadioGroup T="string">
+            <ProSwitch T="bool" LabelPlacement="@Placement" Color="Color.Secondary">Content Placement</ProSwitch>
+        </ProRadioGroup>
+    </ProItem>
+    <ProItem xs="12" md="2" Style="width:100%"></ProItem>
+</ProGrid>
+
+@code {
+    public Placement Placement { get; set; } = Placement.Right;
+}

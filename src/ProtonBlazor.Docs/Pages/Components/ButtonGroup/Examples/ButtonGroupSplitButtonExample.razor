@@ -1,0 +1,32 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProButtonGroup Color="Color.Primary" Variant="Variant.Outlined">
+    <ProButton>@_buttonText</ProButton>
+    <ProMenu Icon="@Icons.Material.Filled.ArrowDropDown" Style="align-self: auto;">
+        <ProMenuItem OnClick="() => SetButtonText(0)">Reply</ProMenuItem>
+        <ProMenuItem OnClick="() => SetButtonText(1)">Reply All</ProMenuItem>
+        <ProMenuItem OnClick="() => SetButtonText(2)">Forward</ProMenuItem>
+        <ProMenuItem OnClick="() => SetButtonText(3)">Reply & Delete</ProMenuItem>
+    </ProMenu>
+</ProButtonGroup>
+@code {
+    private string _buttonText = "Reply";
+
+    private void SetButtonText(int id)
+    {
+        switch (id)
+        {
+            case 0: _buttonText = "Reply";
+                break;
+            case 1:
+                _buttonText = "Reply All";
+                break;
+            case 2:
+                _buttonText = "Forward";
+                break;
+            case 3:
+                _buttonText = "Reply & Delete";
+                break;
+        }
+    }
+}

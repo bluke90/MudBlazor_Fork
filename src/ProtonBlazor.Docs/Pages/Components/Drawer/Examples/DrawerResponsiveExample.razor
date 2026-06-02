@@ -1,0 +1,35 @@
+﻿@layout IframeLayout
+@namespace ProtonBlazor.Docs.Examples
+@page "/iframe/docs/examples/drawer/persistent"
+
+<ProLayout>
+    <ProAppBar Elevation="1">
+        <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <ProSpacer />
+        <ProIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Href="https://github.com/ProtonBlazor/ProtonBlazor" Target="_blank" />
+    </ProAppBar>
+    <ProDrawer @bind-Open="@_open" Elevation="1">
+        <ProDrawerHeader>
+            <ProText Typo="Typo.h6">My App</ProText>
+        </ProDrawerHeader>
+        <ProNavMenu>
+            <ProNavLink Match="NavLinkMatch.All">Store</ProNavLink>
+            <ProNavLink Match="NavLinkMatch.All">Library</ProNavLink>
+            <ProNavLink Match="NavLinkMatch.All">Community</ProNavLink>
+        </ProNavMenu>
+    </ProDrawer>
+    <ProMainContent Class="pt-16 px-16">
+        <ProContainer Class="mt-6">
+            <ProAlert Severity="Severity.Success" Class="mt-16">Text inside ProContainer</ProAlert>
+        </ProContainer>
+    </ProMainContent>
+</ProLayout>
+
+@code{
+    private bool _open = false;
+
+    private void ToggleDrawer()
+    {
+        _open = !_open;
+    }
+}

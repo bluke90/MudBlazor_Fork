@@ -1,0 +1,145 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+@inject ISnackbar Snackbar
+
+<ProTable @ref="_table" T="Element" Items="@Elements" @bind-SelectedItem="_selectedElement"
+          RowEditPreview="BackupItem" 
+          RowEditCancel="ResetItemValues"
+          EditTrigger="TableEditTrigger.RowClick"
+          RowClassFunc="@SelectedRowClassFunc"
+          Virtualize FixedHeader 
+          RowsPerPage="100"
+          Height="300px" >
+    <HeaderContent>
+        <ProTh>Nr</ProTh>
+        <ProTh>Sign</ProTh>
+        <ProTh>Name</ProTh>
+        <ProTh>Position</ProTh>
+        <ProTh>Molar mass</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">@context.Sign</ProTd>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowTemplate>
+    <RowEditingTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">
+            <ProTextField @bind-Value="context.Sign" Required />
+        </ProTd>
+        <ProTd DataLabel="Name">
+            <ProTextField @bind-Value="context.Name" Required />
+        </ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowEditingTemplate>
+    <PagerContent>
+        <ProTablePager />
+    </PagerContent>
+</ProTable>
+
+<ProStack Row AlignItems="AlignItems.Center" Justify="Justify.Center">
+    <ProSpacer />
+    <ProNumericField @bind-Value="_scrollToRow" Label="Scroll to Row Number" Min="1" Max="@(Elements.Count)" For="@(() => _scrollToRow)" Class="mr-2 mb-2" />
+    <ProButton OnClick="ScrollToElementByIndex" Variant="Variant.Filled" Color="Color.Primary" Class="mr-4 mb-2" Style="align-self: center;">Scroll to Element</ProButton>
+    <ProButton OnClick="@(() => FocusOnCellOfSelectedElement(1))" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(_selectedElement == null)" Class="mb-2" Style="align-self: center;">Edit Sign</ProButton>
+    <ProButton OnClick="@(() => FocusOnCellOfSelectedElement(2))" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(_selectedElement == null)" Class="mb-2" Style="align-self: center;">Edit Name</ProButton>
+    <ProSpacer />
+</ProStack>
+
+@code {
+    #nullable enable
+
+    private ProTable<Element> _table = null!;
+    private List<Element> Elements = new List<Element>();
+    private Element? _selectedElement;
+    private int _scrollToRow = 10;
+    private int _editRowNumber = -1;
+
+    protected override void OnInitialized()
+    {
+        // Populate Elements with sample data
+        for (int i = 0; i < 100; i++)
+        {
+            Elements.Add(new Element { Number = i + 1, Sign = "E" + i, Name = "Element " + i, Position = i % 10, Molar = (i * 1.23).ToString("F2") });
+        }
+    }
+
+    private async Task ScrollToElementByIndex()
+    {
+        if (_scrollToRow > 0 && _scrollToRow <= Elements.Count)
+        {
+            _selectedElement = Elements[_scrollToRow - 1];
+            await _table.ScrollToItemAsync(_selectedElement);
+            Snackbar.Add($"Scrolled to: {_selectedElement.Name} Row {_scrollToRow}", Severity.Info);
+        }
+        else
+        {
+            Snackbar.Add("Index out of bounds.", Severity.Warning);
+        }
+    }
+
+    private async Task FocusOnCellOfSelectedElement(int column)
+    {
+        if (_selectedElement != null)
+        {
+            _editRowNumber = _selectedElement.Number - 1;
+            await _table.FocusCellAsync(_selectedElement, column);
+        }
+        else
+        {
+            Snackbar.Add("Please select an element from the table first by clicking on a row.", Severity.Error);
+        }
+    }
+
+    private string SelectedRowClassFunc(Element element, int rowNumber)
+    {
+        if (_selectedElement != null && _selectedElement.Equals(element))
+        {
+            return _editRowNumber == rowNumber ? "" : "selected";
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
+
+    public class Element
+    {
+        public int Number { get; set; }
+        public string? Sign { get; set; }
+        public string? Name { get; set; }
+        public int Position { get; set; }
+        public string? Molar { get; set; }
+    }
+
+    private Element? elementBeforeEdit;
+
+    private void BackupItem(object element)
+    {
+        elementBeforeEdit = new()
+        {
+            Sign = ((Element)element).Sign,
+            Name = ((Element)element).Name,
+        };
+    }
+
+    private void ResetItemValues(object element)
+    {
+        ((Element)element).Sign = elementBeforeEdit?.Sign;
+        ((Element)element).Name = elementBeforeEdit?.Name;
+    }
+}
+
+<style>
+    .selected {
+        background-color: #1E88E5 !important;
+    }
+    .selected > td {
+        color: white !important;
+    }
+    .selected > td .pro-input {
+        color: white !important;
+    }
+</style>

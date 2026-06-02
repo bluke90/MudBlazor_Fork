@@ -1,0 +1,36 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProAppBar Color="Color.Primary" Fixed="false">
+    <ProMenu Dense
+             Variant="Variant.Text"
+             Size="Size.Medium"
+             Color="Color.Inherit"
+             Icon="@Icons.Material.TwoTone.MoreVert">
+
+        <ProMenu StartIcon="@Icons.Material.TwoTone.Settings"
+                 IconColor="Color.Primary"
+                 Label="Settings">
+            <ProMenuItem Icon="@Icons.Material.TwoTone.DarkMode"
+                         IconColor="Color.Secondary"
+                         Label="Dark Theme" />
+        </ProMenu>
+
+        <ProDivider />
+
+        <ProMenuItem Href="/"
+                     ForceLoad
+                     Icon="@Icons.Material.TwoTone.Login"
+                     IconColor="Color.Primary"
+                     Label="Sign In" />
+
+        <ProMenuItem Href="/"
+                     ForceLoad
+                     Icon="@Icons.Material.TwoTone.Logout"
+                     IconColor="Color.Primary"
+                     Label="Sign Out" />
+    </ProMenu>
+
+    <ProSpacer />
+
+    <ProIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
+</ProAppBar>

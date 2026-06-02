@@ -1,0 +1,52 @@
+﻿<div style="max-width: 400px;">
+    <ProCard>
+        <ProCardContent>
+            <ProForm ReadOnly="FormReadOnly" Disabled="FormDisabled">
+                <ProTextField T="string" ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProTextField T="string" Mask="@(new DateMask(" yyyy-MM-dd"))" ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProCheckBox T="bool" ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProRadioGroup T="string" ReadOnly="CompReadOnly" Disabled="CompDisabled">
+                    <ProRadio Value="@("1")" />
+                    <ProRadio Value="@("2")" />
+                </ProRadioGroup>
+                <ProSelect T="string" ReadOnly="CompReadOnly" Disabled="CompDisabled"></ProSelect>
+                <ProSwitch T="bool" ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProColorPicker ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProDatePicker ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProDateRangePicker ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProTimePicker ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProAutocomplete T="string" ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProNumericField T="int" ReadOnly="CompReadOnly" Disabled="CompDisabled" />
+                <ProFileUpload T="IBrowserFile" Disabled="CompDisabled">
+                    <CustomContent>
+                        <ProButton Variant="Variant.Filled"
+                                   Color="Color.Primary">
+                            Disabled Button
+                        </ProButton>
+                    </CustomContent>
+                </ProFileUpload>
+            </ProForm>
+        </ProCardContent>
+        <ProCardActions>
+            <ProCheckBox @bind-Value="FormReadOnly">Form ReadOnly</ProCheckBox>
+            <ProCheckBox @bind-Value="CompReadOnly">Comp ReadOnly</ProCheckBox>
+            <ProCheckBox @bind-Value="FormDisabled">Form Disabled</ProCheckBox>
+            <ProCheckBox @bind-Value="CompDisabled">Comp Disabled</ProCheckBox>
+        </ProCardActions>
+    </ProCard>
+</div>
+@code {
+    public static string __description__ = "All child form fields should be disabled or readonly if the Form property is changed";
+    
+    [Parameter]
+    public bool FormReadOnly { get; set; }
+
+    [Parameter]
+    public bool CompReadOnly { get; set; }
+
+    [Parameter]
+    public bool FormDisabled { get; set; }
+
+    [Parameter]
+    public bool CompDisabled { get; set; }
+}

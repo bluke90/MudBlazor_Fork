@@ -1,0 +1,57 @@
+﻿<ProPopoverProvider />
+
+<ProSelect @ref="@_stringSelect" T="string?" @bind-Value="@_value" @bind-SelectedValues="@_values" Label="String Binding" MultiSelection="true" Required="true" Clearable="true">
+    <ProSelectItem Value="@("1")">1</ProSelectItem>
+    <ProSelectItem Value="@("2")">2</ProSelectItem>
+    <ProSelectItem Value="@("3")">3</ProSelectItem>
+</ProSelect>
+
+<ProStack Row Class="py-8">
+    <ProButton id="clear-string" Variant="Variant.Filled" OnClick="@(() => _stringSelect.ClearAsync())">Clear</ProButton>
+    <ProButton id="reset-string" Variant="Variant.Filled" OnClick="@(() => _stringSelect.ResetAsync())">Reset</ProButton>
+</ProStack>
+
+<ProText>Value: @_value</ProText>
+<ProText>Selected values: @(_values is null ? null : string.Join(", ", _values.Select(x => x)))</ProText>
+
+<ProSelect @ref="_objectSelect" T="TestClass" @bind-Value="@_selectedRole" @bind-SelectedValues="_selectedRoles" Label="Object Binding" MultiSelection="true" Required="true" Clearable="true">
+    @foreach(var role in _roles)
+    {
+        <ProSelectItem T="TestClass" Value=@role/>
+    }
+</ProSelect>
+
+<ProStack Row Class="py-8">
+    <ProButton id="clear-object" Variant="Variant.Filled" OnClick="@(() => _objectSelect.ClearAsync())">Clear</ProButton>
+    <ProButton id="reset-object" Variant="Variant.Filled" OnClick="@(() => _objectSelect.ResetAsync())">Reset</ProButton>
+</ProStack>
+
+<ProText>Value: @_selectedRole?.Name</ProText>
+<ProText>Selected values: @(string.Join(", ", _selectedRoles.Select(x => x.Name)))</ProText>
+
+@code {
+    public static string __description__ = "Multi-Select Required Should Recognize Values";
+
+    private ProSelect<string?> _stringSelect = null!;
+    private ProSelect<TestClass> _objectSelect = null!;
+
+    private string? _value;
+    private IReadOnlyCollection<string?>? _values;
+
+    private TestClass? _selectedRole;
+    private IReadOnlyCollection<TestClass> _selectedRoles = [];
+    private readonly List<TestClass> _roles =
+    [
+        new() { Name = "Admin", NameTranslated = "Administrator" },
+        new() { Name = "Customer", NameTranslated = "Kunde" }
+    ];
+
+    public class TestClass
+    {
+        public required string Name { get; set; }
+
+        public required string NameTranslated { get; set; }
+
+        public override string ToString() => Name;
+    }
+}

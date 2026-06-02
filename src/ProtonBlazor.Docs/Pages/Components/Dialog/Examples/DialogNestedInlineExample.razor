@@ -1,0 +1,42 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@inject IDialogService DialogService
+
+<ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Open">Open inline</ProButton>
+<ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Open2Async">Open with show</ProButton>
+
+@*Outer inline dialog*@
+<ProDialog @bind-Visible="_visible">
+    <DialogContent>
+        <ProText>Hi There, I'm an inline dialog!</ProText>
+        <ProButton Variant="Variant.Filled" Color="Color.Tertiary" OnClick="OpenNested">Open nested</ProButton>
+        @*Nested inline dialog*@
+        <ProDialog @bind-Visible="_nestedVisible">
+            <DialogContent>
+                <ProText Class="nested">Nested inline dialog!</ProText>
+            </DialogContent>
+            <DialogActions>
+                <ProButton Color="Color.Primary" OnClick="CloseNested">Close</ProButton>
+            </DialogActions>
+        </ProDialog>
+    </DialogContent>
+    <DialogActions>
+        <ProButton Color="Color.Primary" OnClick="Close">Close</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    private bool _visible;
+    private bool _nestedVisible;
+
+    private void Open() => _visible = true;
+
+    private void Close() => _visible = false;
+
+    private void OpenNested() => _nestedVisible = true;
+
+    private void CloseNested() => _nestedVisible = false;
+
+    @*Open a non-inline dialog component that nests an inline dialog*@
+    private Task Open2Async() => DialogService.ShowAsync<DialogNestedInlineExample_Dialog>();
+}

@@ -1,0 +1,15 @@
+﻿<ProTreeView T="string" @bind-SelectedValue="SelectedValue">
+    <ProTreeViewItem Value='"item1"'>
+        <ProTreeViewItem Value='"item1.1"' />
+        <ProTreeViewItem Value='"item1.2"' />
+    </ProTreeViewItem>
+</ProTreeView>
+
+<p class="selected-value">
+    @SelectedValue
+</p>
+
+@code {
+    [Parameter]
+    public string? SelectedValue { get; set; }
+}

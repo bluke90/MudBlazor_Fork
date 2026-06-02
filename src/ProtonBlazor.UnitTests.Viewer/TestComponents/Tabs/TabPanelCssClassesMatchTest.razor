@@ -1,0 +1,18 @@
+﻿<ProTabs>
+    <ProTabPanel Class="@TabButtonClass" PanelClass="@PanelClass">
+        <ChildContent>
+            <ProText>Tab content</ProText>
+        </ChildContent>
+        <TabContent>
+            Item One
+        </TabContent>
+    </ProTabPanel>
+</ProTabs>
+
+@code{
+    [Parameter]
+    public string TabButtonClass { get; set; } = null!;
+
+    [Parameter]
+    public string PanelClass { get; set; } = null!;
+}

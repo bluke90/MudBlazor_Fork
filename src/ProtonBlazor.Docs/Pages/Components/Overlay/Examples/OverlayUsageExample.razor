@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+@inject ISnackbar Snackbar
+ 
+<ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenOverlay">Show overlay</ProButton>
+
+<ProOverlay @bind-Visible="_visible" DarkBackground AutoClose="true" OnClosed="OnOverlayClosed" />
+
+@code {
+    private bool _visible;
+
+    public void OpenOverlay()
+    {
+        _visible = true;
+        StateHasChanged();
+    }
+    
+    public void OnOverlayClosed()
+    {
+        Snackbar.Add("Random message", Severity.Normal);
+    }
+} 

@@ -1,0 +1,25 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTabs SortComparer="_customComparer" Elevation="2" Rounded="true" ApplyEffectsToContainer="true" TabPanelsClass="pa-6">
+    <ProTabPanel Text="Tab 2 (Tag=C)" Tag="@( "C" )">
+        <ProText>Content Two</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab 1 (Tag=B)" Tag="@( "B" )">
+        <ProText>Content One</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab 3 (Tag=A)" Tag="@( "A" )">
+        <ProText>Content Three</ProText>
+    </ProTabPanel>
+</ProTabs>
+
+@code {
+    private readonly IComparer<ProTabPanel> _customComparer = new CompareByTagAscending();
+
+    private class CompareByTagAscending : IComparer<ProTabPanel>
+    {
+        public int Compare(ProTabPanel x, ProTabPanel y)
+        {
+            return Comparer<string>.Default.Compare( x?.Tag as string, y?.Tag as string );
+        }
+    }
+}

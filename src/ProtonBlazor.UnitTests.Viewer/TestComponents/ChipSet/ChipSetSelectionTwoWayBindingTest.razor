@@ -1,0 +1,20 @@
+﻿<ProChipSet T="int" SelectionMode="SelectionMode.MultiSelection" CheckMark @bind-SelectedValues="_selectedValues">
+    <ProChip Text="Set1 Chip1" Variant="Variant.Outlined" Color="Color.Success" Value="1"/>
+    <ProChip Text="Set1 Chip2" Variant="Variant.Outlined" Color="Color.Error" Value="2"/>
+</ProChipSet>
+
+<ProChipSet T="int" SelectionMode="SelectionMode.MultiSelection" CheckMark @bind-SelectedValues="_selectedValues">
+    <ProChip Text="Set2 Chip1" Variant="Variant.Outlined" Color="Color.Success" Value="1"/>
+    <ProChip Text="Set2 Chip2" Variant="Variant.Outlined" Color="Color.Error" Value="2"/>
+</ProChipSet>
+
+<br />
+<p class="set">
+    Selection: @(string.Join(", ", _selectedValues.OrderBy(x => x)))
+</p>
+
+@code {
+    public static string __description__ = "The chipsets should mirror their respective selections";
+
+    private IReadOnlyCollection<int> _selectedValues = [ 1 ];
+}

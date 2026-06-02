@@ -1,0 +1,26 @@
+﻿<ProButton Variant="Variant.Filled" OnClick="()=>_visible=true">Open</ProButton>
+
+<ProDialog @bind-Visible="_visible">
+    <DialogContent>
+        <ProText>Scorpiany!</ProText>
+        <ProButton Variant="Variant.Filled" OnClick="()=>_nestedVisible=true">Open Nested</ProButton>
+        <ProDialog @bind-Visible="_nestedVisible">
+            <DialogContent>
+                <ProText Class="nested">Nested dialog!</ProText>
+            </DialogContent>
+            <DialogActions>
+                <ProButton Color="Color.Primary" OnClick="()=>_nestedVisible=false">Close</ProButton>
+            </DialogActions>
+        </ProDialog>
+    </DialogContent>
+    <DialogActions>
+        <ProButton Color="Color.Primary" OnClick="()=>_visible=false">Close</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    public static string __description__ = "Click on open will open the inlined dialog, and the nested dialog can be opened with a second click";
+
+    private bool _visible;
+    private bool _nestedVisible;
+}

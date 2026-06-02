@@ -1,0 +1,34 @@
+name: deploy-tryprotonblazor
+
+on:
+  workflow_dispatch:
+  push:
+    tags: 
+      - "v9.[0-9]+.[0-9]+"
+
+jobs:
+  wait-for-nuget:
+    name: Wait for nuget
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait for nuget
+      if: ${{ github.ref_type == 'tag' }}
+      run: sleep 600s
+
+
+  deploy-web-app:
+    name: Deploy web app to try.protonblazor.com
+    needs: wait-for-nuget
+    if: ${{ github.repository_owner == 'ProtonBlazor' }}
+    uses: ProtonBlazor/Workflows/.github/workflows/template-deploy-web-app.yml@main
+    with:
+      checkout-repository: ProtonBlazor/TryProtonBlazor
+      checkout-ref: main
+      web-app-name: tryprotonblazor
+      web-app-slot-name:  'staging'
+      swap-slots: true
+      project-directory: './src/TryProtonBlazor.Server'
+      second-project-directory: './src/TryProtonBlazor.Client'
+    secrets:
+      publish-profile: ${{ secrets.PUBLISH_TRY_PROTONBLAZOR }}
+      azure-cred: ${{ secrets.AZURE_CREDENTIALS_TRY_PROD }}

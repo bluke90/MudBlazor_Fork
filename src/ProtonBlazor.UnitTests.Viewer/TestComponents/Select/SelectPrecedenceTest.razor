@@ -1,0 +1,10 @@
+﻿@namespace ProtonBlazor.UnitTests.TestComponents.Select
+
+<ProSelect T="string" Label="Select" ToStringFunc="@(x => x == "item1" ? null : x?.ToUpperInvariant())" Value="@("item1")">
+    <ProSelectItem Value="@("item1")">
+        <span class="custom-render">Item 1 Rendered</span>
+    </ProSelectItem>
+    <ProSelectItem Value="@("item2")">
+        <span class="custom-render">Item 2 Rendered</span>
+    </ProSelectItem>
+</ProSelect>

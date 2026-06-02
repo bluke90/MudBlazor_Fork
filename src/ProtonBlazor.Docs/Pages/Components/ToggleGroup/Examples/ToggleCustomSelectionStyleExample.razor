@@ -1,0 +1,33 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack>
+    <ProToggleGroup T="string" SelectedClass="@_style" @bind-Value="_value">
+        <ProToggleItem Value="@("Antimatter")" />
+        <ProToggleItem Value="@("Dark Matter")" />
+        <ProToggleItem Value="@("Dark Energy")" />
+    </ProToggleGroup>
+
+    <ProSelect T="string" @bind-Value="_style" Variant="Variant.Outlined">
+        <ProSelectItem Value="@("pro-theme-primary")" />
+        <ProSelectItem Value="@("pro-theme-secondary")" />
+        <ProSelectItem Value="@("custom-gradient")" />
+        <ProSelectItem Value="@("custom-striped")" />
+    </ProSelect>
+</ProStack>
+
+<style>
+    .custom-gradient {
+        background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+        color: white !important;
+    }
+
+    .custom-striped {
+        background: repeating-linear-gradient( 45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px );
+        color: white !important;
+    }
+</style>
+
+@code {
+    private string _style = "custom-striped";
+    private string _value = "Antimatter";
+}

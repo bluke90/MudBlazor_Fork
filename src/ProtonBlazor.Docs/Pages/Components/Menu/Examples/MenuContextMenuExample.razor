@@ -1,0 +1,35 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCard>
+    <ProCardHeader>
+        <CardHeaderContent>
+            <ProText Typo="Typo.body1">Istra Croatia</ProText>
+            <ProText Typo="Typo.body2">Peninsula in Europe</ProText>
+        </CardHeaderContent>
+    </ProCardHeader>
+    <div @onclick="@(OpenContextMenu)" @oncontextmenu="@(OpenContextMenu)" @oncontextmenu:preventDefault @oncontextmenu:stopPropagation>
+        <ProCardMedia Image="images/pilars.jpg" Height="250"/>
+    </div>
+    <ProCardContent>
+        <ProText Typo="Typo.body2">Try left clicking or right clicking the image to open the menu.</ProText>
+    </ProCardContent>
+</ProCard>
+
+<ProMenu PositionAtCursor @ref="_contextMenu">
+    <ProMenuItem Label="Undo" />
+    <ProMenuItem Label="Redo" Disabled />
+    <ProDivider />
+    <ProMenuItem Label="Cut" />
+    <ProMenuItem Label="Copy" />
+    <ProMenuItem Label="Paste" />
+</ProMenu>
+
+@code {
+#nullable enable
+    private ProMenu _contextMenu = null!;
+
+    private async Task OpenContextMenu(MouseEventArgs args)
+    {
+        await _contextMenu.OpenMenuAsync(args);
+    }
+}

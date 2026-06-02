@@ -1,0 +1,8 @@
+﻿@namespace ProtonBlazor
+@inherits ProDrawerContainer
+
+<div @attributes="UserAttributes" class="@Classname" style="@Stylename">
+    <CascadingValue IsFixed="true" Value="@this">
+        @ChildContent
+    </CascadingValue>
+</div>

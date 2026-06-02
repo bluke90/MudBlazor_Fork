@@ -1,0 +1,106 @@
+@import '../abstracts/variables';
+
+.pro-toggle-group {
+  display: grid;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: var(--pro-default-borderradius);
+
+  & > .pro-toggle-item {
+    box-shadow: none;
+    border-width: inherit;
+    border-color: inherit;
+    border-radius: 0;
+  }
+}
+
+.pro-toggle-group-outlined {
+  border-width: 1px;
+  border-color: rgba(var(--pro-palette-text-primary-rgb), var(--pro-palette-border-opacity));
+
+  @each $color in $pro-palette-colors {
+    &.pro-toggle-group-#{$color} {
+      border-color: rgba(var(--pro-palette-#{$color}-rgb), var(--pro-palette-border-opacity));
+    }
+  }
+
+  &.pro-toggle-group-horizontal {
+    &:not(.pro-toggle-group-rtl) {
+      > .pro-toggle-item:not(:first-child), > :not(:first-child) .pro-toggle-item {
+        &.pro-toggle-item-delimiter {
+          border-left-style: solid !important;
+        }
+
+        margin-left: -1px;
+      }
+    }
+
+    &.pro-toggle-group-rtl {
+      > .pro-toggle-item:not(:last-child), > :not(:last-child) .pro-toggle-item {
+        &.pro-toggle-item-delimiter {
+          border-left-style: solid !important;
+        }
+
+        margin-left: -1px;
+      }
+    }
+  }
+
+  &.pro-toggle-group-vertical {
+    > .pro-toggle-item:not(:first-child), > :not(:first-child) .pro-toggle-item {
+      &.pro-toggle-item-delimiter {
+        border-top-style: solid !important;
+      }
+
+      margin-top: -1px;
+    }
+  }
+}
+
+.pro-toggle-item {
+  padding: 6px;
+  min-width: auto;
+  border-style: none !important;
+  display: flex;
+  justify-content: center;
+
+  & > .pro-button-label {
+    min-height: 20px;
+  }
+
+  .pro-toggle-item-check-icon {
+    margin: 0 6px;
+    font-size: 20px;
+  }
+}
+
+.pro-toggle-item-size-small {
+  padding: 4px;
+
+  .pro-toggle-item-check-icon {
+    margin: 0 4px;
+    font-size: 18px;
+  }
+}
+
+.pro-toggle-item-size-large {
+  padding: 8px;
+
+  .pro-toggle-item-check-icon {
+    margin: 0 8px;
+    font-size: 22px;
+  }
+}
+
+.pro-toggle-item-fixed > .pro-button-label:has(>.pro-toggle-item-check-icon) {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, auto) 1fr;
+}
+
+.pro-toggle-item-check-icon {
+  justify-self: start;
+}
+
+.pro-toggle-item-content {
+  display: contents;
+}

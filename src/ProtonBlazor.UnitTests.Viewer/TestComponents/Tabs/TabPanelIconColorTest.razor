@@ -1,0 +1,15 @@
+﻿<ProTabs>
+    <ChildContent>
+        <ProTabPanel Text="Panel 1" Tag="0" Class="tab-panel-icon-color-test" Icon="@Icons.Material.Filled.Terminal" IconColor="@ProTabPanelIconColor" Disabled="@DisableTab">
+            <ProText Typo="Typo.h1">Panel Content</ProText>
+        </ProTabPanel>
+    </ChildContent>
+</ProTabs>
+
+@code {
+    [Parameter]
+    public Color ProTabPanelIconColor { get; set; } = Color.Default;
+
+    [Parameter]
+    public bool DisableTab { get; set; }
+}

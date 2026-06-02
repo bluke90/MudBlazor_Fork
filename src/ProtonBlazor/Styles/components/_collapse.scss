@@ -1,0 +1,32 @@
+.pro-collapse-container {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: minmax(0, 0fr);
+  transition: grid-template-rows 300ms ease-in-out;
+}
+
+.pro-collapse-entering {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.pro-collapse-entered {
+  overflow: initial;
+  grid-template-rows: minmax(0, 1fr);
+
+  & .pro-collapse-wrapper {
+      overflow-y: auto;
+  }
+}
+
+.pro-collapse-hidden {
+  visibility: hidden;
+}
+
+.pro-collapse-wrapper {
+  overflow: hidden;
+  display: flex;
+}
+
+.pro-collapse-wrapper-inner {
+  width: 100%;
+}

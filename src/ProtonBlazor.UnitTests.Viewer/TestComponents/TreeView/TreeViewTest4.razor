@@ -1,0 +1,16 @@
+﻿<ProTreeView @ref="_treeView" T="string" @bind-SelectedValue="SelectedValue" SelectionMode="SelectionMode.ToggleSelection">
+    <ProTreeViewItem @ref="_item1" Value='"content"' />
+    <ProTreeViewItem @ref="_item2" Value='"src"' />
+</ProTreeView>
+
+@code {
+    private ProTreeView<string> _treeView = null!;
+    private ProTreeViewItem<string> _item1 = null!;
+    private ProTreeViewItem<string> _item2 = null!;
+
+    public string? SelectedValue { get; set; }
+
+    public Task ClickFirst() => _treeView.OnItemClickAsync(_item1);
+
+    public Task ClickSecond() => _treeView.OnItemClickAsync(_item2);
+}

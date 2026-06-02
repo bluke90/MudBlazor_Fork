@@ -1,0 +1,9 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTextField @bind-Value="_string" Label="Clearable Standard" Variant="Variant.Text" Clearable="true" Adornment="Adornment.End" AdornmentIcon="@Icons.Custom.Brands.ProtonBlazor" AdornmentColor="Color.Primary" Immediate="true" />
+<ProTextField @bind-Value="_string" Label="Clearable Filled" Variant="Variant.Filled" Clearable="true" Immediate="true" />
+<ProTextField @bind-Value="_string" Label="Clearable Outlined" Variant="Variant.Outlined" Clearable="true" />
+
+@code {
+    string _string;
+}

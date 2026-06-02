@@ -1,0 +1,41 @@
+﻿@layout IframeLayout
+@namespace ProtonBlazor.Docs.Examples
+@page "/iframe/docs/examples/drawer/breakpoint"
+
+<ProLayout>
+    <ProAppBar Elevation="1">
+        <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <ProSpacer />
+        <ProIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Href="https://github.com/ProtonBlazor/ProtonBlazor" Target="_blank" />
+    </ProAppBar>
+    <ProDrawer @bind-Open="@_open" Breakpoint="@_breakpoint" Elevation="1" Variant="@DrawerVariant.Responsive">
+        <ProDrawerHeader>
+            <ProText Typo="Typo.h6">My App</ProText>
+        </ProDrawerHeader>
+        <ProNavMenu>
+            <ProNavLink Match="NavLinkMatch.All">Store</ProNavLink>
+            <ProNavLink Match="NavLinkMatch.All">Library</ProNavLink>
+            <ProNavLink Match="NavLinkMatch.All">Community</ProNavLink>
+        </ProNavMenu>
+    </ProDrawer>
+    <ProMainContent Class="pt-16 px-16">
+        <ProContainer Class="mt-6">
+            <ProSelect Label="Select breakpoint" @bind-Value="_breakpoint">
+                <ProSelectItem Value="@Breakpoint.Sm">Breakpoint.Sm</ProSelectItem>
+                <ProSelectItem Value="@Breakpoint.Md">Breakpoint.Md</ProSelectItem>
+                <ProSelectItem Value="@Breakpoint.Lg">Breakpoint.Lg</ProSelectItem>
+                <ProSelectItem Value="@Breakpoint.Xl">Breakpoint.Xl</ProSelectItem>
+            </ProSelect>
+        </ProContainer>
+    </ProMainContent>
+</ProLayout>
+
+@code{
+    private bool _open = false;
+    private Breakpoint _breakpoint = Breakpoint.Lg;
+
+    private void ToggleDrawer()
+    {
+        _open = !_open;
+    }
+}

@@ -1,0 +1,14 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<ProTabs Elevation="0" Outlined="true" @bind-ActivePanelIndex="activeIndex">
+    <ProTabPanel Text="Item One" ID='"pn_one"'></ProTabPanel>
+    <ProTabPanel Text="Item Two" ID='"pn_two"'></ProTabPanel>
+    <ProTabPanel Text="Item Three" ID='"pn_three"'></ProTabPanel>
+</ProTabs>
+<ProText>@($"Active Index: {activeIndex}")</ProText>
+
+@code
+{ 
+    int activeIndex = 2;
+}

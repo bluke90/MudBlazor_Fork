@@ -1,0 +1,17 @@
+﻿<ProToggleGroup @bind-Value="_value" T="string" Color="Color.Primary">
+    <ProToggleItem T="string" Value="@("Item One")">
+        <ProText>Item One</ProText>
+        <ProText>Item One</ProText>
+        <ProText>Item One</ProText>
+    </ProToggleItem>
+    <ProToggleItem T="string" Value="@("Item Two")" Text="Item Two">
+        <ProText>Item Two</ProText>
+    </ProToggleItem>
+    <ProToggleItem T="string" Value="@("Item Three")" Text="Item Three">
+        <ProText>Item Three</ProText>
+    </ProToggleItem>
+</ProToggleGroup>
+
+@code {
+    private string? _value;
+}

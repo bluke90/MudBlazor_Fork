@@ -1,0 +1,19 @@
+﻿@inherits LayoutComponentBase
+@namespace ProtonBlazor.Docs.Examples
+
+<ProThemeProvider/>
+<ProPopoverProvider/>
+<ProDialogProvider/>
+<ProSnackbarProvider/>
+
+<ProLayout>
+    <ProAppBar>
+        My Application
+    </ProAppBar>
+    <ProDrawer Open="true">
+
+    </ProDrawer>
+    <ProMainContent>
+        @Body
+    </ProMainContent>
+</ProLayout>

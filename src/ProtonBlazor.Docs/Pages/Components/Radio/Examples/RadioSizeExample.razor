@@ -1,0 +1,11 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProRadioGroup @bind-Value="Radio_Size">
+    <ProRadio Value="1" Color="Color.Primary" Size="Size.Small">Small</ProRadio>
+    <ProRadio Value="2" Color="Color.Secondary" Size="Size.Medium">Medium</ProRadio>
+    <ProRadio Value="3" Color="Color.Tertiary" Size="Size.Large">Large</ProRadio>
+</ProRadioGroup>
+
+@code { 
+    public int Radio_Size { get; set; } = 2;
+}

@@ -1,0 +1,33 @@
+﻿<ProForm @bind-IsValid="_parentIsValid" IsTouchedChanged="@ParentTouchChanged" ValidationDelay="0" Class="parent-form">
+    <ProText>Parent Valid: @(_parentIsValid.ToString())</ProText>
+    <ProTextField Label="Text in Parent" Required="true" T="string" Class="parent-text-field" />
+    @if (_showChildForm)
+    {
+        <ProForm @bind-IsValid="_childIsValid" IsTouchedChanged="@ChildTouchChanged" ValidationDelay="0" Class="child-form">
+            <ProText>Child Valid: @(_childIsValid.ToString())</ProText>
+            <ProTextField Label="Text in Child" Required="true" T="string" Class="child-text-field" />
+        </ProForm>
+    }
+</ProForm>
+<ProText HtmlTag="span"><ProSwitch @bind-Value="@_showChildForm" Color="Color.Primary" /> Display child form</ProText>
+
+@code {
+    public static string __description__ = "Based on issue #7066. Removing the child form should no longer influence the parent form.";
+
+    private bool _parentIsValid;
+    private bool _childIsValid;
+    private bool _showChildForm;
+
+    public bool IsParentTouchChanged;
+    public bool IsChildTouchChanged;
+
+    private void ParentTouchChanged(bool isTouched)
+    {
+        IsParentTouchChanged = isTouched;
+    }
+
+    private void ChildTouchChanged(bool isTouched)
+    {
+        IsChildTouchChanged = isTouched;
+    }
+}

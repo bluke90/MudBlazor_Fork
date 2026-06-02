@@ -1,0 +1,23 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDialog>
+    <TitleContent>
+        Dialog Title
+    </TitleContent>
+    <DialogContent>
+        Dialog Content
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="Submit">OK</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; }
+
+    private void Submit() => ProDialog.Close(DialogResult.Ok(true));
+
+    private void Cancel() => ProDialog.Cancel();
+}

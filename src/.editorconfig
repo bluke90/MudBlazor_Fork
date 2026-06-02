@@ -1,6 +1,6 @@
 # Adopting the Roslyn team defaults
 #
-# Please add MudBlazor Team Overrides at the end
+# Please add ProtonBlazor Team Overrides at the end
 # of this file.
 
 # top-most EditorConfig file
@@ -313,14 +313,14 @@ csharp_style_allow_embedded_statements_on_same_line_experimental = false:suggest
 
 ############################################################################
 #                                                                          #
-#                         MudBlazor Team Overrides                         #
+#                         ProtonBlazor Team Overrides                         #
 #                                                                          #
 #    Settings in editorconfig are last in wins so add overrides here       #
 #                                                                          #
 ############################################################################
 
 [*.{cs,razor}]
-file_header_template = Copyright (c) MudBlazor 2021\nMudBlazor licenses this file to you under the MIT license.\nSee the LICENSE file in the project root for more information.
+file_header_template = Copyright (c) ProtonBlazor 2021\nProtonBlazor licenses this file to you under the MIT license.\nSee the LICENSE file in the project root for more information.
 csharp_style_prefer_primary_constructors = true:none                    # IDE0290
 csharp_remove_unnecessary_imports = true:warning                        # IDE0005
 dotnet_style_remove_unnecessary_value_assignment = true:warning         # IDE0059
@@ -374,7 +374,7 @@ dotnet_diagnostic.CA2211.severity = suggestion
 # CA1806: Do not ignore method results
 dotnet_diagnostic.CA1806.severity = suggestion
 
-[MudBlazor/**/*.{cs,razor}]
+[ProtonBlazor/**/*.{cs,razor}]
 dotnet_style_namespace_match_folder = false
 resharper_check_namespace_highlighting = none
 

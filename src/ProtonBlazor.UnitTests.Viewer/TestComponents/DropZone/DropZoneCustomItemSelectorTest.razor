@@ -1,0 +1,29 @@
+﻿<ProDropContainer T="SimpleDropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.ZoneIdentifier == dropzone)" Class="d-flex">
+	<ChildContent>
+		<ProDropZone T="SimpleDropItem" Identifier="Column 1" Class="first-drop-zone">
+			<ChildContent>
+				<ProText Typo="Typo.h6" Class="mb-4">Drop Zone 1</ProText>
+			</ChildContent>
+			<ItemRenderer>
+				<ProText>@context.Name by Drop Zone 1</ProText>
+			</ItemRenderer>
+		</ProDropZone>
+		<ProDropZone T="SimpleDropItem" Identifier="Column 2" Class="second-drop-zone">
+			<ProText Typo="Typo.h6" Class="mb-4">Drop Zone 2</ProText>
+		</ProDropZone>
+	</ChildContent>
+	<ItemRenderer>
+		<ProText>@context.Name</ProText>
+	</ItemRenderer>
+</ProDropContainer>
+
+@code {
+	private readonly IEnumerable<SimpleDropItem> _items =
+    [
+        new("First Item", "Column 1"),
+		new("Second Item", "Column 2"),
+		new("Third Item", "Column 2")
+    ];
+
+    public record SimpleDropItem(string Name, string ZoneIdentifier);
+}

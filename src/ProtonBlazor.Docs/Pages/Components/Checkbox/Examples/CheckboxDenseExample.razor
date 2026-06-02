@@ -1,0 +1,8 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCheckBox @bind-Value="Dense_CheckBox" Dense="true" Color="Color.Success"></ProCheckBox>
+<ProCheckBox @bind-Value="Dense_CheckBox" Dense="false" Color="Color.Primary"></ProCheckBox>
+
+@code {
+    public bool Dense_CheckBox { get; set; } = true;
+}

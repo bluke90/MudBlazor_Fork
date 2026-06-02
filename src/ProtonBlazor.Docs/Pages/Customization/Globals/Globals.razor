@@ -1,0 +1,56 @@
+﻿@page "/customization/globals"
+
+<DocsPage>
+    <DocsPageHeader Title="Globals" SubTitle="Static properties that let you control the default behavior of some parts of ProtonBlazor.">
+        <Description>
+            <DocsPageSection>
+                <ProAlert Class="mt-4" Severity="Severity.Error">
+                    <b>EXPERIMENTAL:</b>
+                    This feature is under development and may not be ready for general use.
+                    Breaking changes <b>will occur</b> between releases.
+                    Use only if you are prepared to adapt your code and <ProLink Typo="Typo.inherit" Href="https://github.com/ProtonBlazor/ProtonBlazor/issues/new/choose">provide feedback</ProLink> or <ProLink Typo="Typo.inherit" Href="https://github.com/ProtonBlazor/ProtonBlazor/blob/dev/src/ProtonBlazor/Services/ProGlobal.cs">contribute to its development</ProLink>.
+                </ProAlert>
+            </DocsPageSection>
+        </Description>
+    </DocsPageHeader>
+    <DocsPageContent>
+        <DocsPageSection>
+            <SectionHeader Title="Usage">
+                <Description>
+                    You can find default setting overrides of some ProtonBlazor features in the static <ApiTypeLink TypeName="ProGlobal" /> class.
+                    These defaults should be set when your application initializes, such as when adding ProtonBlazor services.
+                    If they are set after the app has started, they may not take effect until the next page load, or may not take effect at all.
+
+                    <ProAlert Class="mt-4" Severity="Severity.Info">
+                        <b>Note:</b> The <CodeInline>ProGlobal</CodeInline> class is being phased out for visual and theming properties.
+                        <br /><br />
+                        Most styling should be done directly through <b>component parameters</b> (for one-off tweaks) or through the <b>theme system</b> and <b>CSS</b> (for app-wide customization).
+                        <br /><br />
+                        See the <ProLink Typo="Typo.inherit" Href="https://github.com/ProtonBlazor/ProtonBlazor/issues/12046">removal issue</ProLink>, or feel free to <ProLink Typo="Typo.inherit" Href="https://github.com/ProtonBlazor/ProtonBlazor/discussions">share feedback</ProLink> on migration or missing theme hooks.
+                    </ProAlert>
+                </Description>
+            </SectionHeader>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Exception Handler">
+                <Description>
+                    You can handle ProtonBlazor component exceptions using <CodeInline>ProGlobal.UnhandledExceptionHandler</CodeInline>.
+                </Description>
+            </SectionHeader>
+            <SectionContent Code="@nameof(GlobalExceptionHandlerExample)" />
+        </DocsPageSection>
+    </DocsPageContent>
+</DocsPage>
+
+@code
+{
+    private List<DocumentedType> TypesWithGlobals { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // Find the types which have global settings
+        TypesWithGlobals = [.. ApiDocumentation.Types.Where(pair => pair.Value.GlobalSettings.Count > 0).Select(pair => pair.Value).OrderBy(type => type.NameFriendly)];
+        base.OnInitialized();
+    }
+}

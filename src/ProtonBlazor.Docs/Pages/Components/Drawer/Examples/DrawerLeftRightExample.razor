@@ -1,0 +1,57 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Height="200px" Class="pro-theme-primary" Style="overflow:hidden; position:relative;">
+    <ProDrawerContainer Class="pro-height-full">
+        <ProDrawer @bind-Open="@_openLeft" Anchor="Anchor.Left" Elevation="0" Variant="@DrawerVariant.Persistent">
+            <ProDrawerHeader>
+                <ProText Typo="Typo.h6">My App</ProText>
+            </ProDrawerHeader>
+            <ProNavMenu>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Store">Store</ProNavLink>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.LocalLibrary">Library</ProNavLink>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Forum">Community</ProNavLink>
+            </ProNavMenu>
+        </ProDrawer>
+        <ProDrawer @bind-Open="@_openRight" Fixed="false" Anchor="Anchor.Right" Elevation="0" Variant="@DrawerVariant.Persistent">
+            <ProDrawerHeader>
+                <ProText Typo="Typo.h6">Settings</ProText>
+            </ProDrawerHeader>
+            <ProNavMenu>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.AccountBox">Profile</ProNavLink>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.ShoppingCart">Orders</ProNavLink>
+                <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.History">Order History</ProNavLink>
+            </ProNavMenu>
+        </ProDrawer>
+        <div class="d-flex justify-center align-center pro-height-full">
+            @if (Rtl)
+            {
+                <ProButton Color="Color.Inherit" OnClick="@ToggleRightDrawer" StartIcon="@Icons.Material.Filled.East" Class="mx-2">Toggle right</ProButton>
+                <ProButton Color="Color.Inherit" OnClick="@ToggleLeftDrawer" EndIcon="@Icons.Material.Filled.West" Class="mx-2">Toggle left</ProButton>
+            }
+            else
+            {
+                <ProButton Color="Color.Inherit" OnClick="@ToggleLeftDrawer" StartIcon="@Icons.Material.Filled.West" Class="mx-2">Toggle left</ProButton>
+                <ProButton Color="Color.Inherit" OnClick="@ToggleRightDrawer" EndIcon="@Icons.Material.Filled.East" Class="mx-2">Toggle right</ProButton>
+            }
+        </div>
+    </ProDrawerContainer>
+</ProPaper>
+
+@code
+{
+    private bool _openLeft = false;
+    private bool _openRight = false;
+
+    [CascadingParameter]
+    public bool Rtl { get; set; }
+
+    private void ToggleLeftDrawer()
+    {
+        _openLeft = !_openLeft;
+    }
+
+    private void ToggleRightDrawer()
+    {
+        _openRight = !_openRight;
+    }
+}

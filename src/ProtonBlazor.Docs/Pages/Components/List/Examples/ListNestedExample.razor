@@ -1,0 +1,37 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<ProPaper Width="300px">
+    <ProList T="string">
+        <ProListSubheader>
+            Nested List Items
+        </ProListSubheader>
+        <ProListItem Icon="@Icons.Material.Filled.Inbox" Text="Inbox" Expanded>
+            <NestedList>
+                <ProListItem Icon="@Icons.Material.Filled.StarRate">
+                    Starred
+                </ProListItem>
+                <ProListItem Icon="@Icons.Material.Filled.WatchLater">
+                    Snoozed
+                </ProListItem>
+            </NestedList>
+        </ProListItem>
+        <ProListItem Icon="@Icons.Material.Filled.Send" Text="Sent mail" @bind-Expanded="_expanded">
+            <NestedList>
+                <ProListItem>Re: Meeting tomorrow</ProListItem>
+                <ProListItem>Fwd: JavaScript memes xD</ProListItem>
+            </NestedList>
+        </ProListItem>
+        <ProListItem Icon="@Icons.Material.Filled.Drafts">
+            Drafts
+        </ProListItem>
+        <ProDivider/>
+        <ProListSubheader Class="mb-n3">
+            <ProSwitch Color="Color.Primary" @bind-Value="_expanded">"Sent mail" Expansion</ProSwitch>
+        </ProListSubheader>
+    </ProList>
+</ProPaper>
+
+@code {
+    bool _expanded;
+}

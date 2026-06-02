@@ -1,0 +1,123 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+
+<ProGrid>
+    <ProItem md="3">
+        <ProPaper Class="pa-4" Elevation="0">
+            <ProText Typo="Typo.h6" GutterBottom="true">Test Options</ProText>
+            <ProSelect T="string" Label="Component" Margin="Margin.Dense" Dense="true" Value="@SelectedTestComponent" ValueChanged="OnSelectedTestComponent">
+                <ProSelectItem T="string" Value="@("ProIcon")">ProIcon</ProSelectItem>
+                <ProSelectItem T="string" Value="@("ProButton")">ProButton</ProSelectItem>
+                <ProSelectItem T="string" Value="@("ProIconButton")">ProIconButton</ProSelectItem>
+                <ProSelectItem T="string" Value="@("ProText")">ProText</ProSelectItem>
+                <ProSelectItem T="string" Value="@("ProAvatar")">ProAvatar</ProSelectItem>
+                <ProSelectItem T="string" Value="@("ProChip")">ProChip</ProSelectItem>
+            </ProSelect>
+        </ProPaper>
+    </ProItem>
+    <ProItem md="6" Class="d-flex align-center justify-center my-auto">
+        <ProBadge Origin="@Origin" Content="@BadgeContent" Color="Color.Primary" Overlap="@Overlap" Dot="@Dot" Bordered="@Bordered" Icon="@BadgeIcon">
+            @if (SelectedTestComponent == "ProIcon")
+            {
+                <ProIcon Icon="@Icons.Custom.Brands.ProtonBlazor" Color="Color.Default" Size="Size.Large" />
+            }
+            else if (SelectedTestComponent == "ProButton")
+            {
+                <ProButton Color="Color.Primary" Variant="Variant.Filled">ProButton</ProButton>
+            }
+            else if (SelectedTestComponent == "ProIconButton")
+            {
+                <ProIconButton Icon="@Icons.Material.Filled.Email" Color="Color.Default" />
+            }
+            else if (SelectedTestComponent == "ProText")
+            {
+                <ProText>ProText</ProText>
+            }
+            else if(SelectedTestComponent == "ProAvatar")
+            {
+                <ProAvatar Size="Size.Large" Class="ma-2">
+                    <ProImage Src="images/mony.jpg" />
+                </ProAvatar>
+            }
+            else if(SelectedTestComponent == "ProChip")
+            {
+                <ProChip T="string" Label="true" Color="Color.Warning" Style="color:black;">Radioactive Areas</ProChip>
+            }
+        </ProBadge>
+    </ProItem>
+    <ProItem md="3">
+        <ProPaper Class="pa-4" Elevation="0">
+            <ProText Typo="Typo.h6" GutterBottom="true">Badge Options</ProText>
+            <ProSelect Label="Badge Origin" Margin="Margin.Dense" Dense="true" @bind-Value="Origin">
+                <ProSelectItem Value="Origin.TopLeft">TopLeft</ProSelectItem>
+                <ProSelectItem Value="Origin.TopCenter">TopCenter</ProSelectItem>
+                <ProSelectItem Value="Origin.TopRight">TopRight</ProSelectItem>
+                <ProSelectItem Value="Origin.CenterLeft">CenterLeft</ProSelectItem>
+                <ProSelectItem Value="Origin.CenterCenter">CenterCenter</ProSelectItem>
+                <ProSelectItem Value="Origin.CenterRight">CenterRight</ProSelectItem>
+                <ProSelectItem Value="Origin.BottomLeft">BottomLeft</ProSelectItem>
+                <ProSelectItem Value="Origin.BottomCenter">BottomCenter</ProSelectItem>
+                <ProSelectItem Value="Origin.BottomRight">BottomRight</ProSelectItem>
+            </ProSelect>
+            <ProCheckBox @bind-Value="Dot" Label="Dot" Color="Color.Primary" Style="width:100%;" />
+            <ProCheckBox @bind-Value="Overlap" Label="Overlap" Color="Color.Primary" Style="width:100%;" />
+            <ProCheckBox @bind-Value="Bordered" Label="Bordered" Color="Color.Primary" Style="width:100%;" />
+            <ProCheckBox T="bool" ValueChanged="AddIcon" Label="Icon" Color="Color.Primary" Style="width:100%;" />
+            <ProText Typo="Typo.subtitle2" Class="my-2">Badge Content</ProText>
+            <div style="display: flex;">
+                <ProButton OnClick="AddValue" Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" FullWidth="true" Class="mr-1">Add @AddNumber</ProButton>
+                <ProButton OnClick="ClearContent" Variant="Variant.Filled" Size="Size.Small" Color="Color.Secondary" FullWidth="true" Class="ml-1">Clear</ProButton>
+            </div>
+        </ProPaper>
+    </ProItem>
+</ProGrid>
+
+@code {
+    public Origin Origin { get; set; } = Origin.TopRight;
+    public bool Dot { get; set; }
+    public bool Overlap { get; set; }
+    public bool Bordered { get; set; }
+    public string BadgeIcon { get; set; }
+
+    public string SelectedTestComponent { get; set; } = "ProChip";
+    public string AddNumber { get; set; } = "1";
+
+    public int? BadgeContent { get; set; }
+
+    public void OnSelectedTestComponent(string value)
+    {
+        SelectedTestComponent = value;
+    }
+
+    public void AddIcon()
+    {
+        if (String.IsNullOrEmpty(BadgeIcon))
+        {
+            BadgeIcon = Icons.Custom.Uncategorized.Radioactive;
+        }
+        else
+        {
+            BadgeIcon = null;
+        }
+    }
+
+    public void AddValue()
+    {
+        if(BadgeContent == null)
+        {
+            AddNumber = "25";
+            BadgeContent = 1;
+        }
+        else
+        {
+            BadgeContent += 25;
+        }
+    }
+
+    public void ClearContent()
+    {
+        AddNumber = "1";
+        BadgeContent = null;
+    }
+}

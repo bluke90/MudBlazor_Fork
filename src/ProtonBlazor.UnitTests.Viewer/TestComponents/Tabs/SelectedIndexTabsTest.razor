@@ -1,0 +1,20 @@
+﻿<ProTabs @bind-ActivePanelIndex="@SelectedTab" @ref="Tabs">
+    <ProTabPanel Text="Tab One">
+        <ProText>Content One</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Two">
+        <ProText>Content Two</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Three">
+        <ProText>Content Three</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Disabled" Disabled="true">
+        <ProText>Content Disabled</ProText>
+    </ProTabPanel>
+</ProTabs>
+
+@code {
+    public static int SelectedTab { get; set; } = 1;
+
+    public ProTabs Tabs { get; set; } = null!;
+}

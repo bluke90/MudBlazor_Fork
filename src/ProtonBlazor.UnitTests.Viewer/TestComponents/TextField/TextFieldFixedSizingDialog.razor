@@ -1,0 +1,72 @@
+@namespace ProtonBlazor.UnitTests.TestComponents.TextField
+@using ProtonBlazor
+
+<ProDialog DefaultFocus="DefaultFocus.FirstChild" OnBackdropClick="Submit">
+    <TitleContent>
+        <ProText Typo="Typo.h6">@Title</ProText>
+    </TitleContent>
+
+    <DialogContent>
+        <ProTextField T="string"
+                      @bind-Value="_text"
+                      Typo="Typo.body2"
+                      Placeholder="@Placeholder"
+                      Lines="@Lines"
+                      Sizing="InputSizing.Fixed"
+                      Underline="false"
+                      Immediate />
+    </DialogContent>
+
+    <DialogActions>
+        <ProButton Class="cancel-button"
+                   StartIcon="@Icons.Material.Rounded.Close"
+                   AriaLabel="Cancel"
+                   OnClick="Cancel">
+            Cancel
+        </ProButton>
+
+        <ProButton Class="submit-button"
+                   StartIcon="@Icons.Material.Rounded.Check"
+                   AriaLabel="Submit"
+                   OnClick="Submit"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary">
+            Submit
+        </ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    private bool _initialized;
+    private string _text = string.Empty;
+
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; } = null!;
+
+    [Parameter]
+    public string Title { get; set; } = "Edit note (Fixed)";
+
+    [Parameter]
+    public string Placeholder { get; set; } = "Type here";
+
+    [Parameter]
+    public string? InitialText { get; set; }
+
+    [Parameter]
+    public int Lines { get; set; } = 8;
+
+    protected override void OnParametersSet()
+    {
+        if (_initialized)
+        {
+            return;
+        }
+
+        _initialized = true;
+        _text = InitialText ?? string.Empty;
+    }
+
+    private void Cancel() => ProDialog.Cancel();
+
+    private void Submit() => ProDialog.Close(DialogResult.Ok(_text));
+}

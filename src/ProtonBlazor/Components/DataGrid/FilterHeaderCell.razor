@@ -1,0 +1,76 @@
+﻿@using ProtonBlazor.Extensions
+@using ProtonBlazor.Resources
+@namespace ProtonBlazor
+@inherits ProComponentBase
+@typeparam T
+
+@inject InternalMudLocalizer Localizer
+
+@if (!Column.HiddenState.Value)
+{
+    <th scope="col" class="@Classname" style="@Stylename" colspan="@Column.HeaderColSpan" @attributes="@UserAttributes">
+        @if (Column.filterable && Column.FilterTemplate != null)
+        {
+            @Column.FilterTemplate(Column.FilterContext)
+        }
+        else if (Column.filterable)
+        {
+            <ProStack Row="true">
+                @if (fieldType.IsString && !(@operator ?? "").EndsWith("empty"))
+                {
+                    <ProTextField T="string" Value="@valueString" ValueChanged="@StringValueChangedAsync" FullWidth="true" Placeholder="@Localizer[LanguageResource.ProDataGrid_FilterValue]" Margin="@Margin.Dense" Immediate="true" DebounceInterval="@(!DataGrid.HasServerData ? 0 : 500.0)" />
+                }
+                else if (fieldType.IsNumber && !(@operator ?? "").EndsWith("empty"))
+                {
+                    <ProNumericField T="double?" Culture="@Column.Culture" Value="@valueNumber" ValueChanged="@NumberValueChangedAsync" FullWidth="true" Placeholder="@Localizer[LanguageResource.ProDataGrid_FilterValue]" Margin="@Margin.Dense" Immediate="true" DebounceInterval="@(!DataGrid.HasServerData ? 0 : 500.0)" />
+                }
+                else if (fieldType.IsEnum)
+                {
+                    <ProSelect T="Enum" Value="@valueEnum" ValueChanged="@EnumValueChangedAsync" FullWidth="true" Dense="true" Margin="@Margin.Dense">
+                        <ProSelectItem T="Enum" Value="@(null)"></ProSelectItem>
+                        @foreach (var item in EnumExtensions.GetSafeEnumValues(fieldType.InnerType))
+                        {
+                            <ProSelectItem T="Enum" Value="@item">@Localizer[item]</ProSelectItem>
+                        }
+                    </ProSelect>
+                }
+                else if (fieldType.IsBoolean)
+                {
+                    <ProSelect T="bool?" Value="@valueBool" ValueChanged="@BoolValueChangedAsync" FullWidth="true" Dense="true" Margin="@Margin.Dense">
+                        <ProSelectItem T="bool?" Value="@(null)"></ProSelectItem>
+                        <ProSelectItem T="bool?" Value="@(true)">@Localizer[LanguageResource.ProDataGrid_True]</ProSelectItem>
+                        <ProSelectItem T="bool?" Value="@(false)">@Localizer[LanguageResource.ProDataGrid_False]</ProSelectItem>
+                    </ProSelect>
+                }
+                else if (fieldType.IsDateOnly && !(@operator ?? "").EndsWith("empty"))
+                {
+                    <ProDatePicker Date="@valueDateOnlyForPicker" DateChanged="@DateOnlyValueChangedAsync" Margin="@Margin.Dense" />
+                }
+                else if (fieldType.IsDateTime && !(@operator ?? "").EndsWith("empty"))
+                {
+                    <ProGrid Spacing="0">
+                        <ProItem xs="7">
+                            <ProDatePicker Date="@valueDateTimeForPicker" DateChanged="@DateTimeValueChangedAsync" Margin="@Margin.Dense" />
+                        </ProItem>
+                        <ProItem xs="5">
+                            <ProTimePicker Time="@valueTime" TimeChanged="@TimeValueChangedAsync" Margin="@Margin.Dense" />
+                        </ProItem>
+                    </ProGrid>
+                }
+                @if (!Column.ShowFilterIcon.HasValue || Column.ShowFilterIcon.Value)
+                {
+                    <ProMenu Class="column-filter-menu" Icon="@DataGrid.FilterIconFilled" Size="@Size.Small" Dense="true">
+                        @foreach (var o in operators)
+                        {
+                            if (!string.IsNullOrWhiteSpace(o))
+                            {
+                                <ProMenuItem Style="@chosenOperatorStyle(o)" OnClick="@(async () => await ChangeOperatorAsync(o))">@Localizer[FilterOperator.GetTranslationKeyByOperatorName(o)]</ProMenuItem>
+                            }
+                        }
+                    </ProMenu>
+                    <ProIconButton Class="align-self-center filter-button clear" Icon="@DataGrid.FilterIconClear" Size="@Size.Small" OnClick="@ClearFilterAsync" aria-label="@Localizer[LanguageResource.ProDataGrid_ClearFilter]"></ProIconButton>
+                }
+            </ProStack>
+        }
+    </th>
+}

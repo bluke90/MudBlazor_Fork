@@ -1,0 +1,66 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack>
+    <ProStack AlignItems="AlignItems.Center" Justify="Justify.Center">
+        <ProStack Spacing="8" AlignItems="@AlignItems.Center">
+            <ProToggleGroup T="string" @bind-Value="_value1" Vertical="@_vertical" Outlined="@_outlined" Delimiters="@_delimiters" Size="@_size" Color="@_color" CheckMark="@_checkMark" FixedContent="@_fixedContent" Disabled="@_disabled" Style="width: 20rem">
+                <ProToggleItem Value="@("One")" />
+                <ProToggleItem Value="@("Two")" />
+                <ProToggleItem Value="@("Three")" />
+            </ProToggleGroup>
+
+            <ProToggleGroup T="string" Vertical="@_vertical" Outlined="@_outlined" Delimiters="@_delimiters" Size="@_size" Color="@_color" CheckMark="@_checkMark" FixedContent="@_fixedContent" Disabled="@_disabled">
+                <ProToggleItem Value="@("left")">
+                    <ProIcon Icon="@Icons.Material.Filled.FormatAlignLeft" />
+                </ProToggleItem>
+                <ProToggleItem Value="@("center")">
+                    <ProIcon Icon="@Icons.Material.Filled.FormatAlignCenter" />
+                </ProToggleItem>
+                <ProToggleItem Value="@("right")">
+                    <ProIcon Icon="@Icons.Material.Filled.FormatAlignRight" />
+                </ProToggleItem>
+                <ProToggleItem Value="@("justify")">
+                    <ProIcon Icon="@Icons.Material.Filled.FormatAlignJustify" />
+                </ProToggleItem>
+            </ProToggleGroup>
+        </ProStack>
+    </ProStack>
+
+    <ProDivider />
+
+    <ProStack>
+        <ProSelect @bind-Value="_size" Label="Size">
+            @foreach (var size in Enum.GetValues(typeof(Size)).Cast<Size>())
+            {
+                <ProSelectItem Value="@size">@size</ProSelectItem>
+            }
+        </ProSelect>
+
+        <ProSelect @bind-Value="_color" Label="Color">
+            @foreach (var color in Enum.GetValues(typeof(Color)).Cast<Color>())
+            {
+                <ProSelectItem Value="@color">@color</ProSelectItem>
+            }
+        </ProSelect>
+    </ProStack>
+    <ProStack Row Wrap="Wrap.Wrap" AlignItems="AlignItems.Center">
+        <ProCheckBox @bind-Value="_checkMark" Label="CheckMark" />
+        <ProCheckBox @bind-Value="_fixedContent" Label="FixedContent" />
+        <ProCheckBox @bind-Value="_outlined" Label="Outlined" />
+        <ProCheckBox @bind-Value="_delimiters" Label="Delimiters" />
+        <ProCheckBox @bind-Value="_disabled" Label="Disabled" />
+        <ProCheckBox @bind-Value="_vertical" Label="Vertical" />
+    </ProStack>
+</ProStack>
+
+@code {
+    string _value1;
+    Size _size = Size.Medium;
+    Color _color = Color.Primary;
+    bool _checkMark = false;
+    bool _outlined = true;
+    bool _delimiters = true;
+    bool _fixedContent = false;
+    bool _disabled = false;
+    bool _vertical = false;
+}

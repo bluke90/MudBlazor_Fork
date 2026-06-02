@@ -1,0 +1,10 @@
+﻿@namespace ProtonBlazor
+@using Microsoft.AspNetCore.Components.Sections
+@inherits ProAppBar
+
+@if (Visible)
+{
+    <SectionContent SectionId="@ContextualActionBar">
+        @ContextualContent
+    </SectionContent>
+}

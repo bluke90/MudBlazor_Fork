@@ -1,0 +1,46 @@
+﻿@layout IframeLayout
+@namespace ProtonBlazor.Docs.Examples
+@page "/iframe/docs/examples/drawer/mini"
+
+<ProLayout>
+    <ProAppBar Elevation="1" Dense="@_dense">
+        <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <ProSpacer />
+        <ProIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Href="https://github.com/ProtonBlazor/ProtonBlazor" Target="_blank" />
+    </ProAppBar>
+    <ProDrawer @bind-Open="@_open" ClipMode="_clipMode" Breakpoint="@_breakpoint" Elevation="1" Variant="@DrawerVariant.Mini">
+        <ProNavMenu>
+            <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Store">Store</ProNavLink>
+            <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.LibraryBooks">Library</ProNavLink>
+            <ProNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Group">Community</ProNavLink>
+        </ProNavMenu>
+    </ProDrawer>
+    <ProMainContent Class="pt-16 px-16">
+        <ProContainer Class="mt-6">
+            <ProSelect Label="Select clip mode" @bind-Value="_clipMode">
+                <ProSelectItem Value="@DrawerClipMode.Never">Not clipped (DrawerClipMode.Never)</ProSelectItem>
+                <ProSelectItem Value="@DrawerClipMode.Docked">Drawer is docked (DrawerClipMode.Docked)</ProSelectItem>
+                <ProSelectItem Value="@DrawerClipMode.Always">Always (DrawerClipMode.Always)</ProSelectItem>
+            </ProSelect>
+            <ProSelect Label="Select breakpoint" @bind-Value="_breakpoint">
+                <ProSelectItem Value="@Breakpoint.Sm">Breakpoint.Sm</ProSelectItem>
+                <ProSelectItem Value="@Breakpoint.Md">Breakpoint.Md</ProSelectItem>
+                <ProSelectItem Value="@Breakpoint.Lg">Breakpoint.Lg</ProSelectItem>
+                <ProSelectItem Value="@Breakpoint.Xl">Breakpoint.Xl</ProSelectItem>
+            </ProSelect>
+            <ProSwitch @bind-Value="_dense" Label="Dense appbar" Color="Color.Primary" Style="width:100%;" />
+        </ProContainer>
+    </ProMainContent>
+</ProLayout>
+
+@code{
+    private bool _open = false;
+    private bool _dense = false;
+    private Breakpoint _breakpoint = Breakpoint.Lg;
+    private DrawerClipMode _clipMode = DrawerClipMode.Never;
+
+    private void ToggleDrawer()
+    {
+        _open = !_open;
+    }
+}

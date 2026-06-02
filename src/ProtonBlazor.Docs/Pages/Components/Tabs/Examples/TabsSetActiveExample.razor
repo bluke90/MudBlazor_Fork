@@ -1,0 +1,48 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTabs Elevation="1" Rounded="true" @ref="_tabs">
+    <ProTabPanel Text="One" @ref="_panel01" ID="@("pn_one")" />
+    <ProTabPanel Text="Two" @ref="_panel02" ID="@("pn_two")" />
+    <ProTabPanel Text="Three" @ref="_panel03" ID="@("pn_three")" />
+</ProTabs>
+
+<ProText GutterBottom="true" Align="Align.Center" Class="mt-8"><b>Set Active by Index</b></ProText>
+<div class="d-flex justify-center">
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick="() => ActivateAsync(0)">Index 0</ProButton>
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick="() => ActivateAsync(1)" Class="mx-2">Index 1</ProButton>
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick="() => ActivateAsync(2)">Index 2</ProButton>
+</div>
+<ProText GutterBottom="true" Align="Align.Center" Class="mt-4"><b>Set Active by Instance</b></ProText>
+<div class="d-flex justify-center">
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick="() => ActivateAsync(_panel01)">Item One</ProButton>
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick="() => ActivateAsync(_panel02)" Class="mx-2">Item Two</ProButton>
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick="() => ActivateAsync(_panel03)">Item Three</ProButton>
+</div>
+<ProText GutterBottom="true" Align="Align.Center" Class="mt-4"><b>Set Active by TabPanel ID</b></ProText>
+<div class="d-flex justify-center">
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick='() => ActivateAsync("pn_one")'>Item One</ProButton>
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick='() => ActivateAsync("pn_two")' Class="mx-2">Item Two</ProButton>
+    <ProButton Variant="@Variant.Filled" Color="Color.Primary" OnClick='() => ActivateAsync("pn_three")'>Item Three</ProButton>
+</div>
+
+@code {
+    private ProTabs _tabs = null!;
+    private ProTabPanel _panel01 = null!;
+    private ProTabPanel _panel02 = null!;
+    private ProTabPanel _panel03 = null!;
+
+    private Task ActivateAsync(int index)
+    {
+        return _tabs.ActivatePanelAsync(index);
+    }
+
+    private Task ActivateAsync(ProTabPanel panel)
+    {
+        return _tabs.ActivatePanelAsync(panel);
+    }
+
+    private Task ActivateAsync(object id)
+    {
+        return _tabs.ActivatePanelAsync(id);
+    }
+}

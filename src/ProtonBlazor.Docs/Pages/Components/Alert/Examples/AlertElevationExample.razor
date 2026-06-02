@@ -1,0 +1,10 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProAlert Severity="Severity.Normal" Variant="Variant.Filled" Elevation="@elevation" Class="mt-16">
+    Elevated Alert, or is it?
+</ProAlert>
+<ProSlider @bind-Value="elevation" Min="0" Max="24" Class="my-4">Elevation</ProSlider>
+
+@code {
+    public int elevation = 1;
+}

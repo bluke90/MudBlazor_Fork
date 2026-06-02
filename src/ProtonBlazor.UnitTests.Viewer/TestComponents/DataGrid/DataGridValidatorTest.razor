@@ -1,0 +1,27 @@
+﻿<ProForm @ref="_form" ValidationDelay="0">
+    <ProDataGrid Items="@_items" Validator="_form">
+        <Columns>
+            <TemplateColumn>
+                <CellTemplate>
+                    <ProTextField @bind-Value="context.Item!.Name" Immediate="true" Required />
+                </CellTemplate>
+            </TemplateColumn>
+        </Columns>
+    </ProDataGrid>
+</ProForm>"
+
+@code {
+    public static string __description__ = "Changing the text field to a non-empty string should set form IsTouched=true and IsValid=true";
+
+    private ProForm _form = null!;
+
+    private readonly Item[] _items =
+    [
+        new()
+    ];
+
+    public class Item
+    {
+        public string? Name { get; set; }
+    }
+}

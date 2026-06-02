@@ -1,0 +1,49 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProSelect T="TimelineAlign" @bind-Value="_timelineAlign" Label="Timeline Align" Dense="true" Variant="Variant.Outlined">
+    <ProSelectItem T="TimelineAlign" Value="TimelineAlign.Start">Start</ProSelectItem>
+    <ProSelectItem T="TimelineAlign" Value="TimelineAlign.Default">Default</ProSelectItem>
+    <ProSelectItem T="TimelineAlign" Value="TimelineAlign.End">End</ProSelectItem>
+</ProSelect>
+
+<ProTimeline TimelineAlign="_timelineAlign">
+    <ProTimelineItem Color="Color.Dark" Elevation="25">
+        <ItemOpposite>
+            <ProText Color="Color.Dark" Typo="Typo.h6">Aug 2020</ProText>
+        </ItemOpposite>
+        <ItemContent>
+            <ProPaper Elevation="0" Class="mt-n1">
+                <ProText Color="Color.Dark" Typo="Typo.h6" GutterBottom="true">ProtonBlazor Emerges</ProText>
+                <ProText Typo="Typo.body2">A repository pops up on GitHub named ProtonBlazor.</ProText>
+                <ProText Typo="Typo.body2">The development has already started and the most common components can be found already.</ProText>
+            </ProPaper>
+        </ItemContent>
+    </ProTimelineItem>
+    <ProTimelineItem Color="Color.Primary" Elevation="25" TimelineAlign="TimelineAlign.End">
+        <ItemOpposite>
+            <ProText Color="Color.Primary" Typo="Typo.h6">Oct 2020</ProText>
+        </ItemOpposite>
+        <ItemContent>
+            <ProPaper Elevation="0" Class="mt-n1">
+                <ProText Color="Color.Primary" Typo="Typo.h6" GutterBottom="true">ProtonBlazor Unleashed!</ProText>
+                <ProText Typo="Typo.body2">The first version is released and uploaded as v1.0.7.</ProText>
+            </ProPaper>
+        </ItemContent>
+    </ProTimelineItem>
+    <ProTimelineItem Color="Color.Secondary" Elevation="25">
+        <ItemOpposite>
+            <ProText Color="Color.Secondary" Typo="Typo.h6" GutterBottom="true">Nov 2020</ProText>
+        </ItemOpposite>
+        <ItemContent>
+            <ProPaper Elevation="0" Class="mt-n1">
+                <ProText Color="Color.Secondary" Typo="Typo.h6" GutterBottom="true">First Minor</ProText>
+                <ProText Typo="Typo.body2">ProtonBlazor gets its first minor with version 1.1.0.</ProText>
+                <ProText Typo="Typo.body2">TimerPicker, AutoComplete and Charts join the library as well as T versions of our inputs and selects.</ProText>
+            </ProPaper>
+        </ItemContent>
+    </ProTimelineItem>
+</ProTimeline>
+
+@code{
+    private TimelineAlign _timelineAlign { get; set; } = TimelineAlign.Start;
+}

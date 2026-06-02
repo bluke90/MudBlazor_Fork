@@ -1,0 +1,16 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTimePicker @ref="_picker" Label="With action buttons" AutoClose="@_autoClose">
+    <PickerActions>
+        <ProButton Class="mr-auto align-self-start" OnClick="@(() => _picker.ClearAsync())">Clear</ProButton>
+        <ProButton OnClick="@(() => _picker.CloseAsync(false))">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="@(() => _picker.CloseAsync())">OK</ProButton>
+    </PickerActions>
+</ProTimePicker>
+<ProSwitch @bind-Value="_autoClose" Color="Color.Secondary">AutoClose</ProSwitch>
+
+@code{
+    private ProTimePicker _picker;
+    private readonly TimeSpan? _time = new TimeSpan(00, 45, 00);
+    private bool _autoClose;
+}

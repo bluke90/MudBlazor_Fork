@@ -1,0 +1,120 @@
+@namespace ProtonBlazor.UnitTests.TestComponents.TextField
+@inject IDialogService DialogService
+
+<ProStack Spacing="2" Class="pa-4">
+    <ProText Typo="Typo.h6">TextField Sizing (Dialog)</ProText>
+
+    <ProText Typo="Typo.body2">
+        Opens a simple dialog containing a multiline ProTextField with different Sizing options.
+    </ProText>
+
+    <ProStack Row Spacing="2" AlignItems="AlignItems.Center">
+        <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenAutoDialogAsync">
+            Open Auto Dialog
+        </ProButton>
+
+        <ProButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="OpenFixedDialogAsync">
+            Open Fixed Dialog
+        </ProButton>
+
+        @if (_lastResult is not null)
+        {
+            <ProText Color="Color.Success" Typo="Typo.subtitle2">Submitted</ProText>
+        }
+        else if (_lastCanceled)
+        {
+            <ProText Color="Color.Warning" Typo="Typo.subtitle2">Canceled</ProText>
+        }
+    </ProStack>
+
+    @if (_lastResult is not null)
+    {
+        <ProText Typo="Typo.subtitle2">Result</ProText>
+        <ProPaper Outlined Class="pa-3" Style="white-space: pre-wrap;">@_lastResult</ProPaper>
+    }
+</ProStack>
+
+@code {
+    private string? _lastResult;
+    private bool _lastCanceled;
+
+    private async Task OpenAutoDialogAsync()
+    {
+        _lastResult = null;
+        _lastCanceled = false;
+
+        var parameters = new DialogParameters<TextFieldAutoSizingDialog>
+        {
+            { x => x.Title, "Edit note (Auto)" },
+            { x => x.Placeholder, "What's on your mind?" },
+            { x => x.InitialText, "Line 1\nLine 2\nLine 3" },
+            { x => x.Lines, 8 },
+            { x => x.MaxLines, 16 }
+        };
+
+        var options = new DialogOptions
+        {
+            CloseOnEscapeKey = true,
+            FullWidth = true,
+            MaxWidth = MaxWidth.Small
+        };
+
+        var dialog = await DialogService.ShowAsync<TextFieldAutoSizingDialog>("Edit note (Auto)", parameters, options);
+        await HandleDialogResult(dialog);
+    }
+
+    private async Task OpenFixedDialogAsync()
+    {
+        _lastResult = null;
+        _lastCanceled = false;
+
+        var parameters = new DialogParameters<TextFieldFixedSizingDialog>
+        {
+            { x => x.Title, "Edit note (Fixed)" },
+            { x => x.Placeholder, "What's on your mind?" },
+            { x => x.InitialText, "Line 1\nLine 2\nLine 3" },
+            { x => x.Lines, 8 }
+        };
+
+        var options = new DialogOptions
+        {
+            CloseOnEscapeKey = true,
+            FullWidth = true,
+            MaxWidth = MaxWidth.Small
+        };
+
+        var dialog = await DialogService.ShowAsync<TextFieldFixedSizingDialog>("Edit note (Fixed)", parameters, options);
+        await HandleDialogResult(dialog);
+    }
+
+    private async Task HandleDialogResult(IDialogReference? dialog)
+    {
+        if (dialog is null)
+        {
+            _lastCanceled = true;
+            return;
+        }
+
+        var resultTask = dialog.Result;
+        if (resultTask is null)
+        {
+            _lastCanceled = true;
+            return;
+        }
+
+        var result = await resultTask;
+        if (result is null)
+        {
+            _lastCanceled = true;
+            return;
+        }
+
+        if (result.Canceled)
+        {
+            _lastCanceled = true;
+            return;
+        }
+
+        _lastResult = result.Data as string;
+    }
+}

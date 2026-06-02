@@ -1,0 +1,79 @@
+﻿@namespace ProtonBlazor.Docs.Wireframes
+@layout WireframeContentLayout2
+@page "/getting-started/wireframes/content3"
+
+<ProContainer Class="mt-16" MaxWidth="MaxWidth.Medium">
+    <ProText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Checkout</ProText>
+    <ProGrid Spacing="12" Class="mt-16">
+        <ProItem xs="7">
+            <ProText Typo="Typo.h5" GutterBottom="true">Billing address</ProText>
+            <ProGrid>
+                <ProItem xs="12">
+                    <ProTextField T="string" Label="Email" />
+                </ProItem>
+                <ProItem xs="12">
+                    <ProTextField T="string" Label="Mobile number" />
+                </ProItem>
+                <ProItem xs="12">
+                    <ProTextField T="string" Label="Personal number" />
+                </ProItem>
+                <ProItem xs="6">
+                    <ProTextField T="string" Label="First name" />
+                </ProItem>
+                <ProItem xs="6">
+                    <ProTextField T="string" Label="Last name" />
+                </ProItem>
+                <ProItem xs="12">
+                    <ProTextField T="string" Label="Address" />
+                </ProItem>
+                <ProItem xs="6">
+                    <ProTextField T="string" Label="Postal code" />
+                </ProItem>
+                <ProItem xs="6">
+                    <ProTextField T="string" Label="Postal Area" />
+                </ProItem>
+                <ProItem xs="12" Class="d-flex justify-center">
+                    <ProButton Variant="Variant.Filled" DropShadow="false" Color="Color.Primary" Size="Size.Large" Class="mt-8">Continue to Payment</ProButton>
+                </ProItem>
+            </ProGrid>
+        </ProItem>
+        <ProItem xs="5">
+            <ProText Typo="Typo.h5" GutterBottom="true">Cart</ProText>
+            <ProPaper Class="d-flex flex-column" Style="height:100%;" Outlined="true">
+                <ProList T="string">
+                    <ProListItem Icon="@Icons.Material.Filled.ContentCut">
+                        <div class="d-flex">
+                            <ProText>Scissor - Big</ProText>
+                            <ProText HtmlTag="span" Class="ml-auto">$5</ProText>
+                        </div>
+                    </ProListItem>
+                    <ProListItem Icon="@Icons.Material.Filled.AirplanemodeActive">
+                        <div class="d-flex">
+                            <ProText>Model Airplane</ProText>
+                            <ProText Class="ml-auto">$20</ProText>
+                        </div>
+                    </ProListItem>
+                    <ProListItem Icon="@Icons.Material.Filled.Create">
+                        <div class="d-flex">
+                            <ProText>Plastic Glue</ProText>
+                            <ProText Class="ml-auto">$12</ProText>
+                        </div>
+                    </ProListItem>
+                    <ProListItem Icon="@Icons.Material.Filled.ColorLens">
+                        <div class="d-flex">
+                            <ProText>Color set - Modern planes</ProText>
+                            <ProText Class="ml-auto">$16</ProText>
+                        </div>
+                    </ProListItem>
+                </ProList>
+                <div class="mt-auto">
+                    <ProDivider />
+                    <div class="d-flex pa-4">
+                        <ProText>Total:</ProText>
+                        <ProText Class="ml-auto"><b>$53</b></ProText>
+                    </div>
+                </div>
+            </ProPaper>
+        </ProItem>
+    </ProGrid>
+</ProContainer>

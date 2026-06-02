@@ -1,0 +1,11 @@
+﻿<ProForm ValidationDelay="0">
+    <ProDatePicker Required="true" @bind-Date="Date">
+    </ProDatePicker>
+</ProForm>
+
+@code {
+    public static string __description__ = "Form should validate date picker's date.";
+
+    [Parameter]
+    public DateTime? Date { get; set; }
+}

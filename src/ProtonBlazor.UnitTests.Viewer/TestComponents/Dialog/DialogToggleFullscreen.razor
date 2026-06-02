@@ -1,0 +1,26 @@
+﻿<ProDialog>
+    <DialogContent>
+        <div class="d-flex flex-column py-1">
+            <ProButton OnClick="ToggleFullscreenAsync">Toggle FullScreen</ProButton>
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <ProButton Color="Color.Primary" OnClick="Close">OK</ProButton>
+    </DialogActions>
+</ProDialog>
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; } = null!;
+
+    private void Close() => ProDialog.Close(DialogResult.Ok(true));
+
+    private Task ToggleFullscreenAsync()
+    {
+        var options = ProDialog.Options with
+        {
+            FullScreen = !(ProDialog.Options.FullScreen ?? false)
+        };
+
+        return ProDialog.SetOptionsAsync(options);
+    }
+}

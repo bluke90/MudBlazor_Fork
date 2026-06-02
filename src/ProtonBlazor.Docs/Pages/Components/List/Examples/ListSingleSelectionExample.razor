@@ -1,0 +1,55 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="300px">
+<ProList T="string" @bind-SelectedValue="SelectedValue" SelectionMode="@SelectionMode" ReadOnly="@ReadOnly" Color="@Color.Info">
+        <ProListSubheader>
+            Your drink:
+        <ProChip Color="@Color.Info">
+            @(SelectedValue ?? "You are dry")
+        </ProChip>
+        </ProListSubheader>
+        <ProListItem Text="Milk" />
+        <ProListItem Text="Sparkling Water" Value='"Carbonated H²O"' />
+        <ProListItem Text="Teas">
+            <NestedList>
+                <ProListItem Text="English Tea" Value='"Earl Grey"' />
+                <ProListItem Text="Chinese Tea" Value='"Gunpowder Tea"' />
+                <ProListItem Text="Bubble Tea" />
+            </NestedList>
+        </ProListItem>
+        <ProListItem Text="Coffees">
+            <NestedList>
+                <ProListItem Text="Irish Coffee" />
+                <ProListItem Text="Double Espresso" />
+                <ProListItem Text="Cafe Latte" />
+            </NestedList>
+        </ProListItem>
+    </ProList>
+</ProPaper>
+
+<ProStack Row Justify="Justify.Center" Style="width: 100%" Wrap="Wrap.Wrap">
+    <ProRadioGroup @bind-Value="SelectionMode">
+        <ProRadio Value="SelectionMode.SingleSelection" Color="Color.Primary">SingleSelection</ProRadio>
+        <ProRadio Value="SelectionMode.ToggleSelection" Color="Color.Primary">ToggleSelection</ProRadio>
+    </ProRadioGroup>
+    <ProChipSet T="string" @bind-SelectedValue="SelectedValue" SelectionMode="@SelectionMode" Color="Color.Info" Variant="Variant.Text">
+        <ProChip Text="Milk" />
+        <ProChip Text="Carbonated H²O" />
+        <ProChip Text="Earl Grey" />
+        <ProChip Text="Gunpowder Tea" />
+        <ProChip Text="Bubble Tea" />
+        <ProChip Text="Irish Coffee" />
+        <ProChip Text="Double Espresso" />
+        <ProChip Text="Cafe Latte" />
+    </ProChipSet>
+    <ProSwitch @bind-Value="ReadOnly" Color="Color.Primary">ReadOnly</ProSwitch>    
+</ProStack>
+
+
+
+@code
+{
+    public string SelectedValue = "Milk";
+    public SelectionMode SelectionMode = SelectionMode.SingleSelection;
+    public bool ReadOnly;
+}

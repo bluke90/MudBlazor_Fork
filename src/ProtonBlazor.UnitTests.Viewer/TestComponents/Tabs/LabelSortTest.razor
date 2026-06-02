@@ -1,0 +1,79 @@
+﻿@if (SortKeys is null && SortComparer is null)
+{
+    @if (SortDirection.HasValue)
+    {
+        @* default case - sorting by label text *@
+        <ProTabs SortDirection="@SortDirection.Value">
+            <ProTabPanel Text="2"></ProTabPanel>
+            <ProTabPanel Text="1"></ProTabPanel>
+            <ProTabPanel Text="3"></ProTabPanel>
+        </ProTabs>
+    }
+    else
+    {
+        @* default case - natural order when unspecified *@
+        <ProTabs>
+            <ProTabPanel Text="2"></ProTabPanel>
+            <ProTabPanel Text="1"></ProTabPanel>
+            <ProTabPanel Text="3"></ProTabPanel>
+        </ProTabs>
+    }
+}
+else if (SortKeys is not null)
+{
+    @if (SortDirection.HasValue)
+    {
+        @* default case - sorting by label text *@
+        <ProTabs SortDirection="@SortDirection.Value">
+            <ProTabPanel SortKey="@SortKeys[0]" Text="2"></ProTabPanel>
+            <ProTabPanel SortKey="@SortKeys[1]" Text="1"></ProTabPanel>
+            <ProTabPanel SortKey="@SortKeys[2]" Text="3"></ProTabPanel>
+            <ProTabPanel Text="4"></ProTabPanel>
+        </ProTabs>
+    }
+    else
+    {
+        @* default case - natural order when unspecified *@
+        <ProTabs>
+            <ProTabPanel SortKey="@SortKeys[0]" Text="2"></ProTabPanel>
+            <ProTabPanel SortKey="@SortKeys[1]" Text="1"></ProTabPanel>
+            <ProTabPanel SortKey="@SortKeys[2]" Text="3"></ProTabPanel>
+            <ProTabPanel Text="4"></ProTabPanel>
+        </ProTabs>
+    }
+}
+else if (SortComparer is not null && SortDirection.HasValue)
+{
+    @* custom comparer - SortDirection is ignored for custom comparer *@
+    <ProTabs SortDirection="SortDirection.Value" SortComparer="SortComparer">
+        <ProTabPanel Tag="@( "Y" )" SortKey="3" Text="Apple"></ProTabPanel>
+        <ProTabPanel Tag="@( "Z" )" SortKey="2" Text="Banana"></ProTabPanel>
+        <ProTabPanel Tag="@( "X" )" SortKey="1" Text="Cherry"></ProTabPanel>
+    </ProTabs>
+}
+else if (SortComparer is not null)
+{
+    @* custom comparer - SortDirection is not used with custom comparer and can be unspecified *@
+    <ProTabs SortComparer="SortComparer">
+        <ProTabPanel Tag="@( "Y" )" SortKey="3" Text="Apple"></ProTabPanel>
+        <ProTabPanel Tag="@( "Z" )" SortKey="2" Text="Banana"></ProTabPanel>
+        <ProTabPanel Tag="@( "X" )" SortKey="1" Text="Cherry"></ProTabPanel>
+    </ProTabs>
+}
+
+@code {
+    [Parameter]
+    public SortDirection? SortDirection { get; set; }
+
+    [Parameter]
+    public string[]? SortKeys { get; set; }
+
+    [Parameter]
+    public IComparer<ProTabPanel>? SortComparer { get; set; }
+
+    public class TestComparer : IComparer<ProTabPanel>
+    {
+        public int Compare(ProTabPanel? x, ProTabPanel? y)
+            => Comparer<string>.Default.Compare(x?.Tag as string, y?.Tag as string);
+    }
+}

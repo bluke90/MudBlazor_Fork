@@ -1,0 +1,12 @@
+﻿<ProButton id="showBtn" Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenOverlay">Show Overlay</ProButton>
+
+<ProOverlay @bind-Visible="Visible" DarkBackground="true" AutoClose="true" />
+
+@code {
+    public bool Visible { get; private set; }
+
+    public void OpenOverlay()
+    {
+        Visible = true;
+    }
+}

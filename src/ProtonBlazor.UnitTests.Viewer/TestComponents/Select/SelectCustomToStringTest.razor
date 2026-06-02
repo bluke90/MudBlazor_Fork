@@ -1,0 +1,26 @@
+﻿<ProPopoverProvider />
+
+<ProText Typo="Typo.h6" Class="pro-width-full">@(_pizza is null ? "Nothing selected." : $"Pizza: {_pizza.Name}")</ProText>
+
+<ProSelect T="Pizza" @bind-Value="@_pizza" ToStringFunc="@_toStringFunc" Label="Select your pizza" Variant="Variant.Outlined" PopoverClass="select-popover-class" Clearable>
+    <ProSelectItem Value="@(new Pizza("Cardinale"))" />
+    <ProSelectItem Value="@(new Pizza("Diavolo"))" />
+    <ProSelectItem Value="@(new Pizza("Margarita"))" />
+    <ProSelectItem Value="@(new Pizza("Spinaci"))" />
+</ProSelect>
+
+@code {
+    private Pizza? _pizza = new("Diavolo");
+    private readonly Func<Pizza?, string?> _toStringFunc = p => p?.Name;
+
+    public class Pizza(string name)
+    {
+        public string Name { get; } = name;
+
+        // Note: this is important so the select can compare pizzas
+        public override bool Equals(object? obj) => obj is Pizza other && string.Equals(Name, other.Name, StringComparison.Ordinal);
+
+        // Note: this is important so the select can compare pizzas
+        public override int GetHashCode() => Name.GetHashCode();
+    }
+}

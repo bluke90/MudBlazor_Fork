@@ -1,0 +1,25 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@inherits ProComponentBase
+@inject InternalMudLocalizer Localizer
+
+<div @attributes="UserAttributes" class="@Classname" Style="@Style" @onclick="this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickHandler)">
+<div class="@ClassPosition">
+    @if (!NoIcon)
+    {
+        <div class="pro-alert-icon pro-alert-icon-left">
+            <ProIcon Icon="@_icon" />
+        </div>
+    }
+    <div class="pro-alert-message">
+        @ChildContent
+    </div>
+</div>
+@if (ShowCloseIcon)
+{
+    <div class="pro-alert-close">
+        <ProIconButton Class="pro-alert-close-button" Icon="@CloseIcon" @onclick="OnCloseIconClickAsync" Size="Size.Small"
+                        aria-label="@Localizer[LanguageResource.ProAlert_Close]" />
+    </div>
+}
+</div>

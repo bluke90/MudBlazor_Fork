@@ -1,0 +1,84 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTable Items="_items" Height="350px" Breakpoint="Breakpoint.Sm" HorizontalScrollbar="true">
+    <HeaderContent>
+        <ProTh>Column1</ProTh>
+        <ProTh>Column2</ProTh>
+        <ProTh>Column3</ProTh>
+        <ProTh>Column4</ProTh>
+        <ProTh>Column5</ProTh>
+        <ProTh>Column6</ProTh>
+        <ProTh>Column7</ProTh>
+        <ProTh>Column8</ProTh>
+        <ProTh>Column9</ProTh>
+        <ProTh>Column10</ProTh>
+        <ProTh>Column11</ProTh>
+        <ProTh>Column12</ProTh>
+        <ProTh>Column13</ProTh>
+        <ProTh>Column14</ProTh>
+        <ProTh>Column15</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Column1">@context.Column1</ProTd>
+        <ProTd DataLabel="Column2">@context.Column2</ProTd>
+        <ProTd DataLabel="Column3">@context.Column3</ProTd>
+        <ProTd DataLabel="Column4">@context.Column4</ProTd>
+        <ProTd DataLabel="Column5">@context.Column5</ProTd>
+        <ProTd DataLabel="Column6">@context.Column6</ProTd>
+        <ProTd DataLabel="Column7">@context.Column7</ProTd>
+        <ProTd DataLabel="Column8">@context.Column8</ProTd>
+        <ProTd DataLabel="Column9">@context.Column9</ProTd>
+        <ProTd DataLabel="Column10">@context.Column10</ProTd>
+        <ProTd DataLabel="Column11">@context.Column11</ProTd>
+        <ProTd DataLabel="Column12">@context.Column12</ProTd>
+        <ProTd DataLabel="Column13">@context.Column13</ProTd>
+        <ProTd DataLabel="Column14">@context.Column14</ProTd>
+        <ProTd DataLabel="Column15">@context.Column15</ProTd>
+    </RowTemplate>
+</ProTable>
+
+@code {
+    public class TestItem{
+        public string Column1 {get;set;}
+        public string Column2 {get;set;}
+        public string Column3 {get;set;}
+        public string Column4 {get;set;}
+        public string Column5 {get;set;}
+        public string Column6 {get;set;}
+        public string Column7 {get;set;}
+        public string Column8 {get;set;}
+        public string Column9 {get;set;}
+        public string Column10 {get;set;}
+        public string Column11 {get;set;}
+        public string Column12 {get;set;}
+        public string Column13 {get;set;}
+        public string Column14 {get;set;}
+        public string Column15 {get;set;}
+    }
+    
+    
+    private List<TestItem> _items;
+
+    protected override void OnInitialized() {
+        _items = new List<TestItem>();
+        for (int i = 0; i < 20; i++) {
+            _items.Add(new TestItem {
+                Column1 = $"Value_{i}",
+                Column2 = $"Value_{i}",
+                Column3 = $"Value_{i}",
+                Column4 = $"Value_{i}",
+                Column5 = $"Value_{i}",
+                Column6 = $"Value_{i}",
+                Column7 = $"Value_{i}",
+                Column8 = $"Value_{i}",
+                Column9 = $"Value_{i}",
+                Column10 = $"Value_{i}",
+                Column11 = $"Value_{i}",
+                Column12 = $"Value_{i}",
+                Column13 = $"Value_{i}",
+                Column14 = $"Value_{i}",
+                Column15 = $"Value_{i}"
+            });
+        }
+    }
+}

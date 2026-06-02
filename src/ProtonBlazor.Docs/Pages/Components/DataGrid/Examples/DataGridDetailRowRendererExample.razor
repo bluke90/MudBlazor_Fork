@@ -1,0 +1,76 @@
+﻿@using System.Net.Http.Json
+@using ProtonBlazor.Examples.Data.Models
+@namespace ProtonBlazor.Docs.Examples
+@inject HttpClient httpClient
+
+<ProDataGrid @ref="_dataGrid" Items="@Elements" ReadOnly="@_isReadOnly" EditMode="@DataGridEditMode.Cell" ExpandSingleRow="_expandSingleRow">
+    <Columns>
+        <HierarchyColumn T="Element" ButtonDisabledFunc="@(x => x.Sign == "He")" InitiallyExpandedFunc="@(x => x.Sign == "Li")" EnableHeaderToggle="@_enableHeaderToggle" />
+        <PropertyColumn Property="x => x.Number" Title="Nr" />
+        <PropertyColumn Property="x => x.Sign" />
+        <PropertyColumn Property="x => x.Name" />
+        <PropertyColumn Property="x => x.Position" />
+        <PropertyColumn Property="x => x.Molar" Title="Molar mass" />
+    </Columns>
+    <ChildRowRenderer>
+        <tr class="pro-table-row">
+            <td class="pro-table-cell pro-table-child-content"></td>
+            <td class="pro-table-cell pro-table-child-content" colspan="2">
+                Child row 1
+            </td>
+            <td class="pro-table-cell pro-table-child-content">
+                Sub 1
+            </td>
+            <td class="pro-table-cell pro-table-child-content" colspan="2">
+                Molar
+            </td>
+        </tr>
+        <tr class="pro-table-row">
+            <td class="pro-table-cell pro-table-child-content"></td>
+            <td class="pro-table-cell pro-table-child-content" colspan="2">
+                Child row 2
+            </td>
+            <td class="pro-table-cell pro-table-child-content">
+                Sub 2
+            </td>
+            <td class="pro-table-cell pro-table-child-content" colspan="2">
+                Molar
+            </td>
+        </tr>
+    </ChildRowRenderer>
+    <PagerContent>
+        <ProDataGridPager T="Element" />
+    </PagerContent>
+</ProDataGrid>
+
+<div class="d-flex flex-wrap mt-4">
+    <ProSwitch T="bool" @bind-Value="_isReadOnly" Color="@Color.Primary">Read Only</ProSwitch>
+    <ProButton OnClick="@ExpandAll" Color="@Color.Primary">Expand all</ProButton>
+    <ProButton OnClick="@CollapseAll" Color="@Color.Primary">Collapse all</ProButton>
+    <ProSwitch @bind-Value="@_enableHeaderToggle" Label="Enable header toggle" Color="@Color.Primary" />
+    <ProSwitch @bind-Value="@_expandSingleRow" Label="Expand single row" Color="@Color.Primary" />
+</div>
+
+@code {
+
+    private bool _isReadOnly = true;
+    private bool _expandSingleRow = false;
+    private bool _enableHeaderToggle = false;
+    private ProDataGrid<Element> _dataGrid = null!;
+    private IEnumerable<Element> Elements = new List<Element>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Elements = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable");
+    }
+
+    private Task ExpandAll()
+    {
+        return _dataGrid.ExpandAllHierarchy();
+    }
+
+    private Task CollapseAll()
+    {
+        return _dataGrid.CollapseAllHierarchy();
+    }
+}

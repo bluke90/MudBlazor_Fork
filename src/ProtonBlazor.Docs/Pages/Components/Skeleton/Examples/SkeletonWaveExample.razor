@@ -1,0 +1,45 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCard>
+    <ProCardHeader>
+        <CardHeaderAvatar>
+            <ProSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="40px" Width="40px"/>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <ProSkeleton Animation="Animation.Wave" Width="40%" />
+            <ProSkeleton Animation="Animation.Wave" Width="60%" />
+        </CardHeaderContent>
+    </ProCardHeader>
+    <ProSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Height="250px" />
+    <ProCardContent>
+        <ProSkeleton Animation="Animation.Wave" />
+    </ProCardContent>
+    <ProCardActions>
+        <ProSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-2 mb-2" />
+        <ProSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-3 mb-2" />
+    </ProCardActions>
+</ProCard>
+
+
+<ProCard>
+    <ProCardHeader>
+        <CardHeaderAvatar>
+            <ProAvatar>I</ProAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <ProText Typo="Typo.body1">Istra Croatia</ProText>
+            <ProText Typo="Typo.body2">Peninsula in Europe</ProText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <ProIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+        </CardHeaderActions>
+    </ProCardHeader>
+    <ProCardMedia Image="images/pilars.jpg" Height="250" />
+    <ProCardContent>
+        <ProText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</ProText>
+    </ProCardContent>
+    <ProCardActions>
+        <ProIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+        <ProIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+    </ProCardActions>
+</ProCard>

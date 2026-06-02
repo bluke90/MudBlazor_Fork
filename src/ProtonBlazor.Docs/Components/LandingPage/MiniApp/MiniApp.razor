@@ -1,0 +1,336 @@
+﻿@using Microsoft.AspNetCore.Components
+@using ProtonBlazor.Examples.Data.Models
+@using ProtonBlazor.Utilities
+@namespace ProtonBlazor.Docs.Components.LandingPage
+
+<div class="d-flex pro-width-full pro-height-full">
+    <ProOverlay OnClick="@(() => ToggleMiniDrawer())" @bind-Visible="@overlayVisible" Absolute="true" ZIndex="1" />
+    <div class="@MiniDrawerClassNames" style="@GetDrawerWidth()">
+        <div class="d-flex align-center px-4">
+            <ProtonBlazorLogo Class="me-3" Style="width:36px;"/>
+            <ProText Typo="Typo.h6">Mud Mini</ProText>
+        </div>
+        <ProList T="int" @bind-SelectedValue="selectedValue" Class="py-6 mini-fake-nav">
+
+            <ProListSubheader Class="pt-6 pb-2">General</ProListSubheader>
+
+            <ProListItem tabindex="-1" Value="1" Icon="@Icons.Material.Rounded.SpaceDashboard" Text="Dashboard" IconColor="Color.Inherit"/>
+            <ProListItem tabindex="-1" Value="2" Icon="@Icons.Material.Rounded.ShoppingCart" Text="E-Commerce" IconColor="Color.Inherit"/>
+            <ProListItem tabindex="-1" Value="3" Icon="@Icons.Material.Rounded.AccountBalance" Text="Banking" IconColor="Color.Inherit"/>
+            <ProListItem tabindex="-1" Value="4" Icon="@Icons.Material.Rounded.Event" Text="Booking" IconColor="Color.Inherit"/>
+
+            <ProListSubheader Class="pt-6 pb-2">Applications</ProListSubheader>
+
+            <ProListItem tabindex="-1" Value="5" Icon="@Icons.Material.Rounded.Email" Text="Mail" IconColor="Color.Inherit" />
+            <ProListItem tabindex="-1" Value="6" Icon="@Icons.Material.Rounded.QuestionAnswer" Text="Chat" IconColor="Color.Inherit" />
+            <ProListItem tabindex="-1" Value="7" Icon="@Icons.Material.Rounded.EventNote" Text="Calendar" IconColor="Color.Inherit" />
+            <ProListItem tabindex="-1" Value="8" Icon="@Icons.Material.Rounded.ViewKanban" Text="Kanban" IconColor="Color.Inherit" />
+
+            <ProListSubheader Class="pt-6 pb-2">Manage</ProListSubheader>
+
+            <ProListItem tabindex="-1" Value="9" Icon="@Icons.Material.Rounded.Person" Text="Users" />
+            <ProListItem tabindex="-1" Value="10" Icon="@Icons.Material.Rounded.Group" Text="Groups" />
+            <ProListItem tabindex="-1" Value="11" Icon="@Icons.Material.Rounded.ShoppingCart" Text="E-Commerce" Expanded="false">
+                <NestedList>
+                    <ProListItem tabindex="-1" Value="12" Text="Analytics"/>
+                    <ProListItem tabindex="-1" Value="13" Text="Products"/>
+                    <ProListItem tabindex="-1" Value="14" Text="Orders"/>
+                    <ProListItem tabindex="-1" Value="15" Text="Invoice"/>
+                </NestedList>
+            </ProListItem>
+        </ProList>
+    </div>
+    <div class="@ContentClassNames">
+        <ProToolBar Gutters="false" Class="pro-text-secondary">
+            <ProIconButton tabindex="-1" OnClick="@(() => ToggleMiniDrawer())" Icon="@GetIcon()" Color="Color.Inherit" />
+            <ProIconButton tabindex="-1" Icon="@Icons.Material.Outlined.Search" Color="Color.Inherit" />
+            <ProSpacer />
+            <ProIconButton tabindex="-1" Class="pro-text-secondary" Icon="@Icons.Material.Outlined.Notifications"/>
+            <ProMenu AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight" PopoverClass="protonblazor-landingpage-scaled-menu pro-elevation-1">
+                <ActivatorContent>
+                    <div @onclick="@context.ToggleAsync" style="cursor: pointer">
+                        <MiniAppAvatar />
+                    </div>
+                </ActivatorContent>
+                <ChildContent>
+                    <div class="px-4">
+                        <ProText Typo="Typo.subtitle2">Martin Mudsson</ProText>
+                        <ProText Class="mt-n2" Typo="Typo.body1">martin@mudsson.se</ProText>
+                    </div>
+                    <ProDivider Class="my-2"/>
+                    <ProListItem T="string" Dense="true" Icon="@Icons.Material.Rounded.Person">Profile</ProListItem>
+                    <ProListItem T="string" Dense="true" Icon="@Icons.Material.Rounded.Settings">Settings</ProListItem>
+                    <ProListItem T="string" Dense="true" Icon="@Icons.Material.Rounded.Logout">Logout</ProListItem>
+                </ChildContent>
+            </ProMenu>
+        </ProToolBar>
+        <div class="lp-app-grid">
+            <ProPaper Class="py-4 px-6 rounded-lg d-flex align-center">
+                <div class="flex-grow-1">
+                    <ProText Typo="Typo.h6">Graphite on roof</ProText>
+                    <div class="d-flex align-center my-1">
+                        <ProAvatar Class="me-2 pa-4" Style="background-color: var(--pro-palette-primary-hover);" Size="Size.Small">
+                            <ProIcon Color="Color.Primary" Icon="@Icons.Material.Filled.TrendingDown" Size="Size.Small"/>
+                        </ProAvatar>
+                        <ProText Typo="Typo.subtitle2">+2.6%</ProText>
+                    </div>
+                    <ProText Typo="Typo.h4">149,567</ProText>
+                </div>
+                <div class="d-flex align-end justify-end pro-height-full py-8">
+                    <ProPaper Height="80%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="95%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="90%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="85%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="65%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="52%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="40%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="38%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="36%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                    <ProPaper Height="20%" Width="6px" Square="true" Class="pro-primary mr-1 rounded-t"/>
+                </div>
+            </ProPaper>
+            <ProPaper Class="py-4 px-6 rounded-lg d-flex align-center">
+                <div class="flex-grow-1">
+                    <ProText Typo="Typo.h6">Global Spread</ProText>
+                    <div class="d-flex align-center my-1">
+                        <ProAvatar Class="me-2 pa-4" Style="background-color: var(--pro-palette-secondary-hover);" Size="Size.Small">
+                            <ProIcon Color="Color.Secondary" Icon="@Icons.Material.Filled.TrendingUp" Size="Size.Small"/>
+                        </ProAvatar>
+                        <ProText Typo="Typo.subtitle2">+9.6%</ProText>
+                    </div>
+                    <ProText Typo="Typo.h4">12%</ProText>
+                </div>
+                <div class="d-flex align-end justify-end pro-height-full py-8">
+                    <ProPaper Height="15%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="20%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="53%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="35%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="45%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="70%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="58%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="76%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="85%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                    <ProPaper Height="61%" Width="6px" Square="true" Class="pro-secondary mr-1 rounded-t"/>
+                </div>
+            </ProPaper>
+            <ProPaper Class="py-4 px-6 rounded-lg d-flex align-center">
+                <div class="flex-grow-1">
+                    <ProText Typo="Typo.h6">Roentgen</ProText>
+                    <div class="d-flex align-center my-1">
+                        <ProAvatar Class="me-2 pa-4" Style="background-color: var(--pro-palette-tertiary-hover);" Size="Size.Small">
+                            <ProIcon Color="Color.Tertiary" Icon="@Icons.Material.Filled.TrendingFlat" Size="Size.Small"/>
+                        </ProAvatar>
+                        <ProText Typo="Typo.subtitle2">~0.0%</ProText>
+                    </div>
+                    <ProText Typo="Typo.h4">3,6</ProText>
+                </div>
+                <div class="d-flex align-end justify-end pro-height-full py-8">
+                    <ProPaper Height="10%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="16%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="26%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="36%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="36%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="28%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="36%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="36%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="28%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                    <ProPaper Height="36%" Width="6px" Square="true" Class="pro-tertiary mr-1 rounded-t"/>
+                </div>
+            </ProPaper>
+        </div>
+        <div class="my-6 d-flex gap-6 flex-wrap">
+            <ProPaper Class="py-4 px-6 rounded-lg d-flex flex-column">
+                    <ProText Typo="Typo.h6">Uranium-235</ProText>
+                    <div class="d-flex align-center gap-4">
+                        <ProRating tabindex="-1" ReadOnly="true" SelectedValue="4" />
+                        <ProText Typo="Typo.subtitle2" Color="Color.Primary">See all 137 reviews</ProText>
+                    </div>
+                    <ProText>This is the type of uranium used in the RBMK reactors.</ProText>
+                    <ProDivider Class="my-3"/>
+                    <ProText Typo="Typo.subtitle2" GutterBottom="true">Reactor Type</ProText>
+                    <div class="mx-n2 mb-2">
+                    <ProChip tabindex="-1" T="string" Color="Color.Primary">RBMK-1000</ProChip><ProChip tabindex="-1" T="string">RBMK-1500</ProChip><ProChip tabindex="-1" T="string">RBMKP-2400</ProChip>
+                    </div>
+                    <div>
+                        <ProButton tabindex="-1" Variant="Variant.Text" Color="Color.Primary" Class="ml-n2 mb-n2">Read more</ProButton>
+                    </div>
+            </ProPaper>
+            @if(IsMobile == false)
+            {
+                <ProSimpleTable Dense="true" Hover="true" Class="flex-grow-1">
+                    <thead>
+                        <tr>
+                            <th>Nr</th>
+                            <th>Sign</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Molar mass</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Elements)
+                        {
+                            <tr>
+                                <td>@item.Number</td>
+                                <td>@item.Sign</td>
+                                <td>@item.Name</td>
+                                <td>@item.Position</td>
+                                <td>@item.Molar</td>
+                            </tr>
+                        }
+                    </tbody>
+                </ProSimpleTable>
+            }
+        </div>
+        @if(IsMobile == false)
+        {
+        <div class="lp-app-grid">
+            <ProPaper Class="rounded-lg">
+                <ProDatePicker PickerVariant="PickerVariant.Static" Orientation="Orientation.Landscape" Date="@(DateTime.Today.AddDays(1))" Class="rounded-lg" />
+            </ProPaper>
+            <ProPaper Class="rounded-lg d-flex flex-column">
+                <div class="d-flex align-center px-4 pt-4 pb-3 gap-4">
+                    <ProIcon Icon="@Icons.Custom.Brands.ProtonBlazor" Color="Color.Primary" />
+                    <ProText Typo="Typo.subtitle2">ProPay</ProText>
+                </div>
+                <ProDivider/>
+                <div class="d-flex flex-column pa-4 gap-4">
+                    <ProTextField tabindex="-1" T="string" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Rounded.CreditCard" Mask="@(new PatternMask("0000 0000 0000 0000"))" Label="Card Number" Placeholder="0000 0000 0000 0000"  Variant="@Variant.Text" />
+                    <div class="d-flex gap-4">
+                        <ProTextField tabindex="-1" T="string" Mask="@(new DateMask("MM/YY", 'Y', 'M'))" Label="Expiration" Placeholder="MM/YY"  Variant="@Variant.Text" />
+                        <ProTextField tabindex="-1" T="string" Mask="@(new PatternMask("000"))" Label="CVC" Placeholder="000" Variant="@Variant.Text" />
+                    </div>
+                </div>
+                <div class="d-flex align-end flex-grow-1 pa-4">
+                    <ProButton tabindex="-1" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" DropShadow="false">Pay now</ProButton>
+                </div>
+            </ProPaper>
+            <div class="d-flex flex-column gap-6">
+                <ProTabs Elevation="1" Rounded="true" Color="@Color.Primary">
+                    <ProTabPanel Text="One" />
+                    <ProTabPanel Text="Two" />
+                    <ProTabPanel Text="Three" />
+                    <ProTabPanel Text="Four" />
+                </ProTabs>
+                <div class="d-flex gap-6 flex-grow-1">
+                    <ProPaper Class="d-flex flex-column align-center py-2">
+                        <ProText Typo="Typo.body2">100°C</ProText>
+                        <div class="pro-height-full my-n6">
+                            <ProSlider tabindex="-1" Value="@sliderValue" Vertical="true" Class="d-flex mx-n8"/>
+                        </div>
+                        <ProText Typo="Typo.body2">0°C</ProText>
+                    </ProPaper>
+                    <div class="d-flex flex-column gap-6">
+                        <ProPaper Class="d-flex">
+                            <ProIconButton tabindex="-1" Icon="@Icons.Material.Filled.FormatAlignRight" Class="rounded-0 rounded-l" />
+                            <ProIconButton tabindex="-1" Icon="@Icons.Material.Filled.FormatAlignCenter" Class="rounded-0" />
+                            <ProIconButton tabindex="-1" Icon="@Icons.Material.Filled.FormatAlignLeft" Class="rounded-0" />
+                            <ProDivider Vertical="true" FlexItem="true" Class="mx-2" />
+                            <ProIconButton tabindex="-1" Icon="@Icons.Material.Filled.FormatBold" Class="rounded-0" />
+                            <ProIconButton tabindex="-1" Icon="@Icons.Material.Filled.FormatItalic" Class="rounded-0" />
+                            <ProIconButton tabindex="-1" Icon="@Icons.Material.Filled.FormatUnderlined" Class="rounded-0 rounded-r" />
+                        </ProPaper>
+                        <div class="relative">
+                            <ProExpansionPanels>
+                                <ProExpansionPanel>
+                                    <TitleContent>
+                                        <div class="d-flex gap-4">
+                                            <ProIcon Icon="@Icons.Material.Filled.Folder"/>
+                                            <ProText>ProtonBlazor News</ProText>
+                                        </div>
+                                    </TitleContent>
+                                    <ChildContent>
+                                        Nope :)
+                                    </ChildContent>
+                                </ProExpansionPanel>
+                                <ProExpansionPanel @bind-Expanded="@expansionPanel1">
+                                    <TitleContent>
+                                        <div class="d-flex gap-4">
+                                            <ProIcon Icon="@Icons.Material.Filled.Folder"/>
+                                            <ProText>Scraped Ideas</ProText>
+                                        </div>
+                                    </TitleContent>
+                                    <ChildContent>
+                                        ProReactor
+                                    </ChildContent>
+                                </ProExpansionPanel>
+                            </ProExpansionPanels>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public bool IsMobile { get; set; }
+
+    private bool miniDrawerOpen;
+    private bool overlayVisible { get; set; }
+    private double sliderValue = 50.0;
+    private bool expansionPanel1 = true;
+    int selectedValue = 1;
+
+    private void ToggleMiniDrawer()
+    {
+        miniDrawerOpen = !miniDrawerOpen;
+        if (IsMobile && miniDrawerOpen)
+        {
+            overlayVisible = true;
+        }
+        else
+        {
+            overlayVisible = false;
+        }
+    }
+
+    private string GetIcon() => miniDrawerOpen ? Icons.Material.Rounded.MenuOpen : Icons.Material.Rounded.Menu;
+
+    protected string MiniDrawerClassNames =>
+        new CssBuilder("mini-drawer py-8 flex-grow-0 flex-shrink-0")
+            .AddClass("absolute", IsMobile)
+            .Build();
+
+    protected string ContentClassNames =>
+        new CssBuilder("flex-grow-1 flex-shrink-1")
+            .AddClass("pa-5", !IsMobile)
+            .AddClass("px-8", IsMobile)
+            .Build();
+
+    private string GetDrawerWidth()
+    {
+        if (miniDrawerOpen)
+        {
+            return "width:240px;";
+        }
+        else
+        {
+            return "width:0;opacity:0;";
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (IsMobile)
+        {
+            miniDrawerOpen = false;
+        }
+        else
+        {
+            miniDrawerOpen = true;
+        }
+    }
+
+    private IEnumerable<Element> Elements = new List<Element>()
+    {
+        new Element() { Number = 1, Sign = "H", Name = "Hydrogen", Position = 0, Molar = 1.00794},
+        new Element() { Number = 2, Sign = "He", Name = "Helium", Position = 17, Molar = 4.002602},
+        new Element() { Number = 3, Sign = "Li", Name = "Lithium", Position = 0, Molar = 6.941},
+        new Element() { Number = 4, Sign = "Be", Name = "Beryllium", Position = 1, Molar = 9.012182},
+        new Element() { Number = 5, Sign = "C", Name = "Carbon", Position = 13, Molar = 12.0107},
+        new Element() { Number = 6, Sign = "O", Name = "Oxygen", Position = 15, Molar = 15.9994},
+    };
+}

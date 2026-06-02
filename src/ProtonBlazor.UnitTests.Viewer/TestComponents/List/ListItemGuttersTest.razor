@@ -1,0 +1,14 @@
+@namespace ProtonBlazor.UnitTests.TestComponents
+
+<ProList T="string" Gutters="@ListGutters">
+    <ProListItem Text="Inbox" Icon="@Icons.Material.Filled.Inbox" Gutters="@ItemGutters"/>
+</ProList>
+
+@code
+{
+    [Parameter]
+    public required bool ListGutters { get; set; }
+    
+    [Parameter]
+    public required bool? ItemGutters { get; set; }
+}

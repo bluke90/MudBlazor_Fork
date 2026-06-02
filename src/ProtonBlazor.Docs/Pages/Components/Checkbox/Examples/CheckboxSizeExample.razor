@@ -1,0 +1,10 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCheckBox @bind-Value="Size_CheckBox1" Size="Size.Small" Color="Color.Primary"></ProCheckBox>
+<ProCheckBox @bind-Value="Size_CheckBox2" Size="Size.Medium" Color="Color.Secondary"></ProCheckBox>
+<ProCheckBox @bind-Value="Size_CheckBox3" Size="Size.Large" Color="Color.Tertiary"></ProCheckBox>
+@code {
+    public bool Size_CheckBox1 { get; set; } = true;
+    public bool Size_CheckBox2 { get; set; } = false;
+    public bool Size_CheckBox3 { get; set; } = false;
+}

@@ -1,0 +1,9 @@
+﻿@inherits ProComponentBase
+@namespace ProtonBlazor.UnitTests
+
+<ProButton id="@($"childBtn{Id}")" OnClick="ToggleAsync">@(_expandedState.Value ? "Show" : "Hide")</ProButton>
+
+@if (_expandedState.Value)
+{
+    <ProAlert id="@($"childAlert{Id}")">@($"Oh my! We got secret content{Id}!")</ProAlert>
+}

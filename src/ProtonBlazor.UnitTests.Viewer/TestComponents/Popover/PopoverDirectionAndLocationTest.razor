@@ -1,0 +1,93 @@
+﻿<ProPopoverProvider />
+
+<ProGrid>
+    <ProItem xs="3">
+        <ProText Typo="Typo.h6">Anchor Origin</ProText>
+        <ProRadioGroup T="Origin" @bind-Value="_anchorOrigin" Class="d-flex flex-column">
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.TopLeft">Top-Left</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.TopCenter">Top-Center</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.TopRight">Top-Right</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.CenterLeft">Center-Left</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.CenterCenter">Center-Center</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.CenterRight">Center-Right</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.BottomLeft">Bottom-Left</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.BottomCenter">Bottom-Center</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.BottomRight">Bottom-Right</ProRadio>
+        </ProRadioGroup>
+    </ProItem>
+    <ProItem xs="6" Class="d-flex justify-center align-center">
+        <ProBadge Origin="@_anchorOrigin" Color="Color.Primary" Dot="true" Overlap="true" Elevation="4" BadgeClass="ma-2">
+            <ProPaper Elevation="0" Outlined="true" Class="pa-12">
+                <ProPopover OverflowBehavior="OverflowBehavior.FlipNever" Open="true" AnchorOrigin="@_anchorOrigin" TransformOrigin="@_transformOrigin" Class="pa-4">
+                    <ProText Typo="Typo.body2" Class="px-4 py-1">The content of the popover</ProText>
+                    <div class="@GetLocation()" style="top:0; left:0;">
+                        <ProIcon Icon="@GetIcon()" Color="Color.Secondary" Class="" />
+                    </div>
+                </ProPopover>
+            </ProPaper>
+        </ProBadge>
+    </ProItem>
+    <ProItem xs="3">
+        <ProText Typo="Typo.h6">Transform Origin</ProText>
+        <ProRadioGroup T="Origin" @bind-Value="_transformOrigin" Class="d-flex flex-column">
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.TopLeft">Top-Left</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.TopCenter">Top-Center</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.TopRight">Top-Right</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.CenterLeft">Center-Left</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.CenterCenter">Center-Center</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.CenterRight">Center-Right</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.BottomLeft">Bottom-Left</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.BottomCenter">Bottom-Center</ProRadio>
+            <ProRadio Color="Color.Secondary" Dense="true" Value="Origin.BottomRight">Bottom-Right</ProRadio>
+        </ProRadioGroup>
+    </ProItem>
+</ProGrid>
+
+@code {
+    public static string __description__ = "Popover Direction and Location Test";
+
+    private Origin _transformOrigin = Origin.TopLeft;
+    private Origin _anchorOrigin = Origin.BottomLeft;
+
+    private string GetIcon()
+    {
+        var icon = _transformOrigin switch
+        {
+            Origin.TopLeft => Icons.Material.Filled.SouthEast,
+            Origin.TopCenter => Icons.Material.Filled.South,
+            Origin.TopRight => Icons.Material.Filled.SouthWest,
+            Origin.CenterLeft => Icons.Material.Filled.East,
+            Origin.CenterCenter => Icons.Material.Filled.ZoomOutMap,
+            Origin.CenterRight => Icons.Material.Filled.West,
+            Origin.BottomLeft => Icons.Material.Filled.NorthEast,
+            Origin.BottomCenter => Icons.Material.Filled.North,
+            Origin.BottomRight => Icons.Material.Filled.NorthWest,
+            _ => ""
+        };
+        return icon;
+    }
+
+    private string GetLocation()
+    {
+        var align = string.Empty;
+        var justify = string.Empty;
+        var pos = _transformOrigin.ToStringFast(true).Split("-");
+
+        align = pos[0] switch
+        {
+            "center" => "align-center",
+            "top" => "align-start",
+            "bottom" => "align-end",
+            _ => align
+        };
+        justify = pos[1] switch
+        {
+            "left" => "justify-start",
+            "right" => "justify-end",
+            "center" => "justify-center",
+            _ => justify
+        };
+
+        return $"absolute pro-height-full pro-width-full d-flex {align} {justify}";
+    }
+}

@@ -1,0 +1,44 @@
+﻿.pro-divider {
+  margin: 0;
+  flex-shrink: 0;
+  border-color: var(--pro-palette-divider);
+  border-width: 1px;
+  border-style: solid none none none;
+}
+
+.pro-divider-absolute {
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+}
+
+.pro-divider-inset {
+  margin-left: 72px;
+  margin-inline-start: 72px;
+  margin-inline-end: unset;
+}
+
+.pro-divider-light {
+  border-color: var(--pro-palette-divider-light);
+}
+
+.pro-divider-middle {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.pro-divider-vertical {
+  border-style: none solid none none;
+  height: 100%;
+}
+
+.pro-divider-flexitem {
+  height: auto;
+  align-self: stretch;
+}
+
+.pro-divider-fullwidth {
+  flex-grow: 1;
+  width: 100%;
+}

@@ -1,0 +1,15 @@
+﻿<ProToggleGroup @bind-Values="_values" T="string" Color="Color.Primary" SelectionMode="SelectionMode.MultiSelection">
+    <ProToggleItem T="string" Value="@("Item One")" Text="Item One" />
+    <ProToggleItem T="string" Value="@("Item Two")" Text="Item Two" />
+    <ProToggleItem T="string" Value="@("Item Three")" Text="Item Three" />
+</ProToggleGroup>
+
+<ProToggleGroup @bind-Values="_values" T="string" Color="Color.Primary" SelectionMode="SelectionMode.MultiSelection">
+    <ProToggleItem T="string" Value="@("Item One")" Text="Item One" />
+    <ProToggleItem T="string" Value="@("Item Two")" Text="Item Two" />
+    <ProToggleItem T="string" Value="@("Item Three")" Text="Item Three" />
+</ProToggleGroup>
+
+@code {
+    private IEnumerable<string>? _values;
+}

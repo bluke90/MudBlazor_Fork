@@ -1,0 +1,19 @@
+﻿<ProExpansionPanels>
+    <ProExpansionPanel @bind-Expanded="Panel1Expanded" Class="panel-one" Text="Panel One">
+        Panel One Content
+    </ProExpansionPanel>
+    <ProExpansionPanel @bind-Expanded="Panel2Expanded" Class="panel-two" Text="Panel Two">
+        Panel Two Content
+    </ProExpansionPanel>
+    <ProExpansionPanel @bind-Expanded="Panel3Expanded" Class="panel-three" Text="Panel Three">
+        Panel Three Content
+    </ProExpansionPanel>
+</ProExpansionPanels>
+
+@code {
+    public bool Panel1Expanded { get; private set; }
+
+    public bool Panel2Expanded { get; private set; } = true;
+
+    public bool Panel3Expanded { get; private set; }
+}

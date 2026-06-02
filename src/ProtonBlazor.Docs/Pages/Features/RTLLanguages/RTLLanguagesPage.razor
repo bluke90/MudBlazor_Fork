@@ -1,0 +1,75 @@
+@page "/features/rtl-languages"
+
+<DocsPage>
+    <DocsPageHeader Title="RTL Languages" SubTitle="Right-to-Left (RTL) specific styling options" />
+    <DocsPageContent>
+        <DocsPageSection>
+            <SectionHeader Title="Explanation">
+                <Description>
+                    Right-to-Left script is used in languages like Arabic and Hebrew where writing starts from the right of the page and continues to the left. The UI has to be mirrored horizontally because of that.
+                </Description>
+            </SectionHeader>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="ProRTLProvider">
+                <Description>
+                    Wrap your code inside a <CodeInline>ProRTLProvider</CodeInline>.
+                    Note that <CodeInline>ProThemeProvider</CodeInline>, <CodeInline>ProDialogProvider</CodeInline> and <CodeInline>ProSnackbarProvider</CodeInline> must be children of
+                    <CodeInline>ProRTLProvider</CodeInline> in order to support RTL. Your <CodeInline>MainLayout.razor</CodeInline> should look something like this.
+                </Description>
+            </SectionHeader>
+            <SectionContent Code="@nameof(RTLLanguagesMRtlProviderExample)" />
+        </DocsPageSection>
+        
+        <DocsPageSection>
+            <SectionHeader Title="Example">
+                <Description>
+                    By setting <CodeInline>RightToLeft="true"</CodeInline> you can change the layout to RTL.
+                </Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(RTLLanguagesLayoutExample)" ShowCode="false" Block="true">
+                <RTLLanguagesLayoutExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Text Fields">
+                <Description>
+                    <ProText>
+                        Text Fields with <CodeInline>InputType.Email</CodeInline> or <CodeInline>InputType.Telephone</CodeInline> remain left-aligned, with the label remaining right-aligned.
+                    </ProText>
+                </Description>
+            </SectionHeader>
+            <SectionContent Code="@nameof(RTLLanguagesTextfieldExample)" ShowCode="false">
+                <RTLLanguagesTextfieldExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Border Radius">
+                <Description>
+                    <ProText>
+                        If your application needs to support both left-to-right and right-to-left languages, make use of
+                        <CodeInline>start</CodeInline> and <CodeInline>end</CodeInline> border radiuses instead of <CodeInline>left</CodeInline> and <CodeInline>right</CodeInline>.
+                        Some other components like <ProLink Href="/components/drawer">ProDrawer</ProLink> also support <CodeInline>start</CodeInline> and <CodeInline>end</CodeInline> properties.
+                    </ProText>
+                </Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(RTLLanguagesBorderRadiusExample)" ShowCode="false">
+                <RTLLanguagesBorderRadiusExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Other useful css classes">
+            </SectionHeader>
+            <ul class="pro-typography-body1">
+                <li><CodeInline>.pro-flip-x-rtl</CodeInline> - Flips the element horizontally when in <b>rtl mode</b> (Can be used for icons which should be flipped in <b>rtl mode</b>)</li>
+                <li><CodeInline>.pro-rtl</CodeInline> and <CodeInline>.pro-ltr</CodeInline> - Changes a specific element to use <b>left-to-right</b> or <b>right-to-left</b>  styling</li>
+                <li><CodeInline>margin/padding</CodeInline> with <CodeInline>start/end</CodeInline> - See <ProLink Href="/features/spacing">Spacing</ProLink> for more information</li>
+            </ul>
+        </DocsPageSection>
+
+    </DocsPageContent>
+</DocsPage>

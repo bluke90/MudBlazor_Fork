@@ -1,0 +1,56 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@inherits ProComponentBase
+@inject InternalMudLocalizer Localizer
+
+<ProElement HtmlTag="ul" Class="@Classname" Style="@Style" Tag="@Tag" UserAttributes="@UserAttributes">
+    @if (ShowFirstButton)
+    {
+        <li class="@ItemClassname">
+            <ProIconButton Icon="@FirstIcon" Size="@Size" Variant="@Variant" Disabled="@(_selectedState.Value == 1 || Disabled)" OnClick="@(() => OnClickControlButtonAsync(Page.First))" aria-label="@Localizer[LanguageResource.ProPagination_FirstPage]"></ProIconButton>
+        </li>
+    }
+    @if (ShowPreviousButton)
+    {
+        <li class="@ItemClassname">
+            <ProIconButton Icon="@BeforeIcon" Size="@Size" Variant="@Variant" Disabled="@(_selectedState.Value == 1 || Disabled)" OnClick="@(() => OnClickControlButtonAsync(Page.Previous))" aria-label="@Localizer[LanguageResource.ProPagination_PreviousPage]"></ProIconButton>
+        </li>
+    }
+    @if (ShowPageButtons)
+    {
+        foreach (var state in GeneratePagination())
+        {
+            var currentPage = state;
+            if (currentPage == -1)
+            {
+                <li class="@ItemClassname">
+                    <ProText disabled="@Disabled">...</ProText>
+                </li>
+            }
+            else if (currentPage == _selectedState.Value)
+            {
+                <li class="@SelectedItemClassname">
+                    <ProButton Variant="@(Variant == Variant.Outlined ? Variant.Outlined : Variant.Filled)" Size="@Size" Ripple="false" Disabled="@Disabled" Color="@Color" aria-current="page" aria-label="@Localizer[LanguageResource.ProPagination_CurrentPage, $"{currentPage}"]">@currentPage</ProButton>
+                </li>
+            }
+            else
+            {
+                <li class="@ItemClassname">
+                    <ProButton OnClick="@(() => SetSelectedAsync(currentPage))" Variant="@Variant" Size="@Size" Ripple="false" Disabled="@Disabled" aria-label="@Localizer[LanguageResource.ProPagination_PageIndex, $"{currentPage}"]">@currentPage</ProButton>
+                </li>
+            }
+        }
+    }
+    @if (ShowNextButton)
+    {
+        <li class="@ItemClassname">
+            <ProIconButton Icon="@NextIcon" Variant="@Variant" Size="@Size" Disabled="@(_selectedState.Value == _countState.Value || Disabled)" OnClick="@(() => OnClickControlButtonAsync(Page.Next))" aria-label="@Localizer[LanguageResource.ProPagination_NextPage]"></ProIconButton>
+        </li>
+    }
+    @if (ShowLastButton)
+    {
+        <li class="@ItemClassname">
+            <ProIconButton Icon="@LastIcon" Variant="@Variant" Size="@Size" Disabled="@(_selectedState.Value == _countState.Value || Disabled)" OnClick="@(() => OnClickControlButtonAsync(Page.Last))" aria-label="@Localizer[LanguageResource.ProPagination_LastPage]"></ProIconButton>
+        </li>
+    }
+</ProElement>

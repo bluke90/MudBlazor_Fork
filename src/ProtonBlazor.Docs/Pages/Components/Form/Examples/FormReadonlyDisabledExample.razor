@@ -1,0 +1,61 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Row>
+    <ProCard>
+        <ProCardContent>
+            <ProText Align="Align.Center">ReadOnly Form</ProText>
+            <ProForm ReadOnly="ReadOnly" Spacing="2">
+                <ProTextField T="string" Label="Text" />
+                <ProNumericField T="int" Label="Number" />
+                <ProDatePicker Label="Date" />
+                <ProSwitch T="bool" Label="Switch" />
+                <ProCheckBox T="bool" Label="CheckBox" />
+                <ProRadioGroup T="string">
+                    <ProRadio Value="@("1")">1</ProRadio>
+                    <ProRadio Value="@("2")">2</ProRadio>
+                </ProRadioGroup>
+                <ProForm ReadOnly="NestedReadOnly" Spacing="2">
+                    <ProText Align="Align.Center">Nested Form</ProText>
+                    <ProTextField T="string" Label="Nested Text" />
+                    <ProNumericField T="int" Label="Nested Number" />
+                </ProForm>
+            </ProForm>
+        </ProCardContent>
+        <ProCardActions>
+            <ProCheckBox @bind-Value="ReadOnly">ReadOnly</ProCheckBox>
+            <ProCheckBox @bind-Value="NestedReadOnly">Nested</ProCheckBox>
+        </ProCardActions>
+    </ProCard>
+    <ProCard>
+        <ProCardContent>
+            <ProText Align="Align.Center">Disabled Form</ProText>
+            <ProForm Disabled="Disabled" Spacing="2">
+                <ProTextField T="string" Label="Text" />
+                <ProNumericField T="int" Label="Number" />
+                <ProDatePicker Label="Date" />
+                <ProSwitch T="bool" Label="Switch" />
+                <ProCheckBox T="bool" Label="CheckBox" />
+                <ProRadioGroup T="string">
+                    <ProRadio Value="@("1")">1</ProRadio>
+                    <ProRadio Value="@("2")">2</ProRadio>
+                </ProRadioGroup>
+                <ProForm Disabled="NestedDisabled" Spacing="2">
+                    <ProText Align="Align.Center">Nested Form</ProText>
+                    <ProTextField T="string" Label="Nested Text" />
+                    <ProNumericField T="int" Label="Nested Number" />
+                </ProForm>
+            </ProForm>
+        </ProCardContent>
+        <ProCardActions>
+            <ProCheckBox @bind-Value="Disabled">Disabled</ProCheckBox>
+            <ProCheckBox @bind-Value="NestedDisabled">Nested</ProCheckBox>
+        </ProCardActions>
+    </ProCard>
+</ProStack>
+
+@code {
+    bool ReadOnly = true;
+    bool NestedReadOnly;
+    bool Disabled = true;
+    bool NestedDisabled;
+}

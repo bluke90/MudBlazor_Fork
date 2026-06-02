@@ -1,0 +1,17 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProThemeProvider @ref="_proThemeProvider" @bind-IsDarkMode="_isDarkMode"/>
+
+@code {
+    private bool _isDarkMode;
+    private ProThemeProvider _proThemeProvider;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDarkMode = await _proThemeProvider.GetSystemDarkModeAsync();
+            StateHasChanged();
+        }
+    }
+}

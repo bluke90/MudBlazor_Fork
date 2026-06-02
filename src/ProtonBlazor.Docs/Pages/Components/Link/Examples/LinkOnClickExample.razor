@@ -1,0 +1,11 @@
+@namespace ProtonBlazor.Docs.Examples
+
+<ProLink OnClick="Count" Href="/components/link#onclick">Count and go</ProLink>
+<ProLink OnClick="Count">Count</ProLink>
+<ProText>Counter: @counter</ProText>
+
+@code {
+    private int counter = 0;
+
+    private void Count() => counter++;
+}

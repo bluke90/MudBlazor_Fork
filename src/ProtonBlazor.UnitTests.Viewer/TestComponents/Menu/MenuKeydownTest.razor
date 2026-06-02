@@ -1,0 +1,44 @@
+﻿<ProPopoverProvider />
+
+<ProMenu Label="Full Menu Width" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" PopoverClass="menu-popover-class" Disabled="DisableMenu">
+    <ProMenuItem Class="test-class" OnClick="@(() => InvokeItem(1))">1</ProMenuItem>
+    <ProMenuItem Href="https://www.test.com" OnClick="@(() => InvokeItem(2))">2</ProMenuItem>
+    <ProMenuItem Href="https://www.test.com" Target="_blank" OnClick="@(() => InvokeItem(3))">3</ProMenuItem>
+
+    <ProMenu Label="4">
+        <ActivatorContent>
+            <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => InvokeItem(4))">Button</ProButton>
+        </ActivatorContent>
+        <ChildContent>
+            <ProMenu Label="4.1">
+                 <ActivatorContent>
+                    <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => InvokeItem(41))">Button</ProButton>
+                 </ActivatorContent>
+                 <ChildContent>
+                    <ProMenuItem Label="4.1.1" OnClick="@(() => InvokeItem(411))" />
+                    <ProMenuItem Label="4.1.2" OnClick="@(() => InvokeItem(412))" />
+                    <ProMenuItem Label="4.1.3" OnClick="@(() => InvokeItem(413))" />
+                </ChildContent>
+            </ProMenu>
+
+            <ProMenuItem Label="4.2" OnClick="@(() => InvokeItem(42))" />
+        </ChildContent>
+    </ProMenu>
+
+    <ProMenuItem OnClick="@(() => InvokeItem(5))" Disabled>5 Disabled</ProMenuItem>
+    <ProMenuItem OnClick="@(() => InvokeItem(6))">6</ProMenuItem>
+</ProMenu>
+
+@code {
+    public static string __description__ = "Access Menu Via Keyboard -> Click Enter -> Select item with arrow keys -> Press Enter";
+    [Parameter]
+    public bool DisableMenu { get; set; }
+
+    public int? LastInvokedIndex { get; private set; }
+
+    private void InvokeItem(int index)
+    {
+        LastInvokedIndex = index;
+        StateHasChanged();
+    }
+}

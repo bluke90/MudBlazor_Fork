@@ -1,0 +1,25 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@inject IDialogService Dialog
+
+<ProButton OnClick="@(() => OpenDialogAsync(_maxWidth))">MaxWidth dialog</ProButton>
+<ProButton OnClick="@(() => OpenDialogAsync(_closeButton))" Color="Color.Primary">Close Button dialog</ProButton>
+<ProButton OnClick="@(() => OpenDialogAsync(_noHeader))" Color="Color.Secondary">No Header dialog</ProButton>
+<ProButton OnClick="@(() => OpenDialogAsync(_backdropClick))" Color="Color.Tertiary">Disable Backdrop dialog</ProButton>
+<ProButton OnClick="@(() => OpenDialogAsync(_fullScreen))" Color="Color.Info">Full Screen dialog</ProButton>
+<ProButton OnClick="@(() => OpenDialogAsync(_topCenter))" Color="Color.Success">Top Center dialog</ProButton>
+
+
+@code {
+    private readonly DialogOptions _maxWidth = new() { MaxWidth = MaxWidth.Medium, FullWidth = true };
+    private readonly DialogOptions _closeButton = new() { CloseButton = true };
+    private readonly DialogOptions _noHeader = new() { NoHeader = true };
+    private readonly DialogOptions _backdropClick = new() { BackdropClick = false };
+    private readonly DialogOptions _fullScreen = new() { FullScreen = true, CloseButton = true };
+    private readonly DialogOptions _topCenter = new() { Position = DialogPosition.TopCenter };
+
+    private Task OpenDialogAsync(DialogOptions options)
+    {
+        return Dialog.ShowAsync<DialogUsageExample_Dialog>("Custom Options Dialog", options);
+    }
+}

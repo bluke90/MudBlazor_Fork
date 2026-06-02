@@ -1,0 +1,30 @@
+﻿<ProTreeView T="string" @bind-SelectionMode="SelectionMode" @bind-SelectedValue="SelectedValue">
+    <ProTreeViewItem Value='"content"' @bind-Selected="Item1Selected">
+        <ProTreeViewItem Value='"logo.png"' />
+        <ProTreeViewItem Value='"ProtonBlazor.svg"' @bind-Selected="SubItemSelected" />
+        <ProTreeViewItem Value='"Nuget.png"' />
+    </ProTreeViewItem>
+    <ProTreeViewItem Value='"src"' @bind-Selected="Item2Selected">
+        <ProTreeViewItem Value='"ProtonBlazor"' />
+        <ProTreeViewItem Value='"ProtonBlazor.Docs"'>
+            <ProTreeViewItem Value='"wwwroot"'>
+                <ProTreeViewItem Value='"ProAppbarCorner.svg"' />
+                <ProTreeViewItem Value='"ProtonBlazorDocs.min.css"' />
+            </ProTreeViewItem>
+        </ProTreeViewItem>
+    </ProTreeViewItem>
+</ProTreeView>
+
+@code{
+
+    [Parameter]
+    public SelectionMode SelectionMode { get; set; } = SelectionMode.MultiSelection;
+
+    public string? SelectedValue { get; set; }
+
+    public bool SubItemSelected { get; set; }
+
+    public bool Item1Selected { get; set; }
+
+    public bool Item2Selected { get; set; }
+}

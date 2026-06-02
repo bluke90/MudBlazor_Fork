@@ -1,0 +1,69 @@
+@namespace ProtonBlazor
+@inherits ProComponentBase
+@typeparam T
+
+@if (Visible)
+{
+    <li @attributes="UserAttributes" class="@Classname" style="@Style">
+        <div class="@ContentClassname" @onclick="OnItemClickedAsync" @onclick:stopPropagation="true" @ondblclick="OnItemDoubleClickedAsync" @ondblclick:stopPropagation="true">
+            @if (Content != null)
+            {
+                @Content
+            }
+            else
+            {
+                <ProTreeViewItemToggleButton Disabled="@GetDisabled()" Loading="_loading" Expanded="_expandedState.Value" ExpandedChanged="OnItemExpanded" Visible="@(HasChildren() && AreChildrenVisible())" ExpandedIcon="@ExpandButtonIcon" ExpandedIconColor="@ExpandButtonIconColor" LoadingIcon="@LoadingIcon" LoadingIconColor="LoadingIconColor"></ProTreeViewItemToggleButton>
+
+                @if (MultiSelection)
+                {
+                    <ProCheckBox T="bool?" TriState Class="pro-treeview-item-checkbox" CheckedIcon="@CheckedIcon" UncheckedIcon="@UncheckedIcon" IndeterminateIcon="@GetIndeterminateIcon()"
+                                 @bind-Value:get="GetCheckBoxStateTriState()" @bind-Value:set="@(x => OnCheckboxChangedAsync())" Disabled="@GetDisabled()" ReadOnly="@GetReadOnly()"></ProCheckBox>
+                }
+
+                @if (HasIcon)
+                {
+                    <div class="pro-treeview-item-icon">
+                        <ProIcon Disabled="@GetDisabled()" Icon="@GetIcon()" Color="@IconColor" />
+                    </div>
+                }
+
+                @if (BodyContent != null)
+                {
+                    @BodyContent(this)
+                }
+                else
+                {
+                    <ProText Typo="@TextTypo" Class="@TextClassname">
+                        @GetText()
+                    </ProText>
+
+                    @if (!string.IsNullOrEmpty(EndText))
+                    {
+                        <ProText Typo="@EndTextTypo" Class="@EndTextClass">
+                            @EndText
+                        </ProText>
+                    }
+
+                    @if (!string.IsNullOrEmpty(EndIcon))
+                    {
+                        <div class="pro-treeview-item-icon">
+                            <ProIcon Disabled="@Disabled" Icon="@EndIcon" Color="@EndIconColor" />
+                        </div>
+                    }
+                }
+            }
+        </div>
+        @if (HasChildren())
+        {
+            <ProCollapse Expanded="@_expandedState.Value">
+                <CascadingValue Value="@ProTreeRoot" IsFixed="true">
+                    <CascadingValue Value="this" IsFixed="true">
+                        <ProTreeView Items="@_itemsState.Value" ItemTemplate="ProTreeRoot?.ItemTemplate" Class="pro-treeview-group">
+                            @ChildContent
+                        </ProTreeView>
+                    </CascadingValue>
+                </CascadingValue>
+            </ProCollapse>
+        }
+    </li>
+}

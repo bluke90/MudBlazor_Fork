@@ -1,7 +1,7 @@
 #!/usr/bin/env dotnet
 
 // This script extends the 'dotnet watch' functionality to also watch and rebuild
-// MudBlazor JS/CSS assets using Bun whenever relevant source files change.
+// ProtonBlazor JS/CSS assets using Bun whenever relevant source files change.
 // 
 // Usage examples:
 //   dotnet tools/watch.cs
@@ -17,9 +17,9 @@ static async Task Run()
     var repositoryRoot = GetRepositoryRoot();
     var toolsDirectory = Path.Combine(repositoryRoot, "tools");
     var srcDirectory = Path.Combine(repositoryRoot, "src");
-    var mudblazorProjectDirectory = Path.Combine(srcDirectory, "MudBlazor");
-    var mudblazorDocsProjectDirectory = Path.Combine(srcDirectory, "MudBlazor.Docs.Server");
-    var assetBuildScript = Path.Combine(mudblazorProjectDirectory, "build.mjs");
+    var protonblazorProjectDirectory = Path.Combine(srcDirectory, "ProtonBlazor");
+    var protonblazorDocsProjectDirectory = Path.Combine(srcDirectory, "ProtonBlazor.Docs.Server");
+    var assetBuildScript = Path.Combine(protonblazorProjectDirectory, "build.mjs");
     var buildPropsFile = Path.Combine(srcDirectory, "Directory.Build.props");
     var versions = GetVersions(buildPropsFile);
     await RestoreTools(repositoryRoot);
@@ -30,7 +30,7 @@ static async Task Run()
         {
             FileName = "dotnet",
             Arguments = "watch",
-            WorkingDirectory = mudblazorDocsProjectDirectory,
+            WorkingDirectory = protonblazorDocsProjectDirectory,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
@@ -48,7 +48,7 @@ static async Task Run()
         StartInfo = new ProcessStartInfo
         {
             FileName = "dotnet",
-            WorkingDirectory = mudblazorProjectDirectory,
+            WorkingDirectory = protonblazorProjectDirectory,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,

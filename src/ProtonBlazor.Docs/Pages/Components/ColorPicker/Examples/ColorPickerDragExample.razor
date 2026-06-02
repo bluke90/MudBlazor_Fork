@@ -1,0 +1,14 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack>
+    <ProColorPicker ThrottleInterval="Interval" DragEffect="@Draggable" PickerVariant="PickerVariant.Static" />
+
+    <ProNumericField T="int" @bind-Value="Interval" Label="Throttle interval" />
+
+    <ProCheckBox T="bool" @bind-Value="Draggable" Label="Allow dragging the pointer" />
+</ProStack>
+
+@code {
+    public int Interval { get; set; } = 100;
+    public bool Draggable { get; set; } = true;
+}

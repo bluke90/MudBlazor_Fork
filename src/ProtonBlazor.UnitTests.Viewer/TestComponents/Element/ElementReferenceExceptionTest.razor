@@ -1,0 +1,18 @@
+﻿@* https://github.com/ProtonBlazor/ProtonBlazor/issues/9544 *@
+
+<ProButton id="element-button"
+           Variant="@Variant.Filled"
+           Color="@Color.Primary"
+           OnClick="@ButtonOnClick"
+           tabindex="@_tabindex">
+    Error
+</ProButton>
+
+@code {
+    private string? _tabindex = "-1";
+
+    private void ButtonOnClick()
+    {
+        _tabindex = null;
+    }
+}

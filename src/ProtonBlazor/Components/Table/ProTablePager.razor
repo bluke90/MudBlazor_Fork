@@ -1,0 +1,60 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@inherits ProComponentBase
+@inject InternalMudLocalizer Localizer
+
+<ProToolBar @attributes="UserAttributes" Class="@Classname" Style="@Style">
+    @if (HorizontalAlignment == HorizontalAlignment.End ||
+   (HorizontalAlignment == HorizontalAlignment.Right && !RightToLeft) ||
+   (HorizontalAlignment == HorizontalAlignment.Left && RightToLeft) ||
+    HorizontalAlignment == HorizontalAlignment.Center)
+    {
+        <div class="pro-table-pagination-spacer"></div>
+    }
+    @if (!HideRowsPerPage)
+    {
+        <div class="@PaginationClassname">
+            <div class="pro-table-pagination-caption">
+                <div class="pro-table-pagination-information">@RowsPerPageString</div>
+            </div>
+            <CascadingValue Name="SubscribeToParentForm" Value="false" IsFixed>
+                <ProSelect T="int" ValueChanged="SetRowsPerPage" Value="@(Table?.RowsPerPage ?? 0)" Class="pro-table-pagination-select" Underline="false" Dense="true" SelectionOnEnter="true">
+                    @foreach (int pageSize in PageSizeOptions)
+                    {
+                        if (pageSize == int.MaxValue)
+                        {
+                            <ProSelectItem T="int" Value="@pageSize">@AllItemsText</ProSelectItem>
+                        }
+                        else
+                        {
+                            <ProSelectItem T="int" Value="@pageSize">@pageSize.ToString().ToUpper()</ProSelectItem>
+                        }
+                    }
+                </ProSelect>
+            </CascadingValue>
+        </div>
+    }
+    @if (!HidePageNumber)
+    {
+        <div class="pro-table-pagination-caption">
+            <div class="pro-table-page-number-information">@Info</div>
+        </div>
+    }
+    @if (!HidePagination)
+    {
+        <div class="pro-table-pagination-actions">
+            <ProIconButton Class="pro-flip-x-rtl pro-table-pagination-first-button" Icon="@FirstIcon" Disabled="@BackButtonsDisabled" @onclick="@(() => Table?.NavigateTo(Page.First))" aria-label="@Localizer[LanguageResource.ProTablePager_FirstPage]" />
+            <ProIconButton Class="pro-flip-x-rtl pro-table-pagination-before-button" Icon="@BeforeIcon" Disabled="@BackButtonsDisabled" @onclick="@(() => Table?.NavigateTo(Page.Previous))" aria-label="@Localizer[LanguageResource.ProTablePager_PreviousPage]" />
+            <ProIconButton Class="pro-flip-x-rtl pro-table-pagination-next-button" Icon="@NextIcon" Disabled="@ForwardButtonsDisabled" @onclick="@(() => Table?.NavigateTo(Page.Next))" aria-label="@Localizer[LanguageResource.ProTablePager_NextPage]" />
+            <ProIconButton Class="pro-flip-x-rtl pro-table-pagination-last-button" Icon="@LastIcon" Disabled="@ForwardButtonsDisabled" @onclick="@(() => Table?.NavigateTo(Page.Last))" aria-label="@Localizer[LanguageResource.ProTablePager_LastPage]" />
+        </div>
+    }
+    @if (HorizontalAlignment == HorizontalAlignment.Start ||
+ (HorizontalAlignment == HorizontalAlignment.Left && !RightToLeft) ||
+ (HorizontalAlignment == HorizontalAlignment.Right && RightToLeft) ||
+  HorizontalAlignment == HorizontalAlignment.Center)
+    {
+        <div class="pro-table-pagination-spacer"></div>
+    }
+</ProToolBar>
+

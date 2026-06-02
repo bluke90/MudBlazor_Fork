@@ -1,0 +1,58 @@
+﻿@using System.Runtime.Versioning
+
+<ProMainContent Class="protonblazor-main-content">
+    <ProContainer MaxWidth="MaxWidth.Large">
+        <div id="docspage" class="docs-page">
+            <CascadingValue Value="this" IsFixed>
+                @ChildContent
+            </CascadingValue>
+        </div>
+        <div class="docs-navigation-footer">
+            <NavigationFooter Section=_section Previous="@_previous" Next="@_next" />
+        </div>
+    </ProContainer>
+    @if (DisplayFooter)
+    {
+        <ProContainer MaxWidth="MaxWidth.Large" Class="mt-16">
+            <Footer />
+        </ProContainer>
+    }
+    else
+    {
+        // Just show copyright and version
+        <ProContainer MaxWidth="MaxWidth.Large">
+            <ProToolBar Gutters="false" Dense="true">
+                <ProText Typo="Typo.body1">Copyright © 2020-@DateTime.Now.Year ProtonBlazor</ProText>
+                <ProSpacer />
+                <ProText Typo="Typo.body1">Powered by .NET @Environment.Version.ToString()</ProText>
+            </ProToolBar>
+        </ProContainer>
+    }
+    <ProDrawer Class="docs-page-content-navigation-drawer" @bind-Open="_contentDrawerOpen" Breakpoint="Breakpoint.Lg" Anchor="Anchor.End" ClipMode="DrawerClipMode.Always" Elevation="0" Color="Color.Transparent">
+        @if (_displayView)
+        {
+            <ProText Typo="Typo.subtitle1" Class="title" GutterBottom="true">
+                Mode
+            </ProText>
+            <div class="d-flex px-2 mb-2">
+                <NavLink class="mode-links mr-2" href="@($"components/{_componentName}")" Match="NavLinkMatch.All">Overview</NavLink>
+                <NavLink class="mode-links ml-2" href="@($"api/{_componentName}")" Match="NavLinkMatch.All">API</NavLink>
+            </div>
+        }
+        <ProPageContentNavigation SectionClassSelector="docs-section-anchor" @ref="_contentNavigation" ActivateFirstSectionAsDefault="true" />
+        @if (_renderAds)
+        {
+            <ProElement HtmlTag="script" async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CESDLK3E&placement=protonblazorcom" id="_carbonads_js" data-consent-category="carbon"></ProElement>
+        }
+        @if (_adBlockerDetected)
+        {
+            <ProAlert Severity="Severity.Error" Class="ma-4" Elevation="1">
+                <ProText Typo="Typo.subtitle2" GutterBottom="true">Support ProtonBlazor</ProText>
+                <ProText Typo="Typo.body2" Class="ms-n8">
+                    It looks like an ad blocker is hiding the ad in this slot.
+                    Please consider allowing ads on this site.
+                </ProText>
+            </ProAlert>
+        }
+    </ProDrawer>
+</ProMainContent>

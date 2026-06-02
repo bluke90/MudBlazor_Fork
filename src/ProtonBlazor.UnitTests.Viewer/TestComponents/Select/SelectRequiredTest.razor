@@ -1,0 +1,15 @@
+﻿<ProPopoverProvider />
+
+<ProSelect id="selectLabelTest" @bind-Value="_value" Label="RequiredTest" Required="true">
+    <ProSelectItem Value="@(string.Empty)" />
+    <ProSelectItem Value="@("1")" />
+    <ProSelectItem Value="@("2")" />
+    <ProSelectItem Value="@("3")" />
+</ProSelect>
+
+@code
+{
+    public static string __description__ = "The Select should not show required-error initially. The first (empty) item should.";
+
+    private string? _value;
+}

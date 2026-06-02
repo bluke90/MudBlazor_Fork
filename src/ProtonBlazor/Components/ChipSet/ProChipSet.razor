@@ -1,0 +1,10 @@
+﻿@namespace ProtonBlazor
+@typeparam T
+@inherits ProComponentBase
+@attribute [CascadingTypeParameter(nameof(T))]
+
+<div @attributes="UserAttributes" class="@Classname" style="@Style" role="group">
+    <CascadingValue IsFixed="true" Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>

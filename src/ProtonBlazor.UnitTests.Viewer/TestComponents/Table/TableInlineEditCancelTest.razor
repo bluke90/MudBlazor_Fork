@@ -1,0 +1,44 @@
+﻿<ProTable T="Element" Items="_items" @bind-SelectedItem="_selectedItem"
+          RowEditPreview="BackupItem" RowEditCancel="ResetItemToOriginalValues" CanCancelEdit="true">
+    <HeaderContent>
+        <ProTh>Value</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context.Value</ProTd>
+    </RowTemplate>
+    <RowEditingTemplate>
+        <ProTd>
+            <ProTextField id="@context.Id" @bind-Value="@context.Value"></ProTextField>
+        </ProTd>
+    </RowEditingTemplate>
+</ProTable>
+
+@code {
+    private readonly Element _elementBeforeEdition = new();
+
+    private Element? _selectedItem;
+
+    private readonly List<Element> _items =
+    [
+        new() { Value = "A", Id = "Id1" },
+        new() { Value = "B", Id = "Id2" },
+        new() { Value = "C", Id = "Id3" }
+    ];
+
+    private void BackupItem(object element)
+    {
+        _elementBeforeEdition.Value = ((Element)element).Value;
+    }
+
+    private void ResetItemToOriginalValues(object element)
+    {
+        ((Element)element).Value = _elementBeforeEdition.Value;
+    }
+
+    public class Element
+    {
+        public string? Id { get; set; }
+
+        public string? Value { get; set; }
+    }
+}

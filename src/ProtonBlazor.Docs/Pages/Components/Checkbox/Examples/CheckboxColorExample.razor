@@ -1,0 +1,13 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCheckBox @bind-Value="Basic_CheckBox1" UncheckedColor="Color.Error"></ProCheckBox>
+<ProCheckBox @bind-Value="Basic_CheckBox2" Color="Color.Primary" UncheckedColor="Color.Default"></ProCheckBox>
+<ProCheckBox @bind-Value="Basic_CheckBox3" Color="Color.Secondary" UncheckedColor="Color.Default"></ProCheckBox>
+<ProCheckBox @bind-Value="Basic_CheckBox4" Disabled="true" UncheckedColor="Color.Success"></ProCheckBox>
+
+@code {
+    public bool Basic_CheckBox1 { get; set; } = true;
+    public bool Basic_CheckBox2 { get; set; } = false;
+    public bool Basic_CheckBox3 { get; set; } = false;
+    public bool Basic_CheckBox4 { get; set; } = true;
+}

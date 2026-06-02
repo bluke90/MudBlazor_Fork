@@ -1,0 +1,31 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem sm="12" md="6">
+        <ProRadioGroup @bind-Value="SelectedOption1" ReadOnly="ReadOnly">
+            <ProRadio Value="@("Radio 1")">Radio 1</ProRadio>
+            <ProRadio Value="@("Radio 2")">Radio 2</ProRadio>
+            <ProRadio Value="@("Radio 3")">Radio 3</ProRadio>
+            <ProRadio Value="@("Radio 4")">Radio 4</ProRadio>
+        </ProRadioGroup>
+        <ProSwitch @bind-Value="ReadOnly" Color="Color.Primary" Label="ReadOnly" />
+        <ProText>Selected Option 1: @SelectedOption1</ProText>
+    </ProItem>
+    <ProItem sm="12" md="6">
+        <ProRadioGroup @bind-Value="SelectedOption2" Disabled="Disabled">
+            <ProRadio Value="@("Radio 1")">Radio 1</ProRadio>
+            <ProRadio Value="@("Radio 2")">Radio 2</ProRadio>
+            <ProRadio Value="@("Radio 3")">Radio 3</ProRadio>
+            <ProRadio Value="@("Radio 4")">Radio 4</ProRadio>
+        </ProRadioGroup>
+        <ProSwitch @bind-Value="Disabled" Color="Color.Primary" Label="Disabled" />
+        <ProText>Selected Option 2: @SelectedOption2</ProText>
+    </ProItem>
+</ProGrid>
+
+@code {
+    public string SelectedOption1 { get; set; }
+    public string SelectedOption2 { get; set; }
+    public bool Disabled { get; set; }
+    public bool ReadOnly { get; set; }
+}

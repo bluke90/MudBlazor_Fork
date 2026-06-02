@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProDatePicker Label="Date Picker" @bind-Date="ExpiresOn" />
+<ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ButtonOnClick">Set Date</ProButton>
+
+@code {
+    public DateTime? ExpiresOn { get; set; } = DateTime.Now.Date;
+
+    void ButtonOnClick()
+    {
+        ExpiresOn = DateTime.Now.Date.AddMonths(10);
+    }
+}

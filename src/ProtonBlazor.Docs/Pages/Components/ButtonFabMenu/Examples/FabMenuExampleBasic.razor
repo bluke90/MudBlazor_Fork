@@ -1,0 +1,19 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Row="true" Style="width: 300px;" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+    <ProStack Spacing="0">
+        <ProSwitch @bind-Value="_open" Label="@(_open ? "Opened" : "Closed")" Color="Color.Primary"/>
+        <ProSwitch @bind-Value="_fixed" Label="@(_fixed ? "Fixed" : "Relative")" Color="Color.Primary"/>
+    </ProStack>
+    <ProFabMenu StartIcon="@Icons.Material.Outlined.Send" Color="Color.Primary" @bind-Open="@_open" Fixed="@_fixed">
+        <ProFabMenuItem StartIcon="@Icons.Custom.Brands.Slack"/>
+        <ProFabMenuItem StartIcon="@Icons.Custom.Brands.Discord"/>
+        <ProFabMenuItem StartIcon="@Icons.Custom.Brands.Gmail"/>
+    </ProFabMenu>
+</ProStack>
+
+@code
+{
+    private bool _open;
+    private bool _fixed;
+}

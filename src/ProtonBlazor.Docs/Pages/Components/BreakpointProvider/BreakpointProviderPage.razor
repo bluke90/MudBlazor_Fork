@@ -1,0 +1,37 @@
+﻿@page "/components/breakpointprovider"
+
+<DocsPage>
+    <DocsPageHeader Title="Breakpoint Provider" Component="@nameof(ProBreakpointProvider)" />
+    <DocsPageContent>
+
+        <DocsPageSection>
+            <SectionHeader Title="How it works">
+                <Description>
+					<ProText>
+						The breakpoint provider offers a cascading parameter that exposes the window's current breakpoint (xs,sm,md,lg,xl). 
+						These features improve the performance if your layout heavily relies on such features or if you don't want to use the BreakpointListenerService directly in your own components.
+					</ProText>
+					<ProText>
+						If a <strong>ProHidden</strong> is used within a <strong>ProBreakpointProvider</strong>, it will use the provided value instead of relying on the IBreakpointListenerService. 
+						That would reduce the number of render cycles if a change of the browser size occurred. 
+					</ProText>
+				</Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(BreakpointProviderPageHiddenExample)" ShowCode="false">
+                <BreakpointProviderPageHiddenExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Listening to browser window breakpoint changes">
+                <Description>
+                    <ProText>The <strong> IBrowserViewportService</strong> is the service that powers the ProBreakpoint Provider. It can be used in own components </ProText>
+                </Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(BreakpointListenerExample)">
+                <BreakpointListenerExample />
+            </SectionContent>
+        </DocsPageSection>
+
+    </DocsPageContent>
+</DocsPage>

@@ -1,0 +1,14 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProExitPrompt Disabled="_isDisabled" UseNativePrompt="_useNativePrompt"/>
+
+<ProStack Spacing="2">
+    <ProSwitch Label="Disabled" @bind-Value="_isDisabled" Color="Color.Primary"/>
+    <ProSwitch Label="Use native prompt" @bind-Value="_useNativePrompt" Color="Color.Primary"/>
+    <ProButton Variant="Variant.Outlined" Color="Color.Primary" Href="/components/exitprompt">Test navigation</ProButton>
+</ProStack>
+
+@code {
+    private bool _isDisabled;
+    private bool _useNativePrompt;
+}

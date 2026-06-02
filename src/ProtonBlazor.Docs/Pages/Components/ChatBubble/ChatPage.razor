@@ -1,0 +1,42 @@
+﻿@page "/components/chat"
+@page "/components/ProChat"
+
+<DocsPage>
+    <DocsPageHeader Title="Chat" SubTitle="Chat components have been moved to ProX" />
+    <DocsPageContent>
+        <ProAlert Severity="Severity.Info" Class="my-4">
+            <strong>Component Moved:</strong> The ProChat component family has been removed from ProtonBlazor and is now available in 
+            <ProLink Href="https://github.com/ProXtra/ProX" Target="_blank">ProX</ProLink>.
+        </ProAlert>
+
+        <ProText Typo="Typo.h6" Class="mb-2">Migration Guide</ProText>
+        <ProText Class="mb-4">
+            To continue using the chat components, please install the ProX package from the ProXtra project:
+        </ProText>
+
+        <ProText Typo="Typo.body2" Class="mb-2">
+            <strong>1. Install the ProX NuGet package:</strong>
+        </ProText>
+        <ProPaper Class="pa-4 mb-4" Outlined="true">
+            <code>dotnet add package ProX.ProtonBlazor.Extension</code>
+        </ProPaper>
+
+        <ProText Typo="Typo.body2" Class="mb-2">
+            <strong>2. Update your using statements:</strong>
+        </ProText>
+        <ProPaper Class="pa-4 mb-4" Outlined="true">
+            <code>@@using ProX</code>
+        </ProPaper>
+
+        <ProText Typo="Typo.body2" Class="mb-2">
+            <strong>3. Visit the ProX documentation:</strong>
+        </ProText>
+        <ProText Class="mb-4">
+            For detailed documentation and examples, visit: <ProLink Href="https://mudx.org" Target="_blank">https://ProX.org</ProLink> or for the GitHub visit <ProLink Href="https://github.com/ProXtra/ProX" Target="_blank">https://github.com/ProXtra/ProX</ProLink>
+        </ProText>
+
+        <ProAlert Severity="Severity.Warning" Class="mt-4">
+            This page is kept for reference. The ProChat components were removed in v9.
+        </ProAlert>
+    </DocsPageContent>
+</DocsPage>

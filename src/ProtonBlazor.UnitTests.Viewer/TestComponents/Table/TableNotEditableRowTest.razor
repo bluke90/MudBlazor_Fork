@@ -1,0 +1,19 @@
+﻿<ProTable T="int" Items="_items" EditTrigger="EditTrigger" RowEditableFunc="x => x > 5">
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate> 
+    <RowEditingTemplate>
+        <ProTd>
+            <ProNumericField T="int" @bind-Value="context" />
+        </ProTd>
+    </RowEditingTemplate>
+</ProTable>
+
+@code {
+    public static string __description__ = "The Tr should not allow editing when AllowEditItem returns false.";
+
+    private readonly int[] _items = [5, 10, 20];
+
+    [Parameter]
+    public TableEditTrigger EditTrigger { get; set; } = TableEditTrigger.RowClick;
+}

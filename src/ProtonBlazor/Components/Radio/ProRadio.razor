@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor
+@typeparam T
+@inherits ProBooleanInput<T>
+
+<ProInputControl Class="@Classname" Style="@Style" Error="@HasErrors" ErrorText="@GetErrorText()" Required="@Required">
+    <InputContent>
+        <label class="@LabelClassname" style="@Style" id="@_elementId" @onkeydown="@HandleKeyDownAsync" @onclick:stopPropagation="@StopClickPropagation">
+            <span class="@IconClassname">
+                <input aria-labelledby="@(string.IsNullOrWhiteSpace(AriaLabel) ? null : _ariaId)" @attributes="GetInputAttributes()" type="radio" class="pro-radio-input" checked="@Checked" name="@ProRadioGroup?.Name" disabled="@GetDisabledState()" @onclick:preventDefault="@GetReadOnlyState()" @onclick="OnClickAsync" />
+                <ProIcon Disabled="@Disabled" Icon="@GetIcon()" Color="HasErrors ? Color.Error : Color.Inherit" Size="@Size" />
+            </span>
+            @if (!string.IsNullOrEmpty(Label))
+            {
+                <ProText HtmlTag="span" aria-hidden="@(AriaLabel is not null)" Color="HasErrors ? Color.Error : Color.Inherit">@Label</ProText>
+            }
+            @if (ChildContent is not null)
+            {
+                <ProText HtmlTag="span" aria-hidden="@(AriaLabel is not null)" Color="HasErrors ? Color.Error : Color.Inherit">
+                    @ChildContent
+                </ProText>
+            }
+            @if (AriaLabel is not null)
+            {
+                <span id="@_ariaId" class="pro-sr-only">
+                    @AriaLabel
+                </span>
+            }
+        </label>
+    </InputContent>
+</ProInputControl>

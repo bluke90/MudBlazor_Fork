@@ -1,0 +1,31 @@
+﻿<ProPopoverProvider />
+
+<ProForm @ref="_form" IsValidChanged="@(HandleFormValidChanged)">
+    <ProPaper>
+        @($"Status: {_submitStatus ?? "Not yet submitted/validated"}")
+    </ProPaper>
+    
+    <ProDateRangePicker id="dateRangeLabelTest" @ref="@(_picker)" @bind-DateRange="@(_dateRange)" Label="Select Date Range" Required="true" RequiredError="This field is required!">
+        <PickerActions>
+            <ProButton Class="mr-auto align-self-start" OnClick="@(() => _picker.ClearAsync())">Clear</ProButton>
+            <ProButton OnClick="@(() => _picker.CloseAsync(false))">Cancel</ProButton>
+            <ProButton Color="Color.Primary" OnClick="@(() => _picker.CloseAsync())">OK</ProButton>
+        </PickerActions>
+    </ProDateRangePicker>
+
+    <ProButton Class="mt-2" OnClick="@(() => _form.ValidateAsync())">Validate</ProButton>
+</ProForm>
+
+@code {
+    public static string __description__ = $"The {nameof(ProDateRangePicker)} should shown an error when clicking validate without any data but this should disappear when a value has been set.";
+
+    private ProForm _form = null!;
+    private ProDateRangePicker _picker = null!;
+    private string? _submitStatus;
+    private DateRange? _dateRange; // = new(DateTime.Now, DateTime.Now.AddDays(2));
+
+    private void HandleFormValidChanged(bool isValid)
+    {
+        _submitStatus = $"Form is {(isValid ? string.Empty : "in")}valid";
+    }
+}

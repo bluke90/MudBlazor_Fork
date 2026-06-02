@@ -1,0 +1,103 @@
+﻿@page "/features/icons"
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+
+<DocsPage>
+    <DocsPageHeader Title="ProtonBlazor Icons" SubTitle="Over 1800 Material Design icons and a few custom ones." />
+    <DocsPageContent>
+
+        <DocsPageSection>
+            <SectionHeader Title="Icons" />
+            <ProGrid Class="my-4">
+                <ProItem xs="12" sm="8" md="10">
+                    <ProTextField Immediate="true" DebounceInterval="1000" @bind-Value="SearchText" Variant="Variant.Outlined" Placeholder="Search icons..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
+                </ProItem>
+                <ProItem xs="12" sm="4" md="2">
+                    <ProSelect T="IconOrigin" Value="SelectedIconOrigin" ValueChanged="OnSelectedValue" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
+                        <ProSelectItem Value="IconOrigin.Custom">Custom Icons</ProSelectItem>
+                        <ProSelectItem Value="IconOrigin.Material">Material Icons</ProSelectItem>
+                    </ProSelect>
+                </ProItem>
+                <ProItem xs="12" Class="relative">
+                    @if(SelectedIconOrigin == IconOrigin.Material)
+                    {
+                        <ProChipSet T="string" CheckMark>
+                            <ProChip Default="true" Text="Filled" OnClick="@(() => ChangeIconCategory(IconType.Filled))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                            <ProChip Text="Outlined" OnClick="@(() => ChangeIconCategory(IconType.Outlined))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                            <ProChip Text="Rounded" OnClick="@(() => ChangeIconCategory(IconType.Rounded))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                            <ProChip Text="Sharp" OnClick="@(() => ChangeIconCategory(IconType.Sharp))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                            <ProChip Text="TwoTone" OnClick="@(() => ChangeIconCategory(IconType.TwoTone))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                        </ProChipSet>
+                    }
+                    else if(SelectedIconOrigin == IconOrigin.Custom)
+                    {
+                        <ProChipSet T="string" CheckMark>
+                            <ProChip Default="true" Text="All" OnClick="@(() => ChangeIconCategory(IconType.All))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                            <ProChip Text="Brands" OnClick="@(() => ChangeIconCategory(IconType.Brands))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                            <ProChip Text="FileFormats" OnClick="@(() => ChangeIconCategory(IconType.FileFormats))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                            <ProChip Text="Uncategorized" OnClick="@(() => ChangeIconCategory(IconType.Uncategorized))" Variant="Variant.Outlined" Color="Color.Default" SelectedColor="Color.Primary" />
+                        </ProChipSet>
+                    }
+                </ProItem>
+            </ProGrid>
+            
+            <div class="relative">
+                <div class="absolute" style="top:0px;width:100%;">
+                    <div @ref="_killZone" style="@GetKillZoneStyle()"></div>
+                </div>
+                <Virtualize Items="@SelectedIcons" ItemSize="@IconCardHeight">
+                    <div class="d-flex pro-width-full">
+                        @foreach(var icon in context.RowIcons)
+                        {
+                            <button class="docs-icon-panel" @onclick="@(() => SetIconDrawer(icon))">
+                                <ProIcon Icon="@icon.Code" Title="@icon.Name" />
+                                <ProText Typo="Typo.caption">
+                                    @icon.Name
+                                </ProText>
+                            </button>
+                        }
+                    </div>
+                </Virtualize>
+            </div>
+        </DocsPageSection>
+
+    </DocsPageContent>
+</DocsPage>
+
+<ProDrawer @bind-Open="@_iconDrawerOpen" ClipMode="DrawerClipMode.Always" Anchor="Anchor.End" Overlay="false" Elevation="0" Width="260px" Class="pro-icondrawer" Variant="@DrawerVariant.Temporary">
+    <ProToolBar Dense="true" Gutters="false" Class="pl-4 py-8">
+        <ProIcon Size="Size.Large" Icon="@SelectedIcon.Code" Class="mr-4"/>
+        <ProText Typo="Typo.subtitle1">@SelectedIcon.Name</ProText>
+        <ProSpacer/>
+        <ProIconButton OnClick="@(() => CloseIconDrawer())" Icon="@Icons.Material.Filled.Close" Class="pa-2"></ProIconButton>
+    </ProToolBar>
+    <div class="px-4">
+        <ProText Typo="Typo.subtitle2">Icon Code</ProText>
+        <ProPaper Class="pro-iconcode pa-2" Elevation="0">
+            @IconCodeOutput
+            <div class="d-flex justify-end">
+                <ProIconButton OnClick="CopyTextToClipboard" Icon="@Icons.Material.Filled.ContentCopy" Size="Size.Small" Class="pa-1 mb-n1 mr-n1" />
+            </div>
+        </ProPaper>
+        <ProText Typo="Typo.subtitle2">Icon Preview</ProText>
+        <ProPaper Class="d-flex justify-center align-center" Elevation="0" Height="228px">
+            <ProIcon Size="@PreviewIconSize" Color="@PreviewIconColor" Icon="@SelectedIcon.Code" />
+        </ProPaper>
+
+        <ProSelect T="Color" @bind-Value="PreviewIconColor" Label="Color" Variant="Variant.Outlined" Dense="true" Margin="Margin.Dense" Class="my-4">
+            <DocsColorSelect Color="Color.Dark" />
+            <DocsColorSelect Color="Color.Default" />
+            <DocsColorSelect Color="Color.Primary" />
+            <DocsColorSelect Color="Color.Secondary" />
+            <DocsColorSelect Color="Color.Tertiary" />
+            <DocsColorSelect Color="Color.Info" />
+            <DocsColorSelect Color="Color.Success" />
+            <DocsColorSelect Color="Color.Warning" />
+            <DocsColorSelect Color="Color.Error" />
+        </ProSelect>
+        <ProSelect T="Size" @bind-Value="PreviewIconSize" Label="Size" Variant="Variant.Outlined" Dense="true" Margin="Margin.Dense" Class="my-4">
+            <ProSelectItem Value="Size.Small">Small</ProSelectItem>
+            <ProSelectItem Value="Size.Medium">Medium</ProSelectItem>
+            <ProSelectItem Value="Size.Large">Large</ProSelectItem>
+        </ProSelect>
+    </div>
+</ProDrawer>

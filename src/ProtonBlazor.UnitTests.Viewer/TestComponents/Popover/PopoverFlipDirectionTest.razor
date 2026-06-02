@@ -1,0 +1,110 @@
+﻿
+<ProStack Spacing="2">
+    <ProButton OnClick="OnExpandCollapseClick">@(_expanded ? "Collapse" : "Expand")</ProButton>
+    <ProButton OnClick="OnExpandCollapseFor5sClickAsync">@(_expanded ? "Collapse" : "Expand") for 5 s</ProButton>
+    <ProButton OnClick="OnExpandListIn5sAsync">Expand list in 5 s</ProButton>
+    <ProDivider />
+    <ProCollapse Expanded="_expanded">
+        <div style="@($"height: {_height}px")">
+            <ProNumericField T="int" @bind-Value="_height" Min="0" Label="Section height (in px)" />
+            <ProCheckBox T="bool" @bind-Value="_hideBottom" Label="Hide bottom section" />
+            <ProSelect T="Origin"
+                       Label="Anchor Origin"
+                       @bind-Value="@_anchor">
+                <ProSelectItem Value="@Origin.TopLeft">Top Left</ProSelectItem>
+                <ProSelectItem Value="@Origin.TopCenter">Top Center</ProSelectItem>
+                <ProSelectItem Value="@Origin.TopRight">Top Right</ProSelectItem>
+                <ProSelectItem Value="@Origin.BottomLeft">Bottom Left</ProSelectItem>
+                <ProSelectItem Value="@Origin.BottomCenter">Bottom Center</ProSelectItem>
+                <ProSelectItem Value="@Origin.BottomRight">Bottom Right</ProSelectItem>
+                <ProSelectItem Value="@Origin.CenterLeft">Center Left</ProSelectItem>
+                <ProSelectItem Value="@Origin.CenterCenter">Center Center</ProSelectItem>
+                <ProSelectItem Value="@Origin.CenterRight">Center Right</ProSelectItem>
+            </ProSelect>
+            <ProSelect T="Origin"
+                       Label="Transform Origin"
+                       @bind-Value="@_transform">
+                <ProSelectItem Value="@Origin.TopLeft">Top Left</ProSelectItem>
+                <ProSelectItem Value="@Origin.TopCenter">Top Center</ProSelectItem>
+                <ProSelectItem Value="@Origin.TopRight">Top Right</ProSelectItem>
+                <ProSelectItem Value="@Origin.BottomLeft">Bottom Left</ProSelectItem>
+                <ProSelectItem Value="@Origin.BottomCenter">Bottom Center</ProSelectItem>
+                <ProSelectItem Value="@Origin.BottomRight">Bottom Right</ProSelectItem>
+                <ProSelectItem Value="@Origin.CenterLeft">Center Left</ProSelectItem>
+                <ProSelectItem Value="@Origin.CenterCenter">Center Center</ProSelectItem>
+                <ProSelectItem Value="@Origin.CenterRight">Center Right</ProSelectItem>
+            </ProSelect>
+        </div>
+    </ProCollapse>
+    <ProMenu Label="Open Scrollable Menu" FullWidth="true" AnchorOrigin="_anchor" TransformOrigin="_transform" RelativeWidth="DropdownWidth.Adaptive"
+             OverflowBehavior="OverflowBehavior.FlipAlways">
+        <ProMenuItem Label="AAAAAAAAAAAAA Long" />
+        <ProMenuItem Label="AAAAAAAAAAAAA List" />
+        <ProMenuItem Label="AAAAAAAAAAAAA Is" />
+        <ProMenuItem Label="AAAAAAAAAAAAA To" />
+        <ProMenuItem Label="AAAAAAAAAAAAA Long" />
+        <ProMenuItem Label="AAAAAAAAAAAAA Lets" />
+        <ProMenuItem Label="AAAAAAAAAAAAA Limit" />
+        <ProMenuItem Label="AAAAAAAAAAAAA Height" />
+        @if (_expandList)
+        {
+            <ProMenuItem Label="List" />
+            <ProMenuItem Label="Is" />
+            <ProMenuItem Label="To" />
+            <ProMenuItem Label="Long" />
+            <ProMenuItem Label="Lets" />
+            <ProMenuItem Label="Limit" />
+            <ProMenuItem Label="Height" />
+            <ProMenuItem Label="Long" />
+            <ProMenuItem Label="Lets" />
+            <ProMenuItem Label="Limit" />
+            <ProMenuItem Label="Height" />
+            <ProMenuItem Label="List" />
+            <ProMenuItem Label="Is" />
+            <ProMenuItem Label="To" />
+            <ProMenuItem Label="Long" />
+            <ProMenuItem Label="Lets" />
+            <ProMenuItem Label="Limit" />
+            <ProMenuItem Label="Height" />
+        }
+    </ProMenu>
+    @if (!_hideBottom)
+    {
+        <ProButton OnClick="OnExpandCollapseClick">@(_expanded ? "Collapse" : "Expand")</ProButton>
+        <ProButton OnClick="OnExpandCollapseFor5sClickAsync">@(_expanded ? "Collapse" : "Expand") for 5 s</ProButton>
+        <ProDivider />
+        <ProCollapse Expanded="_expanded">
+            <div style="@($"height: {_heightBottom}px")">
+                <ProNumericField T="int" @bind-Value="_heightBottom" Min="0" Label="Section height (in px)" />
+            </div>
+        </ProCollapse>
+    }
+</ProStack>
+@code {
+    public static string __description__ = "Popover should take the best available space";
+
+    private bool _hideBottom;
+    private bool _expandList;
+    private bool _expanded = true;
+    private int _height = 600;
+    private int _heightBottom = 400;
+    private Origin _anchor = Origin.BottomLeft;
+    private Origin _transform = Origin.TopLeft;
+
+	private void OnExpandCollapseClick() => _expanded = !_expanded;
+
+    private async Task OnExpandCollapseFor5sClickAsync()
+	{
+		var expanded = _expanded;
+        _expanded = !expanded;
+        await Task.Delay(5000);
+        _expanded = expanded;
+    }
+
+	private async Task OnExpandListIn5sAsync()
+	{
+		_expandList = false;
+		await Task.Delay(5000);
+		_expandList = true;
+	}
+}

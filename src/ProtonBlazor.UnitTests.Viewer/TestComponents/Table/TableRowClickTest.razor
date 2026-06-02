@@ -1,0 +1,41 @@
+﻿<ProTable T="int" Items="_items" OnRowClick="@(args => OnRowClicked(args))" CustomHeader="true" CustomFooter="true">
+    <HeaderContent>
+        <ProTHeadRow OnRowClick="OnHeaderClicked">
+            <ProTh>#</ProTh>
+        </ProTHeadRow>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate>
+    <FooterContent>
+        <ProTFootRow OnRowClick="OnFooterClicked">
+            <ProTd>#</ProTd>
+        </ProTFootRow>
+    </FooterContent>
+</ProTable>
+
+<p>
+    @(string.Join(",", _clickedItems))
+</p>
+
+@code {
+    public static string __description__ = "The row click event should fire, regardless of the selection events.";
+
+    private readonly int[] _items = [0, 1, 2];
+    private readonly List<int> _clickedItems = [];
+
+    private void OnHeaderClicked()
+    {
+        _clickedItems.Add(-1);
+    }
+
+    private void OnFooterClicked()
+    {
+        _clickedItems.Add(100);
+    }
+
+    private void OnRowClicked(TableRowClickEventArgs<int> args )
+    {
+        _clickedItems.Add(args.Item);
+    }
+}

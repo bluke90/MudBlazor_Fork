@@ -1,0 +1,23 @@
+﻿<ProDateRangePicker DateRange="DateRange" />
+
+<ProTable T="ComplexObject" Items="_simulatedServerData" Filter="Filter" MultiSelection @bind-SelectedItems="_selectedItems" Comparer="_comparer" Dense>
+    <HeaderContent>
+        <ProTh>Id</ProTh>
+        <ProTh>Name</ProTh>
+        <ProTh>DateTime</ProTh>
+        <ProTh>X</ProTh>
+        <ProTh>Y</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context.Id</ProTd>
+        <ProTd>@context.Name</ProTd>
+        <ProTd>@context.DateTime</ProTd>
+        <ProTd>@context.NestedObject.X</ProTd>
+        <ProTd>@context.NestedObject.Y</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProTablePager HideRowsPerPage />
+    </PagerContent>
+</ProTable>
+
+<ProText>SelectedItems { @string.Join(", ", _selectedItems.Select(x => x.Id)) }</ProText>

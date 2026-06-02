@@ -1,0 +1,28 @@
+﻿<ProDynamicTabs CloseIconClass="my-close-icon-class" CloseTab="OnCloseClicked"
+                AddIconClass="my-add-icon-class" AddTab="OnAddClicked">
+    <ProTabPanel Text="Tab A">
+        Content A
+    </ProTabPanel>
+    <ProTabPanel Text="Tab B">
+        Content B
+    </ProTabPanel>
+    <ProTabPanel Text="Tab C">
+        Content C
+    </ProTabPanel>
+</ProDynamicTabs>
+
+@code {
+    public int AddClickCounter { get; private set; }
+
+    public HashSet<ProTabPanel> CloseClicked { get; } = [];
+
+    private void OnAddClicked()
+    {
+        AddClickCounter++;
+    }
+
+    private void OnCloseClicked(ProTabPanel panel)
+    {
+        CloseClicked.Add(panel);
+    }
+}

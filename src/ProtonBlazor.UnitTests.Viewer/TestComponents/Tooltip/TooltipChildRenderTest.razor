@@ -1,0 +1,20 @@
+﻿@using ProtonBlazor.UnitTests.TestComponents.Tooltip.RerenderTests
+
+<ProPopoverProvider />
+
+<ProTooltip Text="Tooltip with Object" Arrow="true" Placement="Placement.Top">
+    <MyAreaWithComplexObject MyValue="@ComplexValue" />
+</ProTooltip>
+
+<br/>
+<br/>
+<br/>
+
+<ProTooltip Text="Tooltip with integer" Arrow="true" Placement="Placement.Top">
+    <MyAreaWithSimpleValue MyValue="@SimpleValue" />
+</ProTooltip>
+
+@code {
+    public MyObject ComplexValue = new();
+    public int SimpleValue = 1;
+}

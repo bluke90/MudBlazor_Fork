@@ -1,0 +1,33 @@
+﻿@using System.Net.Http.Json
+@using ProtonBlazor.Examples.Data
+@using ProtonBlazor.Examples.Data.Models
+@inject IPeriodicTableService _periodicTableService
+
+<ProTable Items="_elements" Hover="true" SortLabel="Sort By">
+    <HeaderContent>
+        <ProTh><ProTableSortLabel SortBy="new Func<Element, object>(x=>x.Number)">Nr</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortBy="new Func<Element, object>(x=>x.Number)" Enabled="false">Unsortable Nr</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortBy="new Func<Element, object>(x=>x.Position)">Position</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortBy="new Func<Element, object>(x=>x.Molar)">Mass</ProTableSortLabel></ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Unsortable Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
+    </PagerContent>
+</ProTable>
+
+@code {
+    private IEnumerable<Element> _elements = new List<Element>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _elements = await _periodicTableService.GetElements();
+    }
+}
+
+

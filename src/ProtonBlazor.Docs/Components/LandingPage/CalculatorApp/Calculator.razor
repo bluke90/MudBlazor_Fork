@@ -1,0 +1,125 @@
+﻿@using PrimitiveCalculator
+@using System.Globalization
+@namespace ProtonBlazor.Docs.Components.LandingPage
+
+<ProPaper Square="true" Elevation="0" Height="30%" Class="d-flex justify-end align-center px-10 pro-transparent">
+    <div>
+        <ProText Typo="Typo.h4" Align="Align.End" Class="pro-text-secondary">
+            @Last
+        </ProText>
+        <ProText Typo="Typo.h1">
+            @CalcExpression
+        </ProText>
+    </div>
+</ProPaper>
+<ProPaper Square="true" Elevation="0" Height="70%" Class="lp-calc-buttons pb-16">
+    <ProGrid Spacing="0" Class="pro-height-full">
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton OnClick="@(() => CalcExpression += "(")" Class="rounded-circle">(</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton OnClick="@(() => CalcExpression += ")")" Class="rounded-circle">)</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton OnClick="@(() => CalcExpression += "%")" Class="rounded-circle">
+                <ProIcon Icon="@("<path d=\"M18.5 3.5l-15 15l2 2l15-15M7 4a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m10 10a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3z\">")"/>
+            </ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Variant="Variant.Filled" DropShadow="false"  OnClick="@(() => CalcExpression += "/")" Class="rounded-circle">
+                <ProIcon Icon="@("<path d=\"M19 13H5v-2h14v2m-7-8a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0 10a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z\">")"/>
+            </ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=7)">7</ProButton>  
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=8)">8</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=9)">9</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Variant="Variant.Filled" DropShadow="false"  Class="rounded-circle" OnClick="@(()=>CalcExpression+="*")">
+              <ProIcon Icon="@Icons.Material.Filled.Close"/>
+          </ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=4)">4</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=5)">5</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=6)">6</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Variant="Variant.Filled" DropShadow="false"  Class="rounded-circle" OnClick="@(()=>CalcExpression+="-")">
+               <ProIcon Icon="@Icons.Material.Filled.Remove"/>
+           </ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=1)">1</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=2)">2</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=3)">3</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Variant="Variant.Filled" DropShadow="false" Class="rounded-circle" OnClick="@(()=>CalcExpression+="+")">
+                <ProIcon Icon="@Icons.Material.Filled.Add"/>
+            </ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton OnClick="Reset" Class="rounded-circle">C</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=0)">0</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Class="rounded-circle" OnClick="@(()=>CalcExpression+=".")">.</ProButton>
+        </ProItem>
+        <ProItem xs="3" Class="d-flex justify-center align-center pa-6">
+            <ProButton Variant="Variant.Filled" DropShadow="false" Color="Color.Primary" OnClick="Evaluate" Class="rounded-circle">
+                <ProIcon Icon="@("<path d=\"M19,10H5V8H19V10M19,16H5V14H19V16Z\"/>")"/>
+            </ProButton>
+        </ProItem>
+    </ProGrid>
+</ProPaper>
+
+
+@code
+{
+    
+    protected string Last;
+    protected string Current;
+    protected string CalcExpression = "";
+
+    public void Reset()
+    {
+        Last = "";
+        Current = "";
+        CalcExpression = "";
+    }
+
+    public void Evaluate()
+    {
+        Last = Current;
+        if (string.IsNullOrWhiteSpace(CalcExpression))
+        {
+            Current = "";
+            return;
+        }
+        var exp = new Expression(CalcExpression);
+        var result=exp.Eval();
+        if (double.IsNaN(result))
+        {
+            Current = "ERROR";
+            return;
+        }
+        Current = Math.Round( result, 8).ToString(CultureInfo.InvariantCulture);
+        CalcExpression=Current; // <-- this allows to continue calculating with the result
+    }
+}

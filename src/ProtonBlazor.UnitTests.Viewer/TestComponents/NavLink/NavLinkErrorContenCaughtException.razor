@@ -1,0 +1,20 @@
+﻿<ErrorBoundary>
+    <ChildContent>
+        <ProNavMenu Margin="Margin.Dense" Color="Color.Warning">
+            <ProNavLink OnClick="HandleClickAsync">
+                Clickable Link
+            </ProNavLink>
+        </ProNavMenu>
+    </ChildContent>
+    <ErrorContent>
+        <ProAlert Severity="Severity.Error">Oh my! We caught an error and handled it!</ProAlert>
+    </ErrorContent>
+</ErrorBoundary>
+
+@code {
+    public async Task HandleClickAsync()
+    {
+        await Task.Delay(100);
+        throw new Exception("Something went wrong...");
+    }
+}

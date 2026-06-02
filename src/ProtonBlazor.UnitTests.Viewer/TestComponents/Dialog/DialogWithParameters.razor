@@ -1,0 +1,34 @@
+﻿<ProDialog>
+    <DialogContent>
+        <ProInput @bind-Value="TestValue" />
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="OnTest" Variant="Variant.Filled" Color="Color.Primary" Class="mr-auto">Test</ProButton>
+        <ProButton OnClick="() => ProDialog.Close()">Close</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance ProDialog { get; set; } = null!;
+
+    [Parameter]
+    public string? TestValue { get; set; }
+
+    [Parameter]
+    public Color ColorTest { get; set; }
+
+    public int ParametersSetCounter { get; private set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        ParametersSetCounter++;
+    }
+
+    private void OnTest()
+    {
+        ProDialog.StateHasChanged();
+        StateHasChanged();
+    }
+}

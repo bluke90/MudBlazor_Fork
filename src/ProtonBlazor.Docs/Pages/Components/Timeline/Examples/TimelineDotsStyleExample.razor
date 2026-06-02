@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<style>
+    .timeline-red-dot {
+        background-color: var(--pro-palette-error);
+    }
+</style>
+
+<ProItem>
+    <ProTimeline Reverse="true">
+        <ProTimelineItem>
+            <ProText Align="Align.End">Static dot</ProText>
+        </ProTimelineItem>
+        <ProTimelineItem DotClass="timeline-red-dot">
+            <ProText Align="Align.End">Red dot</ProText>
+        </ProTimelineItem>
+        <ProTimelineItem>
+            <ProText Align="Align.End">Static dot</ProText>
+        </ProTimelineItem>
+    </ProTimeline>
+</ProItem>

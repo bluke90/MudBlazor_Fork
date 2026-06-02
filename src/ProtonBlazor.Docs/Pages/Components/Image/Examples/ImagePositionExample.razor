@@ -1,0 +1,26 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div class="d-flex justify-center">
+    <ProImage ObjectFit="ObjectFit.None" ObjectPosition="@ImagePosition" Height="200" Width="400" Src="images/iceland.jpg" Alt="Öxarárfoss, Iceland"  Elevation="25" Class="rounded-lg"/>
+</div>
+
+<ProChipSet T="string" CheckMark Class="mt-12">
+    <ProChip Text="Center" OnClick="@(() => SetImagePosition(ObjectPosition.Center))" SelectedColor="Color.Primary" Default="true" />
+    <ProChip Text="Top" OnClick="@(() => SetImagePosition(ObjectPosition.Top))" SelectedColor="Color.Primary" />
+    <ProChip Text="Bottom" OnClick="@(() => SetImagePosition(ObjectPosition.Bottom))" SelectedColor="Color.Primary" />
+    <ProChip Text="Left" OnClick="@(() => SetImagePosition(ObjectPosition.Left))" SelectedColor="Color.Primary" />
+    <ProChip Text="Left Top" OnClick="@(() => SetImagePosition(ObjectPosition.LeftTop))" SelectedColor="Color.Primary" />
+    <ProChip Text="Left Bottom" OnClick="@(() => SetImagePosition(ObjectPosition.LeftBottom))" SelectedColor="Color.Primary" />
+    <ProChip Text="Right" OnClick="@(() => SetImagePosition(ObjectPosition.Right))" SelectedColor="Color.Primary" />
+    <ProChip Text="Right Top" OnClick="@(() => SetImagePosition(ObjectPosition.RightTop))" SelectedColor="Color.Primary" />
+    <ProChip Text="Right Bottom" OnClick="@(() => SetImagePosition(ObjectPosition.RightBottom))" SelectedColor="Color.Primary" />
+</ProChipSet>
+
+@code {
+    ObjectPosition ImagePosition = ObjectPosition.Center;
+
+    void SetImagePosition(ObjectPosition value)
+    {
+        ImagePosition = value;
+    }
+}

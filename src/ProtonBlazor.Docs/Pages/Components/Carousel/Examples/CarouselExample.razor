@@ -1,0 +1,36 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCarousel Class="pro-width-full" Style="height:200px;" ShowArrows="@arrows" ShowBullets="@bullets" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object">
+    <ProCarouselItem Transition="transition" Color="@Color.Primary">
+        <div class="d-flex" style="height:100%">
+            <ProIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.ProtonBlazor" Size="@Size.Large" />
+        </div>
+    </ProCarouselItem>
+    <ProCarouselItem Transition="transition" Color="@Color.Secondary">
+        <div class="d-flex" style="height:100%">
+            <ProIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.ProtonBlazor" Size="@Size.Large" />
+        </div>
+    </ProCarouselItem>
+    <ProCarouselItem Transition="transition">
+        <div class="d-flex" style="height:100%">
+            <ProIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.ProtonBlazor" Color="@Color.Primary" Size="@Size.Large" />
+        </div>
+    </ProCarouselItem>
+</ProCarousel>
+<ProSelect @bind-Value="transition" Label="Transition" Class="ma-2">
+    <ProSelectItem Value="@Transition.Fade">Fade</ProSelectItem>
+    <ProSelectItem Value="@Transition.Slide">Slide</ProSelectItem>
+    <ProSelectItem Value="@Transition.None">None</ProSelectItem>
+</ProSelect>
+<ProSwitch @bind-Value="arrows" Color="Color.Primary">Show Arrows</ProSwitch>
+<ProSwitch @bind-Value="bullets" Color="Color.Primary">Show Bullets</ProSwitch>
+<ProSwitch @bind-Value="enableSwipeGesture" Color="Color.Primary">Enable Swipe Gesture</ProSwitch>
+<ProSwitch @bind-Value="autocycle" Color="Color.Primary">Auto Cycle (Default: 5 secs)</ProSwitch>
+
+@code{ 
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+}

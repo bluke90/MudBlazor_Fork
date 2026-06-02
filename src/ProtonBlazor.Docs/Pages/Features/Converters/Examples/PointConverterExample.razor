@@ -1,0 +1,35 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+@using System.Drawing
+@using System.Globalization;
+@using System.Text.Json
+@using Color = ProtonBlazor.Color
+
+<ProGrid>
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField Label="Point"
+                      Variant="Variant.Outlined"
+                      @bind-Value="_point"
+                      Immediate="true"
+                      Converter="_pointConverter"/>
+    </ProItem>
+    
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField Label="Mirrored point" 
+                      Variant="Variant.Outlined"  
+                      @bind-Value="_point" 
+                      Immediate="true"
+                      Converter="_pointConverter" />
+    </ProItem>
+
+</ProGrid>
+
+@code {
+    private Point _point;
+    private readonly IConverter<Point, string> _pointConverter = Conversions.From(
+        (Point x) => $"[{x.X}, {x.Y}]",
+        x =>
+        {
+            var tmp = JsonSerializer.Deserialize<int[]>(x);
+            return new Point(tmp[0], tmp[1]);
+        });
+}

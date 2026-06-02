@@ -1,0 +1,22 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Outlined Class="border-dashed">
+    <ProStack StretchItems="@stretch" Row>
+        <ProPaper Class="pa-3 pro-theme-primary">Item 1</ProPaper>
+        <ProPaper Class="pa-3 pro-theme-primary">Item 2</ProPaper>
+        <ProPaper Class="pa-3 pro-theme-primary">Item 3</ProPaper>
+    </ProStack>
+</ProPaper>
+
+<ProChipSet @bind-SelectedValue="@stretch" Class="mt-12" >
+    <ProChip Value="StretchItems.None" Text="Do Not Stretch" SelectedColor="Color.Primary" />
+    <ProChip Value="StretchItems.Start" Text="Stretch First" SelectedColor="Color.Primary" Default="true" />
+    <ProChip Value="StretchItems.StartAndEnd" Text="Stretch First and Last" SelectedColor="Color.Primary" />
+    <ProChip Value="StretchItems.End" Text="Stretch Last" SelectedColor="Color.Primary" />
+    <ProChip Value="StretchItems.Middle" Text="Stretch Middle" SelectedColor="Color.Primary" />
+    <ProChip Value="StretchItems.All" Text="Stretch All" SelectedColor="Color.Primary" />
+</ProChipSet>
+
+@code {
+    StretchItems stretch = StretchItems.Start;
+}

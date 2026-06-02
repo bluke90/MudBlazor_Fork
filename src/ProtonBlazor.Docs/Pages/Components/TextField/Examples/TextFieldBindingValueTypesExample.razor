@@ -1,0 +1,37 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<ProGrid>
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField @bind-Value="intValue" Label="Enter an int" />
+    </ProItem>
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField @bind-Value="doubleValue" Label="Enter a double" Format="F1"/>
+    </ProItem>
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField @bind-Value="enumValue" Label="Enum (Yes|No|Maybe)" />
+    </ProItem>
+</ProGrid>
+<ProGrid>
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField @bind-Value="nullableInt" HelperText="Enter an int" />
+    </ProItem>
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField @bind-Value="nullableDouble" HelperText="Enter a double" Format="F1" />
+    </ProItem>
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField @bind-Value="nullableEnum" HelperText="Enum (Yes|No|Maybe)" />
+    </ProItem>
+</ProGrid>
+
+
+@code { 
+    int intValue;
+    double doubleValue;
+    YesNoMaybe enumValue;
+    int? nullableInt;
+    double? nullableDouble;
+    YesNoMaybe? nullableEnum;
+
+    public enum YesNoMaybe { Maybe, Yes, No }
+}

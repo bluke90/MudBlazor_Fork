@@ -1,0 +1,55 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProSelect @bind-Value="country" Label="With render fragements" Variant="Variant.Outlined">
+    <ProSelectItem Value="@("Austria")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg" height="14" class="mr-1" /> Austria
+    </ProSelectItem>
+    <ProSelectItem Value="@("Hungary")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Hungary.png" height="14" class="mr-1" /> Hungary
+    </ProSelectItem>
+    <ProSelectItem Value="@("Sweden")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Sweden_fixed.svg" height="14" class="mr-1" /> Sweden
+    </ProSelectItem>
+</ProSelect>
+
+<ProSelect @bind-Value="country" Label="Without render fragements" Variant="Variant.Outlined">
+    <ProSelectItem Value="@("Austria")" />
+    <ProSelectItem Value="@("Hungary")" />
+    <ProSelectItem Value="@("Sweden")" />
+</ProSelect>
+
+<ProSelect @bind-Value="country" Label="Austria not representable" Variant="Variant.Outlined">
+    <ProSelectItem Value="@("Germany")">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" height="14" class="mr-1" /> Germany
+    </ProSelectItem>
+    <ProSelectItem Value="@("Hungary")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Hungary.png" height="14" class="mr-1" /> Hungary
+    </ProSelectItem>
+    <ProSelectItem Value="@("Sweden")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Sweden_fixed.svg" height="14" class="mr-1" /> Sweden
+    </ProSelectItem>
+</ProSelect>
+
+<ProSelect @bind-Value="country" Label="ToStringFunc Precedence" Variant="Variant.Outlined" ToStringFunc="@GetCountryCode">
+    <ProSelectItem Value="@("Austria")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg" height="14" class="mr-1" /> Austria
+    </ProSelectItem>
+    <ProSelectItem Value="@("Hungary")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Hungary.png" height="14" class="mr-1" /> Hungary
+    </ProSelectItem>
+    <ProSelectItem Value="@("Sweden")">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Sweden_fixed.svg" height="14" class="mr-1" /> Sweden
+    </ProSelectItem>
+</ProSelect>
+
+@code {
+    string country="Austria";
+
+    private string GetCountryCode(string name) => name switch
+    {
+        "Austria" => "AUT",
+        "Hungary" => "HUN",
+        "Sweden" => "SWE",
+        _ => name
+    };
+}

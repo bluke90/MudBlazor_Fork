@@ -1,0 +1,107 @@
+﻿<ProTable T="DocumentedLink" @ref="Table" ServerData="@GetData"
+Breakpoint="@Breakpoint.Sm"
+Elevation="0" Class="docs-content-api-table" Hover="true" Dense="true"
+AllowUnsorted="false">
+    <HeaderContent>
+        <ProTh><ProTableSortLabel T="DocumentedLink" SortLabel="Text" InitialDirection="SortDirection.Ascending">Name</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel T="DocumentedLink" SortLabel="LinkType">Type</ProTableSortLabel></ProTh>
+        <ProTh>Description</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd id="@context.GetName()" DataLabel="Name" Class="docs-content-api-cell">
+            @if (context.Href != null)
+            {
+                <ProLink Href="@context.GetLink()" Typo="Typo.caption">
+                    @if(!string.IsNullOrEmpty(context.Text))
+                    {
+                        <CodeInline>@context.Text</CodeInline>                        
+                    }
+                    else
+                    {
+                        <CodeInline>@context.Href</CodeInline>
+                    }                    
+                </ProLink>
+            }
+            else if (context.Type != null)
+            {
+                <ApiTypeLink Type="@context.Type" TypeName="@context.Type.Name" TypeFriendlyName="@context.Type.NameFriendly" />
+            }
+        </ProTd>
+        <ProTd DataLabel="Type" Class="docs-content-api-cell">
+            @if (!string.IsNullOrEmpty(context.Href))
+            {
+                @if (context.Href.Contains("protonblazor.com/components"))
+                {
+                    <ProText Typo="Typo.body2">Examples</ProText>
+                }
+                else
+                {
+                    <ProText Typo="Typo.body2">External Link</ProText>
+                }
+            }
+            else if (context.Type != null)
+            {
+                @if (context.Type.IsComponent)
+                {
+                    <ProText Typo="Typo.body2">Component</ProText>
+                }
+                else
+                {
+                    <ProText Typo="Typo.body2">Type</ProText>
+                }
+            }
+            else if (context.Property != null)
+            {
+                <ProText Typo="Typo.body2">Property</ProText>
+            }
+            else if (context.Method != null)
+            {
+                <ProText Typo="Typo.body2">Method</ProText>
+            }
+            else if (context.Event != null)
+            {
+                <ProText Typo="Typo.body2">Event</ProText>
+            }
+            else if (context.Field != null)
+            {
+                <ProText Typo="Typo.body2">Field</ProText>
+            }
+        </ProTd>
+        <ProTd DataLabel="Description" Class="docs-content-api-cell docs-content-api-description">
+            @if (!string.IsNullOrEmpty(context.Href))
+            {
+                @if(context.Href.Contains("protonblazor.com/components"))
+                {
+                    <ProText Typo="Typo.body2">@Type.NameFriendly Examples</ProText>
+                }
+                else
+                {
+                    <ProText Typo="Typo.body2">External Link</ProText>
+                }
+            }
+            else if (context.Type != null)
+            {
+                <ApiText Text="@(context.Type.Summary + " " + context.Type.Remarks)" />
+            }
+            else if (context.Property != null)
+            {
+                <ApiText Text="@(context.Property.Summary + " " + context.Property.Remarks)" />
+            }
+            else if (context.Method != null)
+            {
+                <ApiText Text="@(context.Method.Summary + " " + context.Method.Remarks)" />
+            }
+            else if (context.Event != null)
+            {
+                <ApiText Text="@(context.Event.Summary + " " + context.Event.Remarks)" />
+            }
+            else if (context.Field != null)
+            {
+                <ApiText Text="@(context.Field.Summary + " " + context.Field.Remarks)" />
+            }            
+        </ProTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <ProAlert Severity="Severity.Info">No see-also links match the current filters.</ProAlert>
+    </NoRecordsContent>
+</ProTable>

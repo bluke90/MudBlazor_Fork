@@ -1,0 +1,115 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+@typeparam T
+@using ProtonBlazor.Utilities
+@using ProtonBlazor.Resources
+@inject InternalMudLocalizer Localizer
+
+@{
+    var resolvedItems = new List<IndexBag<T>>(0);
+    if (DataGrid.IsGrouped)
+    {
+        if (GroupedItems is not null)
+        {
+            resolvedItems = GroupedItems.Select((item, index) => new IndexBag<T>(index, item)).ToList();
+        }
+    }
+    else if (!DataGrid.Virtualize || DataGrid.VirtualizeServerData == null || DataGrid.HasFooter)
+    {
+        resolvedItems = DataGrid.CurrentPageItems.Select((items, index) => new IndexBag<T>(index, items))
+                .ToList();
+    }
+    else
+    {
+        resolvedItems = DataGrid.CurrentPageItems.Select((item, index) => new IndexBag<T>(index, item)).ToList();
+    }
+}
+
+<ProVirtualize @ref="DataGrid._proVirtualize"
+               ItemsProvider="@DataGrid.VirtualItemsProvider"
+               Enabled="@DataGrid.Virtualize"
+               Items="@resolvedItems"
+               OverscanCount="@DataGrid.OverscanCount"
+               ItemSize="@DataGrid.ItemSize"
+               SpacerElement="tr"
+               Context="itemBag">
+    <Placeholder>
+        @if (DataGrid.RowLoadingContent != null)
+        {
+            @DataGrid.RowLoadingContent
+        }
+        else
+        {
+            <tr class="pro-table-row">
+                <td class="pro-table-cell" colspan="1000">
+                    @Localizer[LanguageResource.ProDataGrid_Loading]
+                </td>
+            </tr>
+        }
+    </Placeholder>
+
+    <ChildContent>
+        @{
+            var rowClass = new CssBuilder(DataGrid.RowClass)
+                .AddClass(DataGrid.RowClassFunc?.Invoke(itemBag.Item, itemBag.Index))
+                .AddClass("pro-table-row-stripe", DataGrid.Striped && itemBag.Index % 2 == 0)
+                .Build();
+            var rowStyle = new StyleBuilder().AddStyle(DataGrid.RowStyle).AddStyle(DataGrid.RowStyleFunc?.Invoke(itemBag.Item, itemBag.Index)).Build();
+        }
+        <tr class="pro-table-row @rowClass" Style="@rowStyle" @key="itemBag.Item"
+            @attributes="GetRowAttributes(itemBag.Item)"
+            @onclick="@((args) => RowClick.InvokeAsync((args, itemBag.Item, itemBag.Index)))"
+            @oncontextmenu="@((args) => ContextRowClick.InvokeAsync((args, itemBag.Item, itemBag.Index)))"
+            @oncontextmenu:preventDefault="@(DataGrid.RowContextMenuClick.HasDelegate ? true : false)">
+            <CascadingValue Value="@DataGrid.Validator" IsFixed="true">
+                @foreach (var column in DataGrid.RenderedColumns)
+                {
+                    if (!column.HiddenState.Value)
+                    {
+                        @DataGrid.Cell(column, itemBag.Item)
+                    }
+                }
+            </CascadingValue>
+        </tr>
+        @if ((DataGrid.ChildRowContent != null || DataGrid.ChildRowRenderer != null)&& (DataGrid._openHierarchies.Contains(itemBag.Item) || !DataGrid.HasHierarchyColumn))
+        {
+            @if (DataGrid.ChildRowRenderer != null)
+            {
+                @DataGrid.ChildRowRenderer(new CellContext<T>(DataGrid, itemBag.Item))
+            }
+            @if (DataGrid.ChildRowContent != null)
+            {
+                <tr class="pro-table-row">
+                    <td class="pro-table-cell pro-table-child-content" colspan="1000">
+                        @DataGrid.ChildRowContent(new CellContext<T>(DataGrid, itemBag.Item))
+                    </td>
+                </tr>
+            }
+        }
+    </ChildContent>
+    <NoRecordsContent>
+        <tr>
+            <th colspan="1000" class="pro-table-empty-row">
+                <div Class="my-3">
+                    @DataGrid.NoRecordsContent
+                </div>
+            </th>
+        </tr>
+    </NoRecordsContent>
+</ProVirtualize>
+
+@code {
+    private Dictionary<string, object?>? GetRowAttributes(T item)
+    {
+        var rowSelectionState = DataGrid.GetRowSelectionState(item);
+        if (rowSelectionState is null)
+        {
+            return null;
+        }
+
+        return new Dictionary<string, object?>(1)
+        {
+            ["aria-selected"] = rowSelectionState.Value.ToString().ToLowerInvariant()
+        };
+    }
+}

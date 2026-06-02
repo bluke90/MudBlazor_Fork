@@ -39,7 +39,7 @@
         },
         {
             "matchFileNames": [
-                "src/MudBlazor.Analyzers.CodeFixes/MudBlazor.Analyzers.CodeFixes.csproj"
+                "src/ProtonBlazor.Analyzers.CodeFixes/ProtonBlazor.Analyzers.CodeFixes.csproj"
             ],
             "matchPackageNames": [
                 "Microsoft.CodeAnalysis.CSharp.Workspaces"
@@ -48,7 +48,7 @@
         },
         {
             "matchFileNames": [
-                "src/MudBlazor/MudBlazor.csproj"
+                "src/ProtonBlazor/ProtonBlazor.csproj"
             ],
             "matchPackageNames": [
                 "Microsoft.AspNetCore**",

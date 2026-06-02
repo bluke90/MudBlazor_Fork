@@ -1,0 +1,16 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+@inject ISnackbar Snackbar
+
+<ProPaper Width="250px" Class="py-3" Elevation="0">
+    <ProNavMenu Dense>
+        <ProNavGroup Title="Settings" Expanded="true">
+            <ProNavLink OnClick="@(() => GoTo("Settings/Users"))">Users</ProNavLink>
+            <ProNavLink OnClick="@(() => GoTo("Settings/Security"))">Security</ProNavLink>
+        </ProNavGroup>
+        <ProNavLink OnClick="@(() => GoTo("About"))">About</ProNavLink>
+    </ProNavMenu>
+</ProPaper>
+
+@code {
+    private void GoTo(string page) => Snackbar.Add($"Clicked {page}");
+}

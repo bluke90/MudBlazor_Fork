@@ -1,0 +1,11 @@
+﻿@using ProtonBlazor.Utilities
+
+<ProForm FieldChanged="v => FormFieldChangedEventArgs = v">
+    <ProDatePicker Editable />
+    <ProTimePicker Editable />
+    <ProColorPicker Editable />
+</ProForm>
+
+@code {
+    public FormFieldChangedEventArgs? FormFieldChangedEventArgs { get; private set; }
+}

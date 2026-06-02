@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProTimePicker Label="With action buttons" @bind-Time="_time">
+    <PickerActions>
+        <ProButton Class="mr-auto align-self-start" OnClick="@(() => context.ClearAsync())">Clear</ProButton>
+        <ProButton OnClick="@(() => context.CloseAsync(false))">Cancel</ProButton>
+        <ProButton Id="theCloseButton" Color="Color.Primary" OnClick="@(() => context.CloseAsync())">OK</ProButton>
+    </PickerActions>
+</ProTimePicker>
+
+@code{
+    private TimeSpan? _time = new TimeSpan(00, 45, 00);
+}

@@ -1,0 +1,36 @@
+﻿<ProList T="string" @bind-SelectedValues="SelectedValues" SelectionMode="SelectionMode.MultiSelection">
+    <ProListSubheader>
+        Select your favourite drinks:
+    </ProListSubheader>
+    <ProListItem Text="Milk" />
+    <ProListItem Text="Sparkling Water" Value='"Carbonated H²O"' />
+    <ProListItem Text="Teas">
+        <NestedList>
+            <ProListItem Text="English Tea" Value='"Earl Grey"' />
+            <ProListItem Text="Japanese Tea" Value='"Matcha"' />
+            <ProListItem Text="Chinese Tea" Value='"Wu Long Cha"' />
+        </NestedList>
+    </ProListItem>
+    <ProListItem Text="Coffees">
+        <NestedList>
+            <ProListItem Text="Irish Coffee" />
+            <ProListItem Text="Double Espresso" />
+            <ProListItem Text="Cafe Latte" />
+        </NestedList>
+    </ProListItem>
+    <ProListItem Text="Juices">
+        <NestedList>
+            <ProListItem Text="Apple Juice" Disabled="true" />
+            <ProListItem Text="Orange Juice" Disabled="true" />
+        </NestedList>
+    </ProListItem>
+</ProList>
+
+<p class="selected-values">
+    @(string.Join(", ", (SelectedValues ?? Array.Empty<string>()).OrderBy(x => x)))
+</p>
+
+@code {
+    [Parameter]
+    public IReadOnlyCollection<string>? SelectedValues { get; set; }
+}

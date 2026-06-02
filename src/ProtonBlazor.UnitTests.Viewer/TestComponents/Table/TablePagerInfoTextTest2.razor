@@ -1,0 +1,22 @@
+﻿﻿@using System.ComponentModel
+
+<ProTable Items="_items">
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProTablePager InfoFormat="@InfoFormat" />
+    </PagerContent>
+</ProTable>
+
+@code {
+    public static string __description__ = "Info in pager should be correctly formatted";
+    
+    [Parameter]
+    public string? InfoFormat { get; set; }
+
+    private readonly string[] _items =
+    [
+        "A", "B", "C"
+    ];
+}

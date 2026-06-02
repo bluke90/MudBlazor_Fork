@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+<ProChipSet T="string" AllClosable OnClose="Closed">
+    @foreach (var value in _values)
+    {
+        <ProChip Text="@value"></ProChip>
+    }
+</ProChipSet>
+
+<div class="d-flex flex-column align-center">
+    <ProButton StartIcon="@Icons.Material.Filled.Add" OnClick="Add">Add chip</ProButton>
+</div>
+
+
+@code
+{
+    private int _i = 1;
+    private List<string> _values = new();
+    public void Add() => _values.Add("Value " + (_i++));
+    public void Closed(ProChip<string> chip) => _values.Remove(chip.Text);
+}
+

@@ -1,0 +1,49 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div>
+    <ProChart ChartType="ChartType.Line" ChartSeries="@Series" ChartLabels="@ChartLabels" Width="100%" Height="350" ChartOptions="_options"></ProChart>
+    <ProButton @onclick="RandomizeData">Randomize Data</ProButton>
+    <ProMenu Label="Interpolation Algorithm" FullWidth="true">
+        <ProMenuItem OnClick="() => OnClickMenu(InterpolationOption.Straight)">Straight</ProMenuItem>
+        <ProMenuItem OnClick="() => OnClickMenu(InterpolationOption.NaturalSpline)">Natural Spline</ProMenuItem>
+        <ProMenuItem OnClick="() => OnClickMenu(InterpolationOption.EndSlope)">End Slope</ProMenuItem>
+        <ProMenuItem OnClick="() => OnClickMenu(InterpolationOption.Periodic)">Periodic</ProMenuItem>
+    </ProMenu>
+    <ProCheckBox T="bool" ValueChanged="(v)=> _options.ShowDataMarkers = v" Label="Show Data Markers"></ProCheckBox>
+</div>
+
+@code {
+    private LineChartOptions _options = new LineChartOptions();
+    public List<ChartSeries<double>> Series = new List<ChartSeries<double>>()
+    {
+        new ChartSeries<double>() { Name = "Series 1", Data = new double[] { 90, 79, 72, 69, 62, 62, 55, 65, 70 } },
+        new ChartSeries<double>() { Name = "Series 2", Data = new double[] { 35, 41, 35, 51, 49, 62, 69, 91, 148 } },
+    };
+    public string[] ChartLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep" };
+
+    Random random = new Random();
+    protected override void OnInitialized()
+    {
+        _options.InterpolationOption = InterpolationOption.NaturalSpline;
+        _options.YAxisFormat = "c2";
+    }
+
+    public void RandomizeData()
+    {
+        foreach (var series in Series)
+        {
+            for (int i = 0; i < series.Data.Values.Count; i++)
+            {
+                series.Data[i].Y = random.NextDouble() * 100 + 10;
+            }
+        }
+
+        StateHasChanged();
+    }
+
+    void OnClickMenu(InterpolationOption interpolationOption)
+    {
+        _options.InterpolationOption = interpolationOption;
+        StateHasChanged();
+    }
+}

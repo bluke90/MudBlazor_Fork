@@ -1,0 +1,34 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="300px" Elevation="0">
+    <ProTreeView @ref="TreeView" Hover AutoExpand="@AutoExpand" @bind-SelectedValue="SelectedValue" SelectionMode="@SelectionMode.ToggleSelection">
+        <ProTreeViewItem Value="@("C:")" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+            <ProTreeViewItem Value="@("config")" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+                <ProTreeViewItem Value='"launch.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+                <ProTreeViewItem Value='"tasks.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+            </ProTreeViewItem>
+            <ProTreeViewItem Value="@("images")" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+                <ProTreeViewItem Value="@("logo.png")" Icon="@Icons.Custom.FileFormats.FileImage" />
+            </ProTreeViewItem>
+        </ProTreeViewItem>
+    </ProTreeView>
+</ProPaper>
+
+<ProStack Row Justify="Justify.Center" Style="width: 100%" Wrap="Wrap.Wrap">
+    <ProButton Color="Color.Primary" OnClick="@(()=>TreeView.ExpandAllAsync())" Variant="Variant.Filled">Expand all</ProButton>
+    <ProButton Color="Color.Dark" OnClick="@(()=>TreeView.CollapseAllAsync())" Variant="Variant.Filled">Collapse all</ProButton>
+    <ProChipSet T="string" @bind-SelectedValue="SelectedValue" Color="Color.Primary" Variant="Variant.Text" SelectionMode="@SelectionMode.ToggleSelection">
+        <ProChip Text="config"/>
+        <ProChip Text="launch.json"/>
+        <ProChip Text="tasks.json"/>
+        <ProChip Text="images"/>
+        <ProChip Text="logo.png"/>
+    </ProChipSet>
+    <ProSwitch @bind-Value="AutoExpand" Color="Color.Primary">AutoExpand</ProSwitch>
+</ProStack>
+
+@code {
+    public ProTreeView<string> TreeView;
+    public string SelectedValue = null;
+    public bool AutoExpand = true;
+}

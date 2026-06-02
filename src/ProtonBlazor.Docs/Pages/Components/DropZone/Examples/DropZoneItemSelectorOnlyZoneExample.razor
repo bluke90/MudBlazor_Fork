@@ -1,0 +1,49 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDropContainer T="DropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-column flex-grow-1">
+    <ChildContent>
+        <ProListSubheader Class="mt-4 pb-2">Folders</ProListSubheader>
+        <div class="d-flex gap-4 mx-4">
+            <ProDropZone T="DropItem" OnlyZone="true" Identifier="Propaganda">
+                <ProPaper Outlined="true" Class="d-flex align-center pa-3 gap-2">
+                    <ProIcon Icon="@Icons.Custom.Uncategorized.Folder" Color="Color.Inherit" />Propaganda
+                </ProPaper>
+            </ProDropZone>
+           <ProDropZone T="DropItem" OnlyZone="true" Identifier="Work">
+                <ProPaper Outlined="true" Class="d-flex align-center pa-3 gap-2">
+                    <ProIcon Icon="@Icons.Custom.Uncategorized.Folder" Color="Color.Inherit" />Work
+                </ProPaper>
+            </ProDropZone>
+        </div>
+        <ProListSubheader Class="mt-4 pb-2">Files</ProListSubheader>
+        <ProDropZone T="DropItem" Identifier="Files" Class="d-flex flex-wrap flex-grow-1 pa-2 rounded" />
+    </ChildContent>
+    <ItemRenderer>
+        <div Class="rounded pro-paper-outlined d-flex align-center pa-3 ma-2">
+            <ProIcon Icon="@(context.Identifier == "Folders" ? Icons.Custom.Uncategorized.Folder : Icons.Custom.FileFormats.FileDocument)" Color="Color.Inherit" Class="mr-2"/>
+            @context.Name
+        </div>
+    </ItemRenderer>
+</ProDropContainer>
+
+@code {
+    private void ItemUpdated(ProItemDropInfo<DropItem> dropItem)
+    {
+        dropItem.Item.Identifier = dropItem.DropzoneIdentifier;
+    }
+    
+    private List<DropItem> _items = new()
+    {
+        new DropItem(){ Name = "Untitled document", Identifier = "Files" },
+        new DropItem(){ Name = "GoonSwarmBestSwarm.png", Identifier = "Files" },
+        new DropItem(){ Name = "co2traitors.txt", Identifier = "Files" },
+        new DropItem(){ Name = "import.csv", Identifier = "Files" },
+        new DropItem(){ Name = "planned_components_2022-2023.txt", Identifier = "Files" },
+    };
+    
+    public class DropItem
+    {
+        public string Name { get; init; }
+        public string Identifier { get; set; }
+    }
+}

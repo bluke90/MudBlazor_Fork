@@ -1,0 +1,66 @@
+﻿<ProNavGroup id="custom-top-level-id"
+             Disabled="@TopLevelDisabled"
+             Title="Top level"
+             Expanded="@TopLevelExpanded">
+    <ProNavLink Href="/keyboard"
+                Icon="@Icons.Material.Outlined.Keyboard">
+        Accessibility
+    </ProNavLink>
+    <ProNavGroup Title="Disabled navgroup"
+                 Disabled="@true">
+        <ProNavLink id="disabled-navlink-within-disabled-navgroup"
+                    Href="/disabled"
+                    Icon="@Icons.Material.Filled.DisabledVisible"
+                    Disabled="@true">
+            Disabled
+        </ProNavLink>
+        <ProNavLink id="enabled-navlink-within-disabled-navgroup"
+                    Href="/enabled"
+                    Icon="@Icons.Material.Filled.Check">
+            Enabled
+        </ProNavLink>
+    </ProNavGroup>
+    <ProNavLink Href="/accessibility"
+                Icon="@Icons.Material.Outlined.Accessibility">
+        Keyboard
+    </ProNavLink>
+    <ProNavGroup id="second-level-navgroup"
+                 Title="@SecondLevelTitle"
+                 Expanded="@SecondLevelExpanded">
+        <ProNavLink Href="/reader"
+                    Icon="@Icons.Material.Filled.Computer">
+            Computer
+        </ProNavLink>
+        <ProNavLink id="disabled-navlink"
+                    Href="/disabled"
+                    Icon="@Icons.Material.Filled.DisabledVisible"
+                    Disabled="@true">
+            Disabled
+        </ProNavLink>
+        <ProNavLink Href="/protonblazor"
+                    Icon="@Icons.Custom.Brands.ProtonBlazor"
+                    Disabled="true">
+            ProtonBlazor
+        </ProNavLink>
+    </ProNavGroup>
+</ProNavGroup>
+
+<style>
+    *:focus {
+        outline: 1px solid red !important;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public bool TopLevelDisabled { get; set; }
+
+    [Parameter]
+    public bool TopLevelExpanded { get; set; } = true;
+
+    [Parameter]
+    public bool SecondLevelExpanded { get; set; } = true;
+
+    [Parameter]
+    public string SecondLevelTitle { get; set; } = "Second level";
+}

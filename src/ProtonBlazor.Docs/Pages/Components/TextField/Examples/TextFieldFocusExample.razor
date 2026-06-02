@@ -1,0 +1,12 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTextField @ref="multilineReference" T="string" Label="Manual focus" Variant="Variant.Filled" Text="@sampleText" Lines="3" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.CenterFocusWeak" OnAdornmentClick="@(() => multilineReference.FocusAsync())"  />
+<ProTextField @ref="singleLineReference" T="string" Label="Manual focus" Variant="Variant.Filled" Text="@sampleText" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.CenterFocusWeak" OnAdornmentClick="@(() => singleLineReference.FocusAsync())" />
+
+@code
+{
+    private ProTextField<string> multilineReference;
+    private ProTextField<string> singleLineReference;
+
+    string sampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+}

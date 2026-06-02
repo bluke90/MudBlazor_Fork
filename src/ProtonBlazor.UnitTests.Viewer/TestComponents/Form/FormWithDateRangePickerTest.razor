@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProForm ValidationDelay="0">
+    <ProDateRangePicker Required="true" @bind-DateRange="DateRange">
+    </ProDateRangePicker>
+</ProForm>
+
+@code {
+    public static string __description__ = "Form should validate date range picker's date range.";
+
+    [Parameter]
+    public DateRange? DateRange { get; set; }
+}

@@ -1,0 +1,23 @@
+﻿<ProPopoverProvider />
+
+<ProMenu Label="Button">
+</ProMenu>
+
+<ProMenu Label="Icon Button" Icon="@Icons.Custom.Brands.ProtonBlazor">
+</ProMenu>
+
+<ProMenu>
+    <ActivatorContent>
+        <ProButton OnClick="@context.ToggleAsync">Activator Content</ProButton>
+    </ActivatorContent>
+    <ChildContent>
+    </ChildContent>
+</ProMenu>
+
+<ProMenu Label="Open Nested Menu">
+    <ProMenuItem Label="Add reaction" />
+    <ProMenuItem Label="Add bookmark" />
+
+    <ProMenu Label="Format">
+    </ProMenu>
+</ProMenu>

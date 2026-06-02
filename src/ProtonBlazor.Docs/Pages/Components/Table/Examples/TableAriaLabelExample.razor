@@ -1,0 +1,14 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTable T="string" Items="@_items" AriaLabel="Fruits table" Hover="true" Breakpoint="Breakpoint.Sm">
+    <HeaderContent>
+        <ProTh>Fruit</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Fruit">@context</ProTd>
+    </RowTemplate>
+</ProTable>
+
+@code {
+    private readonly string[] _items = new[] { "Apple", "Banana", "Cherry" };
+}

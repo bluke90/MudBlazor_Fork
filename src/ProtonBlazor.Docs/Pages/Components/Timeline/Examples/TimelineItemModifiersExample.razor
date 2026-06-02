@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProSwitch @bind-Value="Outlined" Label="Outlined Card" Color="Color.Primary" />
+<ProSwitch @bind-Value="Modifiers" Label="Modifiers" Color="Color.Secondary" />
+
+<ProTimeline TimelinePosition="TimelinePosition.Start" Modifiers="@Modifiers">
+    <ProTimelineItem Size="Size.Medium" Color="Color.Info" Elevation="@(Outlined ? 0 : 25)">
+        <ProCard Outlined="@Outlined" Elevation="25">
+            <ProCardContent>
+                <ProText Typo="Typo.h6">Kopparberg</ProText>
+                <ProText Typo="Typo.body2">Kopparberg is a locality and the seat of Ljusnarsberg, Örebro County, Sweden, with 4,200 inhabitants in 2015.</ProText>
+                <ProText Typo="Typo.body2">It is famous for Kopparberg Cider, now one of the best selling ciders in the UK and worldwide.</ProText>
+            </ProCardContent>
+        </ProCard>
+    </ProTimelineItem>
+</ProTimeline>
+
+@code{
+    public bool Modifiers { get; set; } = true;
+    public bool Outlined { get; set; }
+}

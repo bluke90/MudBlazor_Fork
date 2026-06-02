@@ -1,0 +1,49 @@
+
+.pro-link {
+  &.pro-link-underline-none {
+    text-decoration: none;
+  }
+
+  &.pro-link-underline-hover {
+    text-decoration: none;
+
+    @media(hover: hover) and (pointer: fine) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &:focus-visible, &:active {
+      text-decoration: underline;
+    }
+  }
+
+  &.pro-link-underline-always {
+    text-decoration: underline;
+  }
+
+  &.pro-link-disabled {
+    cursor: default;
+    color: var(--pro-palette-action-disabled) !important;
+
+    &:not(.pro-link-underline-always) {
+      text-decoration: none;
+    }
+  }
+
+  .pro-link-icon-start,
+  .pro-link-icon-end {
+    &.pro-icon-root {
+      font-size: inherit;
+      vertical-align: middle;
+    }
+  }
+
+  .pro-link-icon-start {
+    margin-inline-end: 4px;
+  }
+
+  .pro-link-icon-end {
+    margin-inline-start: 4px;
+  }
+}

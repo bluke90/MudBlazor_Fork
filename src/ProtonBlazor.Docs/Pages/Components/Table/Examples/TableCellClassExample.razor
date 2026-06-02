@@ -1,0 +1,79 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<style>
+    .pro-table-small-cell {
+        padding: 4px !important;
+        background-color: lightsteelblue;
+    }
+</style>
+
+<ProTable Items="@Elements.Take(4)" Hover="true" Breakpoint="Breakpoint.Sm" MultiSelection="@multiSelection" CellClass="@(applyCellClass? "pro-table-small-cell" : "")">
+    <HeaderContent>
+        <ProTh>Nr</ProTh>
+        <ProTh>Sign</ProTh>
+        <ProTh>Name</ProTh>
+        <ProTh>Position</ProTh>
+        <ProTh>Molar mass</ProTh>
+        <ProTh>Action</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">@context.Sign</ProTd>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+        <ProTd DataLabel="Action">
+            <div @onclick="@(() => ShowCell(context))">@(context.ShowCell ? "Hide Cell" : "Show Cell")</div>
+        </ProTd>
+    </RowTemplate>
+    <ChildRowContent>
+        @if (context.ShowCell)
+        {
+            <ProTr>
+                <td colspan="6">
+                    <div class="d-flex justify-center">
+                        <ProText Typo="Typo.body1"><strong>The cell is shown</strong></ProText>
+                    </div>
+                </td>
+            </ProTr>
+        }
+    </ChildRowContent>
+</ProTable>
+<ProSwitch @bind-Value="@multiSelection" Color="Color.Primary">Show checkboxes cells</ProSwitch>
+<ProSwitch @bind-Value="@applyCellClass" Color="Color.Primary">Apply Cell Class</ProSwitch>
+@code {
+    private bool multiSelection;
+    private bool applyCellClass;
+
+    private void ShowCell(Element element)
+    {
+        element.ShowCell = !element.ShowCell;
+    }
+
+    public class Element
+    {
+        public string Number { get; set; }
+        public string Sign { get; set; }
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public decimal Molar { get; set; }
+        public bool ShowCell { get; set; }
+
+        public Element(string number, string sign, string name, string position, decimal molar)
+        {
+            Number = number;
+            Sign = sign;
+            Name = name;
+            Position = position;
+            Molar = molar;
+        }
+    }
+
+    private List<Element> Elements = new List<Element>()
+    {
+        new Element("1", "H", "Hydrogen", "0", 1.00794M),
+        new Element("1", "He", "Helium", "17", 4.002602M),
+        new Element("1", "Li", "Lithium", "0", 6.941M),
+        new Element("1", "Be", "Beryllium", "1", 9.012182M)
+    };
+}

@@ -1,0 +1,9 @@
+@namespace ProtonBlazor.Docs.Examples
+
+<ProTextField ShrinkLabel @bind-Value="TextValue" Label="Standard" Variant="Variant.Text"></ProTextField>
+<ProTextField ShrinkLabel @bind-Value="TextValue" Label="Filled" Variant="Variant.Filled"></ProTextField>
+<ProTextField ShrinkLabel @bind-Value="TextValue" Label="Outlined" Variant="Variant.Outlined"></ProTextField>
+
+@code {
+    public string TextValue { get; set; }
+}
