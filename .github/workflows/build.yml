@@ -53,12 +53,12 @@ jobs:
           path: ${{ env.NUGET_PACKAGES }}
 
       - name: Restore
-        run: dotnet restore src/ProtonBlazor/ProtonBlazor.csproj --framework ${{ matrix.framework }}
+        run: dotnet restore src/ProtonBlazor/ProtonBlazor.csproj
 
       - name: Build
         run: |
           dotnet build src/ProtonBlazor/ProtonBlazor.csproj \
-            --framework ${{ matrix.framework }} \
+            -f ${{ matrix.framework }} \
             --configuration Release \
             --no-restore \
             -warnaserror
