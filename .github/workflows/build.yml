@@ -1,0 +1,192 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+      - main
+    paths:
+      - 'src/**'
+      - 'global.json'
+      - '.github/workflows/build.yml'
+      - '.github/actions/**'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'global.json'
+      - '.github/workflows/build.yml'
+      - '.github/actions/**'
+
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  # ── Library: build across all target frameworks ────────────────────────────
+  library:
+    name: Library (${{ matrix.framework }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [net8.0, net9.0, net10.0]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          key: ${{ github.repository }}-nuget-${{ matrix.framework }}-${{ hashFiles('**/*.csproj') }}
+          restore-keys: ${{ github.repository }}-nuget-${{ matrix.framework }}-
+          path: ${{ env.NUGET_PACKAGES }}
+
+      - name: Restore
+        run: dotnet restore src/ProtonBlazor/ProtonBlazor.csproj --framework ${{ matrix.framework }}
+
+      - name: Build
+        run: |
+          dotnet build src/ProtonBlazor/ProtonBlazor.csproj \
+            --framework ${{ matrix.framework }} \
+            --configuration Release \
+            --no-restore \
+            -warnaserror
+
+  # ── Unit tests ──────────────────────────────────────────────────────────────
+  unit-tests:
+    name: Tests (${{ matrix.project }})
+    runs-on: ubuntu-latest
+    needs: library
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: ProtonBlazor.UnitTests
+            path: src/ProtonBlazor.UnitTests
+          - project: ProtonBlazor.UnitTests.Docs
+            path: src/ProtonBlazor.UnitTests.Docs
+          - project: ProtonBlazor.UnitTests.Analyzers
+            path: src/ProtonBlazor.UnitTests.Analyzers
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          key: ${{ github.repository }}-nuget-tests-${{ hashFiles('**/*.csproj') }}
+          restore-keys: ${{ github.repository }}-nuget-tests-
+          path: ${{ env.NUGET_PACKAGES }}
+
+      - name: Cache Bun binary
+        uses: actions/cache@v4
+        with:
+          key: ${{ github.repository }}-bun-${{ hashFiles('**/Directory.Build.props') }}
+          path: ./tools/BunDotNet
+
+      - name: Restore
+        run: dotnet restore ${{ matrix.path }}
+
+      - name: Build
+        run: dotnet build ${{ matrix.path }} --configuration Release --no-restore -warnaserror
+
+      - name: Test
+        run: |
+          dotnet test ${{ matrix.path }} \
+            --configuration Release \
+            --no-build \
+            --hangdump \
+            --hangdump-timeout 60s \
+            --coverlet \
+            --coverlet-exclude-by-attribute "ExcludeFromCodeCoverageAttribute" \
+            --coverlet-exclude-by-attribute "CompilerGeneratedAttribute" \
+            --coverlet-exclude-by-file "**/*.g.cs" \
+            --coverlet-include "[ProtonBlazor]*" \
+            --coverlet-skip-auto-props \
+            --report-spekt-junit \
+            --report-spekt-junit-filename junit.xml \
+            --results-directory ${{ matrix.path }}/TestResults
+
+      - name: Upload test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.project }}
+          retention-days: 7
+          path: |
+            ${{ matrix.path }}/TestResults/coverage.cobertura.*.xml
+            ${{ matrix.path }}/TestResults/junit.xml
+
+  # ── Docs projects: verify they build ───────────────────────────────────────
+  docs:
+    name: Docs (${{ matrix.project }})
+    runs-on: ubuntu-latest
+    needs: library
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: ProtonBlazor.Docs.Server
+            path: src/ProtonBlazor.Docs.Server
+          - project: ProtonBlazor.Docs.WasmHost
+            path: src/ProtonBlazor.Docs.WasmHost
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          key: ${{ github.repository }}-nuget-docs-${{ hashFiles('**/*.csproj') }}
+          restore-keys: ${{ github.repository }}-nuget-docs-
+          path: ${{ env.NUGET_PACKAGES }}
+
+      - name: Cache Bun binary
+        uses: actions/cache@v4
+        with:
+          key: ${{ github.repository }}-bun-${{ hashFiles('**/Directory.Build.props') }}
+          path: ./tools/BunDotNet
+
+      - name: Restore
+        run: dotnet restore ${{ matrix.path }}
+
+      - name: Build
+        run: dotnet build ${{ matrix.path }} --configuration Release --no-restore
+
+  # ── Gate: all jobs must pass ────────────────────────────────────────────────
+  build-ok:
+    name: Build OK
+    runs-on: ubuntu-latest
+    needs: [library, unit-tests, docs]
+    if: ${{ always() }}
+    steps:
+      - name: Check all jobs passed
+        run: |
+          if [[ "${{ needs.library.result }}" != "success" || \
+                "${{ needs.unit-tests.result }}" != "success" || \
+                "${{ needs.docs.result }}" != "success" ]]; then
+            echo "One or more jobs failed."
+            exit 1
+          fi
+          echo "All jobs passed."
