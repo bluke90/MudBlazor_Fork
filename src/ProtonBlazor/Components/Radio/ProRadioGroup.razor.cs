@@ -13,7 +13,7 @@ namespace ProtonBlazor
     /// A group of <see cref="ProRadio{T}"/> components.
     /// </summary>
     /// <typeparam name="T">The type of value being selected.</typeparam>
-    public partial class ProRadioGroup<T> : ProFormComponent<T, T>, IMudRadioGroup
+    public partial class ProRadioGroup<T> : ProFormComponent<T, T>, IProRadioGroup
     {
         private ProRadio<T>? _selectedRadio;
         private readonly HashSet<ProRadio<T>> _radios = new();

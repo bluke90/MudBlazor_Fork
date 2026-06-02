@@ -5,7 +5,7 @@
 namespace ProtonBlazor;
 
 /// <summary>
-/// Represents the operation types for <see cref="IMudPopoverHolder"/>.
+/// Represents the operation types for <see cref="IProPopoverHolder"/>.
 /// </summary>
 public enum PopoverHolderOperation
 {

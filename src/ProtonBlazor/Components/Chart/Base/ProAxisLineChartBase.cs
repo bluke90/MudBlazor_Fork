@@ -462,7 +462,7 @@ public abstract class ProAxisLineChartBase<T, TOptions> : ProAxisChartBase<T, TO
     {
         HoveredDataPointPath = hoveredPoint;
 
-        if (IsOverlayChart && ChartReference is IMudStateHasChanged chart)
+        if (IsOverlayChart && ChartReference is IProStateHasChanged chart)
         {
             chart.StateHasChanged();
         }
@@ -475,7 +475,7 @@ public abstract class ProAxisLineChartBase<T, TOptions> : ProAxisChartBase<T, TO
     {
         HoveredDataPointPath = null;
 
-        if (IsOverlayChart && ChartReference is IMudStateHasChanged chart)
+        if (IsOverlayChart && ChartReference is IProStateHasChanged chart)
         {
             chart.StateHasChanged();
         }

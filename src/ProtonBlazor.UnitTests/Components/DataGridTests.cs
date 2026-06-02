@@ -3724,7 +3724,7 @@ namespace ProtonBlazor.UnitTests.Components
                 listItems.Count.Should().Be(2);
                 var clickablePopover = listItems[1].Find(".pro-menu-item");
                 await clickablePopover.ClickAsync();
-                ((IMudStateHasChanged)dataGrid.Instance).StateHasChanged();
+                ((IProStateHasChanged)dataGrid.Instance).StateHasChanged();
             });
 
             await dataGrid.WaitForAssertionAsync(() =>

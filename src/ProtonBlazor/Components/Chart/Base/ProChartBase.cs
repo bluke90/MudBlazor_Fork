@@ -15,7 +15,7 @@ namespace ProtonBlazor;
 /// </summary>
 /// <typeparam name="T">The data type of the chart.</typeparam>
 /// <typeparam name="TOptions">The type of options for the chart.</typeparam>
-public abstract class ProChartBase<T, TOptions> : ProComponentBase, IMudChart<T>
+public abstract class ProChartBase<T, TOptions> : ProComponentBase, IProChart<T>
     where T : struct, INumber<T>, IMinMaxValue<T>, IFormattable
     where TOptions : IChartOptions
 {
@@ -31,7 +31,7 @@ public abstract class ProChartBase<T, TOptions> : ProComponentBase, IMudChart<T>
     /// </summary>
     [CascadingParameter]
     [Category(CategoryTypes.Chart.Behavior)]
-    public IMudChart<T>? ChartReference { get; set; }
+    public IProChart<T>? ChartReference { get; set; }
 
     /// <summary>
     /// The labels describing data values.

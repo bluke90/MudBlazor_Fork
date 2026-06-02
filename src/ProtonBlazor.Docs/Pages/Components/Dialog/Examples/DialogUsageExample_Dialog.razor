@@ -15,7 +15,7 @@
 
 @code {
     [CascadingParameter]
-    private IMudDialogInstance ProDialog { get; set; }
+    private IProDialogInstance ProDialog { get; set; }
 
     private void Submit() => ProDialog.Close(DialogResult.Ok(true));
 

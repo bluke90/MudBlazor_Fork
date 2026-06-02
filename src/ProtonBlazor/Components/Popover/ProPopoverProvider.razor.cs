@@ -107,7 +107,7 @@ namespace ProtonBlazor
                                 return;
                             }
 
-                            if (holder.ElementReference is IMudStateHasChanged stateHasChanged)
+                            if (holder.ElementReference is IProStateHasChanged stateHasChanged)
                             {
                                 await InvokeAsync(stateHasChanged.StateHasChanged);
                             }

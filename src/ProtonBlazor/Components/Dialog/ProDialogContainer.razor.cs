@@ -21,7 +21,7 @@ namespace ProtonBlazor
     /// <seealso cref="DialogParameters{T}"/>
     /// <seealso cref="DialogReference"/>
     /// <seealso cref="DialogService"/>
-    public partial class ProDialogContainer : ProComponentBase, IMudDialogInstanceInternal, IAsyncDisposable
+    public partial class ProDialogContainer : ProComponentBase, IProDialogInstanceInternal, IAsyncDisposable
     {
         private bool _disposed;
         private ProDialog? _dialog;
@@ -150,7 +150,7 @@ namespace ProtonBlazor
         {
             if (GetCloseOnEscapeKey())
             {
-                ((IMudDialogInstance)this).Cancel();
+                ((IProDialogInstance)this).Cancel();
             }
             return Task.CompletedTask;
         }
@@ -246,7 +246,7 @@ namespace ProtonBlazor
             }
             else
             {
-                ((IMudDialogInstance)this).Cancel();
+                ((IProDialogInstance)this).Cancel();
             }
         }
 
@@ -326,16 +326,16 @@ namespace ProtonBlazor
         }
 
         /// <inheritdoc />
-        string IMudDialogInstance.ElementId => ElementId;
+        string IProDialogInstance.ElementId => ElementId;
 
         /// <inheritdoc />
-        string? IMudDialogInstance.Title => _titleState.Value;
+        string? IProDialogInstance.Title => _titleState.Value;
 
         /// <inheritdoc />
-        DialogOptions IMudDialogInstance.Options => GetDialogOptionsOrDefault;
+        DialogOptions IProDialogInstance.Options => GetDialogOptionsOrDefault;
 
         /// <inheritdoc />
-        async Task IMudDialogInstance.SetOptionsAsync(DialogOptions options)
+        async Task IProDialogInstance.SetOptionsAsync(DialogOptions options)
         {
             await _dialogOptionsState.SetValueAsync(options);
             Parent.SetOptions(Id, options);
@@ -343,36 +343,36 @@ namespace ProtonBlazor
         }
 
         /// <inheritdoc />
-        async Task IMudDialogInstance.SetTitleAsync(string? title)
+        async Task IProDialogInstance.SetTitleAsync(string? title)
         {
             await _titleState.SetValueAsync(title);
             await InvokeAsync(StateHasChanged);
         }
 
         /// <inheritdoc />
-        void IMudDialogInstance.Close()
+        void IProDialogInstance.Close()
         {
-            ((IMudDialogInstance)this).Close(DialogResult.Ok<object?>(null));
+            ((IProDialogInstance)this).Close(DialogResult.Ok<object?>(null));
         }
 
         /// <inheritdoc />
-        void IMudDialogInstance.Close(DialogResult dialogResult)
+        void IProDialogInstance.Close(DialogResult dialogResult)
         {
             Parent.DismissInstance(Id, dialogResult);
         }
 
         /// <inheritdoc />
-        void IMudDialogInstance.Close<T>(T returnValue)
+        void IProDialogInstance.Close<T>(T returnValue)
         {
             var dialogResult = DialogResult.Ok<T>(returnValue);
             Parent.DismissInstance(Id, dialogResult);
         }
 
         /// <inheritdoc />
-        void IMudDialogInstance.Cancel() => ((IMudDialogInstance)this).Close(DialogResult.Cancel());
+        void IProDialogInstance.Cancel() => ((IProDialogInstance)this).Close(DialogResult.Cancel());
 
         /// <inheritdoc />
-        void IMudDialogInstanceInternal.Register(ProDialog dialog)
+        void IProDialogInstanceInternal.Register(ProDialog dialog)
         {
             _dialog = dialog;
             Class = dialog.Class;
@@ -382,10 +382,10 @@ namespace ProtonBlazor
         }
 
         /// <inheritdoc />
-        void IMudDialogInstance.StateHasChanged() => StateHasChanged();
+        void IProDialogInstance.StateHasChanged() => StateHasChanged();
 
         /// <inheritdoc />
-        void IMudDialogInstance.CancelAll()
+        void IProDialogInstance.CancelAll()
         {
             Parent?.DismissAll();
         }

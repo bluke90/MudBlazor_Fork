@@ -14,7 +14,7 @@
     private ProTextField<string> _textField = null!;
 
     [CascadingParameter]
-    IMudDialogInstance ProDialog { get; set; } = null!;
+    IProDialogInstance ProDialog { get; set; } = null!;
 
     void Close() => ProDialog.Close();
 }

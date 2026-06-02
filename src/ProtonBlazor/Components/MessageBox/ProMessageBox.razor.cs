@@ -39,7 +39,7 @@ namespace ProtonBlazor
         private IDialogService DialogService { get; set; } = null!;
 
         [CascadingParameter]
-        internal IMudDialogInstance? DialogInstance { get; set; }
+        internal IProDialogInstance? DialogInstance { get; set; }
 
         /// <summary>
         /// The title of this message box.

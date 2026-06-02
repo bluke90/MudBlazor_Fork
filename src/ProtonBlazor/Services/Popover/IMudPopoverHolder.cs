@@ -9,7 +9,7 @@ namespace ProtonBlazor;
 /// <summary>
 /// This interface serves as a container for the values of a <see cref="IPopover"/> and is used by the <see cref="ProPopoverProvider"/> to render the popover.
 /// </summary>
-public interface IMudPopoverHolder
+public interface IProPopoverHolder
 {
     /// <summary>
     /// Gets the unique identifier of the popover.

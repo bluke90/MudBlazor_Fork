@@ -12,7 +12,7 @@ namespace ProtonBlazor
     /// <summary>
     /// A drawer used to navigate sections on a page.
     /// </summary>
-    public partial class ProPageContentNavigation : IAsyncDisposable, IMudStateHasChanged
+    public partial class ProPageContentNavigation : IAsyncDisposable, IProStateHasChanged
     {
         private readonly List<ProPageContentSection> _sections = new();
         private IScrollSpy? _scrollSpy;
@@ -158,7 +158,7 @@ namespace ProtonBlazor
             }
         }
 
-        void IMudStateHasChanged.StateHasChanged() => StateHasChanged();
+        void IProStateHasChanged.StateHasChanged() => StateHasChanged();
 
         protected override void OnInitialized()
         {

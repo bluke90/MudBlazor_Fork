@@ -7,7 +7,7 @@ namespace ProtonBlazor;
 /// <summary>
 /// Defines the contract for a select component that manages selection items.
 /// </summary>
-internal interface IMudSelect
+internal interface IProSelect
 {
     /// <summary>
     /// Gets the context that manages communication between the select and its items.
@@ -30,7 +30,7 @@ internal interface IMudSelect
 /// Shadow items are used for value-to-RenderFragment lookups for items
 /// that are not visible in the dropdown (HideContent=true).
 /// </remarks>
-internal interface IMudShadowSelect
+internal interface IProShadowSelect
 {
     /// <summary>
     /// Gets the context that manages shadow item registration.

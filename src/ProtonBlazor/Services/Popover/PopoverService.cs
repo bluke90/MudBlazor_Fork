@@ -31,7 +31,7 @@ internal class PopoverService : IPopoverService, IBatchTimerHandler<ProPopoverHo
     private readonly TimeProvider _timeProvider;
 
     /// <inheritdoc />
-    public IEnumerable<IMudPopoverHolder> ActivePopovers => _holders.Values;
+    public IEnumerable<IProPopoverHolder> ActivePopovers => _holders.Values;
 
     /// <inheritdoc />
     public bool IsInitialized { get; private set; }

@@ -17,7 +17,7 @@ namespace ProtonBlazor
     public partial class ProHeatMapCell<T> : ProComponentBase where T : struct, INumber<T>, IMinMaxValue<T>, IFormattable
     {
         [CascadingParameter]
-        internal IMudChart<T>? Parent { get; set; }
+        internal IProChart<T>? Parent { get; set; }
 
         /// <summary>
         /// The row of the cell you want to modify. Rows use a 0 based index.

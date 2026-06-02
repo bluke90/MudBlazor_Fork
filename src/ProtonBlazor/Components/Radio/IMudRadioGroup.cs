@@ -4,7 +4,7 @@
 
 namespace ProtonBlazor;
 
-internal interface IMudRadioGroup
+internal interface IProRadioGroup
 {
     //This interface need to throw exception properly.
     void CheckGenericTypeMatch(object selectItem);

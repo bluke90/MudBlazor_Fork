@@ -271,7 +271,7 @@ public class ProStep : ProComponentBase, IStepContext, IAsyncDisposable
 
     private void OnParameterChanged() => RefreshParent();
 
-    private void RefreshParent() => (Parent as IMudStateHasChanged)?.StateHasChanged();
+    private void RefreshParent() => (Parent as IProStateHasChanged)?.StateHasChanged();
 
     /// <inheritdoc />
     public async ValueTask DisposeAsync()

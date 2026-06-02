@@ -18,7 +18,7 @@ namespace ProtonBlazor.Charts;
 /// </remarks>
 /// <typeparam name="T">The type of numeric values used by the chart</typeparam>
 /// <typeparam name="TOptions">The type of chart options used to configure the chart's behavior and appearance.</typeparam>
-public abstract class ProAxisChartBase<T, TOptions> : ProChartBase<T, TOptions>, IMudAxisChart<T>, IDisposable
+public abstract class ProAxisChartBase<T, TOptions> : ProChartBase<T, TOptions>, IProAxisChart<T>, IDisposable
     where T : struct, INumber<T>, IMinMaxValue<T>, IFormattable
     where TOptions : IAxisChartOptions
 {
@@ -44,12 +44,12 @@ public abstract class ProAxisChartBase<T, TOptions> : ProChartBase<T, TOptions>,
     /// <summary>
     /// The chart to be overlaid on top of the current chart.
     /// </summary>
-    public IMudChart<T>? OverlayChart { get; set; }
+    public IProChart<T>? OverlayChart { get; set; }
 
     /// <summary>
     /// Indicates whether the current chart is an overlay chart.
     /// </summary>
-    public bool IsOverlayChart => ChartReference is IMudAxisChart<T>;
+    public bool IsOverlayChart => ChartReference is IProAxisChart<T>;
 
     /// <summary>
     /// The list of chart series.
@@ -229,7 +229,7 @@ public abstract class ProAxisChartBase<T, TOptions> : ProChartBase<T, TOptions>,
     /// </summary>
     protected void RenderOverlay()
     {
-        if (OverlayChart is IMudAxisChart<T> overlay)
+        if (OverlayChart is IProAxisChart<T> overlay)
         {
             overlay.SharedData = SharedData;
             overlay.RebuildChart();
@@ -262,7 +262,7 @@ public abstract class ProAxisChartBase<T, TOptions> : ProChartBase<T, TOptions>,
     /// </summary>
     protected void SetBounds()
     {
-        if (ChartReference is IMudAxisChart<T> chart && chart.SharedData is { } data)
+        if (ChartReference is IProAxisChart<T> chart && chart.SharedData is { } data)
         {
             _boundWidth = data.BoundWidth;
             _boundHeight = data.BoundHeight;
@@ -347,7 +347,7 @@ public abstract class ProAxisChartBase<T, TOptions> : ProChartBase<T, TOptions>,
             Legends.Add(legend);
         }
 
-        if (OverlayChart is IMudAxisChart<T> overlay)
+        if (OverlayChart is IProAxisChart<T> overlay)
         {
             for (var i = 0; i < overlay.ChartSeries.Count; i++)
             {
@@ -456,7 +456,7 @@ public abstract class ProAxisChartBase<T, TOptions> : ProChartBase<T, TOptions>,
     /// <param name="overlayChart">The overlay chart.</param>
     /// <param name="index">The index of the series.</param>
     /// <param name="isVisible">Whether the series is visible.</param>
-    protected void HandleOverlayChartLegendVisibility(IMudChart<T> overlayChart, int index, bool isVisible)
+    protected void HandleOverlayChartLegendVisibility(IProChart<T> overlayChart, int index, bool isVisible)
     {
         if (overlayChart?.ChartSeries != null && index >= 0 && index < overlayChart.ChartSeries.Count)
         {

@@ -470,7 +470,7 @@ namespace ProtonBlazor.UnitTests.Components
         {
             var comp = Context.Render<SelectNullValueTest>();
             var select = comp.FindComponent<ProSelect<int?>>();
-            IMudSelect mudSelect = select.Instance;
+            IProSelect mudSelect = select.Instance;
             var context = (ProSelectContext<int?>)mudSelect.SelectContext;
 
             var registerAction = () => context.RegisterShadowItem(null);
@@ -487,7 +487,7 @@ namespace ProtonBlazor.UnitTests.Components
             var comp = Context.Render<SelectNullValueTest>();
             var select = comp.FindComponent<ProSelect<int?>>();
             var itemWithNullValue = Context.Render<ProSelectItem<int?>>(parameters => parameters.Add(x => x.Value, null));
-            IMudSelect mudSelect = select.Instance;
+            IProSelect mudSelect = select.Instance;
             var context = (ProSelectContext<int?>)mudSelect.SelectContext;
 
             var registerAction = () => context.RegisterShadowItem(itemWithNullValue.Instance);
@@ -503,7 +503,7 @@ namespace ProtonBlazor.UnitTests.Components
         {
             var comp = Context.Render<SelectNullValueTest>();
             var select = comp.FindComponent<ProSelect<int?>>();
-            IMudSelect mudSelect = select.Instance;
+            IProSelect mudSelect = select.Instance;
             var context = (ProSelectContext<int?>)mudSelect.SelectContext;
 
             var unregisterAction = () => context.UnregisterShadowItem(null);
@@ -520,7 +520,7 @@ namespace ProtonBlazor.UnitTests.Components
             var comp = Context.Render<SelectNullValueTest>();
             var select = comp.FindComponent<ProSelect<int?>>();
             var itemWithNullValue = Context.Render<ProSelectItem<int?>>(parameters => parameters.Add(x => x.Value, null));
-            IMudSelect mudSelect = select.Instance;
+            IProSelect mudSelect = select.Instance;
             var context = (ProSelectContext<int?>)mudSelect.SelectContext;
 
             context.RegisterShadowItem(itemWithNullValue.Instance);

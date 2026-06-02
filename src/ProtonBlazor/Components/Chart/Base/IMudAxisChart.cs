@@ -23,7 +23,7 @@ public record struct AxisGridData<T>(int LowestHorizontalLine, int HorizontalLin
 /// Represents a chart that has axes.
 /// </summary>
 /// <typeparam name="T">The data type of the chart.</typeparam>
-public interface IMudAxisChart<T> : IMudChart<T> where T : struct, INumber<T>, IMinMaxValue<T>, IFormattable
+public interface IProAxisChart<T> : IProChart<T> where T : struct, INumber<T>, IMinMaxValue<T>, IFormattable
 {
     /// <summary>
     /// The data for the grid of the chart.
@@ -33,7 +33,7 @@ public interface IMudAxisChart<T> : IMudChart<T> where T : struct, INumber<T>, I
     /// <summary>
     /// The chart to be overlaid on top of this chart.
     /// </summary>
-    public IMudChart<T>? OverlayChart { get; set; }
+    public IProChart<T>? OverlayChart { get; set; }
 
     /// <summary>
     /// The content to be rendered as an overlay.

@@ -12,7 +12,7 @@ namespace ProtonBlazor
     /// <summary>
     /// Represents a base class for designing ProtonBlazor components.
     /// </summary>
-    public abstract class ProComponentBase : ComponentBaseWithState, IMudStateHasChanged
+    public abstract class ProComponentBase : ComponentBaseWithState, IProStateHasChanged
     {
         private ILogger? _logger;
         private readonly string _id = Identifier.Create("mudinput");
@@ -93,6 +93,6 @@ namespace ProtonBlazor
         }
 
         /// <inheritdoc />
-        void IMudStateHasChanged.StateHasChanged() => StateHasChanged();
+        void IProStateHasChanged.StateHasChanged() => StateHasChanged();
     }
 }

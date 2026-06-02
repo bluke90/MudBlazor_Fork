@@ -191,7 +191,7 @@ namespace ProtonBlazor
 
             if (_childrenNeedUpdates)
             {
-                foreach (IMudStateHasChanged avatar in _avatars)
+                foreach (IProStateHasChanged avatar in _avatars)
                 {
                     avatar.StateHasChanged();
                 }

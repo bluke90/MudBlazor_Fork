@@ -603,7 +603,7 @@ namespace ProtonBlazor
             }
             else if (ProTreeRoot is not null)
             {
-                ((IMudStateHasChanged)ProTreeRoot).StateHasChanged();
+                ((IProStateHasChanged)ProTreeRoot).StateHasChanged();
             }
         }
 

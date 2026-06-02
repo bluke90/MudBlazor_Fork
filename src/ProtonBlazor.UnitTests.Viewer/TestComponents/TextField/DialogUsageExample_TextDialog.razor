@@ -23,7 +23,7 @@
 
 @code {
     [CascadingParameter]
-    private IMudDialogInstance ProDialog { get; set; } = default!;
+    private IProDialogInstance ProDialog { get; set; } = default!;
 
     private void Submit() => ProDialog.Close(DialogResult.Ok(true));
     private void Cancel() => ProDialog.Cancel();

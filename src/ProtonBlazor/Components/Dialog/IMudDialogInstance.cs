@@ -4,7 +4,7 @@
 
 namespace ProtonBlazor;
 
-public interface IMudDialogInstance
+public interface IProDialogInstance
 {
     /// <summary>
     /// The unique ID for this instance.

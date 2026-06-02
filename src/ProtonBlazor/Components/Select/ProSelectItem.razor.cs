@@ -43,11 +43,11 @@ namespace ProtonBlazor
         public ProSelectItem()
         {
             using var registerScope = CreateRegisterScope();
-            registerScope.RegisterParameter<IMudSelect?>(nameof(IMudSelect))
-                .WithParameter(() => IMudSelect)
+            registerScope.RegisterParameter<IProSelect?>(nameof(IProSelect))
+                .WithParameter(() => IProSelect)
                 .WithChangeHandler(OnMudSelectChanged);
-            registerScope.RegisterParameter<IMudShadowSelect?>(nameof(IMudShadowSelect))
-                .WithParameter(() => IMudShadowSelect)
+            registerScope.RegisterParameter<IProShadowSelect?>(nameof(IProShadowSelect))
+                .WithParameter(() => IProShadowSelect)
                 .WithChangeHandler(OnMudShadowSelectChanged);
             registerScope.RegisterParameter<T?>(nameof(Value))
                 .WithParameter(() => Value)
@@ -64,7 +64,7 @@ namespace ProtonBlazor
         /// registration and unregistration with the appropriate parent.
         /// </remarks>
         [CascadingParameter]
-        internal IMudSelect? IMudSelect { get; set; }
+        internal IProSelect? IProSelect { get; set; }
 
         /// <summary>
         /// The shadow select used for items that only provide RenderFragments.
@@ -74,7 +74,7 @@ namespace ProtonBlazor
         /// for value-to-RenderFragment resolution when the dropdown is closed.
         /// </remarks>
         [CascadingParameter]
-        internal IMudShadowSelect? IMudShadowSelect { get; set; }
+        internal IProShadowSelect? IProShadowSelect { get; set; }
 
         /// <summary>
         /// Select items with HideContent==true are only there to register their RenderFragment with the select but
@@ -86,7 +86,7 @@ namespace ProtonBlazor
         /// <summary>
         /// Gets the parent ProSelect component.
         /// </summary>
-        internal ProSelect<T>? ProSelect => (ProSelect<T>?)IMudSelect;
+        internal ProSelect<T>? ProSelect => (ProSelect<T>?)IProSelect;
 
         /// <summary>
         /// The custom value associated with this item.
@@ -154,13 +154,13 @@ namespace ProtonBlazor
         }
 
         /// <summary>
-        /// Handles changes to the IMudShadowSelect cascading parameter.
+        /// Handles changes to the IProShadowSelect cascading parameter.
         /// </summary>
         /// <remarks>
         /// This is invoked when the shadow select parent changes (e.g., when moving between different selects).
         /// It unregisters from the old parent and registers with the new one.
         /// </remarks>
-        private void OnMudShadowSelectChanged(ParameterChangedEventArgs<IMudShadowSelect?> args)
+        private void OnMudShadowSelectChanged(ParameterChangedEventArgs<IProShadowSelect?> args)
         {
             if (args.LastValue?.SelectContext is ProSelectContext<T> oldContext)
             {
@@ -175,7 +175,7 @@ namespace ProtonBlazor
         }
 
         /// <summary>
-        /// Handles changes to the IMudSelect cascading parameter.
+        /// Handles changes to the IProSelect cascading parameter.
         /// </summary>
         /// <remarks>
         /// <para>
@@ -190,7 +190,7 @@ namespace ProtonBlazor
         /// <item><description>Updates the initial Selected state</description></item>
         /// </list>
         /// </remarks>
-        private void OnMudSelectChanged(ParameterChangedEventArgs<IMudSelect?> args)
+        private void OnMudSelectChanged(ParameterChangedEventArgs<IProSelect?> args)
         {
             if (args.LastValue?.SelectContext is ProSelectContext<T> oldContext)
             {

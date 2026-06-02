@@ -13,7 +13,7 @@
     public static int OnParametersSetCount;
 
     [CascadingParameter]
-    public IMudDialogInstance ProDialog { get; set; } = null!;
+    public IProDialogInstance ProDialog { get; set; } = null!;
 
     private void Submit() => ProDialog.Close(DialogResult.Ok(true));
     private void Cancel() => ProDialog.Cancel();

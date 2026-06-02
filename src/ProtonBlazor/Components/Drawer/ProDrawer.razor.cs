@@ -350,7 +350,7 @@ namespace ProtonBlazor
 
         private void OnRightToLeftParameterChanged() => DrawerContainerUpdate();
 
-        private void DrawerContainerUpdate() => (DrawerContainer as IMudStateHasChanged)?.StateHasChanged();
+        private void DrawerContainerUpdate() => (DrawerContainer as IProStateHasChanged)?.StateHasChanged();
 
         private Task CloseDrawerAsync()
         {

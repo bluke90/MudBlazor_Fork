@@ -42,7 +42,7 @@
     private string _text = string.Empty;
 
     [CascadingParameter]
-    private IMudDialogInstance ProDialog { get; set; } = null!;
+    private IProDialogInstance ProDialog { get; set; } = null!;
 
     [Parameter]
     public string Title { get; set; } = "Edit note (Auto)";

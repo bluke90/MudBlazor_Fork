@@ -4,7 +4,7 @@
 
 namespace ProtonBlazor;
 
-internal interface IMudDialogInstanceInternal : IMudDialogInstance
+internal interface IProDialogInstanceInternal : IProDialogInstance
 {
     /// <summary>
     /// Links a dialog with this instance.

@@ -4,7 +4,7 @@
 
 namespace ProtonBlazor.Interfaces;
 
-public interface IMudStateHasChanged
+public interface IProStateHasChanged
 {
     /// <summary>
     /// Notifies the component that its state has changed. When applicable, this will

@@ -11,7 +11,7 @@ public class MockPopoverService : IPopoverService
 {
     public PopoverOptions PopoverOptions { get; } = new();
 
-    public IEnumerable<IMudPopoverHolder> ActivePopovers { get; } = [];
+    public IEnumerable<IProPopoverHolder> ActivePopovers { get; } = [];
 
     public bool IsInitialized => false;
 

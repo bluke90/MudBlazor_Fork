@@ -53,7 +53,7 @@ namespace ProtonBlazor.UnitTests.Components
             {
                 comp.Instance.AddSection(section1, false);
                 comp.Instance.AddSection(section2, false);
-                await comp.InvokeAsync(() => ((IMudStateHasChanged)comp.Instance).StateHasChanged());
+                await comp.InvokeAsync(() => ((IProStateHasChanged)comp.Instance).StateHasChanged());
             }
 
             comp.RenderCount.Should().Be(withUpdate ? 3 : 2);
@@ -93,7 +93,7 @@ namespace ProtonBlazor.UnitTests.Components
             comp.Instance.AddSection(section1, false);
             comp.Instance.AddSection(section2, false);
 
-            await comp.InvokeAsync(() => ((IMudStateHasChanged)comp.Instance).StateHasChanged());
+            await comp.InvokeAsync(() => ((IProStateHasChanged)comp.Instance).StateHasChanged());
 
             comp.RenderCount.Should().Be(2);
 
@@ -163,7 +163,7 @@ namespace ProtonBlazor.UnitTests.Components
             comp.Instance.AddSection(section2, false);
             comp.Instance.AddSection(section3, false);
 
-            await comp.InvokeAsync(() => ((IMudStateHasChanged)comp.Instance).StateHasChanged());
+            await comp.InvokeAsync(() => ((IProStateHasChanged)comp.Instance).StateHasChanged());
 
             for (var i = 0; i < 3; i++)
             {
@@ -205,7 +205,7 @@ namespace ProtonBlazor.UnitTests.Components
             comp.Instance.AddSection(section2, false);
             comp.Instance.AddSection(section3, false);
 
-            await comp.InvokeAsync(() => ((IMudStateHasChanged)comp.Instance).StateHasChanged());
+            await comp.InvokeAsync(() => ((IProStateHasChanged)comp.Instance).StateHasChanged());
 
             //active second section
             await comp.InvokeAsync(() => spyMock.FireScrollSectionSectionCenteredEvent(section2.Id));

@@ -329,7 +329,7 @@ namespace ProtonBlazor
 
         private void OnParameterChanged()
         {
-            foreach (IMudStateHasChanged mudComponent in _items)
+            foreach (IProStateHasChanged mudComponent in _items)
             {
                 mudComponent.StateHasChanged();
             }

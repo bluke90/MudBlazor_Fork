@@ -10,7 +10,7 @@
 </ProDialog>
 @code {
     [CascadingParameter]
-    private IMudDialogInstance ProDialog { get; set; } = null!;
+    private IProDialogInstance ProDialog { get; set; } = null!;
 
     private void Close() => ProDialog.Close(DialogResult.Ok(true));
 

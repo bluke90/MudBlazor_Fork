@@ -30,7 +30,7 @@ partial class TimeSeries<T> : ProAxisLineChartBase<T, TimeSeriesChartOptions> wh
         ChartType = ChartType.Timeseries;
         ChartOptions ??= new TimeSeriesChartOptions();
 
-        if (ChartReference is IMudAxisChart<T> axisChart)
+        if (ChartReference is IProAxisChart<T> axisChart)
         {
             _generateChartLines = true;
             axisChart.OverlayChart = this;
@@ -68,7 +68,7 @@ partial class TimeSeries<T> : ProAxisLineChartBase<T, TimeSeriesChartOptions> wh
         if (!IsOverlayChart)
         {
             // If this is not an overlay chart, we generate the shared plot points if an overlay exists
-            SharedData = OverlayChart is IMudAxisChart<T> ? new AxisGridData<T>(lowestHorizontalLine, numHorizontalLines, gridYUnits, _boundWidth, _boundHeight) : null;
+            SharedData = OverlayChart is IProAxisChart<T> ? new AxisGridData<T>(lowestHorizontalLine, numHorizontalLines, gridYUnits, _boundWidth, _boundHeight) : null;
         }
         else
         {

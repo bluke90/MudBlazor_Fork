@@ -19,7 +19,7 @@ namespace ProtonBlazor
     /// <seealso cref="ProSwitch{T}"/>
     public partial class ProRadio<T> : ProBooleanInput<T>
     {
-        private IMudRadioGroup? _parent;
+        private IProRadioGroup? _parent;
         private readonly string _elementId = Identifier.Create("radio");
         private readonly string _ariaId = Identifier.Create("radio-aria-");
 
@@ -54,7 +54,7 @@ namespace ProtonBlazor
         /// The parent Radio Group
         /// </summary>
         [CascadingParameter]
-        internal IMudRadioGroup? IMudRadioGroup
+        internal IProRadioGroup? IProRadioGroup
         {
             get => _parent;
             set
@@ -135,7 +135,7 @@ namespace ProtonBlazor
 
         internal bool Checked { get; private set; }
 
-        internal ProRadioGroup<T>? ProRadioGroup => (ProRadioGroup<T>?)IMudRadioGroup;
+        internal ProRadioGroup<T>? ProRadioGroup => (ProRadioGroup<T>?)IProRadioGroup;
 
         internal void SetChecked(bool value)
         {

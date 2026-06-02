@@ -157,7 +157,7 @@ namespace ProtonBlazor.Docs.Components
                     }
                 }
 
-                ((IMudStateHasChanged)_contentNavigation).StateHasChanged();
+                ((IProStateHasChanged)_contentNavigation).StateHasChanged();
 
                 if (_anchor != null)
                 {

@@ -22,11 +22,11 @@
                 }
                 @if (GetCloseButton())
                 {
-                    <ProIconButton aria-label="@Localizer[LanguageResource.ProDialog_Close]" @onmousedown:preventDefault="true" Icon="@CloseIcon" @onclick="((IMudDialogInstance)this).Cancel" Class="pro-button-close" />
+                    <ProIconButton aria-label="@Localizer[LanguageResource.ProDialog_Close]" @onmousedown:preventDefault="true" Icon="@CloseIcon" @onclick="((IProDialogInstance)this).Cancel" Class="pro-button-close" />
                 }
             </div>
          }
-        <CascadingValue Value="(IMudDialogInstanceInternal)this" IsFixed="true">
+        <CascadingValue Value="(IProDialogInstanceInternal)this" IsFixed="true">
             @Content
         </CascadingValue>
     </div>

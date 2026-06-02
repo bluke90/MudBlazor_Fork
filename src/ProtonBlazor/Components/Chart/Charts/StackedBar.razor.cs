@@ -32,7 +32,7 @@ namespace ProtonBlazor.Charts
             ChartType = ChartType.StackedBar;
             ChartOptions ??= new StackedBarChartOptions();
 
-            if (ChartReference is IMudAxisChart<T> axisChart)
+            if (ChartReference is IProAxisChart<T> axisChart)
             {
                 axisChart.OverlayChart = this;
                 axisChart.OverlayContent = this.Chart;
@@ -61,7 +61,7 @@ namespace ProtonBlazor.Charts
             if (!IsOverlayChart)
             {
                 // If this is not an overlay chart, we generate the shared plot points if an overlay exists
-                SharedData = OverlayChart is IMudAxisChart<T> ? new AxisGridData<T>(lowestHorizontalLine, numHorizontalLines, gridYUnits, _boundWidth, _boundHeight) : null;
+                SharedData = OverlayChart is IProAxisChart<T> ? new AxisGridData<T>(lowestHorizontalLine, numHorizontalLines, gridYUnits, _boundWidth, _boundHeight) : null;
             }
             else
             {
@@ -343,7 +343,7 @@ namespace ProtonBlazor.Charts
         {
             _hoveredBar = bar;
 
-            if (IsOverlayChart && ChartReference is IMudStateHasChanged chart)
+            if (IsOverlayChart && ChartReference is IProStateHasChanged chart)
             {
                 chart.StateHasChanged();
             }
@@ -353,7 +353,7 @@ namespace ProtonBlazor.Charts
         {
             _hoveredBar = null;
 
-            if (IsOverlayChart && ChartReference is IMudStateHasChanged chart)
+            if (IsOverlayChart && ChartReference is IProStateHasChanged chart)
             {
                 chart.StateHasChanged();
             }

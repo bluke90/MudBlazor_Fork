@@ -265,7 +265,7 @@ public partial class ProChipSet<T> : ProComponentBase, IDisposable
 
     private void OnCheckMarkChanged(ParameterChangedEventArgs<bool> args)
     {
-        foreach (IMudStateHasChanged chip in _chips)
+        foreach (IProStateHasChanged chip in _chips)
             chip.StateHasChanged();
     }
 

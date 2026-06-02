@@ -10,7 +10,7 @@ namespace ProtonBlazor.Charts;
 /// Represents a chart component.
 /// </summary>
 /// <typeparam name="T">The data type of the chart.</typeparam>
-public interface IMudChart<T> where T : struct, INumber<T>, IMinMaxValue<T>, IFormattable
+public interface IProChart<T> where T : struct, INumber<T>, IMinMaxValue<T>, IFormattable
 {
     /// <summary>
     /// The series of data to be displayed in the chart.

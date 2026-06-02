@@ -112,7 +112,7 @@
                             TransformOrigin="@TransformOrigin"
                             Fixed="@PopoverFixed"
                             RelativeWidth="@RelativeWidth">
-                    <CascadingValue Value="@((IMudSelect)this)" IsFixed="true">
+                    <CascadingValue Value="@((IProSelect)this)" IsFixed="true">
                         <ProList T="string"
                                  @attributes="GetListUserAttributes()"
                                  Class="@ListClass"
@@ -137,7 +137,7 @@
         </ProInputControl>
     </div>
     @*Shadow select items for IsValueInList and CanRenderValue*@
-    <CascadingValue Value="@((IMudShadowSelect)this)" IsFixed="true">
+    <CascadingValue Value="@((IProShadowSelect)this)" IsFixed="true">
         <CascadingValue Name="HideContent" Value="true">
             @ChildContent
         </CascadingValue>

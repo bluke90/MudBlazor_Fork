@@ -18,7 +18,7 @@ namespace ProtonBlazor
     /// <typeparam name="T">The kind of object being selected.</typeparam>
     /// <seealso cref="ProSelectItem{T}"/>
     /// <seealso cref="ProAutocomplete{T}"/>
-    public partial class ProSelect<T> : ProBaseInput<T>, IMudSelect, IMudShadowSelect
+    public partial class ProSelect<T> : ProBaseInput<T>, IProSelect, IProShadowSelect
     {
         private string? _activeItemId;
         private bool? _selectAllChecked;
@@ -39,10 +39,10 @@ namespace ProtonBlazor
         internal string ElementId { get; } = Identifier.Create("select");
 
         /// <inheritdoc />
-        object IMudSelect.SelectContext => _context;
+        object IProSelect.SelectContext => _context;
 
         /// <inheritdoc />
-        object IMudShadowSelect.SelectContext => _context;
+        object IProShadowSelect.SelectContext => _context;
 
         public ProSelect()
         {

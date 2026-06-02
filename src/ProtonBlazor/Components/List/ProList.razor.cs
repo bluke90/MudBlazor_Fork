@@ -263,7 +263,7 @@ namespace ProtonBlazor
         {
             StateHasChanged();
             foreach (var item in _items)
-                ((IMudStateHasChanged)item).StateHasChanged();
+                ((IProStateHasChanged)item).StateHasChanged();
             foreach (var list in _childLists)
                 list.Update();
         }
@@ -476,8 +476,8 @@ namespace ProtonBlazor
 
             var previous = _activeItem;
             _activeItem = item;
-            ((IMudStateHasChanged?)previous)?.StateHasChanged();
-            ((IMudStateHasChanged)item).StateHasChanged();
+            ((IProStateHasChanged?)previous)?.StateHasChanged();
+            ((IProStateHasChanged)item).StateHasChanged();
         }
 
         internal async Task FocusAdjacentItemAsync(ProListItem<T> currentItem, int direction)

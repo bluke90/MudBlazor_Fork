@@ -48,7 +48,7 @@ namespace ProtonBlazor
             .Build();
 
         [CascadingParameter]
-        private IMudDialogInstanceInternal? DialogInstance { get; set; }
+        private IProDialogInstanceInternal? DialogInstance { get; set; }
 
         [CascadingParameter(Name = "IsNested")]
         private bool IsNested { get; set; }
@@ -168,7 +168,7 @@ namespace ProtonBlazor
         /// </summary>
         /// <remarks>
         /// Defaults to <c>false</c>.<br />
-        /// This can be bound via <c>@bind-Visible</c> to show or hide inline dialogs.  For regular dialogs, use the <see cref="DialogService.ShowAsync(Type)"/> and <see cref="IMudDialogInstance.Close()"/> methods.
+        /// This can be bound via <c>@bind-Visible</c> to show or hide inline dialogs.  For regular dialogs, use the <see cref="DialogService.ShowAsync(Type)"/> and <see cref="IProDialogInstance.Close()"/> methods.
         /// </remarks>
         [Parameter, ParameterState]
         [Category(CategoryTypes.Dialog.Behavior)]
@@ -279,7 +279,7 @@ namespace ProtonBlazor
                     if (_visibleState.Value)
                     {
                         // Forward render update to instance
-                        (_reference.Dialog as IMudStateHasChanged)?.StateHasChanged();
+                        (_reference.Dialog as IProStateHasChanged)?.StateHasChanged();
 
                         //forward render update to instance container
                         if (_reference.Dialog is ProDialog { DialogInstance: not null } dialog)

@@ -193,7 +193,7 @@ namespace ProtonBlazor
 
             DataGrid.GroupItems();
             await DataGrid.NotifyFilterChangedAsync();
-            ((IMudStateHasChanged)DataGrid).StateHasChanged();
+            ((IProStateHasChanged)DataGrid).StateHasChanged();
         }
 
         private async Task ClearFilterAsync()

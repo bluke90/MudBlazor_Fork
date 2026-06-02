@@ -23,7 +23,7 @@ namespace ProtonBlazor.Charts
             ChartType = ChartType.Line;
             ChartOptions ??= new LineChartOptions();
 
-            if (ChartReference is IMudAxisChart<T> axisChart)
+            if (ChartReference is IProAxisChart<T> axisChart)
             {
                 axisChart.OverlayChart = this;
                 axisChart.OverlayContent = this.Chart;
@@ -48,7 +48,7 @@ namespace ProtonBlazor.Charts
             if (!IsOverlayChart)
             {
                 // If this is not an overlay chart, we generate the shared plot points if an overlay exists
-                SharedData = OverlayChart is IMudAxisChart<T> ? new AxisGridData<T>(lowestHorizontalLine, numHorizontalLines, gridYUnits, _boundWidth, _boundHeight) : null;
+                SharedData = OverlayChart is IProAxisChart<T> ? new AxisGridData<T>(lowestHorizontalLine, numHorizontalLines, gridYUnits, _boundWidth, _boundHeight) : null;
             }
             else
             {

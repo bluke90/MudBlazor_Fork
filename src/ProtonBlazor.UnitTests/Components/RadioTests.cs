@@ -287,7 +287,7 @@ namespace ProtonBlazor.UnitTests.Components
             var group = comp.FindComponent<ProRadioGroup<string>>();
             var radio = comp.FindComponent<ProRadio<string>>();
 
-            await comp.InvokeAsync(() => radio.Instance.IMudRadioGroup = null);
+            await comp.InvokeAsync(() => radio.Instance.IProRadioGroup = null);
             await comp.InvokeAsync(() => radio.Instance.OnClickAsync());
             await comp.WaitForAssertionAsync(() => radio.Instance.ReadValue.Should().Be("1"));
             await radio.SetParametersAndRenderAsync(parameters => parameters.Add(x => x.Disabled, true));

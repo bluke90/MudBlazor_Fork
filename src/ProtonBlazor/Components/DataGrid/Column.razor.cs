@@ -776,7 +776,7 @@ namespace ProtonBlazor
         {
             Debug.Assert(DataGrid is not null);
             await HiddenState.SetValueAsync(!HiddenState.Value);
-            ((IMudStateHasChanged)DataGrid).StateHasChanged();
+            ((IProStateHasChanged)DataGrid).StateHasChanged();
         }
 
         /// <summary>

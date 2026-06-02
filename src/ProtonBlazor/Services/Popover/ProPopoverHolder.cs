@@ -12,7 +12,7 @@ namespace ProtonBlazor;
 /// <remarks>
 /// This is a mutable container used internally to track the render fragment, styling, and lifecycle metadata while a popover is active or queued for updates.
 /// </remarks>
-internal class ProPopoverHolder : IMudPopoverHolder
+internal class ProPopoverHolder : IProPopoverHolder
 {
     private readonly TimeProvider _timeProvider;
 

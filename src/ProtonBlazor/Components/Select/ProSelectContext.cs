@@ -168,7 +168,7 @@ internal sealed class ProSelectContext<T>
 
         _shadowLookup[newValue] = item;
         _select.InvalidateFitContent();
-        ((IMudStateHasChanged)_select).StateHasChanged();
+        ((IProStateHasChanged)_select).StateHasChanged();
     }
 
     /// <summary>

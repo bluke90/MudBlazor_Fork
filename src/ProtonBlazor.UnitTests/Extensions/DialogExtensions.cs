@@ -6,7 +6,7 @@ namespace ProtonBlazor.UnitTests;
 
 public static class DialogExtensions
 {
-    public static ProDialogContainer GetDialogContainer(this IMudDialogInstance instance)
+    public static ProDialogContainer GetDialogContainer(this IProDialogInstance instance)
     {
         ArgumentNullException.ThrowIfNull(instance);
 

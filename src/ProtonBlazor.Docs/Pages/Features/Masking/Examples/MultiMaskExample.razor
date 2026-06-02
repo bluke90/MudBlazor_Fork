@@ -35,7 +35,7 @@
             cardType = o == null ? "Unknown" : o.Value.Id;
             UpdateClasses();
             // re-render only ProElement's children
-            (element as IMudStateHasChanged)?.StateHasChanged();
+            (element as IProStateHasChanged)?.StateHasChanged();
         };
         UpdateClasses();
     }

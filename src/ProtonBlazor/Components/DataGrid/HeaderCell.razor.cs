@@ -366,7 +366,7 @@ namespace ProtonBlazor
             await JSRuntime.InvokeVoidAsyncIgnoreErrors("mudPointerCapture.capture", _resizerElement, args.PointerId);
 
             await InvokeAsync(StateHasChanged);
-            ((IMudStateHasChanged)DataGrid).StateHasChanged();
+            ((IProStateHasChanged)DataGrid).StateHasChanged();
         }
 
         private async Task OnResizerPointerOver()
@@ -410,7 +410,7 @@ namespace ProtonBlazor
             Debug.Assert(DataGrid is not null);
             DataGrid.IsResizing = false;
             await InvokeAsync(StateHasChanged);
-            ((IMudStateHasChanged)DataGrid).StateHasChanged();
+            ((IProStateHasChanged)DataGrid).StateHasChanged();
         }
 
         private async Task HandleResize(double clientX, bool finish)
@@ -582,7 +582,7 @@ namespace ProtonBlazor
             }
             else
             {
-                ((IMudStateHasChanged)DataGrid).StateHasChanged();
+                ((IProStateHasChanged)DataGrid).StateHasChanged();
             }
             await DataGrid.NotifyFilterChangedAsync();
             _filtersMenuVisible = false;
@@ -602,7 +602,7 @@ namespace ProtonBlazor
             }
             else
             {
-                ((IMudStateHasChanged)DataGrid).StateHasChanged();
+                ((IProStateHasChanged)DataGrid).StateHasChanged();
             }
             await DataGrid.NotifyFilterChangedAsync();
             _filtersMenuVisible = false;
@@ -620,7 +620,7 @@ namespace ProtonBlazor
             }
             else
             {
-                ((IMudStateHasChanged)DataGrid).StateHasChanged();
+                ((IProStateHasChanged)DataGrid).StateHasChanged();
             }
             await DataGrid.NotifyFilterChangedAsync();
             _filtersMenuVisible = false;
@@ -635,7 +635,7 @@ namespace ProtonBlazor
             Column.FilterContext.FilterDefinition.Value = null;
             await DataGrid.RemoveFilterAsync(Column.FilterContext.FilterDefinition.Id);
             if (!DataGrid.HasServerData)
-                ((IMudStateHasChanged)DataGrid).StateHasChanged();
+                ((IProStateHasChanged)DataGrid).StateHasChanged();
             _filtersMenuVisible = false;
             DataGrid.DropContainerHasChanged();
         }
@@ -645,7 +645,7 @@ namespace ProtonBlazor
             Debug.Assert(DataGrid is not null);
             await DataGrid.RemoveFilterAsync(filterDefinition.Id);
             if (!DataGrid.HasServerData)
-                ((IMudStateHasChanged)DataGrid).StateHasChanged();
+                ((IProStateHasChanged)DataGrid).StateHasChanged();
             _filtersMenuVisible = false;
             DataGrid.DropContainerHasChanged();
         }
@@ -660,7 +660,7 @@ namespace ProtonBlazor
             }
             else
             {
-                ((IMudStateHasChanged)DataGrid).StateHasChanged();
+                ((IProStateHasChanged)DataGrid).StateHasChanged();
             }
             await DataGrid.NotifyFilterChangedAsync();
             _filtersMenuVisible = false;
@@ -695,7 +695,7 @@ namespace ProtonBlazor
             if (Column is not null)
             {
                 await Column.HideAsync();
-                ((IMudStateHasChanged)DataGrid).StateHasChanged();
+                ((IProStateHasChanged)DataGrid).StateHasChanged();
             }
         }
 
