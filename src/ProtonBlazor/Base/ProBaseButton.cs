@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-using static System.String;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using ProtonBlazor.Interfaces;
+using static System.String;
 
 namespace ProtonBlazor
 {

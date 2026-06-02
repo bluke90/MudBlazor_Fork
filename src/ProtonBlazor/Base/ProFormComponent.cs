@@ -1,4 +1,4 @@
-﻿// Copyright (c) ProtonBlazor 2021
+// Copyright (c) ProtonBlazor 2021
 // ProtonBlazor licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq.Expressions;
-using static System.String;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Logging;
@@ -15,6 +14,7 @@ using ProtonBlazor.Interfaces;
 using ProtonBlazor.State;
 using ProtonBlazor.Utilities.Comparer;
 using ProtonBlazor.Utilities.Converter.Base;
+using static System.String;
 
 namespace ProtonBlazor
 {
