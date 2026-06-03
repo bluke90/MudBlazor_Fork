@@ -1,0 +1,9 @@
+﻿@inherits LayoutComponentBase
+
+<ProRTLProvider RightToLeft="@LayoutService.IsRTL">
+    <ProThemeProvider @ref="@_proThemeProvider" Theme="@LayoutService.CurrentTheme" ObserveSystemDarkModeChange="@LayoutService.ObserveSystemDarkModeChange" IsDarkMode="@LayoutService.IsDarkMode" IsDarkModeChanged="@((dark) => LayoutService.UpdateDarkModeState(dark))" />
+    <ProPopoverProvider />
+    <ProSnackbarProvider/>
+    <ProDialogProvider FullWidth="true" MaxWidth="MaxWidth.ExtraSmall"/>
+    @Body
+</ProRTLProvider>

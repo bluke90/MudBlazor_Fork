@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" md="8" Class="d-flex justify-center align-center" Style="height:500px;">
+        <ProPaper Style="@($"background-color:{ColorValue};")" Elevation="@Elevation" Outlined="@Outlined" Height="@($"{PaperHeight}px")" Width="@($"{PaperWidth}px")" />
+    </ProItem>
+    <ProItem xs="12" md="4">
+        <ProPaper Class="pa-4 mt-6 mt-lg-16" Elevation="0">
+            <ProText Typo="Typo.h6">Options</ProText>
+            <ProText><b>Elevation:</b> @Elevation</ProText>
+            <ProSlider @bind-Value="Elevation" Max="25" Min="0" Color="Color.Primary" />
+            <ProText><b>Outlined:</b> @Outlined</ProText>
+            <ProSwitch @bind-Value="Outlined" Color="Color.Primary" />
+            <ProText><b>Color:</b> @ColorValue</ProText>
+            <ProColorPicker Class="mb-2" @bind-Text="ColorValue" Variant="Variant.Outlined" Margin="Margin.Dense" />
+            <ProText><b>Width:</b> @($"{PaperWidth}px")</ProText>
+            <ProSlider @bind-Value="PaperWidth" Max="400" Min="0" Color="Color.Primary" />
+            <ProText><b>Height:</b> @($"{PaperHeight}px")</ProText>
+            <ProSlider @bind-Value="PaperHeight" Max="400" Min="0" Color="Color.Primary" />
+        </ProPaper>
+    </ProItem>
+</ProGrid>
+
+@code {
+    public int PaperHeight { get; set; } = 300;
+    public int PaperWidth { get; set; } = 300;
+    public int Elevation { get; set; } = 5;
+    public bool Outlined { get; set; } = false;
+    public string ColorValue { get; set; } = "#f9f9f9";
+}

@@ -1,0 +1,14 @@
+﻿<ProDialog ActionsClass="@ActionsClass">
+    <DialogContent>
+    </DialogContent>
+    <DialogActions>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; } = null!;
+
+    [Parameter]
+    public string ActionsClass { get; set; } = string.Empty;
+}

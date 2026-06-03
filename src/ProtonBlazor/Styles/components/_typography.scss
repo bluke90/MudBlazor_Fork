@@ -1,0 +1,54 @@
+
+.pro-typography {
+  margin: 0;
+}
+
+$typography-types: ("h1", "h2", "h3", "h4", "h5", "h6", "subtitle1", "subtitle2", "body1", "body2", "button", "caption", "overline");
+
+@each $type in $typography-types {
+  .pro-typography-#{$type} {
+    font-size: var(--pro-typography-#{$type}-size);
+    font-family: var(--pro-typography-#{$type}-family);
+    font-weight: var(--pro-typography-#{$type}-weight);
+    line-height: var(--pro-typography-#{$type}-lineheight);
+    letter-spacing: var(--pro-typography-#{$type}-letterspacing);
+    text-transform: var(--pro-typography-#{$type}-text-transform);
+  }
+}
+
+.pro-typography-srOnly {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.pro-typography-align-left {
+  text-align: left;
+}
+
+.pro-typography-align-center {
+  text-align: center;
+}
+
+.pro-typography-align-right {
+  text-align: right;
+}
+
+.pro-typography-align-justify {
+  text-align: justify;
+}
+
+.pro-typography-nowrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pro-typography-gutterbottom {
+  margin-bottom: 0.35em;
+}
+
+.pro-typography-paragraph {
+  margin-bottom: 16px;
+}

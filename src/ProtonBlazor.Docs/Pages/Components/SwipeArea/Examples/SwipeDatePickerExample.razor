@@ -1,0 +1,26 @@
+﻿@using System.Globalization
+@namespace ProtonBlazor.Docs.Examples
+
+<ProSwipeArea OnSwipeEnd="@OnSwipeEnd">
+    <div style="user-select: none;">
+        <ProDatePicker PickerVariant="PickerVariant.Static" Date="@(DateTime.Today.AddDays(1))" @bind-PickerMonth="@_pickerMonth"/>
+    </div>
+</ProSwipeArea>
+
+@code {
+    private DateTime? _pickerMonth = DateTime.Now.StartOfMonth(CultureInfo.CurrentCulture);
+
+    public void OnSwipeEnd(SwipeEventArgs e)
+    {
+        if (e.SwipeDirection == SwipeDirection.LeftToRight)
+        {
+            _pickerMonth = _pickerMonth?.AddMonths(-1);
+            StateHasChanged();
+        }
+        else if (e.SwipeDirection == SwipeDirection.RightToLeft)
+        {
+            _pickerMonth = _pickerMonth?.AddMonths(1);
+            StateHasChanged();
+        }
+    }
+}

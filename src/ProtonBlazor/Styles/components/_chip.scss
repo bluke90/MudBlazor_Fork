@@ -1,0 +1,273 @@
+@import '../abstracts/variables';
+
+.pro-chip-container {
+  display: contents;
+}
+
+.pro-chip {
+  border: none;
+  display: inline-flex;
+  max-width: 100%;
+  outline: 0;
+  padding: 0 12px;
+  position: relative;
+  box-sizing: border-box;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  align-items: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  justify-content: center;
+  text-decoration: none;
+  line-height: normal;
+  margin: 4px;
+
+  &.pro-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.pro-chip-size-small {
+    border-radius: 12px;
+    font-size: 12px;
+    height: 24px;
+    padding: 0 8px;
+
+    .pro-avatar {
+      margin-left: -4px;
+      margin-right: 4px;
+      margin-inline-start: -4px;
+      margin-inline-end: 4px;
+      width: 18px;
+      height: 18px;
+      font-size: 0.625rem;
+    }
+
+    .pro-icon-root {
+      font-size: 1.125rem;
+    }
+
+    .pro-chip-close-button {
+      margin-right: -4px;
+      margin-left: 4px;
+      margin-inline-end: -4px;
+      margin-inline-start: 4px;
+    }
+  }
+
+  &.pro-chip-size-medium {
+    height: 32px;
+    font-size: 14px;
+    border-radius: 16px;
+
+    .pro-avatar {
+      margin-left: -8px;
+      margin-right: 8px;
+      margin-inline-start: -8px;
+      margin-inline-end: 8px;
+      width: 24px;
+      height: 24px;
+      font-size: 0.75rem;
+    }
+  }
+
+  &.pro-chip-size-large {
+    height: 40px;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 0 16px;
+
+    .pro-avatar {
+      margin-left: -12px;
+      margin-right: 8px;
+      margin-inline-start: -12px;
+      margin-inline-end: 8px;
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+    }
+
+    .pro-chip-icon {
+      font-size: 1.5rem;
+      margin-left: -6px;
+      margin-right: 6px;
+      margin-inline-start: -6px;
+      margin-inline-end: 6px;
+    }
+  }
+
+  &.pro-chip-label {
+    border-radius: var(--pro-default-borderradius);
+  }
+
+  &.pro-clickable {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .pro-chip-icon {
+    margin-left: -4px;
+    margin-right: 4px;
+    margin-inline-start: -4px;
+    margin-inline-end: 4px;
+    color: inherit;
+  }
+
+  .pro-chip-close-button {
+    padding: 1px;
+    margin-right: -4px;
+    margin-left: 6px;
+    margin-inline-end: -4px;
+    margin-inline-start: 6px;
+    height: 18px;
+    width: 18px;
+    color: inherit;
+    transition: .3s cubic-bezier(.25,.8,.5,1),visibility 0s;
+
+    .pro-icon-size-small {
+      font-size: 1.15rem;
+    }
+
+    @media(hover: hover) and (pointer: fine) {
+      &:hover:not(.pro-disabled) {
+        opacity: .70;
+      }
+    }
+
+    &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+      opacity: .70;
+    }
+  }
+
+  & > .pro-chip-content {
+    align-items: center;
+    display: inline-flex;
+    height: 100%;
+    max-width: 100%;
+  }
+}
+
+.pro-chip-filled {
+  color: var(--pro-palette-text-primary);
+  background-color: var(--pro-palette-action-disabled-background);
+  --pro-ripple-opacity: var(--pro-ripple-opacity-secondary);
+
+  &.pro-clickable {
+    @media(hover: hover) and (pointer: fine) {
+      &:hover:not(.pro-disabled) {
+        background-color: var(--pro-palette-action-disabled);
+      }
+    }
+
+    &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+      background-color: var(--pro-palette-action-disabled);
+    }
+  }
+
+  @each $color in $pro-palette-colors {
+    &.pro-chip-color-#{$color} {
+      color: var(--pro-palette-#{$color}-text);
+      --pro-ripple-color: var(--pro-palette-#{$color}-text) !important;
+      background-color: var(--pro-palette-#{$color});
+
+      &.pro-clickable {
+        @media(hover: hover) and (pointer: fine) {
+          &:hover:not(.pro-disabled) {
+            background-color: var(--pro-palette-#{$color}-darken);
+          }
+        }
+
+        &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+          background-color: var(--pro-palette-#{$color}-darken);
+        }
+      }
+    }
+  }
+}
+
+.pro-chip-outlined {
+  color: var(--pro-palette-text-primary);
+  border: 1px solid var(--pro-palette-lines-inputs);
+
+  &.pro-clickable {
+    @media(hover: hover) and (pointer: fine) {
+      &:hover:not(.pro-disabled) {
+        background-color: var(--pro-palette-action-default-hover);
+      }
+    }
+
+    &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+      background-color: var(--pro-palette-action-default-hover);
+    }
+  }
+
+  @each $color in $pro-palette-colors {
+    &.pro-chip-color-#{$color} {
+      color: var(--pro-palette-#{$color});
+      --pro-ripple-color: var(--pro-palette-#{$color}) !important;
+      border: 1px solid rgba(var(--pro-palette-#{$color}-rgb), var(--pro-palette-border-opacity));
+
+      &.pro-clickable {
+        @media(hover: hover) and (pointer: fine) {
+          &:hover:not(.pro-disabled) {
+            background-color: var(--pro-palette-#{$color}-hover);
+          }
+        }
+
+        &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+          background-color: var(--pro-palette-#{$color}-hover);
+        }
+      }
+
+      &.pro-chip-selected {
+        background-color: var(--pro-palette-#{$color}-hover);
+
+        @media(hover: hover) and (pointer: fine) {
+          &:hover:not(.pro-disabled) {
+            background-color: rgba(var(--pro-palette-#{$color}-rgb), 0.12);
+          }
+        }
+
+        &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+          background-color: rgba(var(--pro-palette-#{$color}-rgb), 0.12);
+        }
+      }
+    }
+  }
+}
+
+.pro-chip-text {
+  color: var(--pro-palette-text-primary);
+  background-color: var(--pro-palette-action-default-hover);
+
+  &.pro-clickable {
+    @media(hover: hover) and (pointer: fine) {
+      &:hover:not(.pro-disabled) {
+        background-color: var(--pro-palette-action-disabled-background);
+      }
+    }
+
+    &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+      background-color: var(--pro-palette-action-disabled-background);
+    }
+  }
+
+  @each $color in $pro-palette-colors {
+    &.pro-chip-color-#{$color} {
+      color: var(--pro-palette-#{$color});
+      --pro-ripple-color: var(--pro-palette-#{$color}) !important;
+      background-color: var(--pro-palette-#{$color}-hover);
+
+      &.pro-clickable {
+        @media(hover: hover) and (pointer: fine) {
+          &:hover:not(.pro-disabled) {
+            background-color: rgba(var(--pro-palette-#{$color}-rgb), 0.12);
+          }
+        }
+
+        &:focus-visible:not(.pro-disabled), &:active:not(.pro-disabled) {
+          background-color: rgba(var(--pro-palette-#{$color}-rgb), 0.12);
+        }
+      }
+    }
+  }
+}

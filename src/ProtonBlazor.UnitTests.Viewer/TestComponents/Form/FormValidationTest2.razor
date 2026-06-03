@@ -1,0 +1,14 @@
+﻿<ProForm ValidationDelay="0">
+    <ProTextField T="string" Required="true" RequiredError="Enter a star" Validation="@Validation"></ProTextField>
+    <ProSelect T="string" Required="false" >
+        <ProSelectItem T="string" Value="@("foo")" />
+        <ProSelectItem T="string" Value="@("bar")" />
+    </ProSelect>
+</ProForm>
+
+@code {
+    public static string __description__ = "Form should become valid as soon as all required fields are filled in correctly.";
+
+    [Parameter]
+    public object? Validation { get; set; }
+}

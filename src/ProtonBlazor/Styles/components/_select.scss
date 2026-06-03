@@ -1,0 +1,130 @@
+.pro-select {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+
+  &.pro-autocomplete {
+    display: block;
+
+    & .pro-select-input {
+      cursor: text;
+
+      &.pro-readonly {
+        cursor: default;
+
+        & .pro-input-adornment {
+          cursor: default;
+        }
+      }
+    }
+
+    & .pro-input-adornment {
+      cursor: pointer;
+    }
+  }
+
+  &.pro-autocomplete--with-progress {
+    & .pro-select-input input {
+      padding-right: 3.5rem !important;
+    }
+
+    & .pro-input-adorned-end input {
+      padding-right: 4.5rem !important;
+    }
+
+    // hide only when the wrapper does NOT contain pro-input-adornment-start
+    // AND DOES contain .progress-indicator-circular somewhere inside
+    &:not(:has(.pro-input-adornment-start)):has(.progress-indicator-circular) .pro-select-input .pro-icon-button {
+      display: none !important;
+    }
+
+    & .progress-indicator-circular {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      padding-right: 1rem;
+    }
+
+    & .pro-progress-linear {
+      position: absolute;
+      bottom: -1px;
+      height: 2px;
+    }
+  }
+
+  .pro-select-input {
+    cursor: pointer;
+
+    &.pro-readonly {
+      cursor: default;
+    }
+
+    & .pro-input-slot {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    & .pro-input-adornment-end {
+      margin-left: 0;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  .pro-disabled {
+    .pro-select-input {
+      cursor: default;
+    }
+  }
+}
+
+// Adds spacing to right/left depending on the direction of the application layout
+.pro-rtl-provider {
+  & .pro-select .progress-indicator-circular--with-adornment {
+    padding-right: 1rem;
+  }
+
+  &.pro-application-layout-rtl {
+    & .pro-select .progress-indicator-circular--with-adornment {
+      padding-right: 0rem !important;
+      padding-left: 1rem !important;
+    }
+  }
+}
+
+.pro-select > .pro-form-helpertext {
+  margin-top: -21px;
+}
+
+.pro-autocomplete-before-items,
+.pro-autocomplete-after-items,
+.pro-autocomplete-more-items,
+.pro-autocomplete-no-items {
+  &:not(:empty) {
+    padding: 4px;
+  }
+}
+
+.pro-select-all {
+  margin-top: 10px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 18px;
+}
+
+.pro-select-filler {
+  white-space: nowrap;
+  height: 0px;
+}
+
+.pro-width-content {
+    max-width: min-content;
+}

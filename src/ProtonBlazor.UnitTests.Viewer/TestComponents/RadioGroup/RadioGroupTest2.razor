@@ -1,0 +1,11 @@
+﻿<ProRadioGroup @bind-Value="@_option">
+    <ProRadio Value="@("1")" />
+    <ProRadio Value="@("2")" />
+    <ProRadio Value="@("3")" />
+</ProRadioGroup>
+
+@code {
+    public static string __description__ = "Radio 2 should be pre-selected.";
+
+    private string _option = "2";
+}

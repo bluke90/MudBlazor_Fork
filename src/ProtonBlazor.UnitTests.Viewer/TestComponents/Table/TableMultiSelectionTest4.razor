@@ -1,0 +1,16 @@
+﻿<ProText>SelectedItems { @string.Join(", ", _selectedItems) }</ProText>
+<ProTable Items="_items" @bind-SelectedItems="_selectedItems" MultiSelection="true">
+    <HeaderContent>
+        <ProTh>#</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate>
+</ProTable>
+
+@code {
+    public static string __description__ = "The checkboxes should all be checked on load, even the header checkbox.";
+
+    private readonly int[] _items = [0, 1, 2];
+    private HashSet<int> _selectedItems = [0, 1, 2];
+}

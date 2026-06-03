@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProMenu Label="Open menu" @bind-Open="_open">
+    <ProMenuItem Label="Item 1" />
+    <ProMenuItem Label="Item 2" />
+    <ProMenuItem Label="Item 3" />
+</ProMenu>
+
+<ProButton Color="Color.Primary" OnClick="OnOpen">Open for 1 second</ProButton>
+<ProSwitch Color="Color.Primary" @bind-Value="_open" Label="Open" />
+
+@code {
+    private bool _open;
+
+    private async Task OnOpen()
+    {
+        _open = true;
+        await Task.Delay(1000);
+        _open = false;
+    }
+}

@@ -1,0 +1,12 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProBreadcrumbs Items="_items"></ProBreadcrumbs>
+
+@code {
+    private List<BreadcrumbItem> _items =
+    [
+        new("Home", href: "#", icon: Icons.Material.Filled.Home),
+        new("Videos", href: "#", icon: Icons.Material.Filled.VideoLibrary),
+        new("Create", href: null, disabled: true, icon: Icons.Material.Filled.Create)
+    ];
+}

@@ -1,0 +1,17 @@
+﻿<ProTable Items="@_items" CurrentPage="@_currentPage">
+    <HeaderContent>
+        <ProTh>Item</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Item">@context</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProTablePager />
+    </PagerContent>
+</ProTable>
+
+
+@code {
+    private int _currentPage = 2;
+    private int[] _items = Enumerable.Range(0, 100).ToArray();
+}

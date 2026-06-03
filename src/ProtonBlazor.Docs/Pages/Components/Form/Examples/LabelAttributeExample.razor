@@ -1,0 +1,29 @@
+﻿@using System.ComponentModel.DataAnnotations
+@namespace ProtonBlazor.Docs.Examples
+
+<ProCard>
+    <ProCardContent>
+        <ProForm Spacing="2">
+            <ProDatePicker For="@(() => model.Date)" />
+            <ProDatePicker For="@(() => model.Date)" Label="Parameter Label" />
+            <ProSwitch For="@(() => model.Boolean)" Color="Color.Primary" />
+            <ProSwitch For="@(() => model.Boolean)" Label="Parameter Label" Color="Color.Primary" />
+            <ProTextField For="@(() => model.String)" />
+            <ProTextField For="@(() => model.String)" Label="Parameter Label" />
+        </ProForm>
+    </ProCardContent>
+</ProCard>
+
+@code {
+    DisplayNameLabelClass model = new();
+
+    public class DisplayNameLabelClass
+    {
+        [Label("Date LabelAttribute")]
+        public DateTime? Date { get; set; }
+        [Label("Boolean LabelAttribute")]
+        public bool Boolean { get; set; }
+        [Label("String LabelAttribute")]
+        public string String { get; set; }
+    }
+}

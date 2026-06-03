@@ -1,0 +1,16 @@
+﻿<ProToggleGroup @bind-Value="_value" T="string" Color="Color.Primary" Disabled="true">
+    <ProToggleItem T="string" Value="@("Enabled 1")" Text="Enabled Item 1" />
+    <ProToggleItem T="string" Value="@("Enabled 2")" Text="Enabled Item 2" />
+    <ProToggleItem T="string" Value="@("Disabled")" Text="Disabled Item" Disabled="true" />
+</ProToggleGroup>
+
+<ProToggleGroup @bind-Value="_value" T="string" Color="Color.Primary">
+    <ProToggleItem T="string" Value="@("Enabled 1")" Text="Enabled Item 1" />
+    <ProToggleItem T="string" Value="@("Enabled 2")" Text="Enabled Item 2" />
+    <ProToggleItem T="string" Value="@("Disabled")" Text="Disabled Item" Disabled="true" />
+</ProToggleGroup>
+
+@code {
+    public static string __description__ = "It should be possible to disable whole toggle groups and/or toggle items";
+    private string? _value;
+}

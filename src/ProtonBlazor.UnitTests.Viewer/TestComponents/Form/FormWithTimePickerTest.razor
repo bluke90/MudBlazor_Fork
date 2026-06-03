@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProForm ValidationDelay="0">
+    <ProTimePicker Required="true" @bind-Time="Time">
+    </ProTimePicker>
+</ProForm>
+
+@code {
+    public static string __description__ = "Form should validate time picker's value.";
+
+    [Parameter]
+    public TimeSpan? Time { get; set; }
+}

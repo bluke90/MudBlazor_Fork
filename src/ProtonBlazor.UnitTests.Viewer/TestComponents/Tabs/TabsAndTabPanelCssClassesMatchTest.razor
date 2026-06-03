@@ -1,0 +1,24 @@
+﻿<ProTabs TabButtonsClass="pro-tabs-button-class" TabPanelsClass="pro-tabs-panel-class" @bind-ActivePanelIndex="@SelectedTab" @ref="Tabs">
+    <ProTabPanel Class="pro-tab-panel-button-class-1" PanelClass="pro-tab-panel-panel-class-1">
+        <ChildContent>
+            <ProText>Tab content one</ProText>
+        </ChildContent>
+        <TabContent>
+            Item One
+        </TabContent>
+    </ProTabPanel>
+    <ProTabPanel Class="pro-tab-panel-button-class-2" PanelClass="pro-tab-panel-panel-class-2">
+        <ChildContent>
+            <ProText>Tab content two</ProText>
+        </ChildContent>
+        <TabContent>
+            Item Two
+        </TabContent>
+    </ProTabPanel>
+</ProTabs>
+
+@code {
+    public static int SelectedTab { get; set; } = 1;
+
+    public ProTabs Tabs { get; set; } = null!;
+}

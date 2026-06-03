@@ -1,0 +1,50 @@
+﻿<ProPopoverProvider />
+
+<ProTable ServerData="ServerReload" SortLabel="Sort by">
+    <HeaderContent>
+        <ProTh><ProTableSortLabel SortLabel="a" T="TestModel">a</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortLabel="b" T="TestModel">b</ProTableSortLabel></ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="a">@context.A</ProTd>
+        <ProTd DataLabel="b">@context.B</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProTablePager />
+    </PagerContent>
+</ProTable>
+
+@code {
+    public static string __description__ = "The server-side loaded table should reload data on mobile sort.";
+
+    private int _totalItems;
+
+    /// <summary>
+    /// Here we simulate getting the paged, filtered and ordered data from the server
+    /// </summary>
+    private Task<TableData<TestModel>> ServerReload(TableState state, CancellationToken token)
+    {
+        IEnumerable<TestModel> data = new List<TestModel>
+        {
+            new() { A = 1, B = 3 },
+            new() { A = 2, B = 2 },
+            new() { A = 3, B = 1 }
+        };
+        _totalItems = 3;
+        data = state.SortLabel switch
+        {
+            "a" => data.OrderByDirection(state.SortDirection, x => x.A),
+            "b" => data.OrderByDirection(state.SortDirection, x => x.B),
+            _ => data
+        };
+
+        return Task.FromResult(new TableData<TestModel> { TotalItems = _totalItems, Items = data });
+    }
+
+    public class TestModel
+    {
+        public int A { get; set; }
+
+        public int B { get; set; }
+    }
+}

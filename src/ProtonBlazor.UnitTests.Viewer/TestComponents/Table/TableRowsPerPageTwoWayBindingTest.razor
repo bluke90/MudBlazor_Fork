@@ -1,0 +1,16 @@
+﻿<ProPopoverProvider />
+
+<ProPaper>
+    <ProTable Items="@_viewModel.Items"
+              Dense="true" Hover="true"
+              FixedHeader="true"
+              SortLabel="Sort By"
+              @bind-RowsPerPage="@RowsPerPage">
+        <RowTemplate>
+            <ProTd DataLabel="Text">@context.Text</ProTd>
+        </RowTemplate>
+        <PagerContent>
+            <ProTablePager />
+        </PagerContent>
+    </ProTable>
+</ProPaper>

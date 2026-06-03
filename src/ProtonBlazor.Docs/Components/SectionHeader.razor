@@ -1,0 +1,17 @@
+﻿
+<div @ref="@SectionReference" id="@GetSectionId()" class="@Classname">
+	@if (!String.IsNullOrWhiteSpace(Title) && HideTitle == false)
+	{
+		<ProText Typo="@GetTitleTypo()">
+			<b>@Title</b>
+		</ProText>
+	}
+	@if (SubTitle != null)
+	{
+		<ProText Typo="Typo.h6">@SubTitle</ProText>
+	}
+	@if (Description != null)
+	{
+		<ProText Class="mb-5">@Description</ProText>
+	}
+</div>

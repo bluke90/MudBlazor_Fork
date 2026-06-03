@@ -1,0 +1,11 @@
+﻿@inherits LayoutComponentBase
+
+<ProDialogProvider/>
+<ProSnackbarProvider/>
+<ProThemeProvider Theme="@_customTheme" IsDarkMode="@false"  />
+
+@Body
+
+@code {
+    private readonly ProTheme _customTheme = new();
+}

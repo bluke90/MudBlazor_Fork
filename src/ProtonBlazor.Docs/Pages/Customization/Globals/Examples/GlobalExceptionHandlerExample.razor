@@ -1,0 +1,7 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+// Add ProtonBlazor services
+Services.AddMudServices();
+
+// Send all exceptions to the console
+ProGlobal.UnhandledExceptionHandler = (exception) => Console.WriteLine(exception);

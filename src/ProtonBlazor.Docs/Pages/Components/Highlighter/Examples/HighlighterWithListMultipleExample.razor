@@ -1,0 +1,32 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Elevation="0">
+    <ProList T="string">
+        <ProListSubheader>
+            <ProTextField @bind-Value="searchTerm" AdornmentIcon="@Icons.Material.Filled.People"
+                          Adornment="Adornment.End" Immediate="true" Variant="Variant.Outlined"
+                          Label="Names to search"/>
+        </ProListSubheader>
+
+        @{
+            string[] searchTerms = searchTerm.Split(split);
+            for (int i = 0; i < searchTerms.Length; i++)
+                searchTerms[i] = searchTerms[i].Trim();
+        }
+        @foreach (var name in names)
+        {
+            <ProListItem @key="name" Icon="@Icons.Material.Filled.Person">
+                <ProHighlighter Text="@name" HighlightedTexts="@searchTerms" />
+            </ProListItem>
+        }
+    </ProList>
+</ProPaper>
+
+@code {
+    string searchTerm = "William Jordan, Oliver";
+    IEnumerable<string> names = new List<string>
+    {
+        "William Jordan", "Oliver Jones", "William Johnson", "Daniel Williams", "Oliver Simpson"
+    };
+    static readonly char[] split = new char[] { ';', ',', '.' };
+}

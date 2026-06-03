@@ -1,0 +1,44 @@
+﻿<ProPaper Width="300px">
+    <ProList T="string" Dense>
+        @for (int i = 0; i < 20; i++)
+        {
+            <ProListItem Text=@($"Item {i}") OnClick="ListItem_Clicked" />
+        }
+    </ProList>
+</ProPaper>
+
+<ProMenu @ref="_contextMenu"
+         AnchorOrigin="@Origin.BottomLeft"
+         Dense
+         TransformOrigin="@Origin.BottomLeft"
+         PopoverClass="menu-popover"
+         OverflowBehavior="OverflowBehavior.FlipAlways"
+         PositionAtCursor>
+    <ProMenuItem Label="Enlist" />
+    <ProMenuItem Label="Barracks" />
+    <ProMenuItem Label="Armory" />
+    <ProMenuItem Label="Enlist" />
+    <ProMenuItem Label="Barracks" />
+    <ProMenuItem Label="Armory" />
+    <ProMenuItem Label="Enlist" />
+    <ProMenuItem Label="Barracks" />
+    <ProMenuItem Label="Armory" />
+    <ProMenuItem Label="Enlist" />
+    <ProMenuItem Label="Barracks" />
+    <ProMenuItem Label="Armory" />
+    <ProMenuItem Label="Enlist" />
+    <ProMenuItem Label="Barracks" />
+    <ProMenuItem Label="Armory" />
+</ProMenu>
+
+@code {
+    private ProMenu _contextMenu = null!;
+
+    private async Task ListItem_Clicked(MouseEventArgs e)
+    {
+        if (_contextMenu != null)
+        {
+            await _contextMenu.OpenMenuAsync(e);
+        }
+    }
+}

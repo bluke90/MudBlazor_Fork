@@ -1,0 +1,76 @@
+﻿@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" sm="7">
+        <ProPaper Class="pa-4">
+            <ProForm @ref="_form" @bind-IsValid="@_success" @bind-Errors="@_errors" OnEnterPressed="@(() => _form.ValidateAsync())">
+                <ProTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" />
+                <ProTextField T="string" Label="Email" Required="true" RequiredError="Email is required!"
+                              Validation="@(new EmailAddressAttribute { ErrorMessage = @"The email address is invalid" })" />
+                <ProTextField T="string"
+                              @bind-Value="@_password"
+                              Label="Password" 
+                              HelperText="Choose a strong password"
+                              InputType="InputType.Password"
+                              Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true"
+                              RequiredError="Password is required!"/>
+                <ProTextField T="string"
+                              Label="Password" HelperText="Repeat the password" InputType="InputType.Password"
+                              Validation="@(new Func<string, string>(PasswordMatch))"/>
+                <div class="d-flex">
+                    <ProRadioGroup T="string" Required="true" RequiredError="Account type is required!">
+                        <ProRadio Value="@("Personal")">Personal</ProRadio>
+                        <ProRadio Value="@("Professional")">Professional</ProRadio>
+                    </ProRadioGroup>
+                </div>
+                <div class="d-flex align-center justify-space-between">
+                    <ProCheckBox T="bool" Required="true" RequiredError="You must agree" Label="I agree!"  />
+                    <ProButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!_success)" Class="ml-auto">Register</ProButton>
+                </div>
+            </ProForm>
+        </ProPaper>
+        <ProPaper Class="pa-4 mt-4">
+            <ProButton Variant="Variant.Filled" Color="Color.Primary" DropShadow="false" OnClick="@(() => _form.ValidateAsync())">Validate</ProButton>
+            <ProButton Variant="Variant.Filled" Color="Color.Secondary" DropShadow="false" OnClick="@(() => _form.ResetAsync())" Class="mx-2">Reset</ProButton>
+            <ProButton Variant="Variant.Filled" DropShadow="false" OnClick="@(() => _form.ResetValidationAsync())">Reset Validation</ProButton>
+        </ProPaper>
+    </ProItem>
+    <ProItem xs="12" sm="5">
+        <ProPaper Class="pa-4 pro-height-full">
+            <ProText Typo="Typo.subtitle2">@($"Errors ({_errors.Length})")</ProText>
+            @foreach (var error in _errors)
+            {
+                <ProText Color="@Color.Error">@error</ProText>
+            }
+        </ProPaper>
+    </ProItem>
+</ProGrid>
+
+
+@code {
+    private bool _success;
+    private ProForm _form;
+    private string _password;
+    private string[] _errors = [];
+
+    private static IEnumerable<string> PasswordStrength(string pw)
+    {
+        if (string.IsNullOrWhiteSpace(pw))
+        {
+            yield return "Password is required!";
+            yield break;
+        }
+        if (pw.Length < 8)
+            yield return "Password must be at least of length 8";
+        if (!Regex.IsMatch(pw, @"[A-Z]"))
+            yield return "Password must contain at least one capital letter";
+        if (!Regex.IsMatch(pw, @"[a-z]"))
+            yield return "Password must contain at least one lowercase letter";
+        if (!Regex.IsMatch(pw, @"[0-9]"))
+            yield return "Password must contain at least one digit";
+    }
+
+    private string PasswordMatch(string arg) => _password != arg ? "Passwords don't match" : null;
+}

@@ -1,0 +1,22 @@
+﻿<ProTreeView T="string" @bind-SelectedValue="SelectedValue" SelectionMode="SelectionMode.ToggleSelection">
+    <ProTreeViewItem Value='"content"' Class="parent-item" ReadOnly="ParentItemReadOnly" Disabled="ParentItemDisabled">
+        <ProTreeViewItem Value='"logo.png"' />
+        <ProTreeViewItem Value='"ProtonBlazor.svg"' />
+        <ProTreeViewItem Value='"Nuget.png"' />
+    </ProTreeViewItem>
+</ProTreeView>
+
+<p class="selected-value">
+    @SelectedValue
+</p>
+
+@code {
+    [Parameter] 
+    public bool ParentItemDisabled { get; set; }
+
+    [Parameter] 
+    public bool ParentItemReadOnly { get; set; }
+
+    [Parameter] 
+    public string? SelectedValue { get; set; }
+}

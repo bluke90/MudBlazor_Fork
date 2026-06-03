@@ -1,0 +1,12 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProChip T="string" OnClick="OnChipClicked" Color="Color.Default">Clicked @ClickCount times</ProChip>
+
+@code {
+    private int ClickCount { get; set; }
+
+    private void OnChipClicked()
+    {
+        ClickCount++;
+    }
+}

@@ -1,0 +1,18 @@
+﻿@using ProtonBlazor.Utilities
+
+<ProForm FieldChanged="v => FormFieldChangedEventArgs = v">
+    <ProTextField T="string" />
+    <ProNumericField T="int" />
+    <div class="d-flex">
+        <ProRadioGroup T="string" Required="true" RequiredError="Account type is required!">
+            <ProRadio Value="@("1")">Personal</ProRadio>
+            <ProRadio Value="@("2")">Professional</ProRadio>
+        </ProRadioGroup>
+    </div>
+
+    <ProFileUpload T="IBrowserFile"></ProFileUpload>
+</ProForm>
+
+@code {
+    public FormFieldChangedEventArgs? FormFieldChangedEventArgs { get; private set; }
+}

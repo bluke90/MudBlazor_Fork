@@ -1,0 +1,38 @@
+﻿<ProTreeView @ref="_treeView" Hover AutoExpand="@AutoExpand" @bind-SelectedValue="SelectedValue" SelectionMode="@SelectionMode.ToggleSelection">
+    <ProTreeViewItem Value='"C:"' Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+        <ProTreeViewItem Value='"config"' CanExpand="@ConfigCanExpand" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+            <ProTreeViewItem Value='"launch.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+            <ProTreeViewItem Value='"tasks.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+        </ProTreeViewItem>
+        <ProTreeViewItem Value='"images"' Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+            <ProTreeViewItem Value='"logo.png"' Icon="@Icons.Custom.FileFormats.FileImage" />
+        </ProTreeViewItem>
+    </ProTreeViewItem>
+</ProTreeView>
+
+<ProStack Row Justify="Justify.Center" Style="width: 100%" Wrap="Wrap.Wrap">
+    <ProButton Class="expand-all" Color="Color.Primary" OnClick="@(() => _treeView.ExpandAllAsync())" Variant="Variant.Filled">Expand All</ProButton>
+    <ProButton Class="collapse-all" Color="Color.Dark" OnClick="@(() => _treeView.CollapseAllAsync())" Variant="Variant.Filled">Collapse All</ProButton>
+    <ProChipSet T="string" @bind-SelectedValue="SelectedValue" Color="Color.Primary" Variant="Variant.Text" SelectionMode="@SelectionMode.ToggleSelection">
+        <ProChip Text="config" />
+        <ProChip Text="launch.json" />
+        <ProChip Text="tasks.json" />
+        <ProChip Text="images" />
+        <ProChip Text="logo.png" />
+    </ProChipSet>
+    <ProSwitch @bind-Value="AutoExpand" Color="Color.Primary">AutoExpand</ProSwitch>
+</ProStack>
+
+@code {
+    private ProTreeView<string> _treeView = null!;
+
+    [Parameter]
+    public string? SelectedValue { get; set; }
+
+    [Parameter]
+    public bool AutoExpand { get; set; } = true;
+
+    [Parameter]
+    public bool ConfigCanExpand { get; set; } = true;
+
+}

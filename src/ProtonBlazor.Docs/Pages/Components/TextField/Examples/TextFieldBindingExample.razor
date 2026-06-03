@@ -1,0 +1,35 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTextField @bind-Value="element.Name" Label="Name" Variant="Variant.Outlined" Margin="Margin.Dense"/>
+<ProTextField @bind-Value="element.Mass" Label="Mass" Variant="Variant.Outlined" Margin="Margin.Dense"/>
+<ProTextField @bind-Value="element.Electrons" Label="Electrons" Variant="Variant.Outlined" Margin="Margin.Dense"/>
+<ProTextField @bind-Value="element.Changed" Format="yyyy/MM/dd" Label="Last Update" Variant="Variant.Outlined" Margin="Margin.Dense"/>
+
+<div class="d-flex align-end justify-space-between pro-width-full">
+    <div class="d-flex flex-column">
+        <ProText><b>Name:</b> @element.Name</ProText>
+        <ProText><b>Mass:</b> @element.Mass u</ProText>
+        <ProText><b>Electrons:</b> @element.Electrons</ProText>
+        <ProText><b>Last Update:</b> @element.Changed.ToShortDateString()</ProText>
+    </div>
+    <ProButton Variant="Variant.Filled" DropShadow="false" OnClick="Reset">Reset Model</ProButton>
+</div>
+
+@code {
+    Atom element = new Atom { Name = "Hydrogen", Mass = 1.00794, Electrons = 1, Changed=DateTime.Today };
+
+    // A typical POCO
+    public class Atom
+    {
+        public string Name { get; set; }
+        public double Mass { get; set; }
+        public int Electrons { get; set; }
+        public DateTime Changed { get; set; }
+    }
+
+    private void Reset()
+    {
+        element = new Atom { Name = "Hydrogen", Mass = 1.00794, Electrons = 1, Changed = DateTime.Today };
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,43 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<ProElement HtmlTag="@GetHtmlTag()"
+            Class="@Classname"
+            Style="@Style"
+            href="@Href"
+            target="@Target"
+            PreventDefault="GetDisabled()"
+            ClickPropagation="false"
+            @attributes="UserAttributes"
+            @onclick="OnClickHandlerAsync"
+            @bind-Ref="ElementReference"
+            tabindex="@(!GetDisabled() ? "0" : "-1")"
+            aria-disabled="@(GetDisabled() ? "true" : "false")">
+
+    @if (!string.IsNullOrWhiteSpace(Icon))
+    {
+        <ProIcon Class="pro-menu-item-icon"
+                 Icon="@Icon"
+                 Color="IconColor"
+                 Disabled="GetDisabled()" />
+    }
+
+    <ProText Class="pro-menu-item-text"
+             Typo="GetTypo()">
+        @if (ChildContent is null)
+        {
+            @Label
+        }
+        else
+        {
+            @ChildContent
+        }
+    </ProText>
+
+    @if (ActivatesSubMenu && !HideSubMenuArrow)
+    {
+        <ProIcon Class="pro-menu-submenu-icon"
+                 Icon="@(RightToLeft ? Icons.Material.Filled.ArrowLeft : Icons.Material.Filled.ArrowRight)"
+                 Disabled="GetDisabled()" />
+    }
+</ProElement>

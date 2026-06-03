@@ -1,0 +1,85 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Row Justify="Justify.SpaceAround" AlignItems="AlignItems.Center" Class="pro-width-full">
+    <ProFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+        <CustomContent>
+            <ProButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       OnClick="@context.OpenFilePickerAsync"
+                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                Choose file
+            </ProButton>
+        </CustomContent>
+        <SelectedTemplate />
+    </ProFileUpload>
+
+    <ProFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+        <CustomContent>
+            <ProFab Color="Color.Secondary"
+                    StartIcon="@Icons.Material.Filled.Image"
+                    OnClick="@context.OpenFilePickerAsync"
+                    Label="Choose photo" />
+        </CustomContent>
+        <SelectedTemplate />
+    </ProFileUpload>
+
+    <ProFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+        <CustomContent>
+            <ProFab Color="Color.Success"
+                    OnClick="@context.OpenFilePickerAsync"
+                    StartIcon="@Icons.Material.Filled.AttachFile" />
+        </CustomContent>
+        <SelectedTemplate />
+    </ProFileUpload>
+
+    <ProFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+        <CustomContent>
+            <ProIconButton Color="Color.Info"
+                           OnClick="@context.OpenFilePickerAsync"
+                           Icon="@Icons.Material.Filled.PhotoCamera">
+            </ProIconButton>
+        </CustomContent>
+        <SelectedTemplate />
+    </ProFileUpload>
+
+    <ProFileUpload T="IBrowserFile" FilesChanged="UploadFiles" Disabled>
+        <CustomContent>
+            <ProButton Variant="Variant.Filled"
+                       OnClick="@context.OpenFilePickerAsync"
+                       Color="Color.Primary">
+                Disabled button
+            </ProButton>
+        </CustomContent>
+        <SelectedTemplate />
+    </ProFileUpload>
+</ProStack>
+
+<ProFlexBreak />
+
+@if (_files != null)
+{
+    <ProText Typo="@Typo.h6">@_files.Count() File@(_files.Count() == 1 ? "" : "s"):</ProText>
+    @if (_files.Count > 0)
+    {
+        <ProFlexBreak />
+        <ProList T="string">
+            @foreach (var file in _files)
+            {
+                <ProListItem Icon="@Icons.Material.Filled.AttachFile" @key="@file">
+                    @file.Name <code>@file.Size bytes</code>
+                </ProListItem>
+            }
+        </ProList>
+    }
+}
+
+@code
+{
+    private readonly IList<IBrowserFile> _files = new List<IBrowserFile>();
+
+    private void UploadFiles(IBrowserFile file)
+    {
+        _files.Add(file);
+        //TODO upload the files to the server
+    }
+}

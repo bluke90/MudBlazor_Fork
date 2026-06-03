@@ -1,0 +1,95 @@
+﻿<ProPopoverProvider />
+
+<ProAppBar Color="Color.Primary" Fixed="false">
+    <ProMenu Dense
+             Variant="Variant.Text"
+             Size="Size.Medium"
+             Color="Color.Inherit"
+             Icon="@Icons.Material.TwoTone.MoreVert"
+             AnchorOrigin="Origin.CenterCenter" TransformOrigin="Origin.TopRight">
+
+        <!-- User Menu -->
+        <ProMenu Dense
+                 Variant="Variant.Text"
+                 Size="Size.Medium"
+                 Color="Color.Inherit"
+                 Icon="@Icons.Material.TwoTone.MoreVert"
+                 AnchorOrigin="Origin.CenterRight" TransformOrigin="Origin.TopLeft"
+                 ActivationEvent="MouseEvent.MouseOver">
+
+            <!-- Settings -->
+            <ActivatorContent>
+                <ProMenuItem Icon="@Icons.Material.TwoTone.Settings" IconColor="Color.Primary" IconSize="Size.Medium" AutoClose=@false>
+                    <ProText Class="ml-n5" Color="Color.Default">Settings</ProText>
+                </ProMenuItem>
+            </ActivatorContent>
+
+            <!-- Theme -->
+            <ChildContent>
+                <ProMenuItem Icon="@Icons.Material.TwoTone.DarkMode" IconColor="Color.Secondary" IconSize="Size.Medium">
+                    <ProText Class="ml-n5" Color="Color.Default">Dark Theme</ProText>
+                </ProMenuItem>
+            </ChildContent>
+        </ProMenu>
+
+        <ProDivider />
+
+        <!-- Sign In -->
+        <ProMenuItem Href="/" ForceLoad Icon="@Icons.Material.TwoTone.Login" IconColor="Color.Primary" IconSize="Size.Medium">
+            <ProText Class="ml-n5" Color="Color.Default">Sign In</ProText>
+        </ProMenuItem>
+        <!-- Sign Out -->
+        <ProMenuItem Href="/" ForceLoad Icon="@Icons.Material.TwoTone.Logout" IconColor="Color.Primary" IconSize="Size.Medium">
+            <ProText Class="ml-n5" Color="Color.Default">Sign Out</ProText>
+        </ProMenuItem>
+
+    </ProMenu>
+    <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@ToggleAppBarPopoverOpen">Open</ProButton>
+    <ProMenu FullWidth Label="Open Menu" Variant="Variant.Filled" Color="Color.Primary" AnchorOrigin="Origin.CenterCenter" TransformOrigin="Origin.TopLeft" Dense>
+        <ProMenuItem>
+            <ProMenu AnchorOrigin="Origin.TopRight" TransformOrigin="Origin.TopLeft" Dense>
+                <ActivatorContent>
+                    <ProMenuItem Label=" Item 1 " />
+                </ActivatorContent>
+
+                <ChildContent>
+                    <ProMenuItem Label=" Item 1.1 " />
+                    <ProMenuItem Label=" Item 1.2 " />
+                </ChildContent>
+            </ProMenu>
+        </ProMenuItem>
+
+        <ProMenuItem>
+            <ProMenu FullWidth ActivationEvent="MouseEvent.MouseOver" AnchorOrigin="Origin.TopRight" TransformOrigin="Origin.TopLeft" Dense>
+                <ActivatorContent>
+                    <ProMenuItem Label="Item 2" />
+                </ActivatorContent>
+
+                <ChildContent>
+                    <ProMenuItem Label=" Item 2.1 " />
+                    <ProMenuItem Label=" Item 2.2 " />
+                </ChildContent>
+            </ProMenu>
+        </ProMenuItem>
+    </ProMenu>
+    <ProPopover Open="@_appBarPopoverOpen" Fixed="true" Class="px-4 pt-4">
+        <div class="d-flex flex-column">
+            <ProTooltip Text="Tooltiptext: Text must be long or we won't even see it behind the popover.
+            I mean, looooooong.">
+                <ProText>Content of the popover can be anything.</ProText>
+                <ProIconButton Class="mx-2" Icon="@Icons.Material.Outlined.Info" />
+            </ProTooltip>
+            <ProButton OnClick="@ToggleAppBarPopoverOpen" Class="ml-auto mr-n3 mb-1" Color="Color.Error">Close</ProButton>
+        </div>
+    </ProPopover>
+    <ProSpacer />
+    <ProIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
+</ProAppBar>
+
+@code {
+    public static string __description__ = "Appbar with Menu and SubMenu and a Tooltip Test";
+
+    private bool _appBarPopoverOpen;
+
+    private void ToggleAppBarPopoverOpen() => _appBarPopoverOpen = !_appBarPopoverOpen;
+}

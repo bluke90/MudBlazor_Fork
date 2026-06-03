@@ -404,8 +404,9 @@ tools/CssUtilitiesGenerator/output/
 .AppleDouble
 .LSOverride
 
-# Icon must end with two \r
-Icon
+# Icon must end with two \r (macOS custom folder icon files)
+# Using /Icon to only match at repo root, not our Components/Icon/ directory
+/Icon
 
 # Thumbnails
 ._*

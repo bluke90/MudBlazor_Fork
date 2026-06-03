@@ -1,0 +1,23 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => ToggleDrawer())">Toggle drawer</ProButton>
+
+<ProDrawer @bind-Open="@_open" Overlay="false" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <ProDrawerHeader>
+        <ProText Typo="Typo.h6">My App</ProText>
+    </ProDrawerHeader>
+    <ProNavMenu>
+        <ProNavLink Match="NavLinkMatch.All">Store</ProNavLink>
+        <ProNavLink Match="NavLinkMatch.All">Library</ProNavLink>
+        <ProNavLink Match="NavLinkMatch.All">Community</ProNavLink>
+    </ProNavMenu>
+</ProDrawer>
+
+@code{ 
+    private bool _open;
+
+    private void ToggleDrawer()
+    {
+        _open = !_open;
+    }
+}

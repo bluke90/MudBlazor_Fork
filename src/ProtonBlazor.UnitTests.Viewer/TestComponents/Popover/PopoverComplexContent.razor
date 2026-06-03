@@ -1,0 +1,24 @@
+﻿<ProPopoverProvider />
+
+<div class="popoverparent">
+	<p>Some Text</p>
+	<ProPopover Open="true">
+		<div class="dynamic-content">
+			@for (int i = 0; i < _rowAmount; i++)
+			{
+				var temp = i;
+				<ProText>Popover content @temp</ProText>
+			}
+		</div>
+	</ProPopover>
+</div>
+
+@code {
+	private int _rowAmount;
+
+	public Task AddRow()
+	{
+		_rowAmount++;
+		return InvokeAsync(StateHasChanged);
+	}
+}

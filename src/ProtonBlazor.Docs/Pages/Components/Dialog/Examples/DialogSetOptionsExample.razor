@@ -1,0 +1,15 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@inject IDialogService DialogService
+
+<ProButton OnClick="OpenDialogAsync" Variant="Variant.Filled" Color="Color.Primary">
+    Options dialog
+</ProButton>
+
+@code {
+
+    private Task OpenDialogAsync()
+    {
+        return DialogService.ShowAsync<DialogSetOptionsExample_Dialog>("Options Dialog");
+    }
+}

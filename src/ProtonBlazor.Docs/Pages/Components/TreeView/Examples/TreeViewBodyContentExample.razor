@@ -1,0 +1,61 @@
+@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="400px" Elevation="2">
+    <ProTreeView Items="@TreeItems" Hover="true">
+        <ItemTemplate Context="item">
+            <ProTreeViewItem Items="@item.Children" Icon="@item.Icon">
+                <BodyContent>
+                    <div style="display: grid; grid-template-columns: 1fr auto; align-items: center; width: 100%">
+                        <ProText Style="justify-self: start;">@item.Text</ProText>
+                        <div style="justify-self: end;">
+                            <ProIconButton Icon="@Icons.Material.Filled.Edit" Size="Size.Medium" Color="Color.Inherit" />
+                            <ProIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Medium" Color="Color.Inherit" />
+                        </div>
+                    </div>
+                </BodyContent>
+            </ProTreeViewItem>
+        </ItemTemplate>
+    </ProTreeView>
+</ProPaper>
+
+@code {
+
+    private List<TreeItemData<string>> TreeItems { get; set; } = [];
+
+    public class TreeItemData : TreeItemData<string>
+    {
+        public TreeItemData(string text, string icon) : base(text)
+        {
+            Text = text;
+            Icon = icon;
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        TreeItems.Add(new TreeItemData(".github", Icons.Custom.Brands.GitHub));
+        TreeItems.Add(new TreeItemData(".vscode", Icons.Custom.Brands.MicrosoftVisualStudio));
+        TreeItems.Add(new TreeItemData("content", Icons.Custom.FileFormats.FileDocument));
+        TreeItems.Add(new TreeItemData("src", Icons.Custom.FileFormats.FileCode) {
+                Children = [
+                    new TreeItemData("ProtonBlazor", Icons.Custom.Brands.ProtonBlazor),
+                    new TreeItemData("ProtonBlazor.Docs", Icons.Custom.FileFormats.FileDocument) {
+                        Children = [
+                            new TreeItemData("_Imports.razor", Icons.Material.Filled.AlternateEmail),
+                            new TreeItemData("compilerconfig.json", Icons.Custom.FileFormats.FileImage),
+                            new TreeItemData("ProtonBlazor.Docs.csproj", Icons.Custom.Brands.MicrosoftVisualStudio),
+                            new TreeItemData("NewFilesToBuild.txt", Icons.Custom.FileFormats.FileDocument)
+                        ]
+                    },
+
+                    new TreeItemData("ProtonBlazor.Docs.Client", Icons.Material.Filled.Folder),
+                    new TreeItemData("ProtonBlazor.Docs.Compiler", Icons.Material.Filled.Folder),
+                    new TreeItemData("ProtonBlazor.Docs.Server", Icons.Material.Filled.Folder),
+                    new TreeItemData("ProtonBlazor.UnitTests", Icons.Material.Filled.Folder),
+                    new TreeItemData(".editorconfig", Icons.Custom.FileFormats.FileCode),
+                    new TreeItemData("ProtonBlazor.sln", Icons.Custom.Brands.MicrosoftVisualStudio)
+                ]
+        });
+        TreeItems.Add(new TreeItemData("History", Icons.Material.Filled.Folder));
+    }
+}

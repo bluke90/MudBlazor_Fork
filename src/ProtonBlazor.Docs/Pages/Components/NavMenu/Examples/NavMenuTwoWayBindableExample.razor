@@ -1,0 +1,26 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="250px" Class="py-3 mb-4" Elevation="0">
+    <ProNavMenu>
+        <ProNavGroup Title="Settings" @bind-Expanded=_expanded>
+            <ProNavLink Href="/users">Users</ProNavLink>
+            <ProNavLink Href="/security">Security</ProNavLink>
+        </ProNavGroup>
+    </ProNavMenu>
+</ProPaper>
+
+<ProText>
+    The ProNavGroup is
+    @if (_expanded)
+    {
+        <b class="pro-theme-tertiary rounded pa-2 ml-2">expanded</b>
+    }
+    else
+    {
+        <b class="pro-theme-error rounded pa-2 ml-2">collapsed</b>
+    }
+</ProText>
+
+@code{
+    bool _expanded = true;
+}

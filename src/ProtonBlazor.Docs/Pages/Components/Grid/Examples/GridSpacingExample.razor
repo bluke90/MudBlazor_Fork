@@ -1,0 +1,20 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProSlider @bind-Value="Spacing" Min="0" Max="20" Color="Color.Info" Class="mb-6">Spacing: @Spacing.ToString()</ProSlider>
+
+<ProGrid Spacing="@Spacing" Justify="Justify.Center">
+    <ProItem>
+        <ProPaper Height="140px" Width="140px"/>
+    </ProItem>
+    <ProItem>
+        <ProPaper Height="140px" Width="140px"/>
+    </ProItem>
+    <ProItem>
+        <ProPaper Height="140px" Width="140px" />
+    </ProItem>
+</ProGrid>
+
+
+@code {
+    public int Spacing { get; set; } = 6;
+}

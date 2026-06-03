@@ -1,0 +1,43 @@
+﻿<ProText Typo="Typo.h6">Buttons</ProText>
+
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Filled">One</ProButton>
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Filled">Two</ProButton>
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Filled">Three</ProButton>
+
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Text">One</ProButton>
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Text">Two</ProButton>
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Text">Three</ProButton>
+
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Outlined">One</ProButton>
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Outlined">Two</ProButton>
+<ProButton Disabled="_disabled" Color="Color.Primary" Variant="Variant.Outlined">Three</ProButton>
+
+<ProText Typo="Typo.h6">ButtonGroup</ProText>
+
+<ProButtonGroup Color="Color.Primary" Variant="Variant.Filled" OverrideStyles="_overrideStyles">
+    <ProButton Disabled="_disabled">One</ProButton>
+    <ProButton Disabled="_disabled">Two</ProButton>
+    <ProButton Disabled="_disabled">Three</ProButton>
+</ProButtonGroup>
+
+<ProButtonGroup Color="Color.Primary" Variant="Variant.Text" OverrideStyles="_overrideStyles">
+    <ProButton Disabled="_disabled">One</ProButton>
+    <ProButton Disabled="_disabled">Two</ProButton>
+    <ProButton Disabled="_disabled">Three</ProButton>
+</ProButtonGroup>
+
+<ProButtonGroup Color="Color.Primary" Variant="Variant.Outlined" OverrideStyles="_overrideStyles">
+    <ProButton Disabled="_disabled">One</ProButton>
+    <ProButton Disabled="_disabled">Two</ProButton>
+    <ProButton Disabled="_disabled">Three</ProButton>
+</ProButtonGroup>
+
+<br />
+<br />
+<ProSwitch Label="Disabled" @bind-Value="_disabled" />
+<ProSwitch Label="Override Styles" @bind-Value="_overrideStyles" />
+
+@code {
+    private bool _disabled;
+    private bool _overrideStyles = true;
+}

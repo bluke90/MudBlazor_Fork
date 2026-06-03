@@ -1,0 +1,39 @@
+﻿@inject IDialogService Dialog
+
+<h3>TestPage</h3>
+<ProButton OnClick="ShowTestDialogAsync">Show dialog with ProSelect</ProButton>
+
+<ProSpacer/>
+
+<ProMenu Label="Open Menu 1">
+    <ProMenuItem>Item 1</ProMenuItem>
+    <ProMenuItem>Item 2</ProMenuItem>
+    <ProMenuItem>Item 3</ProMenuItem>
+</ProMenu>
+<ProSelect @bind-Value="@_firstText" T="string" Label="First select">
+    <ProSelectItem Value='"First select 1"'>First select 1</ProSelectItem>
+    <ProSelectItem Value='"First select 2"'>First select 2</ProSelectItem>
+</ProSelect>
+<ProSelect @bind-Value="@_secondText" T="string" Label="Second select">
+    <ProSelectItem Value='"Second select 1"'>Second select 1</ProSelectItem>
+    <ProSelectItem Value='"Second select 2"'>Second select 2</ProSelectItem>
+</ProSelect>
+<ProSelect @bind-Value="@_thirdText" T="string" Label="Third select">
+    <ProSelectItem Value='"Third select 1"'>Third select 1</ProSelectItem>
+    <ProSelectItem Value='"Third select 2"'>Third select 2</ProSelectItem>
+</ProSelect>
+<ProMenu Label="Open Menu 2">
+    <ProMenuItem>Item 1</ProMenuItem>
+    <ProMenuItem>Item 2</ProMenuItem>
+    <ProMenuItem>Item 3</ProMenuItem>
+</ProMenu>
+@code {
+    private string _firstText = string.Empty;
+    private string _secondText = string.Empty;
+    private string _thirdText = string.Empty;
+
+    private Task ShowTestDialogAsync()
+    {
+        return Dialog.ShowAsync<OverlayTestDialog>("Test title");
+    }
+}

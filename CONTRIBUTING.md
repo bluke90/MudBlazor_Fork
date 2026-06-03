@@ -1,8 +1,8 @@
 ﻿<h1>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="content/MudBlazor-GitHub-NoBg-Dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="content/MudBlazor-GitHub-NoBg.png">
-    <img alt="MudBlazor" src="content/MudBlazor-GitHub-NoBg.png">
+    <source media="(prefers-color-scheme: dark)" srcset="content/ProtonBlazor-GitHub-NoBg-Dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="content/ProtonBlazor-GitHub-NoBg.png">
+    <img alt="ProtonBlazor" src="content/ProtonBlazor-GitHub-NoBg.png">
   </picture>
 </h1>
 
@@ -18,7 +18,7 @@
     - [Example of a bad Parameter definition](#example-of-a-bad-parameter-definition)
     - [Example of a good Parameter definition](#example-of-a-good-parameter-definition)
     - [Can I share change handlers between parameters?](#can-i-share-change-handlers-between-parameters)
-    - [What about the bad parameters all over the MudBlazor code base?](#what-about-the-bad-parameters-all-over-the-mudblazor-code-base)
+    - [What about the bad parameters all over the ProtonBlazor code base?](#what-about-the-bad-parameters-all-over-the-protonblazor-code-base)
   - [Avoid overwriting parameters in Blazor Components](#avoid-overwriting-parameters-in-blazor-components)
     - [Example of a bad code](#example-of-a-bad-code)
     - [Example of a good code](#example-of-a-good-code)
@@ -36,7 +36,7 @@
       - [Always use InvokeAsync to set parameter values on a component](#always-use-invokeasync-to-set-parameter-values-on-a-component)
       - [Keep tests isolated for parallel execution](#keep-tests-isolated-for-parallel-execution)
     - [What does not need to be tested?](#what-does-not-need-to-be-tested)
-    - [What is the MudBlazor.UnitTests.Viewer for?](#what-is-the-mudblazorunittestsviewer-for)
+    - [What is the ProtonBlazor.UnitTests.Viewer for?](#what-is-the-protonblazorunittestsviewer-for)
     - [What are the auto-generated tests for?](#what-are-the-auto-generated-tests-for)
     - [Continuous Integration](#continuous-integration)
 
@@ -44,7 +44,7 @@
 
 # Information and Guidelines for Contributors
 
-Thank you for contributing to MudBlazor and making it even better. We are happy about every contribution! Issues, bug-fixes, new components...
+Thank you for contributing to ProtonBlazor and making it even better. We are happy about every contribution! Issues, bug-fixes, new components...
 
 ## Code of Conduct
 
@@ -58,7 +58,7 @@ Please make sure that you follow our [code of conduct](/CODE_OF_CONDUCT.md)
 - Your Pull Request (PR) must only consist of one topic. It is better to split Pull Requests with more than one feature or bug fix in separate Pull Requests
 - First fork the repository and clone your fork locally to make your changes. (The main repository is protected and does not accept direct commits.)
 - You should work on a separate branch with a descriptive name. The following naming convention can be used: `feature/my-new-feature` for new features and enhancements, `fix/my-bug-fix` for bug fixes. For example, `fix/button-hover-color` if your PR is about a bug involving the hover color of buttons
-- You should build, test and run one of the Docs projects locally to confirm your changes give the expected result. We generally suggest the MudBlazor.Docs.Server project for the best debugging experience.
+- You should build, test and run one of the Docs projects locally to confirm your changes give the expected result. We generally suggest the ProtonBlazor.Docs.Server project for the best debugging experience.
 - Choose `dev` as the target branch
 - All tests must pass, when you push, they will be executed on the CI server, and you'll receive a test report per email. But you can also execute them locally for quicker feedback.
 - You must include tests when your Pull Requests alters any logic. This also ensures that your feature will not break in the future under changes from other contributors. For more information on testing, see the appropriate section below
@@ -85,7 +85,7 @@ For example:
 
 ### Pull Requests which introduce new components
 
--   MudBlazor supports RTL. It basically mirrors the ui horizontally for languages which are read right-to-left. See [RTL guide](https://rtlstyling.com/posts/rtl-styling) for more information. Therefore every component should implement this functionality. If necessary include
+-   ProtonBlazor supports RTL. It basically mirrors the ui horizontally for languages which are read right-to-left. See [RTL guide](https://rtlstyling.com/posts/rtl-styling) for more information. Therefore every component should implement this functionality. If necessary include
 
 ```csharp
 [CascadingParameter] public bool RightToLeft {get; set;}
@@ -100,21 +100,21 @@ in your component and apply styles at component level.
 - Examples with more than 15 lines should be collapsed by default
 
 ## Project structure and where to find the most important files
-MudBlazor is divided into different projects. The most important ones are:
-- [MudBlazor](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor): contains all components
-- [MudBlazor.Docs](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor.Docs): contains the [docs](https://mudblazor.com/)
-- [MudBlazor.Docs.WasmHost](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor.Docs.WasmHost): local copy of the docs that can be set as the startup project and run locally to review changes before submission.
-- [MudBlazor.UnitTests](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor.UnitTests): contains bUnit tests for all components
-- [MudBlazor.UnitTests.Viewer](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor.UnitTests.Viewer): a visual representation of the unit tests. When you launch the project, you can test whether the components look and behave correctly
+ProtonBlazor is divided into different projects. The most important ones are:
+- [ProtonBlazor](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor): contains all components
+- [ProtonBlazor.Docs](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor.Docs): contains the [docs](https://protonblazor.com/)
+- [ProtonBlazor.Docs.WasmHost](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor.Docs.WasmHost): local copy of the docs that can be set as the startup project and run locally to review changes before submission.
+- [ProtonBlazor.UnitTests](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor.UnitTests): contains bUnit tests for all components
+- [ProtonBlazor.UnitTests.Viewer](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor.UnitTests.Viewer): a visual representation of the unit tests. When you launch the project, you can test whether the components look and behave correctly
 
 Most important files:
 
--   Component `.razor` and `.razor.cs` classes ([Link](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor/Components))
--   Component `.scss` style classes ([Link](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor/Styles/components))
--   Enums ([Link](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor/Enums))
--   Component doc pages ([Link](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor.Docs/Pages/Components))
--   Component tests ([Link](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor.UnitTests/Components))
--   Test components ([Link](https://github.com/MudBlazor/MudBlazor/tree/dev/src/MudBlazor.UnitTests.Viewer/TestComponents))
+-   Component `.razor` and `.razor.cs` classes ([Link](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor/Components))
+-   Component `.scss` style classes ([Link](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor/Styles/components))
+-   Enums ([Link](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor/Enums))
+-   Component doc pages ([Link](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor.Docs/Pages/Components))
+-   Component tests ([Link](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor.UnitTests/Components))
+-   Test components ([Link](https://github.com/ProtonBlazor/ProtonBlazor/tree/dev/src/ProtonBlazor.UnitTests.Viewer/TestComponents))
 
 ## Coding Dos and Don'ts
 
@@ -126,11 +126,11 @@ Most important files:
 
 ## Parameter Registration or Why we can't have Logic in Parameter Setters
 
-MudBlazor parameters shall be auto-properties, meaning that there must not be logic in the property getter or setter. This rule prevents update-loops and other nasty bugs such as swallowed exceptions due to unobserved async discards. "This is quite inconvenient" you may say, where do I call the EventCallback and how to react to parameter changes? Luckily the MudBlazor team has got your back. Thanks to our ParameterState framework you don't need to keep track of old parameter values in fields and mess around with `SetParametersAsync`.
+ProtonBlazor parameters shall be auto-properties, meaning that there must not be logic in the property getter or setter. This rule prevents update-loops and other nasty bugs such as swallowed exceptions due to unobserved async discards. "This is quite inconvenient" you may say, where do I call the EventCallback and how to react to parameter changes? Luckily the ProtonBlazor team has got your back. Thanks to our ParameterState framework you don't need to keep track of old parameter values in fields and mess around with `SetParametersAsync`.
 
 **TLDR; Register parameters in the constructor with a change handler that contains all the code that needs to be executed when the parameter value changes.**
 
-**NB: Code in** `[Parameter]` **attributed property setters is no longer allowed in MudBlazor!** (No matter if async functions are called in them or not.)
+**NB: Code in** `[Parameter]` **attributed property setters is no longer allowed in ProtonBlazor!** (No matter if async functions are called in them or not.)
 
 ### Example of a bad Parameter definition
 
@@ -184,7 +184,7 @@ public bool Expanded { get; set; }
 In the constructor, we register the parameter so that the base class can manage it for us automatically behind the scenes:
 
 ```c#
-public MudCollapse()
+public ProCollapse()
 {
     using var registerScope = CreateRegisterScope();
     _expandedState = registerScope.RegisterParameter<bool>(nameof(Expanded)) // the property name is needed for automatic value change detection in SetParametersAsync
@@ -229,7 +229,7 @@ Yes, if you pass them as a method group like in the example below, shared parame
 
 **NB**: if you pass lambda functions as change handlers they will be called once each for every changed parameter even if they contain the same code!
 
-### What about the bad parameters all over the MudBlazor code base?
+### What about the bad parameters all over the ProtonBlazor code base?
 
 We are slowly but surely refactoring all of those, you can help if you like.
 
@@ -265,7 +265,7 @@ public bool Expanded { get; set; }
 [Parameter]
 public EventCallback<bool> ExpandedChanged { get; set; }
 
-public MudTreeViewItemToggleButton()
+public ProTreeViewItemToggleButton()
 {
     using var registerScope = CreateRegisterScope();
     _expandedState = registerScope.RegisterParameter<bool>(nameof(Expanded))
@@ -352,9 +352,9 @@ require a bUnit test that checks its logic.
 When you are making changes to any components and preparing a PR make sure you run the entire test suite to see if anything broke.
 
 Documentation changes should be reviewed by locally previewing with 
-MudBlazor.Docs.WasmHost as the startup project.
+ProtonBlazor.Docs.WasmHost as the startup project.
 
-Once your PR is merged into the dev branch, it can be viewed at https://dev.mudblazor.com/ even before the next release.
+Once your PR is merged into the dev branch, it can be viewed at https://dev.protonblazor.com/ even before the next release.
 
 ### Make your code break-safe
 
@@ -370,9 +370,9 @@ Simply follow the example of some of the simpler tests like:
 
 Let's say we want to test whether a component's two-way bindable property works
 
-In MudBlazor.UnitTests.Viewer create a razor file that instantiates your component and binds it to a public field.
+In ProtonBlazor.UnitTests.Viewer create a razor file that instantiates your component and binds it to a public field.
 
-In MudBlazor.UnitTests create another test (i.e. by copying CheckBoxTests.cs and renaming it)
+In ProtonBlazor.UnitTests create another test (i.e. by copying CheckBoxTests.cs and renaming it)
 In the Test make sure to instantiate the razor file you just prepared above.
  - Assert that the initial state is correct
  - Make changes to the public field of the test component and assert that it changes what it should change in the component
@@ -388,24 +388,24 @@ In the Test make sure to instantiate the razor file you just prepared above.
 #### Do not save html elements you query via `Find` or `FindAll` in a variable!
 
 ```c#
-   var comp = ctx.RenderComponent<MudTextField<string>>();
+   var comp = ctx.RenderComponent<ProTextField<string>>();
    
    // wrong - this will fail:
    var textField = comp.Find("input");
    await textField.ChangeAsync("Garfield");
    await textField.BlurAsync();
-   comp.FindComponent<MudTextField<string>>().Instance.Value.NotBeNullOrEmpty();
+   comp.FindComponent<ProTextField<string>>().Instance.Value.NotBeNullOrEmpty();
 ```
 
 As soon as you interact with html elements they are potentially re-rendered, and your variable becomes stale.
 
 ```c#
-   var comp = ctx.RenderComponent<MudTextField<string>>();
+   var comp = ctx.RenderComponent<ProTextField<string>>();
    
    // correct   
    await comp.Find("input").ChangeAsync("Garfield");
    await comp.Find("input").BlurAsync();
-   comp.FindComponent<MudTextField<string>>().Instance.Value.NotBeNullOrEmpty();
+   comp.FindComponent<ProTextField<string>>().Instance.Value.NotBeNullOrEmpty();
 ```
 
 So never save html element references in a variable in a bUnit test. Note: you can save component references in variables just fine, so don't confuse that.
@@ -415,8 +415,8 @@ So never save html element references in a variable in a bUnit test. Note: you c
 The bUnit test logic is not running on the Blazor UI-thread, so whenever directly interacting with a component's parameters or methods you need to use `await comp.InvokeAsync(()=> ... )`. That way the following test logic happens only after the interaction with the component has been concluded.
 
 ```c#
-   var comp = ctx.RenderComponent<MudTextField<string>>();
-   var textField=comp.FindComponent<MudTextField<string>>().Instance;
+   var comp = ctx.RenderComponent<ProTextField<string>>();
+   var textField=comp.FindComponent<ProTextField<string>>().Instance;
    
    // wrong!
    textField.Value="Garfield";
@@ -426,13 +426,13 @@ The bUnit test logic is not running on the Blazor UI-thread, so whenever directl
 
 #### Keep tests isolated for parallel execution
 
-Avoid modifying shared/static state (such as `MudGlobal` defaults or singletons) without restoring it in `[TearDown]`. If a fixture must change global state, mark it `[NonParallelizable]` and prefer deterministic timing helpers like `TimeProvider`/`FakeTimeProvider` over `Task.Delay`.
+Avoid modifying shared/static state (such as `ProGlobal` defaults or singletons) without restoring it in `[TearDown]`. If a fixture must change global state, mark it `[NonParallelizable]` and prefer deterministic timing helpers like `TimeProvider`/`FakeTimeProvider` over `Task.Delay`.
 
 ### What does not need to be tested?
 
 We don't need to test the complete rendered HTML of a component, or the appearance of a component. Test the logic, not the HTML. When checking changes in the HTML do simple checks like "does the HTML element exist that depends on a state".
 
-### What is the MudBlazor.UnitTests.Viewer for?
+### What is the ProtonBlazor.UnitTests.Viewer for?
 
 Two things.
 

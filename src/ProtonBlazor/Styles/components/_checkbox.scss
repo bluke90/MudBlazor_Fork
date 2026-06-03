@@ -1,0 +1,61 @@
+.pro-checkbox {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+
+  @media(hover: hover) and (pointer: fine) {
+    .pro-disabled:hover {
+      cursor: default;
+      background-color: transparent !important;
+
+      & * {
+        cursor: default;
+        color: var(--pro-palette-text-disabled);
+      }
+    }
+  }
+
+  &.pro-disabled, .pro-disabled:focus-visible, .pro-disabled:active {
+    cursor: default;
+    background-color: transparent !important;
+
+    & * {
+      cursor: default;
+      color: var(--pro-palette-text-disabled);
+    }
+  }
+
+  &.pro-readonly, .pro-readonly:hover {
+    cursor: default;
+    background-color: transparent !important;
+  }
+
+  & .pro-checkbox-dense {
+    padding: 4px;
+  }
+}
+
+.pro-checkbox-input {
+  top: 0;
+  left: 0;
+  width: 100%;
+  cursor: inherit;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  z-index: 1;
+  position: absolute;
+}
+
+.pro-checkbox-span {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.pro-chart-legend-checkbox .pro-checkbox svg path:last-child {
+  fill: var(--checkbox-color) !important;
+}

@@ -1,0 +1,8 @@
+﻿@using ProtonBlazor.Utilities
+@namespace ProtonBlazor.Docs.Examples
+
+<ProColorPicker Label="Basic Color Picker" @bind-Text="_colorValue" Style="@($"color: {_colorValue};")" Placeholder="Select Color" />
+
+@code {
+    private string _colorValue;
+}

@@ -1,0 +1,29 @@
+﻿<ProFormTestable ValidationDelay="0">
+    <ProInput T="string"></ProInput>
+    <ProInputString></ProInputString>
+
+    <ProTextField T="string"></ProTextField>
+
+    <ProNumericField T="decimal"></ProNumericField>
+
+    <ProRangeInput T="string"></ProRangeInput>
+
+    <ProRadioGroup T="string">
+        <ProRadio Value="@("A")">Option A</ProRadio>
+        <ProRadio Value="@("B")">Option B</ProRadio>
+    </ProRadioGroup>
+
+    <ProDateRangePicker></ProDateRangePicker>
+    <ProDatePicker></ProDatePicker>
+    <ProTimePicker></ProTimePicker>
+
+    <ProCheckBox T="bool"></ProCheckBox>
+    <ProSwitch T="bool" />
+    <ProBooleanInput T="bool"></ProBooleanInput>
+
+    <ProColorPicker></ProColorPicker>
+</ProFormTestable>
+
+@code {
+    public static string __description__ = "Only the top SubscribeToParentForm fields should be registered inside the form.";
+}

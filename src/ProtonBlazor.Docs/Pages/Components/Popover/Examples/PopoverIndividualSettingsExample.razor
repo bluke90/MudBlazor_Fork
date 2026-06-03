@@ -1,0 +1,133 @@
+@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem md="4">
+        <ProSelect T="string"
+                   Label="ProSelect"
+                   PopoverFixed="@_fixed"
+                   AnchorOrigin="@_anchor"
+                   TransformOrigin="@_transform"
+                   RelativeWidth="_dropdownWidth"
+                   Variant="Variant.Outlined"
+                   AdornmentIcon="@Icons.Material.Filled.Search"
+                   AdornmentColor="Color.Primary">
+            <ProSelectItem Value="@("foo")">Foo</ProSelectItem>
+            <ProSelectItem Value="@("bar")">Bar</ProSelectItem>
+            <ProSelectItem Value="@("bar")">Lorem ipsum dolor sit amet, consectetur adipiscing elit</ProSelectItem>
+        </ProSelect>
+    </ProItem>
+
+    <ProItem md="4"
+             Class="d-flex justify-center align-center">
+        <ProMenu Label="ProMenu"
+                 Variant="Variant.Filled"
+                 Color="Color.Primary"
+                 PopoverFixed="@_fixed"
+                 AnchorOrigin="@_anchor"
+                 TransformOrigin="@_transform"
+                 RelativeWidth="_dropdownWidth">
+            <ProMenuItem Label="Enlist" />
+            <ProMenuItem Label="Barracks" />
+            <ProMenuItem Label="Armory" />
+            <ProMenuItem Label="The quick brown fox jumps over the lazy dog" />
+        </ProMenu>
+    </ProItem>
+
+    <ProItem md="4">
+        <ProAutocomplete SearchFunc="Search"
+                         Variant="Variant.Outlined"
+                         Label="ProAutocomplete"
+                         PopoverFixed="@_fixed"
+                         AnchorOrigin="@_anchor"
+                         TransformOrigin="@_transform"
+                         RelativeWidth="_dropdownWidth" />
+    </ProItem>
+
+    <ProItem md="1" />
+
+    <ProItem md="2"
+             Class="d-flex align-center justify-center">
+        <ProSwitch @bind-Value="@_fixed"
+                   Label="Fixed"
+                   LabelPlacement="Placement.Right" />
+    </ProItem>
+
+    <ProItem md="2">
+        <ProSelect T="Origin"
+                   Label="Anchor Origin"
+                   @bind-Value="@_anchor"
+                   PopoverFixed="@_fixed">
+            <ProSelectItem Value="@Origin.TopLeft">Top Left</ProSelectItem>
+            <ProSelectItem Value="@Origin.TopCenter">Top Center</ProSelectItem>
+            <ProSelectItem Value="@Origin.TopRight">Top Right</ProSelectItem>
+            <ProSelectItem Value="@Origin.BottomLeft">Bottom Left</ProSelectItem>
+            <ProSelectItem Value="@Origin.BottomCenter">Bottom Center</ProSelectItem>
+            <ProSelectItem Value="@Origin.BottomRight">Bottom Right</ProSelectItem>
+            <ProSelectItem Value="@Origin.CenterLeft">Center Left</ProSelectItem>
+            <ProSelectItem Value="@Origin.CenterCenter">Center Center</ProSelectItem>
+            <ProSelectItem Value="@Origin.CenterRight">Center Right</ProSelectItem>
+        </ProSelect>
+    </ProItem>
+
+    <ProItem md="2">
+        <ProSelect T="Origin"
+                   Label="Transform Origin"
+                   @bind-Value="@_transform">
+            <ProSelectItem Value="@Origin.TopLeft">Top Left</ProSelectItem>
+            <ProSelectItem Value="@Origin.TopCenter">Top Center</ProSelectItem>
+            <ProSelectItem Value="@Origin.TopRight">Top Right</ProSelectItem>
+            <ProSelectItem Value="@Origin.BottomLeft">Bottom Left</ProSelectItem>
+            <ProSelectItem Value="@Origin.BottomCenter">Bottom Center</ProSelectItem>
+            <ProSelectItem Value="@Origin.BottomRight">Bottom Right</ProSelectItem>
+            <ProSelectItem Value="@Origin.CenterLeft">Center Left</ProSelectItem>
+            <ProSelectItem Value="@Origin.CenterCenter">Center Center</ProSelectItem>
+            <ProSelectItem Value="@Origin.CenterRight">Center Right</ProSelectItem>
+        </ProSelect>
+    </ProItem>
+
+    <ProItem md="2">
+        <ProSelect T="DropdownWidth"
+                   Label="Dropdown Width"
+                   @bind-Value="@_dropdownWidth">
+            <ProSelectItem Value="@DropdownWidth.Relative">Relative (equal to activator width)</ProSelectItem>
+            <ProSelectItem Value="@DropdownWidth.Adaptive">Adaptive (min = activator width)</ProSelectItem>
+            <ProSelectItem Value="@DropdownWidth.Ignore">Ignore (independent width)</ProSelectItem>
+        </ProSelect>
+    </ProItem>
+
+</ProGrid>
+
+
+@code {
+
+    private Origin _anchor = Origin.BottomLeft;
+    private Origin _transform = Origin.TopLeft;
+    private bool _fixed = false;
+    private DropdownWidth _dropdownWidth = DropdownWidth.Relative;
+
+    private string[] _states =
+    {
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California",
+        "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+        "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
+        "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+        "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
+        "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
+        "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma",
+        "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+        "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
+        "Washington", "West Virginia", "Wisconsin", "Wyoming"
+    };
+
+    private async Task<IEnumerable<string>> Search(string value, CancellationToken token)
+    {
+        // In real life use an asynchronous function for fetching data from an api.
+        await Task.Delay(5, token);
+
+        // if text is null or empty, show complete list
+        if (string.IsNullOrEmpty(value))
+            return _states;
+
+        return _states.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+}

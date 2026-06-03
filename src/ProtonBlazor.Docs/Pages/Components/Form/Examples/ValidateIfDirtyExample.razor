@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" sm="6">
+        <ProPaper Class="pa-4">
+            <ProText><CodeInline>OnlyValidateIfDirty="false"</CodeInline> (default behavior)</ProText>
+            <ProForm >
+                <ProTextField T="string" Label="Username" Required="true" RequiredError="User name is required!"/>
+            </ProForm>
+        </ProPaper>
+    </ProItem>
+    
+    <ProItem xs="12" sm="6">
+        <ProPaper Class="pa-4">
+            <ProText><CodeInline>OnlyValidateIfDirty="true"</CodeInline></ProText>
+            <ProForm >
+                <ProTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" OnlyValidateIfDirty="true"/>
+            </ProForm>
+        </ProPaper>
+    </ProItem>
+</ProGrid>

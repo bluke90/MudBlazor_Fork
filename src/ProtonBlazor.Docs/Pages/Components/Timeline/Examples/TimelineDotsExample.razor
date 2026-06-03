@@ -1,0 +1,85 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" md="8" Class="my-auto">
+        <ProTimeline Reverse="true">
+            <ProTimelineItem>
+                <ProText Align="Align.End">Static dot</ProText>
+            </ProTimelineItem>
+            <ProTimelineItem Color="@DotColor" Size="@DotSize" Variant="@DotVariant" Elevation="@DotElevation" HideDot="@HideDot">
+                <ItemDot>
+                    @if(DotConfig == 1)
+                    {
+                        <ProIcon Size="@DotSize" Icon="@Icons.Custom.Brands.ProtonBlazor"/>
+                    }
+                    else if(DotConfig == 2)
+                    {
+                        <ProAvatar Size="@DotSize">
+                            <ProImage Src="images/mony.jpg" />
+                        </ProAvatar>
+                    }
+                </ItemDot>
+            </ProTimelineItem>
+            <ProTimelineItem>
+                <ProText Align="Align.End">Static dot</ProText>
+            </ProTimelineItem>
+        </ProTimeline>
+    </ProItem>
+    <ProItem xs="12" md="4">
+        <ProPaper Class="pa-4" Elevation="0">
+            <ProText Typo="Typo.h6">Dot Options</ProText>
+            <ProSelect Label="Color" Dense="true" Margin="Margin.Dense" @bind-Value="DotColor" Class="mt-4">
+                <ProSelectItem T="Color" Value="Color.Default">Default</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Primary">Primary</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Secondary">Secondary</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Tertiary">Tertiary</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Info">Info</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Success">Success</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Warning">Warning</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Error">Error</ProSelectItem>
+                <ProSelectItem T="Color" Value="Color.Dark">Dark</ProSelectItem>
+            </ProSelect>
+            <ProSelect Label="Size" Dense="true" Margin="Margin.Dense" @bind-Value="DotSize" Class="mt-4">
+                <ProSelectItem T="Size" Value="Size.Small">Small</ProSelectItem>
+                <ProSelectItem T="Size" Value="Size.Medium">Medium</ProSelectItem>
+                <ProSelectItem T="Size" Value="Size.Large">Large</ProSelectItem>
+            </ProSelect>
+            <ProSelect Label="Variant" Dense="true" Margin="Margin.Dense" @bind-Value="DotVariant" Class="mt-4">
+                <ProSelectItem T="Variant" Value="Variant.Outlined">Outlined</ProSelectItem>
+                <ProSelectItem T="Variant" Value="Variant.Filled">Filled</ProSelectItem>
+            </ProSelect>
+            <ProSlider @bind-Value="DotElevation" Step="1" Min="0" Max="25" Class="mt-2">Dot Elevation</ProSlider>
+            <ProRadioGroup T="int" ValueChanged="DotConfigChanged">
+                <ProRadio Value="0" Color="Color.Primary">Default</ProRadio>
+                <ProRadio Value="1" Color="Color.Secondary">Icon</ProRadio>
+                <ProRadio Value="2" Color="Color.Tertiary">Avatar</ProRadio>
+                <ProRadio Value="3" Color="Color.Default">Hide</ProRadio>
+            </ProRadioGroup>
+        </ProPaper>
+    </ProItem>
+</ProGrid>
+
+
+@code{
+    public Size DotSize { get; set; } = Size.Medium;
+    public Color DotColor { get; set; } = Color.Primary;
+    public Variant DotVariant { get; set; } = Variant.Outlined;
+    public int DotElevation { get; set; } = 1;
+    public bool HideDot { get; set; }
+    public int DotConfig;
+
+    void DotConfigChanged(int value)
+    {
+        switch(value)
+        {
+            case 3:
+                DotConfig = value;
+                HideDot = true;
+                break;
+            default:
+                DotConfig = value;
+                HideDot = false;
+                break;
+        }
+    }
+}

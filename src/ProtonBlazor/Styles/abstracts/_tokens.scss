@@ -1,0 +1,302 @@
+// Copyright (c) ProtonBlazor 2021
+// ProtonBlazor licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+// _tokens.scss — ProtonBlazor design tokens
+//
+// Canonical listing of every --pro-* CSS custom property with its default
+// light-theme value.  ProThemeProvider emits these at runtime; this file
+// provides static fallbacks so that:
+//   • Pure-CSS / server-rendered pages look correct without Blazor running
+//   • Design tools (Figma tokens, Style Dictionary, etc.) can import a
+//     single authoritative source
+//   • White-labeling a project is as simple as overriding these properties
+//     in a single :root block — no C# required
+
+// Shared font stack used by every type scale
+$_pro-font-stack: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+:root {
+
+  // ── Brand palette ──────────────────────────────────────────────────────────
+  // The three brand colours drive the majority of interactive UI.
+  // Darken / lighten variants are ±7.5 % HSL lightness; hover is 6 % opacity.
+
+  --pro-palette-primary:            rgba(79, 70, 229, 1);
+  --pro-palette-primary-rgb:        79, 70, 229;
+  --pro-palette-primary-text:       rgba(255, 255, 255, 1);
+  --pro-palette-primary-darken:     rgb(50, 41, 224);
+  --pro-palette-primary-lighten:    rgb(110, 103, 233);
+  --pro-palette-primary-hover:      rgba(79, 70, 229, 0.06);
+
+  --pro-palette-secondary:          rgba(14, 165, 233, 1);
+  --pro-palette-secondary-rgb:      14, 165, 233;
+  --pro-palette-secondary-text:     rgba(255, 255, 255, 1);
+  --pro-palette-secondary-darken:   rgb(11, 135, 193);
+  --pro-palette-secondary-lighten:  rgb(38, 178, 242);
+  --pro-palette-secondary-hover:    rgba(14, 165, 233, 0.06);
+
+  --pro-palette-tertiary:           rgba(16, 185, 129, 1);
+  --pro-palette-tertiary-rgb:       16, 185, 129;
+  --pro-palette-tertiary-text:      rgba(255, 255, 255, 1);
+  --pro-palette-tertiary-darken:    rgb(13, 150, 104);
+  --pro-palette-tertiary-lighten:   rgb(19, 216, 150);
+  --pro-palette-tertiary-hover:     rgba(16, 185, 129, 0.06);
+
+  // ── Semantic status colours ────────────────────────────────────────────────
+
+  --pro-palette-info:               rgba(33, 150, 243, 1);
+  --pro-palette-info-rgb:           33, 150, 243;
+  --pro-palette-info-text:          rgba(255, 255, 255, 1);
+  --pro-palette-info-darken:        rgb(12, 128, 223);
+  --pro-palette-info-lighten:       rgb(71, 167, 245);
+  --pro-palette-info-hover:         rgba(33, 150, 243, 0.06);
+
+  --pro-palette-success:            rgba(0, 200, 83, 1);
+  --pro-palette-success-rgb:        0, 200, 83;
+  --pro-palette-success-text:       rgba(255, 255, 255, 1);
+  --pro-palette-success-darken:     rgb(0, 163, 68);
+  --pro-palette-success-lighten:    rgb(0, 235, 98);
+  --pro-palette-success-hover:      rgba(0, 200, 83, 0.06);
+
+  --pro-palette-warning:            rgba(255, 152, 0, 1);
+  --pro-palette-warning-rgb:        255, 152, 0;
+  --pro-palette-warning-text:       rgba(255, 255, 255, 1);
+  --pro-palette-warning-darken:     rgb(214, 129, 0);
+  --pro-palette-warning-lighten:    rgb(255, 167, 36);
+  --pro-palette-warning-hover:      rgba(255, 152, 0, 0.06);
+
+  --pro-palette-error:              rgba(244, 67, 54, 1);
+  --pro-palette-error-rgb:          244, 67, 54;
+  --pro-palette-error-text:         rgba(255, 255, 255, 1);
+  --pro-palette-error-darken:       rgb(242, 28, 13);
+  --pro-palette-error-lighten:      rgb(246, 96, 85);
+  --pro-palette-error-hover:        rgba(244, 67, 54, 0.06);
+
+  --pro-palette-dark:               rgba(66, 66, 66, 1);
+  --pro-palette-dark-rgb:           66, 66, 66;
+  --pro-palette-dark-text:          rgba(255, 255, 255, 1);
+  --pro-palette-dark-darken:        rgb(46, 46, 46);
+  --pro-palette-dark-lighten:       rgb(87, 87, 87);
+  --pro-palette-dark-hover:         rgba(66, 66, 66, 0.06);
+
+  // ── Shades ────────────────────────────────────────────────────────────────
+
+  --pro-palette-black:              rgba(39, 44, 52, 1);    // #272c34
+  --pro-palette-white:              rgba(255, 255, 255, 1);
+
+  // ── Text ──────────────────────────────────────────────────────────────────
+
+  --pro-palette-text-primary:       rgba(66, 66, 66, 1);
+  --pro-palette-text-primary-rgb:   66, 66, 66;
+  --pro-palette-text-secondary:     rgba(0, 0, 0, 0.54);
+  --pro-palette-text-secondary-rgb: 0, 0, 0;
+  --pro-palette-text-disabled:      rgba(0, 0, 0, 0.38);
+  --pro-palette-text-disabled-rgb:  0, 0, 0;
+
+  // ── Actions ───────────────────────────────────────────────────────────────
+
+  --pro-palette-action-default:              rgba(0, 0, 0, 0.54);
+  --pro-palette-action-default-hover:        rgba(0, 0, 0, 0.06);
+  --pro-palette-action-disabled:             rgba(0, 0, 0, 0.26);
+  --pro-palette-action-disabled-background:  rgba(0, 0, 0, 0.12);
+
+  // ── Surfaces & backgrounds ────────────────────────────────────────────────
+
+  --pro-palette-background:         rgba(255, 255, 255, 1);
+  --pro-palette-background-gray:    rgba(245, 245, 245, 1);  // Gray Lighten4
+  --pro-palette-surface:            rgba(255, 255, 255, 1);
+  --pro-palette-surface-rgb:        255, 255, 255;
+
+  // ── Navigation drawer ─────────────────────────────────────────────────────
+
+  --pro-palette-drawer-background:  rgba(255, 255, 255, 1);
+  --pro-palette-drawer-text:        rgba(66, 66, 66, 1);
+  --pro-palette-drawer-icon:        rgba(97, 97, 97, 1);    // Gray Darken2
+
+  // ── App bar ───────────────────────────────────────────────────────────────
+
+  --pro-palette-appbar-background:  rgba(79, 70, 229, 1);   // matches primary
+  --pro-palette-appbar-text:        rgba(255, 255, 255, 1);
+
+  // ── Lines, tables & dividers ──────────────────────────────────────────────
+
+  --pro-palette-lines-default:      rgba(0, 0, 0, 0.12);
+  --pro-palette-lines-inputs:       rgba(189, 189, 189, 1); // Gray Lighten1
+  --pro-palette-table-lines:        rgba(224, 224, 224, 1); // Gray Lighten2
+  --pro-palette-table-striped:      rgba(0, 0, 0, 0.02);
+  --pro-palette-table-hover:        rgba(0, 0, 0, 0.04);
+  --pro-palette-divider:            rgba(224, 224, 224, 1);
+  --pro-palette-divider-rgb:        224, 224, 224;
+  --pro-palette-divider-light:      rgba(0, 0, 0, 0.8);
+  --pro-palette-skeleton:           rgba(0, 0, 0, 0.11);
+
+  // ── Gray ramp ─────────────────────────────────────────────────────────────
+
+  --pro-palette-gray-default:       #9E9E9E;
+  --pro-palette-gray-light:         #BDBDBD;
+  --pro-palette-gray-lighter:       #E0E0E0;
+  --pro-palette-gray-dark:          #757575;
+  --pro-palette-gray-darker:        #616161;
+
+  // ── Overlays ──────────────────────────────────────────────────────────────
+
+  --pro-palette-overlay-dark:       rgba(33, 33, 33, 0.5);
+  --pro-palette-overlay-light:      rgba(255, 255, 255, 0.5);
+  --pro-palette-border-opacity:     1;
+
+  // ── Ripple ────────────────────────────────────────────────────────────────
+
+  --pro-ripple-opacity:             0.1;
+  --pro-ripple-opacity-secondary:   0.2;
+
+  // ── Hover & surface interaction ───────────────────────────────────────────
+
+  --pro-theme-default-hover:        rgba(0, 0, 0, 0.06);
+  --pro-theme-on-surface:           rgba(0, 0, 0, 0.06);
+
+  // ── Layout ────────────────────────────────────────────────────────────────
+
+  --pro-default-borderradius:       8px;
+  --pro-appbar-height:              64px;
+  --pro-drawer-width-left:          240px;
+  --pro-drawer-width-right:         240px;
+  --pro-drawer-width-mini-left:     56px;
+  --pro-drawer-width-mini-right:    56px;
+
+  // ── Z-index stack ─────────────────────────────────────────────────────────
+
+  --pro-zindex-drawer:              1100;
+  --pro-zindex-popover:             1200;
+  --pro-zindex-appbar:              1300;
+  --pro-zindex-dialog:              1400;
+  --pro-zindex-snackbar:            1500;
+  --pro-zindex-tooltip:             1600;
+
+  // ── Typography ────────────────────────────────────────────────────────────
+  // Each type scale has six properties: family, size, weight, lineheight,
+  // letterspacing, text-transform.  ProThemeProvider writes explicit values
+  // for every scale; the default family is used as the fallback for any scale
+  // whose FontFamily is null in C#.
+
+  --pro-typography-default-family:       #{$_pro-font-stack};
+  --pro-typography-default-size:         .875rem;
+  --pro-typography-default-weight:       400;
+  --pro-typography-default-lineheight:   1.5;
+  --pro-typography-default-letterspacing: 0;
+  --pro-typography-default-text-transform: none;
+
+  --pro-typography-h1-family:       #{$_pro-font-stack};
+  --pro-typography-h1-size:         6rem;
+  --pro-typography-h1-weight:       300;
+  --pro-typography-h1-lineheight:   1.167;
+  --pro-typography-h1-letterspacing: -.01562em;
+  --pro-typography-h1-text-transform: none;
+
+  --pro-typography-h2-family:       #{$_pro-font-stack};
+  --pro-typography-h2-size:         3.75rem;
+  --pro-typography-h2-weight:       300;
+  --pro-typography-h2-lineheight:   1.2;
+  --pro-typography-h2-letterspacing: -.00833em;
+  --pro-typography-h2-text-transform: none;
+
+  --pro-typography-h3-family:       #{$_pro-font-stack};
+  --pro-typography-h3-size:         3rem;
+  --pro-typography-h3-weight:       400;
+  --pro-typography-h3-lineheight:   1.167;
+  --pro-typography-h3-letterspacing: 0;
+  --pro-typography-h3-text-transform: none;
+
+  --pro-typography-h4-family:       #{$_pro-font-stack};
+  --pro-typography-h4-size:         2.125rem;
+  --pro-typography-h4-weight:       400;
+  --pro-typography-h4-lineheight:   1.235;
+  --pro-typography-h4-letterspacing: .00735em;
+  --pro-typography-h4-text-transform: none;
+
+  --pro-typography-h5-family:       #{$_pro-font-stack};
+  --pro-typography-h5-size:         1.5rem;
+  --pro-typography-h5-weight:       400;
+  --pro-typography-h5-lineheight:   1.334;
+  --pro-typography-h5-letterspacing: 0;
+  --pro-typography-h5-text-transform: none;
+
+  --pro-typography-h6-family:       #{$_pro-font-stack};
+  --pro-typography-h6-size:         1.25rem;
+  --pro-typography-h6-weight:       500;
+  --pro-typography-h6-lineheight:   1.6;
+  --pro-typography-h6-letterspacing: .0075em;
+  --pro-typography-h6-text-transform: none;
+
+  --pro-typography-subtitle1-family:       #{$_pro-font-stack};
+  --pro-typography-subtitle1-size:         1rem;
+  --pro-typography-subtitle1-weight:       400;
+  --pro-typography-subtitle1-lineheight:   1.75;
+  --pro-typography-subtitle1-letterspacing: .00938em;
+  --pro-typography-subtitle1-text-transform: none;
+
+  --pro-typography-subtitle2-family:       #{$_pro-font-stack};
+  --pro-typography-subtitle2-size:         .875rem;
+  --pro-typography-subtitle2-weight:       500;
+  --pro-typography-subtitle2-lineheight:   1.57;
+  --pro-typography-subtitle2-letterspacing: .00714em;
+  --pro-typography-subtitle2-text-transform: none;
+
+  --pro-typography-body1-family:       #{$_pro-font-stack};
+  --pro-typography-body1-size:         1rem;
+  --pro-typography-body1-weight:       400;
+  --pro-typography-body1-lineheight:   1.5;
+  --pro-typography-body1-letterspacing: .00938em;
+  --pro-typography-body1-text-transform: none;
+
+  --pro-typography-body2-family:       #{$_pro-font-stack};
+  --pro-typography-body2-size:         .875rem;
+  --pro-typography-body2-weight:       400;
+  --pro-typography-body2-lineheight:   1.43;
+  --pro-typography-body2-letterspacing: .01071em;
+  --pro-typography-body2-text-transform: none;
+
+  --pro-typography-button-family:       #{$_pro-font-stack};
+  --pro-typography-button-size:         .875rem;
+  --pro-typography-button-weight:       500;
+  --pro-typography-button-lineheight:   1.75;
+  --pro-typography-button-letterspacing: 0.025em;
+  --pro-typography-button-text-transform: none;
+
+  --pro-typography-caption-family:       #{$_pro-font-stack};
+  --pro-typography-caption-size:         .75rem;
+  --pro-typography-caption-weight:       400;
+  --pro-typography-caption-lineheight:   1.66;
+  --pro-typography-caption-letterspacing: .03333em;
+  --pro-typography-caption-text-transform: none;
+
+  --pro-typography-overline-family:       #{$_pro-font-stack};
+  --pro-typography-overline-size:         .75rem;
+  --pro-typography-overline-weight:       400;
+  --pro-typography-overline-lineheight:   2.66;
+  --pro-typography-overline-letterspacing: .08333em;
+  --pro-typography-overline-text-transform: none;
+
+  // ── Spacing scale (4 px base) ──────────────────────────────────────────────
+  // Utility classes are in utilities/spacing/_spacing.scss.
+  // These tokens let CSS-only consumers reference the same scale.
+
+  --pro-spacing-0:   0;
+  --pro-spacing-1:   4px;
+  --pro-spacing-2:   8px;
+  --pro-spacing-3:   12px;
+  --pro-spacing-4:   16px;
+  --pro-spacing-5:   20px;
+  --pro-spacing-6:   24px;
+  --pro-spacing-7:   28px;
+  --pro-spacing-8:   32px;
+  --pro-spacing-10:  40px;
+  --pro-spacing-12:  48px;
+  --pro-spacing-16:  64px;
+  --pro-spacing-20:  80px;
+
+  // ── Elevation ─────────────────────────────────────────────────────────────
+  // --pro-elevation-0 … --pro-elevation-25 are defined in core/_elevation.scss
+  // and written at runtime by ProThemeProvider.  See Shadow.cs for values.
+
+}

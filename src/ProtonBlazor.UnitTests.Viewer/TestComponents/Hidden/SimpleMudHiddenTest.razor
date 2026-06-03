@@ -1,0 +1,13 @@
+﻿<ProHidden Invert="@Invert" Breakpoint="@Breakpoint" HiddenChanged="@( x => HiddenChangedHistory.Add(x) )" >
+	<ProText>ProHidden content</ProText>
+</ProHidden>
+
+@code {
+	[Parameter]
+	public bool Invert { get; set; }
+
+	[Parameter]
+	public Breakpoint Breakpoint { get; set; }
+
+	public List<bool> HiddenChangedHistory { get; set; } = [];
+}

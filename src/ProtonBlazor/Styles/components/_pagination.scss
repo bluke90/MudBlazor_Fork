@@ -1,0 +1,98 @@
+@import '../abstracts/variables';
+
+.pro-pagination {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  list-style: none;
+
+  .pro-pagination-item {
+    & > * {
+      height: 32px;
+      min-width: 32px;
+      margin: 0 3px;
+      padding: 0 6px;
+      text-align: center;
+      border-radius: 16px;
+    }
+
+    :not(pro-pagination-item-selected) > * {
+      box-shadow: none;
+    }
+
+    .pro-button {
+      line-height: normal;
+    }
+
+    .pro-icon-button {
+      padding: 0;
+    }
+
+    &-rectangular .pro-button {
+      border-radius: var(--pro-default-borderradius);
+    }
+
+    .pro-typography[disabled] {
+      color: var(--pro-palette-action-disabled) !important;
+    }
+  }
+
+  &-outlined {
+    .pro-pagination-item-selected {
+      .pro-button-outlined-default {
+        background-color: var(--pro-palette-action-default-hover)
+      }
+
+      @each $color in $pro-palette-colors {
+        .pro-button-outlined-#{$color} {
+          background-color: var(--pro-palette-#{$color}-hover);
+        }
+      }
+    }
+  }
+
+  &-filled {
+    .pro-pagination-item {
+      &:not(.pro-pagination-item-selected) .pro-button {
+        background-color: var(--pro-palette-surface);
+      }
+
+      .pro-button {
+        box-shadow: var(--pro-elevation-1);
+      }
+    }
+  }
+
+  &-small {
+    .pro-pagination-item {
+      & > * {
+        height: 26px;
+        min-width: 26px;
+        margin: 0 1px;
+        padding: 0 4px;
+        border-radius: 13px;
+      }
+    }
+  }
+
+  &-large {
+    .pro-pagination-item {
+      & > * {
+        height: 40px;
+        min-width: 40px;
+        padding: 0 10px;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  &-disable-elevation .pro-pagination-item .pro-button {
+    box-shadow: none;
+  }
+
+  &-rtl .pro-pagination-item .pro-icon-root {
+    transform: scaleX(-1);
+  }
+}

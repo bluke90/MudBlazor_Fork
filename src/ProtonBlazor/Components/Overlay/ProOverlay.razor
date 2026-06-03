@@ -1,0 +1,37 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+@if (_visibleState.Value)
+{
+    if (RenderOutsideOfSection)
+    {
+        @OverlayFragment
+    }
+    else
+    {
+        <SectionContent SectionName="pro-overlay-to-popover-provider">
+            @OverlayFragment
+        </SectionContent>
+    }
+}
+
+@code {
+    private RenderFragment OverlayFragment => 
+        @<div @attributes="UserAttributes"
+              id="@_elementId"
+              class="@Classname"
+              style="@Styles"
+              @onclick="OnClickHandlerAsync"
+              @onclick:stopPropagation>
+            @if (LightBackground || DarkBackground)
+            {
+                <div class="@ScrimClassname"></div>
+            }
+            @if (ChildContent is not null)
+            {
+                <div class="pro-overlay-content">
+                    @ChildContent
+                </div>
+            }
+        </div>;
+}

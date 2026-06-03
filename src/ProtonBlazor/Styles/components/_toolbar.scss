@@ -1,0 +1,46 @@
+﻿@import '../abstracts/variables';
+
+.pro-toolbar {
+  display: flex;
+  position: relative;
+  align-items: center;
+  --pro-internal-toolbar-height: 56px;
+  height: var(--pro-internal-toolbar-height);
+}
+
+.pro-toolbar-gutters {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width:$breakpoint-xs) and (orientation: landscape) {
+  .pro-toolbar {
+    --pro-internal-toolbar-height: 48px;
+  }
+}
+
+@media (min-width:$breakpoint-sm) {
+  .pro-toolbar {
+    --pro-internal-toolbar-height: 64px;
+  }
+
+  .pro-toolbar-gutters {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.pro-toolbar-dense {
+  --pro-internal-toolbar-height: 48px;
+}
+
+.pro-toolbar.pro-toolbar-wrap-content {
+  height: auto;
+  min-height: var(--pro-internal-toolbar-height);
+  flex-wrap: wrap;
+
+  &.pro-toolbar-appbar {
+    //This might need to be uppercased to be ignored by sass.
+    min-height: Min(var(--pro-appbar-height), var(--pro-internal-toolbar-height));
+  }
+}

@@ -1,0 +1,9 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+@if (Visible)
+{
+    <div @attributes="UserAttributes" class="@Classname" style="@Style">
+        @ChildContent
+    </div>
+}

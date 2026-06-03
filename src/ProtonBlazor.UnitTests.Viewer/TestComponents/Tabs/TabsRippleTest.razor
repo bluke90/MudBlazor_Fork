@@ -1,0 +1,17 @@
+﻿<ProTabs TabPanelsClass="pa-6" Ripple="@Ripple">
+    <ProTabPanel Text="Tab One">
+        <ProText>Content One</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Two">
+        <ProText>Content Two</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Three">
+        <ProText>Content Three</ProText>
+    </ProTabPanel>
+</ProTabs>
+
+@code
+{
+    [Parameter]
+    public required bool Ripple { get; set; }
+}

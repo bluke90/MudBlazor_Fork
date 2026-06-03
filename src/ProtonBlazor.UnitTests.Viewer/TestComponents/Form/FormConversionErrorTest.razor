@@ -1,0 +1,9 @@
+﻿<ProForm @bind-IsValid="@_isValid" ValidationDelay="0">
+    <ProTextField T="int" Immediate="true" />
+</ProForm>
+<ProButton Disabled="@(!_isValid)" Variant="Variant.Filled" Color="Color.Primary">Submit</ProButton>
+
+@code
+{
+    private bool _isValid = true;
+}

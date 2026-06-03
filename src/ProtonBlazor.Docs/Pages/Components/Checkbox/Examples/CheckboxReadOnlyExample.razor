@@ -1,0 +1,22 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div>
+    <ProCheckBox ReadOnly="@ReadOnly" @bind-Value="Label_Checkbox1" Label="@(ReadOnly ? "ReadOnly Checkbox 1" : "EditMode Checkbox 1")"/>
+    <ProCheckBox ReadOnly="@ReadOnly" @bind-Value="Label_Checkbox2" Label="@(ReadOnly ? "ReadOnly Checkbox 2" : "EditMode Checkbox 2")"/>
+</div>
+<ProSelect  @bind-Value="Label_Checkbox1" Label="Checkbox 1">
+    <ProSelectItem Value="@(false)">False</ProSelectItem>
+    <ProSelectItem Value="@(true)">True</ProSelectItem>
+</ProSelect>
+<ProSelect @bind-Value="Label_Checkbox2" Label="Checkbox 2">
+    <ProSelectItem Value="@(false)">False</ProSelectItem>
+    <ProSelectItem Value="@(true)">True</ProSelectItem>
+</ProSelect>
+
+<ProSwitch @bind-Value="ReadOnly" Label="@(ReadOnly ? "ReadOnly Mode" : "Edit Mode")" Color="Color.Primary"/>
+
+@code {
+    public bool Label_Checkbox1 { get; set; } = true;
+    public bool Label_Checkbox2 { get; set; } = false;
+    public bool ReadOnly { get; set; } = true;
+}

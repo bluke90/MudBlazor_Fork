@@ -1,0 +1,28 @@
+﻿
+
+<ProDataGrid Items="@_items">
+    <Columns>
+        <PropertyColumn Property="x => x.Name" />
+    </Columns>
+    <PagerContent>
+        <ProDataGridPager PageSizeSelector="@PageSizeDropDown" />
+    </PagerContent>
+</ProDataGrid>
+
+@code {
+    [Parameter]
+    public bool PageSizeDropDown { get; set; } = true;
+
+    private List<Item> _items = new List<Item>();
+
+    public class Item
+    {
+        public string Name { get; set; }
+
+        public Item(string name)
+        {
+            Name = name;
+        }
+    }
+
+}

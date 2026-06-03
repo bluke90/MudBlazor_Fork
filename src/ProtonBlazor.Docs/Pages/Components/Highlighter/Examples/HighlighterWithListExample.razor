@@ -1,0 +1,25 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Elevation="0">
+    <ProList T="string">
+        <ProListSubheader>
+            <ProTextField @bind-Value="searchTerm" AdornmentIcon="@Icons.Material.Filled.Brush"
+                          Adornment="Adornment.End" Immediate="true" Variant="Variant.Outlined" />
+        </ProListSubheader>
+
+        @foreach (var sentence in sentences)
+        {
+            <ProListItem @key="sentence" Icon="@Icons.Material.Filled.Folder">
+                <ProHighlighter Text="@sentence" HighlightedText="@searchTerm" />
+            </ProListItem>
+        }
+    </ProList>
+</ProPaper>
+
+@code {
+    string searchTerm = "item";
+    IEnumerable<string> sentences = new List<string>
+    {
+        "This is the first item", "This is the second item", "This is the third item"
+    };
+}

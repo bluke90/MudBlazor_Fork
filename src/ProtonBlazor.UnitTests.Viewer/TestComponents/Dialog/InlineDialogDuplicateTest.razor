@@ -1,0 +1,27 @@
+﻿<div class="d-flex">
+    <ProButton OnClick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">
+        Open dialog
+    </ProButton>
+</div>
+
+<ProDialog @bind-Visible="_visible">
+    <TitleContent>
+        <ProText Typo="Typo.h6">
+            <ProIcon Icon="@Icons.Material.Filled.Edit" Class="mr-3"/> Edit rating
+        </ProText>
+    </TitleContent>
+    <DialogContent>
+        <p>There should only be one dialog</p>
+    </DialogContent>
+    <DialogActions>
+    </DialogActions>
+</ProDialog>
+
+@code { 
+    private bool _visible;
+
+    private void OpenDialog() {
+        _visible = true;
+        StateHasChanged();
+    }
+}

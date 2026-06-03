@@ -1,0 +1,13 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Spacing="@_spacing" Row="true">
+    <ProPaper Class="pa-3">Item 1</ProPaper>
+    <ProPaper Class="pa-3">Item 2</ProPaper>
+    <ProPaper Class="pa-3">Item 3</ProPaper>
+</ProStack>
+
+<ProSlider @bind-Value="_spacing" Min="0" Max="16">Spacing: @_spacing.ToString()</ProSlider>
+
+@code {
+    private int _spacing { get; set; } = 3;
+}

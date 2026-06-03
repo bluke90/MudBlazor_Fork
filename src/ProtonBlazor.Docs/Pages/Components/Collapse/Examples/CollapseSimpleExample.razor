@@ -1,0 +1,19 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Class="pa-4">
+    <ProStack Spacing="2">
+        <ProButton OnClick="OnExpandCollapseClick">@(_expanded ? "Collapse" : "Expand")</ProButton>
+        <ProDivider />
+        <ProCollapse Expanded="_expanded">
+                This content is collapsible.
+        </ProCollapse>
+    </ProStack>
+</ProPaper>
+
+@code {
+    bool _expanded = true;
+
+    private void OnExpandCollapseClick() {
+        _expanded = !_expanded;
+    }
+}

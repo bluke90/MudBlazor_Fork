@@ -1,0 +1,35 @@
+﻿@using System.Net.Http.Json
+@using ProtonBlazor.Examples.Data.Models
+@namespace ProtonBlazor.Docs.Examples
+@inject HttpClient httpClient
+
+<ProTable Items="@Elements.Take(4)" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <ProTh>Nr</ProTh>
+        <ProTh>Sign</ProTh>
+        <ProTh>Name</ProTh>
+        <ProTh>Position</ProTh>
+        <ProTh>Molar mass</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">@context.Sign</ProTd>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Position" HideSmall="_hidePosition">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowTemplate>
+</ProTable>
+
+<ProSwitch @bind-Value="_hidePosition" Color="Color.Primary">Hide&nbsp;<b>position</b>&nbsp;when Breakpoint=Xs</ProSwitch>
+<ProSwitch @bind-Value="_loading" Color="Color.Primary">Show Loading</ProSwitch>
+
+@code { 
+    private bool _hidePosition;
+    private bool _loading;
+    private IEnumerable<Element> Elements = new List<Element>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Elements = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable");
+    }
+}

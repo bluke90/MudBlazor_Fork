@@ -1,0 +1,9 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPagination Color="Color.Primary" Count="4" @bind-Selected="@_selected"/>
+
+<ProText Align="Align.Center">Selected page: @_selected</ProText>
+
+@code {
+    private int _selected = 1;
+}

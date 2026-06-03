@@ -1,0 +1,37 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="300px" Elevation="0">
+    <ProTreeView T="string" ReadOnly="@ReadOnly" Hover="@Hover" Dense="@Dense" Disabled="@Disabled"
+                 ExpandOnClick="@ExpandOnClick" ExpandOnDoubleClick="@ExpandOnDoubleClick">
+        <ProTreeViewItem Text="Applications" Expanded>
+            <ProTreeViewItem Text="Terminal" />
+        </ProTreeViewItem>
+        <ProTreeViewItem Text="Documents" Expanded>
+            <ProTreeViewItem Text="ProtonBlazor" Expanded>
+                <ProTreeViewItem Text="API" />
+                <ProTreeViewItem Text="Components" />
+                <ProTreeViewItem Text="Features" />
+            </ProTreeViewItem>
+        </ProTreeViewItem>
+    </ProTreeView>
+</ProPaper>
+
+<ProStack Row Wrap="Wrap.Wrap" Justify="Justify.Center">
+    <ProSwitch @bind-Value="ReadOnly" Color="Color.Primary">ReadOnly</ProSwitch>
+    <ProSwitch @bind-Value="Hover" Color="Color.Primary">Hover</ProSwitch>
+    <ProSwitch @bind-Value="Ripple" Color="Color.Primary">Ripple</ProSwitch>
+    <ProSwitch @bind-Value="Dense" Color="Color.Primary">Dense</ProSwitch>
+    <ProSwitch @bind-Value="Disabled" Color="Color.Primary">Disabled</ProSwitch>
+    <ProSwitch @bind-Value="ExpandOnClick" Color="Color.Primary">ExpandOnClick</ProSwitch>
+    <ProSwitch @bind-Value="ExpandOnDoubleClick" Color="Color.Primary">ExpandOnDoubleClick</ProSwitch>
+</ProStack>
+
+@code {
+    public bool ReadOnly = true;
+    public bool Hover = true;
+    public bool Ripple;
+    public bool Dense;
+    public bool Disabled;
+    public bool ExpandOnClick = true;
+    public bool ExpandOnDoubleClick;
+}

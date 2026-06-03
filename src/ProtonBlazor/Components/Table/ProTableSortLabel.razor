@@ -1,0 +1,19 @@
+﻿@namespace ProtonBlazor
+@typeparam T
+@inherits ProComponentBase
+@implements IDisposable
+
+<span @onclick="ToggleSortDirection" class="@Classname" style="@Style" @attributes="@UserAttributes">
+    @if (!AppendIcon)
+    {
+        @ChildContent
+    }
+    @if (Enabled)
+    {
+        <ProIcon Icon="@SortIcon" Class="@SortIconClassname" />
+    }
+    @if (AppendIcon)
+    {
+        @ChildContent
+    }
+</span>

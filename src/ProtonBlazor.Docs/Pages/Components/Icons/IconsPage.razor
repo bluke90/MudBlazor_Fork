@@ -1,0 +1,104 @@
+﻿@page "/components/icons"
+
+@using System.Reflection
+
+<DocsPage>
+    <DocsPageHeader Title="Icons" Component="@nameof(ProIcon)">
+    </DocsPageHeader>
+    <DocsPageContent>
+
+        <DocsPageSection>
+            <SectionHeader Title="Icons">
+                <Description>
+                    See the full list of all icons that comes preloaded here: <ProLink Href="/features/icons">ProtonBlazor Icons</ProLink>
+                </Description>
+            </SectionHeader>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Usage">
+                <Description>The ProIcon component shows the specified icon with the chosen style. You can use the <CodeInline>Title</CodeInline> attribute to improve accessibility with screen readers and show a tooltip on hover.</Description>
+            </SectionHeader>
+            <SectionContent Code="@nameof(IconsUsageExample)">
+                <IconsUsageExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Color">
+            </SectionHeader>
+            <SectionContent Code="@nameof(IconsColorExample)">
+                <IconsColorExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Size">
+            </SectionHeader>
+            <SectionContent Code="@nameof(IconsSizeExample)">
+                <IconsSizeExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Material Variants">
+                <Description>Material icons that comes loaded with ProtonBlazor by default is available in Filled, Outlined, Rounded, Sharp and TwoToned.</Description>
+            </SectionHeader>
+            <SectionContent Code="@nameof(IconsMaterialVariantsExample)">
+                <IconsMaterialVariantsExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Font Icons">
+                <Description>
+                    ProIcon also supports icon fonts. It supports class-based font icons such as <ProLink Color="Color.Secondary" Href="https://fontawesome.com/">Font Awesome</ProLink>
+                    and text-based icon fonts such as <ProLink Color="Color.Secondary" Href="https://fonts.google.com/icons">Material Symbols</ProLink>. <CodeInline Tag>ProIcon</CodeInline> uses different syntax to 
+                    distinguish them as explained below. If you don't know the type of your font icon library just try out which syntax works.
+                    <br />
+                    <ProAlert Class="mt-3" Severity="Severity.Info">
+                    Note: you can use font icons also in other components such as <CodeInline Tag>ProIconButton</CodeInline>, <CodeInline Tag>ProButton</CodeInline> and many more.
+                    </ProAlert>
+                </Description>
+            </SectionHeader>
+            <SectionSubGroups>
+                <DocsPageSection>
+                    <SectionHeader Title="CSS Class-Based Font Icons">
+                        <Description>Most font icon libraries such as <ProLink Color="Color.Secondary" Href="https://fontawesome.com/">Font Awesome</ProLink> use two CSS classes for each icon. Pass these to the 
+                            <CodeInline>Icon</CodeInline> parameter using the syntax <CodeInline>icon-font-class icon-class</CodeInline>.</Description>
+                    </SectionHeader>
+                    <SectionContent DarkenBackground="true" Code="@nameof(IconsFontAwesomeExample)">
+                        <IconsFontAwesomeExample />
+                    </SectionContent>
+                </DocsPageSection>
+
+                <DocsPageSection>
+                    <SectionHeader Title="Text-Based Font Icons">
+                        <Description>
+                            Some icon libraries such as <ProLink Color="Color.Secondary" Href="https://fonts.google.com/icons">Material Symbols</ProLink> use the inner text of an HTML element to determine which icon to display. 
+                            <CodeInline>ProIcon</CodeInline> supports these also via the syntax <CodeInline>icon-font-class/icon-name</CodeInline> 
+                        </Description>
+                    </SectionHeader>
+                    <SectionContent DarkenBackground="true" Code="@nameof(IconsFontMaterialSymbolsSyntaxExample)">
+                        <IconsFontMaterialSymbolsSyntaxExample />
+                    </SectionContent>
+                </DocsPageSection>
+            </SectionSubGroups>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Custom SVG Icons">
+                <Description>
+                    The icon parameter of <CodeInline Tag="true">ProIcon</CodeInline>, <CodeInline Tag="true">ProButton</CodeInline> and other components are just SVG strings. 
+                    So changing an icon programmatically is as easy as assigning a new string.<br />
+                    Also, if the icon you need is not available in <ProLink Href="/features/icons">ProtonBlazor's icon library</ProLink> you can just assign your own SVG. 
+                    The cube icon in this example is <CodeInline>cube-outline</CodeInline> from <ProLink Color="Color.Secondary" Href="https://materialdesignicons.com" Style="white-space:nowrap;">Material Design Icons</ProLink>.
+                </Description>
+            </SectionHeader>
+            <SectionContent Code="@nameof(ChangeIconProgrammaticallyExample)">
+                <ChangeIconProgrammaticallyExample />
+            </SectionContent>
+        </DocsPageSection>
+
+    </DocsPageContent>
+</DocsPage>

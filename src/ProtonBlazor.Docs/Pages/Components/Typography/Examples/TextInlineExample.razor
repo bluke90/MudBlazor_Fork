@@ -1,0 +1,9 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProText>The text after here is: <ProText Inline="@_inline" Color="Color.Primary">@(_inline ? "inline." : "block.")</ProText></ProText>
+
+<ProSwitch @bind-Value="_inline" Color="Color.Primary" Label="Inline" />
+
+@code {
+    bool _inline;
+}

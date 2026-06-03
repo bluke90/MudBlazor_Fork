@@ -1,0 +1,27 @@
+@using ProtonBlazor
+
+<ProTabs KeepPanelsAlive="true">
+    <ProTabPanel Text="Tab 1">
+        <ProDrawer @ref="@Drawer" @bind-Open="@_open" Variant="@Variant" Anchor="@Anchor">
+            <div>Drawer Content</div>
+        </ProDrawer>
+        <button id="toggle-drawer-button" @onclick="@ToggleDrawer">Toggle Drawer</button>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab 2">
+        <div>Tab 2 Content</div>
+    </ProTabPanel>
+</ProTabs>
+
+@code {
+    private bool _open;
+
+    public ProDrawer Drawer { get; private set; } = null!;
+
+    [Parameter]
+    public DrawerVariant Variant { get; set; } = DrawerVariant.Temporary;
+
+    [Parameter]
+    public Anchor Anchor { get; set; } = Anchor.End;
+
+    private void ToggleDrawer() => _open = !_open;
+}

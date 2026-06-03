@@ -1,0 +1,21 @@
+﻿<ProPopoverProvider />
+
+<ProPaper Class="flex-1 d-flex pa-1" Width="500px" Height="500px" Outlined="true" Square="true">
+    <ProMenu PositionAtCursor="true" Dense="true" class="pro-height-full pro-width-full" ActivationEvent="@MouseEvent.RightClick">
+        <ActivatorContent>
+            <ProPaper Class="d-flex align-center justify-center  pro-info" Height="100%" Width="100%">
+                <ProText Typo="Typo.h6">Right Click Me</ProText>
+            </ProPaper>
+
+        </ActivatorContent>
+        <ChildContent>
+            <ProMenuItem Label="Dense Stuff" />
+            <ProMenuItem Label="Stuff is Dense" />
+            <ProMenuItem Label="Soo Dense" />
+        </ChildContent>
+    </ProMenu>
+</ProPaper>
+
+@code {
+    public static string __description__ = "Covers setting PositionAtCursor for ProMenu regardless of container.";
+}

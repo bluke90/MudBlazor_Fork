@@ -1,0 +1,27 @@
+﻿@namespace ProtonBlazor
+@inherits ProBaseButton
+
+<ProElement @bind-Ref="@_elementReference"
+            HtmlTag="@HtmlTag"
+            Class="@Classname"
+            Style="@Style"
+            @attributes="UserAttributes"
+            @onclick="this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickHandler)"
+            type="@ButtonType.ToStringFast(true)"
+            href="@Href"
+            target="@Target"
+            rel="@GetRel()"
+            disabled="@GetDisabledState()"
+            ClickPropagation="@GetClickPropagation()">
+    <span class="pro-fab-label">
+        @if (!string.IsNullOrWhiteSpace(StartIcon))
+        {
+            <ProIcon Disabled="@Disabled" Icon="@StartIcon" Color="@IconColor" Size="@IconSize" />
+        }
+        @Label
+        @if (!string.IsNullOrWhiteSpace(EndIcon))
+        {
+            <ProIcon Disabled="@Disabled" Icon="@EndIcon" Color="@IconColor" Size="@IconSize" />
+        }
+    </span>
+</ProElement>

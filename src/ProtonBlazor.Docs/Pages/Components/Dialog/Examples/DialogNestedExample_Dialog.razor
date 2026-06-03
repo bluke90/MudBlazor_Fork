@@ -1,0 +1,26 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@inject IDialogService DialogService
+
+<ProDialog>
+    <DialogContent>
+        Dialog Content
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="OpenSecondDialogAsync">Open Second Dialog</ProButton>
+    </DialogActions>
+</ProDialog>
+
+
+@code {
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; }
+
+    private void Cancel() => ProDialog.Cancel();
+
+    private Task OpenSecondDialogAsync()
+    {
+        return DialogService.ShowAsync<DialogNestedExample_Dialog2>("Second Level Dialog");
+    }
+}

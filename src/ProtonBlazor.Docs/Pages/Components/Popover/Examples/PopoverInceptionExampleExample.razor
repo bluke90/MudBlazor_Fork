@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProMenu Class="" Label="A menu with tooltip" Variant="Variant.Filled" Color="Color.Primary">
+    <div class="d-flex align-center">
+        <ProText Class="ml-4">1</ProText>
+        <ProTooltip Text="1 is good option">
+            <ProIconButton Class="mx-2" Icon="@Icons.Material.Outlined.Info" />
+        </ProTooltip>
+    </div>
+    <div class="d-flex align-center">
+        <ProText Class="ml-4">2</ProText>
+        <ProMenu Icon="@Icons.Material.Outlined.Mouse" ActivationEvent="@MouseEvent.MouseOver" Class="mx-2">
+            <ChildContent>
+                <ProMenuItem Label="Profile" />
+                <ProMenuItem Label="Theme" />
+                <ProMenuItem Label="Usage" />
+                <ProMenuItem Label="Sign Out" />
+            </ChildContent>
+        </ProMenu>
+        <ProTooltip Text="2 can be a better option">
+            <ProIconButton Class="mx-2" Icon="@Icons.Material.Outlined.Info" />
+        </ProTooltip>
+    </div>
+    <div class="d-flex align-center">
+        <ProText Class="ml-4">3</ProText>
+        <ProTooltip Text="3 is one more than 2">
+            <ProIconButton Class="mx-2" Icon="@Icons.Material.Outlined.Info" />
+        </ProTooltip>
+    </div>
+</ProMenu>

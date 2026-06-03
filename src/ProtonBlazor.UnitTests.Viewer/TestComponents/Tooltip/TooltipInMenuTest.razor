@@ -1,0 +1,20 @@
+﻿<ProText Typo="Typo.h6">ProTooltip is @Text</ProText>
+<ProMenu Label="Menu">
+    <ProTooltip Text="Some text">
+        <ProMenuItem AutoClose="true">
+            Some button with flashing tooltip
+        </ProMenuItem>
+    </ProTooltip>
+</ProMenu>
+
+<ProTooltip Text="Some text">
+    <ProButton>
+        Some button with normal tooltip
+    </ProButton>
+</ProTooltip>
+
+@code {
+    public static string __description__ = "Shows tooltips in a menu";
+
+    private const string Text = "Testing";
+}

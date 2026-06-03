@@ -1,0 +1,8 @@
+﻿<ProTreeView T="string">
+    <ProTreeViewItem T="string" Value="@("World")" Visible="@IsElementVisible"/>
+</ProTreeView>
+
+@code {
+    [Parameter]
+    public bool IsElementVisible { get; set; }
+}

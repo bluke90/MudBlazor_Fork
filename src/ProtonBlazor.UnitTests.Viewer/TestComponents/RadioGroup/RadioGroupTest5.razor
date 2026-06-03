@@ -1,0 +1,19 @@
+﻿<ProRadioGroup @bind-Value="@_option" @bind-Value:after="BindAfter">
+    <ProRadio Value="@("1")" />
+    <ProRadio Value="@("2")" />
+    <ProRadio Value="@("3")" />
+</ProRadioGroup>
+
+<ProButton OnClick="OnClick" />
+
+@code {
+    public static string __description__ = "RadioGroup should be resettable";
+
+    private string? _option;
+
+    public int BindAfterCount { get; private set; }
+
+    private void OnClick() => _option = null;
+
+    private void BindAfter() => BindAfterCount++;
+}

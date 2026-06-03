@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<ProMenu PositionAtCursor="true">
+    <ActivatorContent>
+        <div @onclick="@context.ToggleAsync" style="cursor: pointer">
+            <ProCard>
+                <ProCardMedia Image="images/door.jpg" Height="200" />
+                <ProCardContent>
+                    <ProText Typo="Typo.h5">Old Paint</ProText>
+                    <ProText Typo="Typo.body2">Old paint found on a stone house door.</ProText>
+                    <ProText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</ProText>
+                </ProCardContent>
+            </ProCard>
+        </div>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem Label="Undo" />
+        <ProMenuItem Label="Redo" Disabled />
+        <ProDivider />
+        <ProMenuItem Label="Cut" />
+        <ProMenuItem Label="Copy" />
+        <ProMenuItem Label="Paste" />
+    </ChildContent>
+</ProMenu>
+
+
+
+
+

@@ -1,0 +1,100 @@
+﻿@using System.Threading
+@using ProtonBlazor
+
+<ProAppBar Color="Color.Primary" Fixed="false">
+    <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+    <ProSpacer />
+    <ProMenu Label="Open AutoComplete Menu">
+        <ActivatorContent>
+            <ProButton Variant="Variant.Filled" Color="Color.Primary">AutoComplete button</ProButton>
+        </ActivatorContent>
+        <ChildContent>
+            <ProMenuItem AutoClose="false">
+                <ProAutocomplete @bind-Value="_value" SearchFunc="Search" />
+            </ProMenuItem>
+            <ProMenuItem Label="Usage" />
+            <ProMenuItem Label="Sign out" />
+        </ChildContent>
+    </ProMenu>
+    <ProMenu Label="Open AutoComplete Menu">
+        <ActivatorContent>
+            <ProButton Variant="Variant.Filled" Color="Color.Primary">Select button</ProButton>
+        </ActivatorContent>
+        <ChildContent>
+            <ProMenuItem AutoClose="false">
+                <ProSelect @bind-Value="_value">
+                    @foreach (var state in _states)
+                    {
+                        <ProSelectItem Value="state">@state</ProSelectItem>
+                    }
+                </ProSelect>
+            </ProMenuItem>
+            <ProMenuItem Label="Usage" />
+            <ProMenuItem Label="Sign out" />
+        </ChildContent>
+    </ProMenu>
+</ProAppBar>
+
+<ProMenu Label="Open AutoComplete Menu">
+    <ActivatorContent>
+        <ProButton Variant="Variant.Filled" Color="Color.Primary">Autocomplete button</ProButton>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem AutoClose="false">
+            <ProAutocomplete @bind-Value="_value" SearchFunc="Search" />
+        </ProMenuItem>
+        <ProMenuItem Label="Usage" />
+        <ProMenuItem Label="Sign out" />
+    </ChildContent>
+</ProMenu>
+
+<ProMenu Label="Open Select Menu">
+    <ActivatorContent>
+        <ProButton Variant="Variant.Filled" Color="Color.Primary">Select button</ProButton>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem AutoClose="false">
+            <ProSelect @bind-Value="_value" >
+                @foreach (var state in _states)
+                {
+                    <ProSelectItem Value="state">@state</ProSelectItem>
+                }
+            </ProSelect>
+        </ProMenuItem>
+        <ProMenuItem Label="Usage" />
+        <ProMenuItem Label="Sign out" />
+    </ChildContent>
+</ProMenu>
+
+<ProAutocomplete @bind-Value="_value" SearchFunc="Search" />
+
+@code {
+    public static string __description__ = "Testing ProOverlay impact on ProAutoComplete when by itself, nested in mudmenu and nested in mudmenu in mudappbar";
+    private string _value = string.Empty;
+    private readonly string[] _states =
+    {
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California",
+        "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+        "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
+        "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+        "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
+        "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
+        "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma",
+        "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+        "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
+        "Washington", "West Virginia", "Wisconsin", "Wyoming"
+    };
+
+    private async Task<IEnumerable<string>> Search(string value, CancellationToken token)
+    {
+        // In real life use an asynchronous function for fetching data from an API.
+        await Task.Delay(5, token);
+
+        // If text is null or empty, show complete list
+        if (string.IsNullOrEmpty(value))
+            return _states;
+
+        // Filter the states
+        return _states.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+}

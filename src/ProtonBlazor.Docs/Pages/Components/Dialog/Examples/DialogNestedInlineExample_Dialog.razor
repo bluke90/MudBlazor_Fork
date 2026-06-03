@@ -1,0 +1,32 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@*Outer dialog*@
+<ProDialog>
+    <DialogContent>
+        <ProText>Hi There, I'm a regular dialog!</ProText>
+        <ProButton Variant="Variant.Filled" Color="Color.Tertiary" OnClick="OpenNested">Open Nested</ProButton>
+        @*Nested dialog*@
+        <ProDialog @bind-Visible="_nestedVisible">
+            <DialogContent>
+                <ProText Class="nested">Nested inline dialog!</ProText>
+            </DialogContent>
+            <DialogActions>
+                <ProButton Color="Color.Primary" OnClick="CloseNested">Close</ProButton>
+            </DialogActions>
+        </ProDialog>
+    </DialogContent>
+    <DialogActions>
+        <ProButton Color="Color.Primary" OnClick="(() => ProDialog.Close())">Close</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    private bool _nestedVisible;
+
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; }
+
+    private void OpenNested() => _nestedVisible = true;
+
+    private void CloseNested() => _nestedVisible = false;
+}

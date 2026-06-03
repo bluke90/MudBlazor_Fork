@@ -1,0 +1,46 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProRTLProvider RightToLeft="@_rightToLeft">
+    <ProCard Class="mb-2" Style="width: 400px">
+        <ProCardHeader>
+            <CardHeaderAvatar>
+                <ProAvatar Color="Color.Secondary">@Localizer("CardAvatarLetter")</ProAvatar>
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <ProText Typo="Typo.body1">@Localizer("CardHeader")</ProText>
+                <ProText Typo="Typo.body2">@Localizer("CardSubHeader")</ProText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <ProIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+            </CardHeaderActions>
+        </ProCardHeader>
+        <ProCardMedia Image="_content/ProtonBlazor.Docs/images/pilars.jpg" Height="250" />
+        <ProCardContent>
+            <ProText Typo="Typo.body2">@Localizer("CardDescription")</ProText>
+        </ProCardContent>
+        <ProCardActions>
+            <ProIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+            <ProIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+        </ProCardActions>
+    </ProCard>
+</ProRTLProvider>
+<ProSwitch @bind-Value="_rightToLeft" Label="Toggle Right to Left" Color="Color.Primary"/>
+
+@code {
+    private bool _rightToLeft = true;
+
+    //This translation is for demonstration purposes only. In a real application, you should use a IStringLocalizer etc.
+    private string Localizer(string key)
+    {
+        //This is just a google translation. If you have a better translation, feel free to share it with us  :)
+        if (key.Equals("CardAvatarLetter"))
+            return _rightToLeft ? "ا" : "I";
+        else if (key.Equals("CardHeader"))
+            return _rightToLeft ? "استريا كرواتيا" : "Istra Croatia";
+        else if (key.Equals("CardSubHeader"))
+            return _rightToLeft ? "شبه الجزيرة في أوروبا" : "Peninsula in Europe";
+        else if (key.Equals("CardDescription"))
+            return _rightToLeft ? "التقطت هذه الصورة في قرية صغيرة في استرا كرواتيا" : "This photo was taken in a small village in Istra Croatia.";
+        return "";
+    }
+}

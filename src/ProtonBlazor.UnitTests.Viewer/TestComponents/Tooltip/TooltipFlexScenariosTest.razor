@@ -1,0 +1,138 @@
+﻿<ProTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" TabPanelsClass="pa-6">
+    <ProTabPanel Text="Simple Tooltip">
+        <ProTooltip Text="Delete">
+            <ProIconButton Icon="@Icons.Material.Filled.Delete" />
+        </ProTooltip>
+        <ProTooltip Text="Add" Placement="Placement.Top" Arrow>
+            <ProFab StartIcon="@Icons.Material.Filled.Add" Color="Color.Secondary" />
+        </ProTooltip>
+    </ProTabPanel>
+    <ProTabPanel Text="Grid TextField">
+        <ProGrid>
+            <ProItem xs="12">
+                <ProTextField T="string" Text="Fully expanded - No Tooltip" Variant="Variant.Outlined" HelperText="https://github.com/ProtonBlazor/ProtonBlazor/issues/7685#issue-1960816701" />
+            </ProItem>
+            <ProItem xs="12">
+                <ProTooltip Text="Issue 7685" Inline="true">
+                    <ProTextField T="string" Text="Tooltip - Inline True" Variant="Variant.Outlined"></ProTextField>
+                </ProTooltip>
+            </ProItem>
+            <ProItem xs="12">
+                <ProTooltip Text="Issue 7685" Inline="false">
+                    <ProTextField T="string" Text="Tooltip - Inline False" Variant="Variant.Outlined"></ProTextField>
+                </ProTooltip>
+            </ProItem>
+        </ProGrid>
+    </ProTabPanel>
+    <ProTabPanel Text="Grid DatePicker">
+        <ProGrid>
+            <ProItem xs="6">
+                <ProTooltip Text="Issue 1167" Color="Color.Primary" Arrow>
+                    <ProDatePicker Label="Tooltip - Inline True" AutoClose/>
+                </ProTooltip>
+            </ProItem>
+            <ProItem xs="6">
+                <ProDatePicker Label="End date" AutoClose />
+            </ProItem>
+        </ProGrid>
+        <ProGrid>
+            <ProItem xs="6">
+                <ProTooltip Text="Issue 1167" Color="Color.Primary" Inline="false" Arrow>
+                    <ProDatePicker Label="Tooltip - Inline False" AutoClose/>
+                </ProTooltip>
+            </ProItem>
+            <ProItem xs="6">
+                <ProDatePicker Label="End date" AutoClose HelperText="https://github.com/ProtonBlazor/ProtonBlazor/issues/1167#issuecomment-968830224" />
+            </ProItem>
+        </ProGrid>
+    </ProTabPanel>
+    <ProTabPanel Text="ProList Direction">
+        <ProPaper Width="fit-content">
+            <ProList T="string">
+                <ProTooltip Text="Inline False" Inline="false">
+                    <ProListItem Text="Inbox" />
+                </ProTooltip>
+                <ProTooltip Text="Inline False" Inline="false">
+                    <ProListItem Text="Sent" />
+                </ProTooltip>
+                <ProTooltip Text="Inline False" Inline="false">
+                    <ProListItem Text="Spam" />
+                </ProTooltip>
+                <ProDivider />
+                <ProTooltip Text="List renders horizontally if Inline=true" Inline="false">
+                    <ProListItem Text="Issue 3844" SecondaryText="https://github.com/ProtonBlazor/ProtonBlazor/issues/3844#issue-1119522527" />
+                </ProTooltip>
+            </ProList>
+        </ProPaper>
+    </ProTabPanel>
+    <ProTabPanel Text="Grid Chip">
+        <ProDataGrid Items="@([("updated", Color.Secondary), ("in progress", Color.Warning), ("submitted", Color.Info), ("approved", Color.Success)])">
+            <Columns>
+                <TemplateColumn Title="GitHub Issue">
+                    <CellTemplate>
+                        <ProText>Issue #1167</ProText>
+                    </CellTemplate>
+                </TemplateColumn>
+                <TemplateColumn Title="Inline True">
+                    <CellTemplate>
+                        <ProTooltip Text="Inline True" Color="Color.Primary" Arrow Placement="Placement.Bottom" Inline="true">
+                            <ProChip T="string" Class="pro-width-full ma-0" Color="@context.Item.Item2" Size="Size.Small">
+                                @context.Item.Item1
+                            </ProChip>
+                        </ProTooltip>
+                    </CellTemplate>
+                </TemplateColumn>
+                <TemplateColumn Title="Inline False">
+                    <CellTemplate>
+                        <ProTooltip Text="Inline False" Color="Color.Primary" Arrow Placement="Placement.Bottom" Inline="false">
+                            <ProChip T="string" Class="pro-width-full ma-0" Color="@context.Item.Item2" Size="Size.Small">
+                                @context.Item.Item1
+                            </ProChip>
+                        </ProTooltip>
+                    </CellTemplate>
+                </TemplateColumn>
+                <TemplateColumn Title="Comment">
+                    <CellTemplate>
+                        <ProLink Href="https://github.com/ProtonBlazor/ProtonBlazor/issues/1167#issuecomment-2611085518">ProChip inside DataGrid workaround</ProLink>
+                    </CellTemplate>
+                </TemplateColumn>
+            </Columns>
+        </ProDataGrid>
+    </ProTabPanel>
+    <ProTabPanel Text="Grid Stack" BadgeDot BadgeColor="Color.Error">
+        <ProGrid>
+            <ProItem xs="12">
+                <ProStack>
+                    <ProStack Row>
+                        <ProTextField T="string" Text="Fully expanded - No Tooltip" Variant="Variant.Outlined" HelperText="https://github.com/ProtonBlazor/ProtonBlazor/issues/1167#issuecomment-1915676589" />
+                        <ProButton>Text</ProButton>
+                    </ProStack>
+                    <ProStack Row>
+                        <ProTooltip Text="Issue 1167" RootClass="pro-width-full">
+                            <ProTextField T="string" Text="Tooltip - requires RootClass='pro-width-full'" Variant="Variant.Outlined"></ProTextField>
+                        </ProTooltip>
+                        <ProButton>Text</ProButton>
+                    </ProStack>
+                </ProStack>
+            </ProItem>
+        </ProGrid>
+    </ProTabPanel>
+    <ProTabPanel Text="Table Data" BadgeDot BadgeColor="Color.Error">
+        <ProTable T="string" Items="@(["one", "two", "three", "four"])">
+            <HeaderContent>
+                <ProTh>Issue</ProTh>
+                <ProTh>Data</ProTh>
+                <ProTh>Comment</ProTh>
+            </HeaderContent>
+            <RowTemplate>
+                <ProTd DataLabel="Issue">Discord Help</ProTd>
+                <ProTd DataLabel="Data">
+                    <ProTooltip Text="RootClass='pro-width-full'" RootClass="pro-width-full">
+                        @context
+                    </ProTooltip>
+                </ProTd>
+                <ProTd DataLabel="Comment">User was wrapping outside 'ProTd', wrap inside instead</ProTd>
+            </RowTemplate>
+        </ProTable>
+    </ProTabPanel>
+</ProTabs>

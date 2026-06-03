@@ -1,0 +1,28 @@
+﻿<ProTreeView T="string" @bind-SelectedValue="SelectedValue" Disabled="@Disabled" SelectionMode="SelectionMode.ToggleSelection">
+    <ProTreeViewItem Value='"content"'>
+        <ProTreeViewItem Value='"logo.png"' />
+        <ProTreeViewItem Value='"ProtonBlazor.svg"' />
+        <ProTreeViewItem Value='"Nuget.png"' />
+    </ProTreeViewItem>
+    <ProTreeViewItem Value='"src"'>
+        <ProTreeViewItem Value='"ProtonBlazor"' />
+        <ProTreeViewItem Value='"ProtonBlazor.Docs"'>
+            <ProTreeViewItem Value='"wwwroot"'>
+                <ProTreeViewItem Value='"ProAppbarCorner.svg"' />
+                <ProTreeViewItem Value='"ProtonBlazorDocs.min.css"' />
+            </ProTreeViewItem>
+        </ProTreeViewItem>
+    </ProTreeViewItem>
+</ProTreeView>
+
+<p class="selected-value">
+    @SelectedValue
+</p>
+
+@code {
+    [Parameter]
+    public string? SelectedValue { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+}

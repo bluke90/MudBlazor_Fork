@@ -1,0 +1,27 @@
+﻿<ProTable T="int" ServerData="@(new Func<TableState, CancellationToken, Task<TableData<int>>>(ServerReload))">
+    <HeaderContent>
+        <ProTh><ProTableSortLabel SortLabel="No." T="int">Nr</ProTableSortLabel></ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context</ProTd>
+    </RowTemplate>
+</ProTable>
+
+@code {
+    public static string __description__ = "The table should cancel prior requests for server data when using ServerDataWithCancel.";
+
+    /// <summary>
+    /// Reloads the data from the server, with support for cancellation.
+    /// </summary>
+    private static async Task<TableData<int>> ServerReload(TableState state, CancellationToken token)
+    {
+        // Simulate "loading data" for two seconds
+        await Task.Delay(2000, token);
+
+        // Make some test data to return
+        var data = new List<int> { 1, 2, 3 };
+
+        // Return the data
+        return new TableData<int> { TotalItems = data.Count, Items = data.ToArray() };
+    }
+}

@@ -1,0 +1,11 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<ProRadioGroup @bind-Value="Dense_Radio">
+    <ProRadio Value="true" Color="Color.Primary" Dense="true">Dense</ProRadio>
+    <ProRadio Value="false" Color="Color.Secondary" Dense="false">Normal</ProRadio>
+</ProRadioGroup>
+
+@code {
+    public bool Dense_Radio { get; set; } = true;
+}

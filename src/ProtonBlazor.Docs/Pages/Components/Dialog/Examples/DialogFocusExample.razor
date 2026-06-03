@@ -1,0 +1,18 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@inject IDialogService DialogService
+
+
+<ProButton @onclick="OpenDialogAsync" Variant="Variant.Filled" Color="Color.Primary">
+    Open dialog
+</ProButton>
+
+@code {
+
+    private Task OpenDialogAsync()
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        return DialogService.ShowAsync<DialogFocusExample_Dialog>("Last element focused", options);
+    }
+}

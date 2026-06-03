@@ -1,0 +1,21 @@
+@using ProtonBlazor
+
+<ProThemeProvider @bind-IsDarkMode="_isDarkMode" @bind-CurrentPalette="_currentPalette" />
+
+<ProText>Dark Mode: @_isDarkMode</ProText>
+<ProText>Current Palette Type: @_currentPalette?.GetType().Name</ProText>
+<ProText>Primary Color: @_currentPalette?.Primary</ProText>
+
+<ProButton OnClick="ToggleDarkMode">Toggle Dark Mode</ProButton>
+
+@code {
+    private bool _isDarkMode;
+    private Palette? _currentPalette;
+
+    private void ToggleDarkMode()
+    {
+        _isDarkMode = !_isDarkMode;
+    }
+
+    public Palette? GetCurrentPalette() => _currentPalette;
+}

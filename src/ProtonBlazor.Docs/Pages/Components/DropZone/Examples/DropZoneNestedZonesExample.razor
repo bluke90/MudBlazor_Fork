@@ -1,0 +1,51 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDropContainer T="DropZoneItem" Items="_items" ItemsSelector="@((item, dropzone) => item.Zone == dropzone)" ItemDropped="ItemUpdated" Class="4 flex-grow-1">
+    <ChildContent>
+        <ProDropContainer T="DropZone" Items="_zones" ItemDisabled="@(item => true)" ItemsSelector="@((item, dropzone) => true)" Class="5">
+            <ChildContent>
+                <ProDropZone T="DropZone" AllowReorder Class="6 rounded pro-background-gray px-4 py-1 ma-4" />
+             </ChildContent>
+             <ItemRenderer>
+                 <ProPaper Class="pa-4 my-4">
+                     <ProText Typo="Typo.h6">@context.Name</ProText>
+                     <ProDropZone T="DropZoneItem" Identifier="@context.Name" AllowReorder Class="rounded pro-background-gray px-4 py-1 ma-4" />
+                 </ProPaper>
+             </ItemRenderer>
+         </ProDropContainer>
+     </ChildContent>
+     <ItemRenderer>
+         <ProPaper Class="pa-4 my-4">
+             <ProText>@context.Name</ProText>
+         </ProPaper>
+     </ItemRenderer>
+ </ProDropContainer>
+
+ @code {
+
+    private void ItemUpdated(ProItemDropInfo<DropZoneItem> dropItem) => dropItem.Item.Zone = dropItem.DropzoneIdentifier;
+
+    private List<DropZone> _zones = new()
+    {
+        new() { Name = "Drop Zone 1" },
+        new() { Name = "Drop Zone 2" }
+    };
+
+    private List<DropZoneItem> _items = new()
+    {
+        new() { Zone = "Drop Zone 1", Name = "Item 1" },
+        new() { Zone = "Drop Zone 1", Name = "Item 2" },
+        new() { Zone = "Drop Zone 2", Name = "Item 3" },
+    };
+
+    private class DropZone
+    {
+        public string Name { get; init; }
+    }
+
+    private class DropZoneItem
+    {
+        public string Zone { get; set; }
+        public string Name { get; init; }
+    }
+}

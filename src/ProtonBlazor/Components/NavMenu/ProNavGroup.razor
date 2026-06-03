@@ -1,0 +1,47 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@inherits ProComponentBase
+
+@inject InternalMudLocalizer Localizer
+
+<nav @attributes="UserAttributes"
+     class="@Classname"
+     disabled="@_navigationContext.Disabled"
+     style="@Style"
+     aria-label="@Title">
+    <button @onclick="ExpandedToggleAsync"
+            tabindex="@ButtonTabIndex"
+            class="@ButtonClassname"
+            aria-controls="@_navigationContext.MenuId"
+            aria-expanded="@_navigationContext.Expanded.ToString().ToLowerInvariant()"
+            aria-label="@Localizer[LanguageResource.ProNavGroup_ToggleExpand, Title ?? _navigationContext.MenuId]">
+        @if (!string.IsNullOrEmpty(Icon))
+        {
+            <ProIcon Disabled="@Disabled" Icon="@Icon" Color="@IconColor" Class="@IconClassname" />
+        }
+        <div Class="pro-nav-link-text">
+            @if (TitleContent is not null)
+            {
+                @TitleContent
+            }
+            else
+            {
+                @Title
+            }
+        </div>
+        @if (!HideExpandIcon)
+        {
+            <ProIcon Disabled="@Disabled" Icon="@ExpandIcon" Class="@ExpandIconClassname" />
+        }
+    </button>
+    <ProCollapse aria-hidden="@((!_navigationContext.Expanded).ToString().ToLowerInvariant())"
+                 Expanded="@_navigationContext.Expanded"
+                 MaxHeight="@MaxHeight"
+                 Class="pro-navgroup-collapse">
+        <CascadingValue Value="@_navigationContext">
+            <ProNavMenu>
+                @ChildContent
+            </ProNavMenu>
+        </CascadingValue>
+    </ProCollapse>
+</nav>

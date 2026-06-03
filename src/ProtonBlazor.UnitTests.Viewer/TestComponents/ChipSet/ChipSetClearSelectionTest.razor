@@ -1,0 +1,26 @@
+<ProChipSet @bind-SelectedValues="_selected" SelectionMode="SelectionMode.MultiSelection">
+    <ProChip Value="@("Milk")"/>
+    <ProChip Value="@("Eggs")"/>
+    <ProChip Value="@("Soap")"/>
+    <ProChip Value="@("Corn flakes")"/>
+    <ProChip Value="@("Salad")"/>
+    <ProChip Value="@("Apples")"/>
+    <ProChip Value="@("Red wine")"/>
+</ProChipSet>
+
+@if (_selected is { Count: > 0 }) {
+    <ProText>@string.Join(", ", _selected.OrderBy(x => x))</ProText>
+}
+else {
+    <ProText>Nothing selected.</ProText>
+}
+<ProButton id="set-null" OnClick="SetNull">Set Null</ProButton>
+<ProButton id="set-empty" OnClick="SetEmpty">Set Empty</ProButton>
+@code
+{
+    private IReadOnlyCollection<string>? _selected;
+
+    private void SetNull() => _selected = null;
+
+    private void SetEmpty() => _selected = Array.Empty<string>();
+}

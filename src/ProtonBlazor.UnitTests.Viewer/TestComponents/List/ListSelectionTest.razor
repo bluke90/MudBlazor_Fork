@@ -1,0 +1,32 @@
+﻿<ProList T="string" @bind-SelectedValue="_selectedValue" SelectionMode="@SelectionMode">
+    <ProListSubheader>
+        Your drink:
+        <ProChip Color="Color.Secondary">
+            @(_selectedValue ?? "You are dry")
+        </ProChip>
+    </ProListSubheader>
+    <ProListItem Text="Sparkling Water" />
+    <ProListItem Text="Teas">
+        <NestedList>
+            <ProListItem Text="Earl Grey" />
+            <ProListItem Text="Matcha" />
+            <ProListItem Text="Pu'er" />
+        </NestedList>
+    </ProListItem>
+    <ProListItem Text="Coffees">
+        <NestedList>
+            <ProListItem Text="Irish Coffee" />
+            <ProListItem Text="Double Espresso" />
+            <ProListItem Text="Cafe Latte" />
+        </NestedList>
+    </ProListItem>
+</ProList>
+
+@code {
+    public static string __description__ = "Clicking the drinks selects them. The child lists are updated accordingly.";
+    
+    private string? _selectedValue;
+
+    [Parameter]
+    public SelectionMode SelectionMode { get; set; } = SelectionMode.SingleSelection;
+}

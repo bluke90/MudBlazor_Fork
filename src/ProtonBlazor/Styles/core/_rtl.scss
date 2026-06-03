@@ -1,0 +1,13 @@
+﻿.pro-rtl {
+  direction: rtl !important;
+}
+
+.pro-ltr {
+  direction: ltr !important;
+}
+
+.pro-application-layout-rtl {
+  .pro-flip-x-rtl {
+    transform: scaleX(-1);
+  }
+}

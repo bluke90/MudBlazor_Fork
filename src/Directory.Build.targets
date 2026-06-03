@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
-    <CompilerVisibleProperty Include="MudDebugAnalyzer" />
-    <CompilerVisibleProperty Include="MudAllowedAttributePattern" />
-    <CompilerVisibleProperty Include="MudAllowedAttributeList" />
+    <CompilerVisibleProperty Include="ProDebugAnalyzer" />
+    <CompilerVisibleProperty Include="ProAllowedAttributePattern" />
+    <CompilerVisibleProperty Include="ProAllowedAttributeList" />
   </ItemGroup>
 </Project>

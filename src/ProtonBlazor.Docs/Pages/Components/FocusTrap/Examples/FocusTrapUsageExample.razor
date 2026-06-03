@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div class="d-flex mb-4">
+    <ProCheckBox @bind-Value="Disabled" Label="Disabled"></ProCheckBox>
+    <ProSelect @bind-Value="DefaultFocus" Label="Default Focus" Dense="true" Class="ml-4">
+        <ProSelectItem Value="DefaultFocus.None">None</ProSelectItem>
+        <ProSelectItem Value="DefaultFocus.Element">Element</ProSelectItem>
+        <ProSelectItem Value="DefaultFocus.FirstChild">FirstChild</ProSelectItem>
+        <ProSelectItem Value="DefaultFocus.LastChild">LastChild</ProSelectItem>
+    </ProSelect>
+</div>
+
+<ProTextField T="string" Variant="Variant.Outlined"></ProTextField>
+
+<ProPaper Class="pa-4">
+    <ProFocusTrap Disabled="Disabled" DefaultFocus="DefaultFocus">
+        <ProTextField T="string" Variant="Variant.Outlined"></ProTextField>
+        <ProTextField T="string" Variant="Variant.Outlined"></ProTextField>
+        <ProTextField T="string" Variant="Variant.Outlined"></ProTextField>
+    </ProFocusTrap>
+</ProPaper>
+
+<ProTextField T="string" Variant="Variant.Outlined"></ProTextField>
+
+@code {
+
+    bool Disabled { get; set; }
+
+    DefaultFocus DefaultFocus { get; set; } = DefaultFocus.FirstChild;
+ }

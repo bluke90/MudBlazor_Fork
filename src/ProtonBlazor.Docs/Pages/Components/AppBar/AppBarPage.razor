@@ -1,0 +1,65 @@
+﻿@page "/components/appbar"
+
+<DocsPage>
+    <DocsPageHeader Title="App Bar" Component="@nameof(ProAppBar)" />
+    <DocsPageContent>
+
+        <DocsPageSection>
+            <SectionHeader Title="Basic App Bar">
+                <Description>
+                    <ProText Class="py-6">App bars have two types: regular and contextual action bar. Below is an example of a regular app bar.</ProText>
+                    <ProText>A contextual action bar is something that will provide actions for a selected item on the page.</ProText>
+                    <ProText>A top bar can transform into a contextual action bar and be dismissed at any time.</ProText>
+                </Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(AppBarSimpleExample)">
+                <AppBarSimpleExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Usage">
+                <Description>
+                    <ProText>You can customize the Elevation of an AppBar, as well as set the Dense property to save space.</ProText>
+                </Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(AppBarUsageExample)" ShowCode="false">
+                <AppBarUsageExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Bottom App Bar">
+                <Description></Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(AppBarBottomExample)" ShowCode="false">
+                <iframe src="/iframe/docs/examples/appbar/bottom" class="docs-iframe rounded pro-elevation-25" style="height: 450px; ">
+                    <AppBarBottomExample />
+                </iframe>
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="App Bar with Menu">
+                <Description>
+                    <ProText>You can attach ProMenu's to the appbar, allowing for a myriad of appbar options.</ProText>
+                </Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(AppBarMenuExample)" ShowCode="false">
+                <AppBarMenuExample />
+            </SectionContent>
+        </DocsPageSection>
+
+        <DocsPageSection>
+            <SectionHeader Title="Contextual App Bar">
+                <Description>
+                    <ProText>You can conditionally transform the app bar into a contextual action bar with page specific action buttons.</ProText>
+                </Description>
+            </SectionHeader>
+            <SectionContent DarkenBackground="true" Code="@nameof(AppBarContextualExample)" ShowCode="false">
+                <AppBarContextualExample />
+            </SectionContent>
+        </DocsPageSection>
+
+    </DocsPageContent>
+</DocsPage>

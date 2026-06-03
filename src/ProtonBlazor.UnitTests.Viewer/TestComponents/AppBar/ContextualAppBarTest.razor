@@ -1,0 +1,26 @@
+﻿<ProAppBar Color="Color.Primary" Fixed="false" Contextual="IsContextual" id="regular-app-bar">
+    <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+    <ProSpacer />
+    <ProText Typo="Typo.h6">Regular</ProText>
+    <ProSpacer />
+    <ProIconButton Icon="@Icons.Material.Filled.DarkMode" Color="Color.Inherit"/>
+</ProAppBar>
+
+<ProContextualActionBar Color="Color.Tertiary" Fixed="false" Visible="_visible" id="contextual-app-bar">
+    <ProIconButton Icon="@Icons.Material.Filled.Close" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(() => _visible = false)" />
+    <ProSpacer />
+    <ProText Class="pl-8" Typo="Typo.h6">Contextual</ProText>
+    <ProSpacer />
+    <ProIconButton Icon="@Icons.Material.Filled.LightMode" Color="Color.Inherit" />
+</ProContextualActionBar>
+
+<ProSwitch Class="pt-8" @bind-Value="_visible" />
+
+@code {
+    public static string __description__ = "App bar should change when toggled";
+
+    private bool _visible;
+
+    [Parameter]
+    public bool IsContextual { get; set; } = true;
+}

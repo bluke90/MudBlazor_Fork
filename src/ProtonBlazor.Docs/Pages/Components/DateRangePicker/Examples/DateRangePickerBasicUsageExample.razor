@@ -1,0 +1,23 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack AlignItems="AlignItems.Center" Style="width:650px; height:450px">
+    <ProDateRangePicker PickerVariant="@_variant" @bind-DateRange="@_dateRange" Margin="Margin.Dense" />
+    <ProSpacer />
+    <ProToggleGroup T="PickerVariant" SelectionMode="SelectionMode.SingleSelection" Value="@_variant" ValueChanged="@OnValueChanged" 
+                    Color="Color.Primary" CheckMark="true" FixedContent="true">
+        <ProToggleItem Value="@(PickerVariant.Inline)" Text="Inline" />
+        <ProToggleItem Value="@(PickerVariant.Dialog)" Text="Dialog" />
+        <ProToggleItem Value="@(PickerVariant.Static)" Text="Static" />
+    </ProToggleGroup>
+</ProStack>
+
+@code {
+    private PickerVariant _variant = PickerVariant.Static;
+    private DateRange _dateRange { get; set; }
+
+    private void OnValueChanged(PickerVariant variant)
+    {
+        _dateRange = null;
+        _variant = variant;
+    }
+}

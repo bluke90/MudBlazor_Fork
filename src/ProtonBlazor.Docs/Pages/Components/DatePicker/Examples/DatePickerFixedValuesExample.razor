@@ -1,0 +1,17 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDatePicker Label="Year-Month Picker (Fixed Day)" HelperText="@_yearMonth?.ToShortDateString()" @bind-Date="_yearMonth" OpenTo="OpenTo.Year" FixDay="1" DateFormat="yyyy/MM" />
+<ProDatePicker Label="Month-Day Picker (Fixed Year)" HelperText="@_monthDay?.ToShortDateString()" @bind-Date="_monthDay" OpenTo="OpenTo.Month" FixYear="2021" DateFormat="MM/dd" />
+<ProDatePicker Label="Year-Day Picker (Fixed Month)" HelperText="@_yearDay?.ToShortDateString()" @bind-Date="_yearDay" OpenTo="OpenTo.Year" FixMonth="10" />
+<ProDatePicker Label="Year Picker (Fixed Month and Day)" HelperText="@_year?.ToShortDateString()" @bind-Date="_year" OpenTo="OpenTo.Year" FixMonth="@DateTime.Today.Month" FixDay="@DateTime.Today.Day" DateFormat="yyyy" />
+<ProDatePicker Label="Month Picker (Fixed Year and Day)" HelperText="@_month?.ToShortDateString()" @bind-Date="_month" OpenTo="OpenTo.Month" FixYear="@DateTime.Today.Year" FixDay="@DateTime.Today.Day" DateFormat="MMM" />
+<ProDatePicker Label="Day Picker (Fixed Year and Month)" HelperText="@_day?.ToShortDateString()" @bind-Date="_day" FixYear="@DateTime.Today.Year" FixMonth="@DateTime.Today.Month" DateFormat="dd" />
+
+@code { 
+    private DateTime? _yearMonth;
+    private DateTime? _monthDay;
+    private DateTime? _yearDay;
+    private DateTime? _year;
+    private DateTime? _month;
+    private DateTime? _day;
+}

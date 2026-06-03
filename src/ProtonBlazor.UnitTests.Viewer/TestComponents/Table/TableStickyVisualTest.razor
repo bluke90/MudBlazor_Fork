@@ -1,0 +1,60 @@
+﻿<ProTable Items="@_users" FixedHeader="@fixed_header" FixedFooter="@fixed_footer" Height="@(fixed_header || fixed_footer ?"400px":"")">
+    <ToolBarContent>
+        <ProText Typo="Typo.h6">Periodic Elements</ProText>
+        <ProSpacer />
+        <ProTextField T="string" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></ProTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <ProTh>Name</ProTh>
+        <ProTh>Age</ProTh>
+        <ProTh Style="white-space:nowrap">@((MarkupString)$"scroll column{string.Join("", Enumerable.Repeat("&nbsp;", 1000))}...")</ProTh>
+        <ProTh>Salary</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Age">@context.Age</ProTd>
+        <ProTd DataLabel="FilterColumn">@context.FillerColumn</ProTd>
+        <ProTd DataLabel="Salary">@context.Salary</ProTd>
+    </RowTemplate>
+    <FooterContent>
+        <ProTd>Name</ProTd>
+        <ProTd>Age</ProTd>
+        <ProTd>FilterColumn</ProTd>
+        <ProTd>Salary</ProTd>
+    </FooterContent>
+    <PagerContent>
+        <ProTablePager PageSizeOptions="new int[]{50, 100}" />
+    </PagerContent>
+</ProTable>
+
+<ProSwitch @bind-Value="fixed_header" Color="Color.Primary">Fixed Header</ProSwitch>
+<ProSwitch @bind-Value="fixed_footer" Color="Color.Primary">Fixed Footer</ProSwitch>
+
+@code {
+    public static string __description__ = "Toolbar and pager should stick to the table border while scrolling left/right";
+
+    bool fixed_header = true;
+    bool fixed_footer = false;
+
+    private readonly IEnumerable<User> _users = new List<User>
+    {
+        new User("Sam", 56, "...", 50_000.00M),
+        new User("Alicia", 54, "...", 75_000.00M),
+        new User("Ira", 27, "...", 102_000.00M),
+        new User("John", 32, "...", 132_000.00M),
+        new User("Sam", 56, "...", 50_000.00M),
+        new User("Alicia", 54, "...", 75_000.00M),
+        new User("Ira", 27, "...", 102_000.00M),
+        new User("John", 32, "...", 132_000.00M),
+        new User("Sam", 56, "...", 50_000.00M),
+        new User("Alicia", 54, "...", 75_000.00M),
+        new User("Ira", 27, "...", 102_000.00M),
+        new User("John", 32, "...", 132_000.00M),
+        new User("Sam", 56, "...", 50_000.00M),
+        new User("Alicia", 54, "...", 75_000.00M),
+        new User("Ira", 27, "...", 102_000.00M),
+        new User("John", 32, "...", 132_000.00M),
+    };
+
+    public record User(string Name, int Age, string FillerColumn, decimal Salary);
+}

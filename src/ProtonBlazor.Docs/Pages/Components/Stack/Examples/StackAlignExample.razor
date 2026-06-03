@@ -1,0 +1,22 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Outlined="true" Class="border-dashed">
+    <ProStack AlignItems="_align" Row="true" Style="height:200px;">
+        <ProPaper Class="py-1 px-3 pro-theme-primary">Item 1</ProPaper>
+        <ProPaper Class="py-3 px-3 pro-theme-primary">Item 2</ProPaper>
+        <ProPaper Class="py-5 px-3 pro-theme-primary">Item 3</ProPaper>
+    </ProStack>
+</ProPaper>
+
+<ProChipSet T="string" CheckMark Class="d-flex justify-center mt-12">
+    <ProChip Text="Start" OnClick="@(() => _align = AlignItems.Start)" SelectedColor="Color.Primary" Default="true" />
+    <ProChip Text="Center" OnClick="@(() => _align = AlignItems.Center)" SelectedColor="Color.Primary" />
+    <ProChip Text="End" OnClick="@(() => _align = AlignItems.End)" SelectedColor="Color.Primary" />
+    <ProChip Text="Stretch" OnClick="@(() => _align = AlignItems.Stretch)" SelectedColor="Color.Primary" />
+    <ProChip Text="Baseline" OnClick="@(() => _align = AlignItems.Baseline)" SelectedColor="Color.Primary" />
+</ProChipSet>
+
+
+@code {
+    AlignItems _align = AlignItems.Start;
+}

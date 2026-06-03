@@ -1,0 +1,38 @@
+﻿@using ProtonBlazor.Docs.Enums
+
+<ProTooltip Text="Notifications">
+    <ProBadge Color="Color.Secondary" Dot="true" Overlap="true" Visible="_newNotificationsAvailable">
+        <ProMenu Icon="@Icons.Material.Outlined.Notifications" Color="Color.Inherit" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopCenter" PopoverClass="docs-layout-menu-shadow" ListClass="pa-2 docs-menu-list" LockScroll="true" AriaLabel="Notifications">
+            <div class="d-flex justify-space-between align-center px-2">
+                <ProText Typo="Typo.subtitle2">Notifications</ProText>
+                <ProButton Disabled="@(_newNotificationsAvailable == false)" OnClick="MarkNotificationAsReadAsync" StartIcon="@Icons.Material.Filled.DoneAll" Variant="Variant.Text" Color="Color.Primary" Class="ml-16 mr-n2">Mark as read</ProButton>
+            </div>
+            @if (_messages != null)
+            {
+                @foreach (var (message, read) in _messages.Take(5))
+                {
+                    <ProMenuItem Class="px-2 py-0 rounded" Href="@($"/mud/announcements/{message.Id}")">
+                        <ProText Typo="Typo.subtitle2">@message.Title</ProText>
+                        <ProText Typo="Typo.body2">@($"{message.Authors.FirstOrDefault()?.DisplayName} • {message.PublishDate.ToString("MM/dd/yyyy")}")</ProText>
+                    </ProMenuItem>
+                    <ProDivider Class="my-2" />
+                }
+            }
+            else
+            {
+                <div class="d-flex justify-center align-center px-2 py-8 relative">
+                    <ProText Class="pro-text-secondary my-12">Nothing new :(</ProText>
+                    <ProtonBlazorLogo Class="docs-logo-filter mx-16 absolute" />
+                </div>
+            }
+        </ProMenu>
+    </ProBadge>
+</ProTooltip>
+
+<ProTooltip Text="@RtlButtonText">
+    <ProIconButton OnClick="@LayoutService.ToggleRightToLeftAsync" Icon="@RtlButtonIcon" Color="Color.Inherit" aria-label="@RtlButtonText" />
+</ProTooltip>
+
+<ProTooltip Text="@DarkLightModeButtonText">
+    <ProIconButton OnClick="@LayoutService.CycleDarkLightModeAsync" Icon="@DarkLightModeButtonIcon" Color="Color.Inherit" aria-label="@DarkLightModeButtonText" />
+</ProTooltip>

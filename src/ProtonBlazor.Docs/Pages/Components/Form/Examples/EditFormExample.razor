@@ -1,0 +1,77 @@
+﻿@using System.ComponentModel.DataAnnotations
+@namespace ProtonBlazor.Docs.Examples
+
+<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+<DataAnnotationsValidator/>
+<ProGrid>
+    <ProItem xs="12" sm="7">
+        <ProCard>
+            <ProCardContent>
+                <ProTextField Label="First name" HelperText="Max. 8 characters"
+                              @bind-Value="model.Username" For="@(() => model.Username)"/>
+                <ProTextField Label="Email" Class="mt-3"
+                              @bind-Value="model.Email" For="@(() => model.Email)"/>
+                <ProTextField Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                              @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password"/>
+                <ProTextField Label="Password" HelperText="Repeat the password" Class="mt-3"
+                              @bind-Value="model.Password2" For="@(() => model.Password2)" InputType="InputType.Password"/>
+            </ProCardContent>
+            <ProCardActions>
+                <ProButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</ProButton>
+            </ProCardActions>
+        </ProCard>
+    </ProItem>
+    <ProItem xs="12" sm="5">
+        <ProPaper Class="pa-4 pro-height-full">
+            <ProText Typo="Typo.subtitle2">Validation Summary</ProText>
+            @if (success)
+            {
+                <ProText Color="Color.Success">Success</ProText>
+            }
+            else
+            {
+                <ProText Color="@Color.Error">
+                    <ValidationSummary />
+                </ProText>
+            }
+        </ProPaper>
+    </ProItem>
+    <ProItem xs="12">
+        <ProText Typo="Typo.body2" Align="Align.Center">
+            Fill out the form correctly to see the success message.
+        </ProText>
+    </ProItem>
+</ProGrid>
+</EditForm>
+
+
+@code {
+    RegisterAccountForm model = new RegisterAccountForm();
+    bool success;
+
+    public class RegisterAccountForm
+    {
+        [Required]
+        [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
+        public string Username { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare(nameof(Password))]
+        public string Password2 { get; set; }
+
+    }
+
+    private void OnValidSubmit(EditContext context)
+    {
+        success = true;
+        StateHasChanged();
+    }
+}

@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   triage_pr:
-    if: ${{ github.repository_owner == 'MudBlazor' && (github.event.action != 'opened' || !github.event.pull_request.draft) }}
+    if: ${{ github.repository_owner == 'ProtonBlazor' && (github.event.action != 'opened' || !github.event.pull_request.draft) }}
     runs-on: ubuntu-latest
     steps:
       - name: Generate app token

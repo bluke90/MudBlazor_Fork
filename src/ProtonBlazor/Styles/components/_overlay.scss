@@ -1,0 +1,65 @@
+.pro-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  display: flex;
+  position: fixed;
+  transition: .3s cubic-bezier(.25,.8,.5,1),z-index 1ms;
+  z-index: 5;
+
+  &.pro-overlay-absolute {
+    position: absolute;
+  }
+
+  & .pro-overlay-scrim {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-color: transparent;
+    background-color: transparent;
+    animation: pro-animation-fadein ease 0.15s;
+    -webkit-animation: pro-animation-fadein ease 0.15s;
+    -moz-animation: pro-animation-fadein ease 0.15s;
+    -o-animation: pro-animation-fadein ease 0.15s;
+
+    &.pro-overlay-dark {
+      border-color: var(--pro-palette-overlay-dark);
+      background-color: var(--pro-palette-overlay-dark);
+    }
+
+    &.pro-overlay-light {
+      border-color: var(--pro-palette-overlay-light);
+      background-color: var(--pro-palette-overlay-light);
+    }
+
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  & .pro-overlay-content {
+    position: relative;
+  }
+
+  &.pro-overlay-popover {
+    z-index: var(--pro-zindex-popover);
+  }
+
+  &.pro-overlay-dialog {
+    z-index: calc(var(--pro-zindex-dialog) + 1);
+  }
+
+  &.pro-overlay-drawer {
+    z-index: calc(var(--pro-zindex-appbar) + 1); //<-- Yes this is correct we want to display it on top of the Appbar
+  }
+}

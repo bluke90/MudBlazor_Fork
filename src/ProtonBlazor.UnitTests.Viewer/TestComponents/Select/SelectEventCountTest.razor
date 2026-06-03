@@ -1,0 +1,27 @@
+﻿<ProPopoverProvider />
+
+<ProSelect T="string" ValueChanged="@ValueChanged" SelectedValuesChanged="@ValuesChanged" MultiSelection="@MultiSelection">
+    <ProSelectItem T="string" Value="@("1")" />
+    <ProSelectItem T="string" Value="@("2")" />
+    <ProSelectItem T="string" Value="@("3")" />
+    <ProSelectItem T="string" Value="@("4")" Disabled="true" />
+</ProSelect>
+
+@code {
+    [Parameter]
+    public bool MultiSelection { get; set; }
+
+    public int ValueChangeCount { get; private set; }
+
+    public int ValuesChangeCount { get; private set; }
+
+    private void ValueChanged()
+    {
+        ValueChangeCount++;
+    }
+
+    private void ValuesChanged()
+    {
+        ValuesChangeCount++;
+    }
+}

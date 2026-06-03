@@ -1,0 +1,9 @@
+﻿<ProRadioGroup T="string" Class="some-main-class" InputClass="some-input-class">
+    <ProRadio Value="@("1")" LabelPlacement="Placement.Left" />
+    <ProRadio Value="@("2")" LabelPlacement="Placement.Top" />
+    <ProRadio Value="@("3")" />
+</ProRadioGroup>
+
+@code {
+    public static string __description__ = "Clicking the radios should change the selected radio.";
+}

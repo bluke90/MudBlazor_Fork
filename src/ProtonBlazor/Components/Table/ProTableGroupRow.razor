@@ -1,0 +1,83 @@
+﻿@namespace ProtonBlazor
+@implements IDisposable
+@inherits ProComponentBase
+@using ProtonBlazor.Resources
+@inject InternalMudLocalizer Localizer
+@typeparam T
+
+@*HEADER:*@
+@if (HeaderTemplate != null && GroupDefinition != null)
+{
+<tr class="@HeaderClassname" @onclick="@OnRowClick" style="@HeaderStyle" @attributes="@UserAttributes">
+    @if ((GroupDefinition?.IsThisOrParentExpandable ?? false) || (Context?.Table?.MultiSelection ?? false))
+    {
+        <ProTd>
+            <div class="d-flex">
+                @if (GroupDefinition?.Expandable ?? false)
+                {
+                    <ProIconButton Class="pro-table-row-expander" Icon="@(Expanded ? ExpandIcon : CollapseIcon)" OnClick="@(() => Expanded = !Expanded)"
+                                       aria-label="@(Expanded? Localizer[LanguageResource.ProTable_CollapseGroup] : Localizer[LanguageResource.ProTable_ExpandGroup])" />
+                }
+                else
+                {
+                    if (GroupDefinition?.IsParentExpandable ?? false)
+                    {
+                        <div style="@ActionsStylename"></div>
+                    }
+                }
+                @if (Checkable)
+                {
+                    <ProCheckBox T="bool?" @bind-Value="Checked" ReadOnly="!SelectionChangeable" Disabled="!SelectionChangeable" Class="pro-table-cell-checkbox"/>
+                }
+            </div>
+        </ProTd>
+    }
+    @HeaderTemplate(new TableGroupData<object, T>(GroupDefinition?.GroupName, Items?.Key, Items?.ToList() ?? new List<T>()))
+    @if ((Context?.Table?.Editable ?? false))
+    {
+        <ProTd />
+    }
+</tr>
+}
+else
+{
+    <ProText @attributes="@UserAttributes">@("There aren't any group definition to use with this component.")</ProText>
+}
+
+@if (Expanded)
+{
+    Context?.UpdateRowCheckBoxes();
+
+    @*CHILDREN:*@
+    @if (_innerGroupItems != null && GroupDefinition != null)
+    {
+        @foreach (var group in _innerGroupItems)
+        {
+            <ProTableGroupRow @key="group.Key" T="T" GroupDefinition="GroupDefinition.InnerGroup" Items="@group"
+                              Checkable="@Checkable" SelectionChangeable="SelectionChangeable"
+                              HeaderClass="@HeaderClass" HeaderStyle="@HeaderStyle" HeaderTemplate="@HeaderTemplate"
+                              FooterClass="@FooterClass" FooterStyle="@FooterStyle" FooterTemplate="@FooterTemplate"
+                              @attributes="@UserAttributes" />
+        }
+    }
+    else
+    {
+        @Table?.RenderRows(Items, (GroupDefinition?.Indentation ?? false) ? $"pro-table-row-group-indented-{GroupDefinition?.Level - 1}" : null, GroupDefinition?.IsThisOrParentExpandable ?? false)
+    }
+
+    @*FOOTER:*@
+    @if (FooterTemplate != null && GroupDefinition != null)
+    {
+        <tr class="@FooterClassname" @onclick="@OnRowClick" style="@FooterStyle" @attributes="@UserAttributes">
+            @if ((GroupDefinition?.IsThisOrParentExpandable ?? false) || (Context?.Table?.MultiSelection ?? false))
+            {
+                <ProTd/>
+            }
+            @FooterTemplate(new TableGroupData<object, T>(GroupDefinition?.GroupName, Items?.Key, Items?.ToList() ?? []))
+            @if ((Context?.Table?.Editable ?? false))
+            {
+                <ProTd />
+            }
+        </tr>
+    }
+}

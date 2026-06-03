@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Docs.Wireframes
+@layout WireframeLayout
+@page "/getting-started/wireframes/layout2"
+
+<ProThemeProvider />
+
+<ProLayout>
+    <ProAppBar Elevation="1">
+        <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <ProText Typo="Typo.h5" Class="ml-3">Application</ProText>
+        <ProSpacer />
+        <ProIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </ProAppBar>
+    <ProDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        @*NavMenu*@
+    </ProDrawer>
+    <ProMainContent>
+        @*Body*@
+    </ProMainContent>
+</ProLayout>
+
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+} 
+

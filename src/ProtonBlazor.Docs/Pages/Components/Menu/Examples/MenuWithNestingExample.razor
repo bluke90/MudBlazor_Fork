@@ -1,0 +1,32 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProMenu Label="Open nested menu" Dense>
+    <ProMenuItem Label="Add reaction" />
+    <ProMenuItem Label="Add bookmark" />
+
+    <ProMenu Label="Format">
+        <ProMenu Label="Text" StartIcon="@Icons.Material.Filled.FormatBold">
+            <ProMenuItem Label="Bold" Icon="@Icons.Material.Filled.FormatBold" />
+            <ProMenuItem Label="Italic" Icon="@Icons.Material.Filled.FormatItalic" />
+            <ProMenuItem Label="Underline" Icon="@Icons.Material.Filled.FormatUnderlined" />
+
+            <ProMenu Label="Size">
+                <ProMenuItem Label="Increase font size" />
+                <ProMenuItem Label="Decrease font size" />
+            </ProMenu>
+        </ProMenu>
+
+        <ProMenu Label="Points">
+            <ProMenuItem Label="Bullet" Icon="@Icons.Material.Filled.FormatListBulleted" IconColor="Color.Secondary" />
+            <ProMenuItem Label="Number" Icon="@Icons.Material.Filled.FormatListNumbered" IconColor="Color.Secondary" />
+        </ProMenu>
+
+        <ProMenu Label="Alignment">
+            <ProMenuItem Label="Left" Icon="@Icons.Material.Filled.FormatAlignLeft" IconColor="Color.Tertiary" />
+            <ProMenuItem Label="Right" Icon="@Icons.Material.Filled.FormatAlignRight" IconColor="Color.Tertiary" />
+        </ProMenu>
+
+        <ProMenuItem Label="Clear formatting" />
+        <ProMenuItem Label="Headers and footers" />
+    </ProMenu>
+</ProMenu>

@@ -1,0 +1,13 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProButtonGroup Color="Color.Primary" Variant="Variant.Outlined" OverrideStyles="_overrideStyles">
+    <ProButton Color="Color.Primary" Variant="Variant.Outlined">One</ProButton>
+    <ProButton Color="Color.Warning" Variant="Variant.Outlined">Two</ProButton>
+    <ProButton Color="Color.Secondary" Variant="Variant.Outlined">Three</ProButton>
+</ProButtonGroup>
+
+<ProSwitch @bind-Value="_overrideStyles" Label="Override styles" Color="Color.Primary" />
+
+@code {
+    private bool _overrideStyles;
+}

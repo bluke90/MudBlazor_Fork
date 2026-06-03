@@ -1,0 +1,16 @@
+﻿<ProNavMenu>
+    <ProText Typo="Typo.subtitle2" Color="Color.Inherit" Class="ml-4 my-3">Templates</ProText>
+    <ProNavLink Href="/" Icon="@Icons.Material.Outlined.SelectAll">Select Template</ProNavLink>
+    <ProNavLink Href="/Admin/Upload" Icon="@Icons.Material.Outlined.Upload">Upload Template</ProNavLink>
+    <ProNavGroup Icon="@Icons.Material.Outlined.AdminPanelSettings" Title="Admin" HeaderClass="pl-4" Disabled="@_isGroupDisabled">
+            <ProNavLink Href="/users" Icon="@Icons.Material.Filled.People" IconColor="Color.Success">User Management</ProNavLink>
+             <ProNavLink Href="/Admin/Upload" Icon="@Icons.Material.Filled.Security" IconColor="Color.Info">Upload Template</ProNavLink>
+             <ProNavLink Href="/MailTemplate" Icon="@Icons.Material.Filled.Security" Disabled="true">Mail Template</ProNavLink>
+        </ProNavGroup>
+</ProNavMenu>
+
+<ProCheckBox @bind-Value="@_isGroupDisabled">Disable Group</ProCheckBox>
+
+@code {
+    private bool _isGroupDisabled;
+}

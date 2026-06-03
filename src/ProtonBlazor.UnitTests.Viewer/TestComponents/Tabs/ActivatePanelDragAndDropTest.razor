@@ -1,0 +1,28 @@
+﻿<ProTabs Outlined="true" Elevation="4" Rounded="true" Border="true" ActiveTabClass="@ActiveTabClass"
+         ApplyEffectsToContainer="true" Class="mt-8" TabPanelsClass="pa-6"
+         EnableDragAndDrop="@_dragDrop" @bind-ActivePanelIndex="_activePanelIndex">
+    <ProTabPanel Text="One">
+        <ProText Typo="Typo.h6">Tab One</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Two">
+        <ProText Typo="Typo.h6">Tab Two</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Three">
+        <ProText Typo="Typo.h6">Tab Three</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Four">
+        <ProText Typo="Typo.h6">Tab Four</ProText>
+    </ProTabPanel>
+</ProTabs>
+
+<ProCheckBox @bind-Value="_dragDrop" Class="drag-drop-class" Color="@Color.Primary">
+    Enable Drag & Drop
+</ProCheckBox>
+
+@code {
+    private bool _dragDrop { get; set; }
+    private int _activePanelIndex { get; set; } = 1;
+
+    [Parameter]
+    public string? ActiveTabClass { get; set; }
+}

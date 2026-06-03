@@ -1,0 +1,26 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+
+<div style="width: 250px;">
+    <ProButton Variant="Variant.Filled" Color="Color.Primary" FullWidth OnClick="@ToggleOpen">Open</ProButton>
+    <ProPopover Open="@_open" Class="pa-4" Fixed="true" RelativeWidth="@_dropdownWidth" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopLeft">
+        <ProText>Content of the popover can be anything.</ProText>
+        <ProButton OnClick="@ToggleOpen" Class="ml-auto mr-n3 mb-1" Color="Color.Error">Close</ProButton>
+    </ProPopover>
+</div>
+
+<div style="width: 250px; margin-left: 150px;">
+    <ProSelect T="DropdownWidth" Label="Dropdown Width" @bind-Value="@_dropdownWidth">
+        <ProSelectItem Value="@DropdownWidth.Relative">Relative</ProSelectItem>
+        <ProSelectItem Value="@DropdownWidth.Adaptive">Adaptive</ProSelectItem>
+        <ProSelectItem Value="@DropdownWidth.Ignore">Ignore</ProSelectItem>
+    </ProSelect>
+</div>
+
+@code{
+    private bool _open;
+
+    private DropdownWidth _dropdownWidth = DropdownWidth.Ignore;
+
+    private void ToggleOpen() => _open = !_open;
+}

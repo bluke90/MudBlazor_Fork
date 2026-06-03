@@ -1,0 +1,52 @@
+﻿<ProForm @ref="_form" ValidationDelay="0">
+    <ProTextField T="string"
+                  id="username"
+                  @bind-Value="Model.Username"
+                  DebounceInterval="@DebounceInterval"
+                  Required="true"
+                  OnlyValidateIfDirty="true"
+                  Variant="Variant.Outlined"
+                  autoComplete="username" />
+    
+    <ProTextField @bind-Value="Model.Password"
+                  id="password"
+                  InputType="InputType.Password"
+                  Required="true"
+                  OnlyValidateIfDirty="true"
+                  Variant="Variant.Outlined"
+                  autoComplete="current-password" />
+
+    <ProButton id="validate-button"
+               OnClick="ValidateAsync">
+        Validate
+    </ProButton>
+</ProForm>
+
+<ProText id="result-text">
+    @ResultText
+</ProText>
+
+@code {
+    public static string __description__ = "Ensures form validation flushes a pending debounced value before validating.";
+
+    public FormModel Model { get; } = new();
+
+    public int DebounceInterval => 500;
+
+    public string ResultText { get; private set; } = string.Empty;
+
+    private ProForm _form = null!;
+
+    private async Task ValidateAsync()
+    {
+        await _form.ValidateAsync();
+        ResultText = _form.IsValid ? "succeeded" : "failed";
+    }
+
+    public class FormModel
+    {
+        public string? Username { get; set; }
+
+        public string? Password { get; set; }
+    }
+}

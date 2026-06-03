@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProSelect @bind-Value="_value">
+    <ProSelectItem T="int" Value="1"/>
+    <ProSelectItem T="int" Value="2"/>
+    <ProSelectItem T="int" Value="3"/>
+</ProSelect>
+
+@code {
+    public static string __description__ = "The items have no render fragments, so instead of RF the select must display the converted string value";
+
+    private int _value = 1;
+}

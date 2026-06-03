@@ -1,0 +1,9 @@
+﻿<ProTabs Disabled="@Disabled" TabButtonsClass="test-tab-button">
+    <ProTabPanel Text="One">One</ProTabPanel>
+    <ProTabPanel Text="Two">Two</ProTabPanel>
+</ProTabs>
+
+@code {
+    [Parameter]
+    public bool Disabled { get; set; } = true;
+}

@@ -1,0 +1,41 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Row Justify="Justify.SpaceAround" AlignItems="AlignItems.Start" Class="pro-width-full">
+    <ProFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+        <CustomContent>
+            <ProButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       OnClick="@context.OpenFilePickerAsync"
+                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                Upload using FileValueChanged
+            </ProButton>
+        </CustomContent>
+    </ProFileUpload>
+    <ProFileUpload T="IBrowserFile" OnFilesChanged="UploadFiles">
+        <CustomContent>
+            <ProButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       OnClick="@context.OpenFilePickerAsync"
+                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                Upload using OnFilesChanged
+            </ProButton>
+        </CustomContent>
+    </ProFileUpload>
+</ProStack>
+
+@code
+{
+    private readonly IList<IBrowserFile> _files = new List<IBrowserFile>();
+
+    private void UploadFiles(IBrowserFile file)
+    {
+        _files.Add(file);
+        //TODO upload the files to the server
+    }
+
+    private void UploadFiles(InputFileChangeEventArgs args)
+    {
+        _files.Add(args.File);
+        //TODO upload the files to the server
+    }
+}

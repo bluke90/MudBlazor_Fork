@@ -1,0 +1,15 @@
+﻿<ProTable Items="@_examples" T="string">
+    <HeaderContent>
+        <ProTh><ProTableSortLabel InitialSortDirection="@InitialSortDirection" SortBy="new Func<string, object>(x=>x)">#</ProTableSortLabel></ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context</ProTd>
+    </RowTemplate>
+</ProTable>
+
+@code {
+    [Parameter]
+    public SortDirection InitialSortDirection { get; set; } = SortDirection.Descending;
+
+    private readonly IEnumerable<string> _examples = new List<string> { "B", "A", "C" };
+}

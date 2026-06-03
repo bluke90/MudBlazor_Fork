@@ -1,0 +1,36 @@
+﻿<ProChipSet @bind-SelectedValue="_selectedValue" @bind-SelectedValues="_selectedValues" SelectionMode="SelectionMode.MultiSelection">
+    <ProChip Value="@("Milk")" />
+    <ProChip Value="@("Eggs")" />
+    <ProChip Value="@("Soap")" />
+    <ProChip Value="@("Corn flakes")" />
+    <ProChip Value="@("Salad")" />
+    <ProChip Value="@("Apples")" />
+    <ProChip Value="@("Red wine")" />
+</ProChipSet>
+
+<div class="selected-value">
+    <ProText>@_selectedValue</ProText>
+</div>
+<div class="selected-values">
+    @if (_selectedValues is { Count: > 0 }) {
+        <ProText>@string.Join(", ", _selectedValues)</ProText>
+    }
+    else {
+        <ProText>Nothing selected</ProText>
+    }
+</div>
+
+@code
+{
+    private string? _selectedValue;
+    private IReadOnlyCollection<string>? _selectedValues;
+
+    [Parameter]
+    public string[]? InitialValues { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _selectedValues = InitialValues;
+    }
+}

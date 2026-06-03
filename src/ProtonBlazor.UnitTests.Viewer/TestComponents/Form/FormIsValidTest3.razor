@@ -1,0 +1,23 @@
+﻿<div style="max-width: 400px;">
+    <ProForm @ref="_form1" @bind-IsValid="@_valid" @bind-IsTouched="@_touched" ValidationDelay="0" >
+        <ProTextField id="textFieldLabelTest" T="string" Label="First Name"/>
+        <ProTextField T="string" Required="true" Label="Last Name" />
+    </ProForm>
+    <div class="d-flex mt-5">
+        <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => _form1.ValidateAsync())">Validate</ProButton>
+        <ProButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="@(() => _form1.ResetAsync())" Class="mx-2">Reset</ProButton>
+        <ProButton Variant="Variant.Filled" OnClick="@(() => _form1.ResetValidationAsync())">Reset Validation</ProButton>
+    </div>
+    <div class="d-flex mt-3">
+        <ProSwitch @bind-Value="@_valid" Label="IsValid " Color="Color.Info" />
+        <ProSwitch @bind-Value="@_touched" Label="IsTouched" Color="Color.Info" />
+    </div>
+</div>
+
+@code {
+    public static string __description__ = "Form should update the bound variables valid and touched whenever they change.";
+
+    private bool _touched;
+    private bool _valid = true;
+    private ProForm _form1 = null!;
+}

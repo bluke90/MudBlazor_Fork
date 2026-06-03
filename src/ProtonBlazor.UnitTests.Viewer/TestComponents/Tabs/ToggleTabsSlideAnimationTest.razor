@@ -1,0 +1,39 @@
+﻿<ProSelect Variant="Variant.Outlined" Label="Tabs Position" Dense="true" Margin="Margin.Dense" T="@Position" @bind-Value="Position">
+    <ProSelectItem T="Position" Value="@Position.Top">Top</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Start">Start</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Left">Left</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Right">Right</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.End">End</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Bottom">Bottom</ProSelectItem>
+</ProSelect>
+<br />
+<ProTabs @bind-ActivePanelIndex="@SelectedTab" SliderAnimation="@SliderAnimation" Position="@Position">
+    <ProTabPanel Text="Tab One">
+        <ProText>Content One</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Two">
+        <ProText>Content Two</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Three">
+        <ProText>Content Three</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Disabled" Disabled="true">
+        <ProText>Content Disabled</ProText>
+    </ProTabPanel>
+</ProTabs>
+
+SliderAnimation (@SliderAnimation):
+<ProToggleIconButton @bind-Toggled="@SliderAnimation"
+        Icon="@Icons.Material.Filled.Animation" 
+        ToggledIcon="@Icons.Material.Filled.Animation" 
+        Color="Color.Error" 
+        ToggledColor="Color.Success"/>
+
+@code {
+    [Parameter]
+    public int SelectedTab { get; set; } = 2;
+
+    public bool SliderAnimation { get; set; } = true;
+
+    public Position Position { get; set; } = Position.Left;
+}

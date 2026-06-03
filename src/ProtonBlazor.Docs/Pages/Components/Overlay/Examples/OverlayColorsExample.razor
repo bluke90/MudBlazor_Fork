@@ -1,0 +1,32 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" sm="6">
+        <ProPaper Class="pa-4 my-2" Style="position:relative;">
+            <ProOverlay Visible="lightVisible" LightBackground="true" Absolute="true" />
+            <ProText>
+                Det var en gång en spindel, som hette laban. Laban tyckte om kebab pizza, men det gjorde inte hans kompis åke.
+                Åke och Laban skulle en dag ut och fiska. På vägen dit skrek Laban till, faaan du åke!!! det luktar kebab!!!
+            </ProText>
+            <ProButton Variant="Variant.Filled" Class="mt-2">Action</ProButton>
+        </ProPaper>
+        <ProSwitch @bind-Value="lightVisible" Label="Light Overlay" Color="Color.Primary"/>
+    </ProItem>
+    <ProItem xs="12" sm="6">
+        <ProPaper Class="pa-4 my-2" Style="position:relative;">
+            <ProOverlay Visible="darkVisible" DarkBackground="true" Absolute="true" />
+            <ProText>
+                Det var en gång en spindel, som hette laban. Laban tyckte om kebab pizza, men det gjorde inte hans kompis åke.
+                Åke och Laban skulle en dag ut och fiska. På vägen dit skrek Laban till, faaan du åke!!! det luktar kebab!!!
+            </ProText>
+            <ProButton Variant="Variant.Filled" Class="mt-2">Action</ProButton>
+        </ProPaper>
+        <ProSwitch @bind-Value="darkVisible" Label="Dark Overlay" Color="Color.Secondary" />
+    </ProItem>
+</ProGrid>
+
+
+@code {
+    private bool lightVisible;
+    private bool darkVisible;
+} 

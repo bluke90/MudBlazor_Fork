@@ -1,0 +1,49 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Height="360px" Class="d-flex justify-space-around pro-width-full" Elevation="0">
+    <ProProgressLinear Vertical="true" Color="Color.Primary" Size="Size.Small" Indeterminate="true" />
+    <ProProgressLinear Vertical="true" Color="Color.Primary" Size="Size.Medium" Value="@Value" />
+    <ProProgressLinear Vertical="true" Color="Color.Primary" Size="Size.Medium" Value="25">
+        <ProText Typo="Typo.subtitle1" Color="Color.Dark"><b>25</b></ProText>
+    </ProProgressLinear>
+    <ProProgressLinear Vertical="true" Color="Color.Primary" Size="Size.Small" Buffer="true" Value="@Value" BufferValue="@BufferValue" />
+    <ProProgressLinear Vertical="true" Color="Color.Primary" Striped="true" Size="Size.Large" Value="@Value" />
+</ProPaper>
+
+@code {
+    private bool _disposed;
+
+    public int Value { get; set; }
+
+    public int BufferValue { get; set; }
+
+    public async Task SimulateProgressAsync()
+    {
+        Value = 5;
+        BufferValue = 10;
+
+        do
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            Value += 4;
+            BufferValue += 5;
+            StateHasChanged();
+            await Task.Delay(500);
+
+        } while (Value < 100);
+
+        await SimulateProgressAsync();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await SimulateProgressAsync();
+    }
+
+    public void Dispose() => _disposed = true;
+}

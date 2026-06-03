@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDialog>
+    <DialogContent>
+        Dialog Content
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="CancelAll">Close All</ProButton>
+    </DialogActions>
+</ProDialog>
+
+
+@code {
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; }
+
+    private void Cancel() => ProDialog.Cancel();
+
+    private void CancelAll() => ProDialog.CancelAll();
+}

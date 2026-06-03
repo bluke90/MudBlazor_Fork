@@ -1,0 +1,29 @@
+﻿<ProGrid>
+    <ProItem sm="12" md="6">
+        <ProRadioGroup @bind-Value="_selectedOption1" ReadOnly="_readOnly">
+            <ProRadio Value="@("Radio 1")">Radio 1</ProRadio>
+            <ProRadio Value="@("Radio 2")">Radio 2</ProRadio>
+            <ProRadio Value="@("Radio 3")">Radio 3</ProRadio>
+            <ProRadio Value="@("Radio 4")">Radio 4</ProRadio>
+        </ProRadioGroup>
+        <ProSwitch @bind-Value="_readOnly" Color="Color.Primary" Label="ReadOnly" />
+        <ProText>Selected Option 1: @_selectedOption1</ProText>
+    </ProItem>
+    <ProItem sm="12" md="6">
+        <ProRadioGroup @bind-Value="_selectedOption2" Disabled="_disabled">
+            <ProRadio Value="@("Radio 1")">Radio 1</ProRadio>
+            <ProRadio Value="@("Radio 2")">Radio 2</ProRadio>
+            <ProRadio Value="@("Radio 3")">Radio 3</ProRadio>
+            <ProRadio Value="@("Radio 4")">Radio 4</ProRadio>
+        </ProRadioGroup>
+        <ProSwitch @bind-Value="_disabled" Color="Color.Primary" Label="Disabled" />
+        <ProText>Selected Option 2: @_selectedOption2</ProText>
+    </ProItem>
+</ProGrid>
+
+@code {
+    private string? _selectedOption1;
+    private string? _selectedOption2;
+    private bool _disabled;
+    private bool _readOnly;
+}

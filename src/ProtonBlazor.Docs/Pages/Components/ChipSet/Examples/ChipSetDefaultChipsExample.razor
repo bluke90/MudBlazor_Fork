@@ -1,0 +1,27 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+<ProChipSet @bind-SelectedValues="_selected" SelectionMode="SelectionMode.MultiSelection" CheckMark>
+    <ProChip Value="@("Milk")" />
+    <ProChip Value="@("Eggs")" />
+    <ProChip Value="@("Soap")" />
+    <ProChip Value="@("Cornflakes")" />
+    <ProChip Value="@("Salad")" />
+    <ProChip Value="@("Apples")" />
+    <ProChip Value="@("Red wine")" />
+</ProChipSet>
+
+<div class="d-flex justify-center">
+    @if (_selected is { Count: > 0 })
+    {
+        <ProText>You selected @string.Join(", ", _selected).</ProText>
+    }
+    else
+    {
+        <ProText>Nothing selected.</ProText>
+    }
+</div>
+
+@code
+{
+    private IReadOnlyCollection<string> _selected = ["Milk", "Cornflakes"];
+}
+

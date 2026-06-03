@@ -1,0 +1,47 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+@typeparam T
+@using ProtonBlazor.Resources
+@inject InternalMudLocalizer Localizer
+
+<ProToolBar @attributes="UserAttributes" Class="@Classname" Style="@Style">
+    <div class="pro-table-pagination-spacer"></div>
+    @if (PageSizeSelector)
+    {
+        <ProText Typo="Typo.body2" Class="pro-table-pagination-caption">
+            @RowsPerPageString
+        </ProText>
+        <ProSelect T="int" ValueChanged="@SetRowsPerPageAsync" Value="@(DataGrid?.RowsPerPage ?? 0)" Class="pro-table-pagination-select" Underline="false" Dense="true" Disabled="@Disabled" SelectionOnEnter="true">
+            @foreach (int pageSize in PageSizeOptions)
+            {
+                if (pageSize == int.MaxValue)
+                {
+                    <ProSelectItem T="int" Value="@pageSize">@AllItemsText</ProSelectItem>
+                }
+                else 
+                {
+                    <ProSelectItem T="int" Value="@pageSize">@pageSize.ToString().ToUpper()</ProSelectItem>
+                }
+            }
+        </ProSelect>
+    }
+
+    @if (ShowPageNumber)
+    {
+        <ProText Typo="Typo.body2" Class="pro-table-pagination-caption">
+            @Info
+        </ProText>
+    }
+    
+    @if (ShowNavigation)
+    {
+        <div class="pro-table-pagination-actions">
+            <ProIconButton Class="pro-flip-x-rtl" Icon="@Icons.Material.Filled.FirstPage" Disabled="@BackButtonsDisabled" @onclick="@(() => DataGrid?.NavigateTo(Page.First))" aria-label="@Localizer[LanguageResource.ProDataGridPager_FirstPage]" />
+            <ProIconButton Class="pro-flip-x-rtl" Icon="@Icons.Material.Filled.NavigateBefore" Disabled="@BackButtonsDisabled" @onclick="@(() => DataGrid?.NavigateTo(Page.Previous))" aria-label="@Localizer[LanguageResource.ProDataGridPager_PreviousPage]" />
+            <ProIconButton Class="pro-flip-x-rtl" Icon="@Icons.Material.Filled.NavigateNext" Disabled="@ForwardButtonsDisabled" @onclick="@(() => DataGrid?.NavigateTo(Page.Next))" aria-label="@Localizer[LanguageResource.ProDataGridPager_NextPage]" />
+            <ProIconButton Class="pro-flip-x-rtl" Icon="@Icons.Material.Filled.LastPage" Disabled="@ForwardButtonsDisabled" @onclick="@(() => DataGrid?.NavigateTo(Page.Last))" aria-label="@Localizer[LanguageResource.ProDataGridPager_LastPage]" />
+        </div>
+    }
+
+</ProToolBar>
+

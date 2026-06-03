@@ -1,0 +1,59 @@
+﻿@*
+    Copyright (c) Alessandro Ghidini. All rights reserved.
+    Changes and improvements Copyright (c) The ProtonBlazor Team.
+*@
+
+@{
+#pragma warning disable IL2111
+}
+
+@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@inherits ProComponentBase
+@inject InternalMudLocalizer Localizer
+
+@_css
+<div role="alert"
+     aria-live="polite"
+     class="@SnackbarClass"
+     style="@AnimationStyle"
+     @onclick="this.AsNonRenderingEventHandler(SnackbarClicked)"
+     @onpointerenter="InteractionStartHandler"
+     @onpointerleave="InteractionEndHandler"
+     @ontouchstart="InteractionStartHandler"
+     @ontouchend="InteractionEndHandler"
+     @ontouchcancel="InteractionEndHandler"
+     @attributes="UserAttributes">
+
+    @if (!HideIcon)
+    {
+        <div class="pro-snackbar-icon">
+            <ProIcon Icon="@Icon" Color="@IconColor" Size="@IconSize" />
+        </div>
+    }
+
+    <div class="pro-snackbar-content-message">
+        @if (Message?.ComponentType != null)
+        {
+            <DynamicComponent Type="Message.ComponentType" Parameters="Message.ComponentParameters" />
+        }
+    </div>
+
+    @if (ShowCloseIcon || ShowActionButton)
+    {
+        <div class="pro-snackbar-content-action">
+            @if (ShowActionButton)
+            {
+                <ProButton Class="pro-snackbar-action-button" Variant="@ActionVariant" Color="@ActionColor" OnClick="ActionClicked" DropShadow="false">
+                    @Action
+                </ProButton>
+            }
+
+            @if (ShowCloseIcon)
+            {
+                <ProIconButton Class="pro-snackbar-close-button ms-2" Icon="@CloseIcon" Size="Size.Small" OnClick="CloseIconClicked"
+                               aria-label="@Localizer[LanguageResource.ProSnackbar_Close]" />
+            }
+        </div>
+    }
+</div>

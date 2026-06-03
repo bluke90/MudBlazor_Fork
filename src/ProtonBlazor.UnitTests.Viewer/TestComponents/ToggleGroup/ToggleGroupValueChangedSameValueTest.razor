@@ -1,0 +1,34 @@
+﻿
+<ProStack>
+    <ProText>Select an item</ProText>
+    <ProToggleGroup T="string" SelectionMode="SelectionMode.SingleSelection" Value="_value1" ValueChanged="OnValueChanged" Color="Color.Primary" CheckMark FixedContent>
+        <ProToggleItem Value="@("Yes")" Text="Yes" />
+        <ProToggleItem Value="@("No")" Text="No" />
+        <ProToggleItem Value="@("Don't know")" Text="Don't know (Click me twice)" />
+    </ProToggleGroup>
+    <ProText>
+        Selected value : @(_value1 ?? "None")
+    </ProText>
+</ProStack>
+
+
+@code {
+
+    private string? _value1;
+
+    private async Task OnValueChanged(string value)
+    {
+        if (value == "Don't know")
+        {
+
+            // I expect "Yes" to become the selected toggle button
+            _value1 = "Yes";
+        }
+        else
+        {
+            _value1 = value;
+        }
+
+        await Task.CompletedTask;
+    }
+}

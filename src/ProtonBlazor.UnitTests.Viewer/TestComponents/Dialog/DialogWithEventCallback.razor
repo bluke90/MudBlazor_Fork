@@ -1,0 +1,30 @@
+﻿<ProDialog>
+    <DialogContent>
+        Dialog Content
+        <ProTextField T="string" Immediate TextChanged="@OnTextChangedAsync" />
+        <div @onclick="OnClick">
+            Click here!
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="Submit">OK</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    private void Submit() => ProDialog.Close(DialogResult.Ok(true));
+
+    private void Cancel() => ProDialog.Cancel();
+
+    private Task OnTextChangedAsync(string text) => OnSearch.InvokeAsync(text);
+}

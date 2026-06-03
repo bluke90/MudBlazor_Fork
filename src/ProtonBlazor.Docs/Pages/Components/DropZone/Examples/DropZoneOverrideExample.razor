@@ -1,0 +1,50 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDropContainer T="DropItem" DraggingClass="pro-alert-text-warning" ItemDraggingClass="pro-alert-text-warning" Items="_items" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" NoDropClass="pro-border-error" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
+    <ChildContent>
+        <ProDropZone T="DropItem" Identifier="Enterprise" DraggingClass="pro-alert-text-info" ItemDraggingClass="pro-alert-text-info" Class="rounded-lg border-2 border-dashed pro-border-lines-default pa-6 ma-8" CanDrop="@((item) => item.Team == "BLUE")">
+            <ProText Typo="Typo.h6" Class="mb-4">USS Enterprise</ProText>
+         </ProDropZone>
+        <ProDropZone T="DropItem" Identifier="Air Zone 1" Class="rounded-lg border-2 border-dashed pro-border-lines-default pa-6 ma-8 flex-grow-1">
+            <ProText Typo="Typo.h6" Class="mb-4">Air Zone 1</ProText>
+        </ProDropZone>
+        <ProDropZone T="DropItem" Identifier="Air Zone 2" Class="rounded-lg border-2 border-dashed pro-border-lines-default pa-6 ma-8 flex-grow-1">
+            <ProText Typo="Typo.h6" Class="mb-4">Air Zone 2</ProText>
+        </ProDropZone>
+        <ProDropZone T="DropItem" Identifier="Danger Zone" DraggingClass="pro-alert-text-error" ItemDraggingClass="pro-alert-text-error" CanDrop="@((item) => item.Team == "RED")" Class="rounded-lg border-2 border-dashed pro-border-lines-default pa-6 ma-8">
+            <ProText Typo="Typo.h6" Class="mb-4">Danger Zone</ProText>
+        </ProDropZone>
+    </ChildContent>
+    <ItemRenderer>
+        <ProStack Row Class="pro-elevation-25 pa-4 my-4">
+            <ProDragHandle T="DropItem">
+                <ProIcon Icon="@Icons.Material.Filled.DragHandle" Color="Color.Inherit" Class="mr-2" />
+            </ProDragHandle>
+            @context.Name
+        </ProStack>
+    </ItemRenderer>
+</ProDropContainer>
+
+@code {
+    private void ItemUpdated(ProItemDropInfo<DropItem> dropItem)
+    {
+        dropItem.Item.Identifier = dropItem.DropzoneIdentifier;
+    }
+    
+    private List<DropItem> _items = new()
+    {
+        new DropItem(){ Name = "Grumman", Team = "BLUE", Identifier = "Enterprise" },
+        new DropItem(){ Name = "Tomcat", Team = "BLUE", Identifier = "Enterprise" },
+        new DropItem(){ Name = "McDonnell", Team = "BLUE", Identifier = "Enterprise" },
+        new DropItem(){ Name = "Frogfoot", Team = "RED", Identifier = "Danger Zone" },
+        new DropItem(){ Name = "Fulcrum", Team = "RED", Identifier = "Danger Zone" },
+        new DropItem(){ Name = "Fullback", Team = "RED", Identifier = "Danger Zone" },
+    };
+    
+    public class DropItem
+    {
+        public string Name { get; init; }
+        public string Team { get; init; }
+        public string Identifier { get; set; }
+    }
+}

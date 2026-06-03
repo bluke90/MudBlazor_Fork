@@ -1,0 +1,31 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProChipSet T="Color" @bind-SelectedValue="SelectedColor" CheckMark SelectionMode="@SelectionMode">
+    <ProChip Text="purple" Color="Color.Primary" Value="@Color.Primary">Primary</ProChip>
+    <ProChip Text="pink" Color="Color.Secondary" Value="@Color.Secondary">Secondary</ProChip>
+    <ProChip Text="blue" Color="Color.Info" Value="@Color.Info">Info</ProChip>
+    <ProChip Text="green" Color="Color.Success" Value="@Color.Success">Success</ProChip>
+    <ProChip Text="orange" Color="Color.Warning" Value="@Color.Warning">Warning</ProChip>
+    <ProChip Text="red" Color="Color.Error" Value="@Color.Error">Error</ProChip>
+    <ProChip Text="black" Color="Color.Dark" Value="@Color.Dark">Dark</ProChip>
+</ProChipSet>
+
+<div class="d-flex flex-column align-center">
+    @if (SelectedColor != default) {
+        <ProText>You selected the <ProText Color="@SelectedColor" Inline>@SelectedColor.ToStringFast(true)</ProText> chip.</ProText>
+    }
+    else {
+        <ProText>Nothing selected.</ProText>
+    }
+    <ProRadioGroup @bind-Value="SelectionMode">
+        <ProRadio Value="@SelectionMode.SingleSelection" Color="Color.Primary">SingleSelection</ProRadio>
+        <ProRadio Value="@SelectionMode.ToggleSelection" Color="Color.Primary">ToggleSelection</ProRadio>
+    </ProRadioGroup>
+</div>
+
+@code
+{
+    public SelectionMode SelectionMode = SelectionMode.SingleSelection;
+    public Color SelectedColor;
+}
+

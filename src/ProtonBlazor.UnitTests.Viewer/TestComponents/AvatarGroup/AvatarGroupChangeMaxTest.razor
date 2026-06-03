@@ -1,0 +1,28 @@
+﻿<ProButton id="change-max-button" OnClick="ChangeMax" Variant="Variant.Filled" Class="mb-4">ChangeMax</ProButton><ProText>Max: @Max</ProText>
+<ProAvatarGroup Max="@Max" MaxColor="Color.Primary">
+    <ProAvatar Color="Color.Primary">AA</ProAvatar>
+    <ProAvatar Color="Color.Secondary">BB</ProAvatar>
+    <ProAvatar Color="Color.Tertiary">CC</ProAvatar>
+    <ProAvatar Color="Color.Info">DD</ProAvatar>
+    <ProAvatar Color="Color.Secondary">FF</ProAvatar>
+    <ProAvatar Color="Color.Warning">GG</ProAvatar>
+    <ProAvatar Color="Color.Error">HH</ProAvatar>
+</ProAvatarGroup>
+
+@code {
+    public static string __description__ = "Clicking the button should change the max numbers of avatars.";
+
+    public int Max { get; set; } = 3;
+
+    private void ChangeMax()
+    {
+        if (Max == 7)
+        {
+            Max = 0;
+        }
+        else
+        {
+            Max++;
+        }
+    }
+}

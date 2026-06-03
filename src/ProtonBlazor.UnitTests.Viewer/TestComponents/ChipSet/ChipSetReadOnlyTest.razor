@@ -1,0 +1,14 @@
+﻿<ProChipSet T="string" ReadOnly>
+    <ProChip T="string" OnClose="Close" Text="Milk" />
+    <ProChip Text="Eggs"/>
+    <ProChip Text="Soap"/>
+    <ProChip Text="Corn flakes"/>
+    <ProChip Text="Salad"/>
+    <ProChip Text="Apples"/>
+    <ProChip Text="Red wine"/>
+</ProChipSet>
+
+@code
+{
+    private static void Close() => throw new Exception("OnClose should not be possible with ReadOnly=true.");
+}

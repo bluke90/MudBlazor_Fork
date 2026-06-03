@@ -1,0 +1,14 @@
+﻿<ProPopoverProvider />
+
+<ProTooltip Text="@TooltipTextContent" Touch="@EnableTouch" Placement="Placement.Start">
+	<ProButton id="sample-button">My Button</ProButton>
+</ProTooltip>
+
+@code {
+	[Parameter]
+    public string? TooltipTextContent { get; set; }
+
+	[Parameter]
+    public bool EnableTouch { get; set; }
+}
+

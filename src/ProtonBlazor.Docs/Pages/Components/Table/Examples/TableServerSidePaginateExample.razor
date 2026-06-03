@@ -1,0 +1,96 @@
+@using System.Net.Http.Json
+@using ProtonBlazor.Examples.Data.Models
+@using System.Threading
+@namespace ProtonBlazor.Docs.Examples
+@inject HttpClient httpClient
+
+<ProTable ServerData="ServerReload" Dense="true" Hover="true" @ref="table">
+    <ToolBarContent>
+        <ProText Typo="Typo.h6">Periodic Elements</ProText>
+        <ProSpacer />
+        <ProTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></ProTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <ProTh><ProTableSortLabel SortLabel="nr_field" T="Element">Nr</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortLabel="sign_field" T="Element">Sign</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortLabel="name_field" T="Element">Name</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortLabel="position_field" T="Element">Position</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortLabel="mass_field" T="Element">Molar mass</ProTableSortLabel></ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">@context.Sign</ProTd>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <ProText>No matching records found</ProText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <ProText>Loading...</ProText>
+    </LoadingContent>
+    <PagerContent>
+        <ProTablePager />
+    </PagerContent>
+</ProTable>
+
+@code {
+    private IEnumerable<Element> pagedData;
+    private ProTable<Element> table;
+
+    private int totalItems;
+    private string searchString = null;
+
+    /// <summary>
+    /// Here we simulate getting the paged, filtered and ordered data from the server
+    /// </summary>
+    private async Task<TableData<Element>> ServerReload(TableState state, CancellationToken token)
+    {
+        IEnumerable<Element> data = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable", token);
+        await Task.Delay(300, token);
+        data = data.Where(element =>
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+                return true;
+            if (element.Sign.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if ($"{element.Number} {element.Position} {element.Molar}".Contains(searchString))
+                return true;
+            return false;
+        }).ToArray();
+        totalItems = data.Count();
+        switch (state.SortLabel)
+        {
+            case "nr_field":
+                data = data.OrderByDirection(state.SortDirection, o => o.Number);
+                break;
+            case "sign_field":
+                data = data.OrderByDirection(state.SortDirection, o => o.Sign);
+                break;
+            case "name_field":
+                data = data.OrderByDirection(state.SortDirection, o => o.Name);
+                break;
+            case "position_field":
+                data = data.OrderByDirection(state.SortDirection, o => o.Position);
+                break;
+            case "mass_field":
+                data = data.OrderByDirection(state.SortDirection, o => o.Molar);
+                break;
+        }
+
+        pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+        return new TableData<Element>() {TotalItems = totalItems, Items = pagedData};
+    }
+
+    private void OnSearch(string text)
+    {
+        searchString = text;
+        table.ReloadServerData();
+    }
+}
+
+

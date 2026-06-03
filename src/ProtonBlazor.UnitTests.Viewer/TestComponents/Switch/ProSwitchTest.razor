@@ -1,0 +1,12 @@
+﻿<ProSwitch @bind-Value="@_labelSwitch2" T="bool" Disabled="true" Label="Disabled" />
+<ProSwitch @bind-Value="@_labelSwitch2" T="bool" ReadOnly="true" Label="ReadOnly" Color="Color.Success" />
+<ProSwitch @bind-Value="@_labelSwitch2" T="bool" Ripple="false" Label="Disabled Ripple" />
+<ProSwitch @bind-Value="@_labelSwitch2" T="bool" Label="Test" />
+<ProSwitch @bind-Value="@_labelSwitch2" T="bool" Label="Small" Size="Size.Small" ThumbIcon="@Icons.Material.Filled.Favorite" ThumbIconColor="Color.Error" />
+<ProSwitch @bind-Value="@_labelSwitch2" T="bool" Label="Medium" ThumbIcon="@Icons.Material.Filled.Favorite" ThumbIconColor="Color.Error" />
+<ProSwitch @bind-Value="@_labelSwitch2" T="bool" Label="Large" Size="Size.Large" ThumbIcon="@Icons.Material.Filled.Favorite" ThumbIconColor="Color.Error" Color="Color.Info" />
+<ProSwitch @bind-Value="@_labelSwitch2" T="bool" Label="Switches from small to large" Size="@(_labelSwitch2 ? Size.Small : Size.Large)" ThumbIcon="@Icons.Material.Filled.Favorite" ThumbIconColor="Color.Error" />
+
+@code {
+    private bool _labelSwitch2 = true;
+}

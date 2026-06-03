@@ -1,0 +1,11 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<div @ontransitionend="this.AsNonRenderingEventHandler(AnimationEndAsync)"
+     @attributes="UserAttributes" class="@Classname" style="@Stylename">
+    <div class="pro-collapse-wrapper">
+        <div class="pro-collapse-wrapper-inner">
+            @ChildContent
+        </div>
+    </div>
+</div>

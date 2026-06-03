@@ -1,0 +1,42 @@
+<ProRadioGroup T="Position" Value="@_selectedPosition" ValueChanged="@OnPositionChanged">
+    <ProRadio T="Position" Value="@Position.Top">Horizontal</ProRadio>
+    <ProRadio T="Position" Value="@Position.Left">Vertical</ProRadio>
+</ProRadioGroup>
+
+<ProTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" TabPanelsClass="pa-6"
+         EnableDragAndDrop="true" OnItemDropped="@ItemDroppedFired" Position="@_selectedPosition">
+    <ProTabPanel Text="Tab One">
+        <ProText>Content One</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Two">
+        <ProText>Content Two</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Three">
+        <ProText>Content Three</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Tab Disabled" Disabled="true">
+        <ProText>Content Disabled</ProText>
+    </ProTabPanel>
+</ProTabs>
+
+@code {
+    public static string __description__ = "Viewer for ProTabs. Drag and drop tabs to reorder them.";
+    private Position _selectedPosition;
+
+    [Parameter]
+    public Position Position { get; set; } = Position.Top;
+
+    [Parameter]
+    public EventCallback<ProItemDropInfo<ProTabPanel>> ItemDroppedFired { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _selectedPosition = Position;
+    }
+
+    private Task OnPositionChanged(Position position)
+    {
+        _selectedPosition = position;
+        return Task.CompletedTask;
+    }
+}

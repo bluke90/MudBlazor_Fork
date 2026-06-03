@@ -1,0 +1,40 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+@using ProtonBlazor.Examples.Data.Models
+@inject HttpClient httpClient
+@using System.Net.Http.Json
+
+<ProTable @ref="@_table" Items="@_elements" RowsPerPage="4" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <ProTh>Nr</ProTh>
+        <ProTh>Sign</ProTh>
+        <ProTh>Name</ProTh>
+        <ProTh>Position</ProTh>
+        <ProTh>Molar mass</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">@context.Sign</ProTd>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProPagination SelectedChanged="PageChanged" Count="@((_table.GetFilteredItemsCount() + _table.RowsPerPage - 1) / _table.RowsPerPage)" Class="pa-4"/>
+    </PagerContent>
+</ProTable>
+
+@code {
+    private ProTable<Element> _table;
+    private IEnumerable<Element> _elements = new List<Element>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _elements = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable");
+    }
+
+    private void PageChanged(int i)
+    {
+        _table.NavigateTo(i - 1);
+    }
+}

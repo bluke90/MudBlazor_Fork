@@ -1,0 +1,55 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@typeparam T
+@inherits ProComponentBase
+@inject InternalMudLocalizer Localizer
+
+<div class="pro-chip-container"
+     id="@_chipContainerId"
+     @onkeydown="@HandleKeyDownAsync">
+    <ProElement HtmlTag="@GetHtmlTag()"
+                Class="@Classname"
+                Style="@Style"
+                @attributes="GetAttributes()"
+                @onclick="@((IsButton ? this.AsNonRenderingEventHandler<MouseEventArgs>(OnClickAsync) : null)!)">
+        @{
+            if (AvatarContent is not null)
+            {
+                @AvatarContent
+            }
+            else if (!string.IsNullOrEmpty(Icon) && !ShowCheckMark)
+            {
+                <ProIcon Disabled="@Disabled" Icon="@Icon" Class="pro-chip-icon" Size="ProtonBlazor.Size.Small" Color="@GetIconColor()" />
+            }
+            else if (ShowCheckMark)
+            {
+                <ProIcon Disabled="@Disabled" Icon="@GetCheckedIcon()" Class="pro-chip-icon" Size="ProtonBlazor.Size.Small" />
+            }
+        }
+        <span class="pro-chip-content">
+            @if (ChildContent is null)
+            {
+                @if(Text is null) {
+                    @($"{Value}")
+                }
+                else {
+                    @Text
+                }
+            }
+            else
+            {
+                @ChildContent
+            }
+            @if (IsClosable)
+            {
+                <ProIconButton Class="pro-chip-close-button"
+                               Icon="@GetCloseIcon()"
+                               OnClick="OnCloseAsync"
+                               Size="ProtonBlazor.Size.Small"
+                               Disabled="@Disabled"
+                               aria-label="@Localizer[LanguageResource.ProChip_Close]"
+                               tabindex="-1"/>
+            }
+        </span>
+    </ProElement>
+</div>

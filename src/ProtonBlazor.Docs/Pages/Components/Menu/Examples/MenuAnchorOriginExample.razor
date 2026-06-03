@@ -1,0 +1,30 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" md="3">
+        <ProText Typo="Typo.h6">Anchor Origin</ProText>
+        <ProRadioGroup T="Origin" @bind-Value="AnchorOrigin" Class="d-flex flex-column my-2">
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.TopLeft">Top-Left</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.TopRight">Top-Right</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.BottomLeft">Bottom-Left</ProRadio>
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.BottomRight">Bottom-Right</ProRadio>
+        </ProRadioGroup>
+        <ProText Typo="Typo.h6">Transform Origin</ProText>
+        <ProRadioGroup T="Origin" @bind-Value="TransformOrigin" Class="d-flex flex-column  my-2">
+            <ProRadio Color="Color.Primary" Dense="true" Value="Origin.TopCenter" Disabled="true">Top-Center</ProRadio>
+        </ProRadioGroup>
+    </ProItem>
+    <ProItem xs="12" md="9" Class="d-flex align-center justify-center flex-column">
+        <ProMenu Label="Change Anchor Origin" Variant="Variant.Filled" Color="Color.Info" AnchorOrigin="@AnchorOrigin" TransformOrigin="@TransformOrigin">
+            <ProMenuItem Label="1" />
+            <ProMenuItem Label="2" />
+            <ProMenuItem Label="3" />
+        </ProMenu>
+        <ProText Typo="Typo.overline">Click the button to see effect</ProText>
+    </ProItem>
+</ProGrid>
+
+@code {
+    public Origin AnchorOrigin { get; set; } = Origin.TopLeft;
+    public Origin TransformOrigin { get; set; } = Origin.TopCenter;
+}

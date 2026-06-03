@@ -1,0 +1,40 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+@using ProtonBlazor.Examples.Data.Models
+
+@inject ISnackbar Snackbar
+
+<ProDialog>
+    <TitleContent>
+        <ProText Typo="Typo.h6">
+            <ProIcon Icon="@Icons.Material.Filled.DeleteForever" Class="mr-3 mb-n1"/>
+            Delete server?
+        </ProText>
+    </TitleContent>
+    <DialogContent>
+        <ProTextField Value="@Server.Id.ToString()" Label="Server ID" ReadOnly="true"/>
+        <ProTextField Value="@Server.Name" Label="Server Name" ReadOnly="true"/>
+        <ProTextField Value="@Server.Location" Label="Location" ReadOnly="true"/>
+        <ProTextField Value="@Server.IpAddress" Label="IP Address" ReadOnly="true"/>
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Error" OnClick="DeleteServer">Delete Server</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; }
+
+    [Parameter]
+    public Server Server { get; set; } = new Server();
+
+    private void Cancel() => ProDialog.Cancel();
+
+    private void DeleteServer()
+    {
+        //In a real world scenario this bool would probably be a service to delete the item from api/database
+        Snackbar.Add("Server Deleted", Severity.Success);
+        ProDialog.Close(DialogResult.Ok(Server.Id));
+    }
+}

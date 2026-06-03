@@ -1,0 +1,39 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProMenu>
+    <ActivatorContent>
+        <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@context.ToggleAsync">Button</ProButton>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem Label="Profile" />
+        <ProMenuItem Label="Theme" />
+        <ProMenuItem Label="Usage" />
+    </ChildContent>
+</ProMenu>
+
+<ProMenu>
+    <ActivatorContent>
+        <ProChip T="string" Icon="@Icons.Material.Filled.Person" Color="Color.Primary" OnClick="@(() => context.ToggleAsync())">Chip</ProChip>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem Label="Profile" />
+        <ProMenuItem Label="Theme" />
+        <ProMenuItem Label="Usage" />
+    </ChildContent>
+</ProMenu>
+
+<ProMenu>
+    <ActivatorContent>
+        <div @onclick="@context.ToggleAsync" style="cursor: pointer">
+            <ProAvatar>
+                <ProImage Src="images/toiletvisit.jpg" />
+            </ProAvatar>
+        </div>
+    </ActivatorContent>
+    <ChildContent>
+        <ProMenuItem Label="Profile" />
+        <ProMenuItem Label="Theme" />
+        <ProMenuItem Label="Usage" />
+    </ChildContent>
+</ProMenu>
+

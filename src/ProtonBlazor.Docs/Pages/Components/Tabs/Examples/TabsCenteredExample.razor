@@ -1,0 +1,13 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTabs Centered="_centered" Color="Color.Primary">
+    <ProTabPanel Text="One"/>
+    <ProTabPanel Text="Two"/>
+    <ProTabPanel Text="Three"/>
+</ProTabs>
+
+<ProSwitch @bind-Value="_centered" Color="Color.Primary">Centered</ProSwitch>
+
+@code{
+    bool _centered = true;
+}

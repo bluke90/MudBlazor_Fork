@@ -1,0 +1,42 @@
+﻿@if (Codes != null || ChildContent != null)
+{
+    <div class="@Classname">
+        @if (Codes != null || (_hasCode && ChildContent != null))
+        {
+            <ProToolBar Class="@ToolbarClassname">
+                @if(Codes != null)
+                {
+                    @foreach (var codeFile in Codes)
+                    {
+                        <ProButton Class="@GetActiveCode(codeFile.Code)" OnClick="@(() => SetActiveCode(codeFile.Code))" Size="Size.Small">@codeFile.Title</ProButton>
+                    }
+                }
+                <ProSpacer/>
+                @if (_hasCode && ChildContent != null)
+                {
+                    <ProTooltip Text="Online Playground" Arrow="true" Color="Color.Dark" Placement="Placement.Top" Delay="300" Duration="500" ShowOnFocus="false">
+                        <ProButton OnClick="RunOnTryProtonBlazorAsync" StartIcon="@Icons.Material.Rounded.PlayArrow" IconColor="Color.Success" Color="Color.Default" Size="Size.Small">Run</ProButton>
+                    </ProTooltip>
+                    <ProButton OnClick="OnShowCode" StartIcon="@(ShowCode ? Icons.Material.Rounded.CodeOff : Icons.Material.Rounded.Code)" Color="Color.Default" Size="Size.Small">
+                        @(ShowCode ? "Hide code" : "Show code")
+                    </ProButton>
+                }
+            </ProToolBar>
+        }
+        @if (ChildContent != null)
+        {
+            <div class="@InnerClassname">
+                @ChildContent
+            </div>
+        }
+    </div>
+}
+@if (_hasCode)
+{
+    <div class="@SourceClassname">
+        <div class="docs-section-source-container" id="@_snippetId">
+            @CodeComponent(_activeCode)
+        </div>
+        <ProIconButton Icon="@Icons.Material.Outlined.FileCopy" Size="Size.Small" Class="copy-code-button" @onclick="CopyTextToClipboard" aria-label="Copy code to clipboard" />
+    </div>
+}

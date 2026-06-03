@@ -1,0 +1,28 @@
+﻿<ProForm @ref="_form" ValidationDelay="0">
+    <ProDatePicker Label="Date" Required @bind-Date="@_date" Editable></ProDatePicker>
+    <ProTextField Label="Name" T="string" Required Immediate @bind-Value="@_name" />
+    <ProNumericField Label="Age" T="int?" Required Immediate @bind-Value="@_age"></ProNumericField>
+	<ProDateRangePicker Label="Date Range" @bind-DateRange="@_dateRange" />
+</ProForm>
+<br><br>
+<span>Date: @_date</span>
+<span>Name: @_name</span>
+<span>Age: @_age</span>
+<br><br>
+<ProButton Class="reset" OnClick="@ResetFormAsync">Reset</ProButton>
+
+@code {
+    public static string __description__ = "Calling Form.Reset() should clear the text field.";
+
+    private int? _age;
+    private string? _name;
+    private DateTime? _date;
+	private DateRange? _dateRange;
+    private ProForm _form = null!;
+
+    private async Task ResetFormAsync()
+    {
+        await _form.ResetAsync();
+        StateHasChanged();
+    }
+}

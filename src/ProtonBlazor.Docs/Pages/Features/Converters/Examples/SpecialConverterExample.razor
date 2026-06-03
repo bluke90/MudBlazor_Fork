@@ -1,0 +1,21 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" sm="6" md="4">
+        <ProSwitch Color="Color.Primary" @bind-Value="_state">Flip the switch</ProSwitch>
+    </ProItem>
+    
+    <ProItem xs="12" sm="6" md="4">
+        <ProTextField Label="Switch state" Variant="Variant.Outlined" Converter="@_converter" @bind-Value="_state" Immediate="true"/>
+    </ProItem>
+
+</ProGrid>
+
+@code {
+    private bool _state = true;
+
+    private readonly IConverter<bool, string> _converter = Conversions
+        .From((bool value) => value ? "ON" : "OFF",
+            text => string.Equals(text, "on", StringComparison.InvariantCultureIgnoreCase));
+
+}

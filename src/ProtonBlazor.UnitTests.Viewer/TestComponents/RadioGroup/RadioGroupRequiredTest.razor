@@ -1,0 +1,16 @@
+﻿<ProRadioGroup T="bool"
+               Required="@Required">
+    <ProRadio Value="@true">
+        True
+    </ProRadio>
+    <ProRadio Value="@false">
+        False
+    </ProRadio>
+</ProRadioGroup>
+
+@code {
+    public static string __description__ = "Required RadioGroup should have aria-required attributes.";
+
+    [Parameter]
+    public bool Required { get; set; }
+}

@@ -1,0 +1,74 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12">
+        <ProSlider Min="1" Max="20" Immediate="true" Step="1" @bind-Value="papers"></ProSlider>
+    </ProItem>
+    <ProItem xs="12">
+        <ProSelect Label="Justify" T="Justify" @bind-Value="justification">
+            <ProSelectItem Value="Justify.FlexStart">Flex Start</ProSelectItem>
+            <ProSelectItem Value="Justify.FlexEnd">Flex End</ProSelectItem>
+            <ProSelectItem Value="Justify.Center">Center</ProSelectItem>
+            <ProSelectItem Value="Justify.SpaceAround">Space Around</ProSelectItem>
+            <ProSelectItem Value="Justify.SpaceBetween">Space Between</ProSelectItem>
+            <ProSelectItem Value="Justify.SpaceEvenly">Space Evenly</ProSelectItem>
+        </ProSelect>
+    </ProItem>
+    <ProItem xs="12">
+        <ProGrid Justify="justification">
+            @for (int i = 0; i < papers; i++)
+            {
+                int localindex = i;
+                
+                <ProItem xs="@breaks[localindex]">
+                    <ProPaper Class="d-flex flex-column align-center justify-center pro-width-full py-8">
+                        <ProIconButton Icon="@Icons.Material.Filled.KeyboardArrowUp" OnClick="(()=>UpdateBreaks(localindex,1))" Size="Size.Small" />
+                        <ProText Typo="Typo.h6" Align="Align.Center">@breaks[localindex]</ProText>
+                        <ProIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" OnClick="(()=>UpdateBreaks(localindex,-1))" Size="Size.Small" />
+                    </ProPaper>
+                </ProItem>
+             }
+        </ProGrid>
+    </ProItem>
+</ProGrid>
+
+@code{
+
+    int _papers = 7;
+    int papers { get { return _papers; } set { UpdatePapers(value); } }
+
+    int[] breaks = new int[7] { 3, 4, 2, 3, 3, 2, 4 };
+
+    Justify justification = Justify.FlexStart;
+
+    void UpdatePapers(int value)
+    {
+
+        int[] newbreaks = Enumerable.Repeat(3, value).ToArray();
+
+        for (int i = 0; i < newbreaks.Length; i++)
+        {
+            if ( i < breaks.Length)
+            {
+                newbreaks[i] = breaks[i];
+            }
+        }
+
+        breaks = newbreaks;
+
+        _papers = value;
+
+        StateHasChanged();
+    }
+
+    void UpdateBreaks(int index,int changeamount)
+    {
+        List<int> newbreaks = breaks.ToList();
+        if (newbreaks[index] + changeamount > 12 || newbreaks[index] + changeamount < 1) return; //don't go above 12 or below 1
+        newbreaks[index] += changeamount;
+
+        breaks = newbreaks.ToArray();
+
+        StateHasChanged();
+    }
+}

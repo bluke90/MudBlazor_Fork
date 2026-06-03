@@ -1,0 +1,24 @@
+﻿<div class="overflow-y-auto" style="height: 560px;">
+    <ProText Typo="Typo.h6">Inside Container</ProText>
+    @for (int i = 1; i < 100; i++)
+    {
+        <div>
+            <ProTooltip Text="@("Person " + i)" Placement="Placement.Right">
+                <ProIconButton Icon="@Icons.Material.Filled.Person" />
+            </ProTooltip>
+        </div>
+    }
+</div>
+<ProText Typo="Typo.h6">Scrollable Body</ProText>
+@for (int i = 1; i < 100; i++)
+{
+    <div>
+        <ProTooltip Text="@("Person " + i)" Placement="Placement.Right">
+            <ProIconButton Icon="@Icons.Material.Filled.Person" />
+        </ProTooltip>
+    </div>
+}
+
+@code {
+    public static string __description__ = "Scrolling Tooltips";
+}

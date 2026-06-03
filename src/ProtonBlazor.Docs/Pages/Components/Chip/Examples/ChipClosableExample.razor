@@ -1,0 +1,12 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProChip T="string" Color="Color.Default" OnClose="Closed">Closable</ProChip>
+<ProChip T="string" Color="Color.Error" OnClose="Closed">Closable</ProChip>
+<ProChip T="string" Color="Color.Primary" OnClose="Closed" CloseIcon="@Icons.Material.Filled.AlarmAdd">Closable</ProChip>
+<ProChip T="string" Color="Color.Success" OnClose="Closed" CloseIcon="@Icons.Material.Filled.AlarmOn">Closable</ProChip>
+
+@code {
+    void Closed(ProChip<string> chip) {
+        // react to chip closed
+    }
+}

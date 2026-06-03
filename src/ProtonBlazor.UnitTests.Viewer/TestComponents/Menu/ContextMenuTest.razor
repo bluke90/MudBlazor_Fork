@@ -1,0 +1,46 @@
+﻿<ProCard Elevation="16" Style="max-width: 400px;">
+    <div @onclick="@(OpenContextMenu)" @oncontextmenu="@(OpenContextMenu)" @oncontextmenu:preventDefault>
+        <ProCardContent>
+            <ProText>Click me</ProText>
+        </ProCardContent>
+    </div>
+</ProCard>
+
+@if (ActivatorContent is null)
+{
+    <ProMenu PositionAtCursor @ref="_contextMenu" Label="@Label">
+        <ProMenuItem Label="Cut" />
+        <ProMenuItem Label="Copy" />
+        <ProMenuItem Label="Paste" />
+        <ProMenuItem Label="Delete" />
+    </ProMenu>
+}
+else
+{
+    <ProMenu PositionAtCursor @ref="_contextMenu" Label="@Label">
+        <ActivatorContent>@ActivatorContent(context)</ActivatorContent>
+        <ChildContent>
+            <ProMenuItem Label="Cut" />
+            <ProMenuItem Label="Copy" />
+            <ProMenuItem Label="Paste" />
+            <ProMenuItem Label="Delete" />
+        </ChildContent>
+    </ProMenu>
+}
+
+@code {
+    public static string __description__ = "Left or right clicking the card should open a context menu. The padding above and below the card must be the same size.";
+
+    private ProMenu _contextMenu = null!;
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public RenderFragment<MenuContext>? ActivatorContent { get; set; }
+
+    private async Task OpenContextMenu(MouseEventArgs args)
+    {
+        await _contextMenu.OpenMenuAsync(args);
+    }
+}

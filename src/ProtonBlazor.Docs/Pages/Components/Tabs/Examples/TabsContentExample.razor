@@ -1,0 +1,35 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTabs Elevation="1" Rounded="true" TabPanelsClass="pa-6" ActiveTabClass="border-solid border-2 pro-border-primary">
+    <ProTabPanel>
+        <ChildContent>
+            <ProText>Custom tab content only</ProText>
+        </ChildContent>
+        <TabContent>
+            Item One
+        </TabContent>
+    </ProTabPanel>
+    <ProTabPanel>
+        <ChildContent>
+            <ProText>Both custom tab and wrapper content</ProText>
+        </ChildContent>
+        <TabWrapperContent>
+            <ProTooltip Text="ToolTip Two">
+                @context
+            </ProTooltip>
+        </TabWrapperContent>
+        <TabContent>
+            <ProText Typo="Typo.h6">Item Two</ProText>
+        </TabContent>
+    </ProTabPanel>
+    <ProTabPanel Text="Item Three">
+        <ChildContent>
+            <ProText>Custom wrapper content only</ProText>
+        </ChildContent>
+        <TabWrapperContent>
+            <ProTooltip Text="ToolTip Three">
+                @context
+            </ProTooltip>
+        </TabWrapperContent>
+    </ProTabPanel>
+</ProTabs>

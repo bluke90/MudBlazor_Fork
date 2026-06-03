@@ -1,0 +1,37 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="300px" Elevation="0">
+    <ProTreeView Hover ReadOnly="@ReadOnly" TriState="@TriState" AutoSelectParent="@AutoSelectParent" @bind-SelectedValues="SelectedValues" SelectionMode="SelectionMode.MultiSelection"
+                 CheckBoxColor="Color.Info">
+        <ProTreeViewItem Text="bundle.zip" Expanded Icon="@Icons.Material.Filled.FolderZip">
+            <ProTreeViewItem Text="config" Expanded Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+                <ProTreeViewItem Value='"launch.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+                <ProTreeViewItem Value='"tasks.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+            </ProTreeViewItem>
+            <ProTreeViewItem Text="images" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+                <ProTreeViewItem Value="@("logo.png")" Icon="@Icons.Custom.FileFormats.FileImage" />
+            </ProTreeViewItem>
+        </ProTreeViewItem>
+    </ProTreeView>
+</ProPaper>
+
+<ProStack Row Justify="Justify.Center" Style="width: 100%" Wrap="Wrap.Wrap">
+    <ProChipSet T="string" @bind-SelectedValues="SelectedValues" SelectionMode="SelectionMode.MultiSelection" Color="Color.Info" Variant="Variant.Text">
+        <ProChip Text="bundle.zip"/>
+        <ProChip Text="config"/>
+        <ProChip Text="launch.json"/>
+        <ProChip Text="tasks.json"/>
+        <ProChip Text="images"/>
+        <ProChip Text="logo.png"/>
+    </ProChipSet>
+    <ProSwitch @bind-Value="TriState" Color="Color.Info">TriState</ProSwitch>
+    <ProSwitch @bind-Value="AutoSelectParent" Color="Color.Info">AutoSelectParent</ProSwitch>
+    <ProSwitch @bind-Value="ReadOnly" Color="Color.Info">ReadOnly</ProSwitch>    
+</ProStack>
+
+@code {
+    public IReadOnlyCollection<string> SelectedValues = ["tasks.json", "launch.json"];
+    public bool ReadOnly = false;
+    public bool TriState = true;
+    public bool AutoSelectParent = true;
+}

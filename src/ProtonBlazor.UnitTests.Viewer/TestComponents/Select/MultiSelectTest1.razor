@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProSelect @bind-Value="_value" MultiSelection="true">
+    <ProSelectItem Value="@("1")">1</ProSelectItem>
+    <ProSelectItem Value="@("2")">2</ProSelectItem>
+    <ProSelectItem Value="@("3")">3</ProSelectItem>
+</ProSelect>
+
+@code {
+    public static string __description__ = "Click should not close the menu and selecting multiple values should update the bindable value with a comma separated list.";
+
+    private string? _value = null;
+}

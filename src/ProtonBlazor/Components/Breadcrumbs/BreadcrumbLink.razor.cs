@@ -1,0 +1,34 @@
+﻿// Copyright (c) ProtonBlazor 2021
+// ProtonBlazor licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Components;
+using ProtonBlazor.Utilities;
+
+namespace ProtonBlazor;
+
+
+/// <summary>
+/// Represents a segment in a list of breadcrumbs.
+/// </summary>
+/// <seealso cref="ProBreadcrumbs" />
+/// <seealso cref="BreadcrumbItem" />
+/// <seealso cref="BreadcrumbSeparator" />
+public partial class BreadcrumbLink
+{
+    /// <summary>
+    /// The item to display.
+    /// </summary>
+    [Parameter]
+    public BreadcrumbItem? Item { get; set; }
+
+    /// <summary>
+    /// The parent breadcrumb component.
+    /// </summary>
+    [CascadingParameter]
+    public ProBreadcrumbs? Parent { get; set; }
+
+    private string Classname => new CssBuilder("pro-breadcrumb-item")
+        .AddClass("pro-disabled", Item?.Disabled)
+        .Build();
+}

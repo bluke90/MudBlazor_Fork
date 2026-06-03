@@ -1,0 +1,39 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProChip T="string"
+         Href="https://github.com/ProtonBlazor/ProtonBlazor"
+         Target="_blank"
+         Variant="Variant.Filled"
+         Icon="@Icons.Custom.Brands.GitHub"
+         Disabled="_disabled">
+    GitHub
+</ProChip>
+
+<ProChip T="string"
+         Href="https://github.com/ProtonBlazor/ProtonBlazor"
+         Target="_blank"
+         Variant="Variant.Filled"
+         Icon="@Icons.Custom.Brands.GitHub"
+         Disabled="_disabled">
+    With Icon
+</ProChip>
+
+<ProChip T="string"
+         Href="https://github.com/ProtonBlazor/ProtonBlazor"
+         Target="_blank"
+         Variant="Variant.Filled"
+         Icon="@Icons.Custom.Brands.GitHub"
+         Disabled="_disabled">
+    <AvatarContent>
+        <ProAvatar>GH</ProAvatar>
+    </AvatarContent>
+    <ChildContent>With Avatar</ChildContent>
+</ProChip>
+
+<br />
+
+<ProSwitch Color="Color.Primary" @bind-Value="_disabled" Label="Disable" />
+
+@code {
+    bool _disabled = false;
+}

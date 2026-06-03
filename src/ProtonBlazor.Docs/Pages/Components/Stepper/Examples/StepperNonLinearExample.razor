@@ -1,0 +1,17 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Style="width: 800px">
+    <ProStepper NonLinear ShowResetButton Ripple="Ripple">
+        <ProStep Title="Write the code">Most programmers first start writing the code but some experts write the tests first</ProStep>
+        <ProStep Title="Write the tests">If you write the tests first you will design a better API when you write the code</ProStep>
+        <ProStep Title="Write the documentation" SecondaryText="... or not">Some consider writing readable code more important than writing documentation.</ProStep>
+    </ProStepper>
+</ProPaper>
+
+<ProDivider />
+
+<ProSwitch @bind-Value="@Ripple" Color="Color.Primary" Label="Ripple"></ProSwitch>
+
+@code {
+    public bool Ripple { get; set; } = true;
+}

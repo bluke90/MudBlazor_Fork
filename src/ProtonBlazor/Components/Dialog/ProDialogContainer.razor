@@ -1,0 +1,33 @@
+﻿@namespace ProtonBlazor
+@using ProtonBlazor.Resources
+@inherits ProComponentBase
+@inject InternalMudLocalizer Localizer
+
+@{
+}
+
+<div @attributes="UserAttributes" id="@ElementId" class="pro-dialog-container @GetPosition()">
+    <ProOverlay Visible="true" OnClick="HandleBackgroundClickAsync" Class="@BackgroundClassname" DarkBackground="true" @onmouseup="OnMouseUpAsync" />
+    <div @ref="_dialogContainerReference" id="_@Id.ToString("N")" role="dialog" aria-labelledby="@(GetHideHeader() ? null : $"_{Id:N}_title")" class="@Classname" style="@Style" tabindex="-1">
+        @if (!GetHideHeader())
+        {
+            <div id="@($"_{Id:N}_title")" class="@TitleClassname">
+                @if (TitleContent is null)
+                {
+                    <ProText Typo="Typo.h6">@_titleState.Value</ProText>
+                }
+                else
+                {
+                    @TitleContent
+                }
+                @if (GetCloseButton())
+                {
+                    <ProIconButton aria-label="@Localizer[LanguageResource.ProDialog_Close]" @onmousedown:preventDefault="true" Icon="@CloseIcon" @onclick="((IProDialogInstance)this).Cancel" Class="pro-button-close" />
+                }
+            </div>
+         }
+        <CascadingValue Value="(IProDialogInstanceInternal)this" IsFixed="true">
+            @Content
+        </CascadingValue>
+    </div>
+</div>

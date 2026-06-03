@@ -1,0 +1,18 @@
+﻿<ProCard>
+    <ProCardHeader>
+        <ChildContent>
+            <ProNumericField @bind-Value="_value" />
+            <ProButton OnClick="TestClick">Click</ProButton>
+        </ChildContent>
+    </ProCardHeader>
+</ProCard>
+
+@code
+{
+    public static string __description__ = "Badge test";
+    private int _value = 0;
+    private void TestClick()
+    {
+        _value = 1;
+    }
+}

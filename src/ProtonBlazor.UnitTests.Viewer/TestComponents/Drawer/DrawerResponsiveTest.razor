@@ -1,0 +1,25 @@
+﻿<ProLayout>
+    <ProAppBar Elevation="1">
+        <ProIconButton id="toggle-drawer-button" Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+    </ProAppBar>
+    <ProDrawer @ref="@Drawer" @bind-Open="@_open" Elevation="1" Breakpoint="@Breakpoint" ClipMode="@ClipMode">
+    </ProDrawer>
+    <ProMainContent Class="pt-16 px-16">
+        <ProContainer Class="mt-6">
+        </ProContainer>
+    </ProMainContent>
+</ProLayout>
+
+@code{ 
+    private bool _open;
+
+    public ProDrawer Drawer { get; private set; } = null!;
+
+    [Parameter]
+    public Breakpoint Breakpoint { get; set; } = Breakpoint.Md;
+
+    [Parameter]
+    public DrawerClipMode ClipMode { get; set; }
+
+    private void ToggleDrawer() => _open = !_open;
+}

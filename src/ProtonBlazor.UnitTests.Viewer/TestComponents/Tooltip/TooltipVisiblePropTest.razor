@@ -1,0 +1,10 @@
+﻿<ProPopoverProvider />
+
+<ProTooltip Text="Visible Property" @bind-Visible="TooltipVisible">
+	<ProButton Variant="Variant.Filled" Color="Color.Secondary">My Button</ProButton>
+</ProTooltip>
+
+@code {
+    [Parameter]
+    public bool TooltipVisible { get; set; } = true;
+}

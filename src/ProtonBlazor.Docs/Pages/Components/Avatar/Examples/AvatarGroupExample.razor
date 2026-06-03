@@ -1,0 +1,36 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProAvatarGroup Max="@max" Spacing="@spacing" MaxColor="Color.Primary">
+    <ProAvatar>
+        <ProImage Src="images/jonny.jpg" />
+    </ProAvatar>
+    <ProAvatar>
+        <ProImage Src="images/mony.jpg" />
+    </ProAvatar>
+    <ProAvatar>
+        <ProImage Src="images/toiletvisit.jpg" />
+    </ProAvatar>
+    <ProAvatar>
+        <ProImage Src="images/jonny.jpg" />
+    </ProAvatar>
+    <ProAvatar>
+        <ProImage Src="images/mony.jpg" />
+    </ProAvatar>
+    <ProAvatar>
+        <ProImage Src="images/toiletvisit.jpg" />
+    </ProAvatar>
+</ProAvatarGroup>
+
+<ProGrid>
+    <ProItem xs="12" sm="6">
+        <ProSlider Min="0" Max="6" Step="0" @bind-Value="max" Color="Color.Info">Max Avatars</ProSlider>
+    </ProItem>
+    <ProItem xs="12" sm="6">
+        <ProSlider Min="0" Max="16" Step="0" @bind-Value="spacing" Color="Color.Error">Spacing</ProSlider>
+    </ProItem>
+</ProGrid>
+
+@code {
+    int max = 3;
+    int spacing = 3;
+}

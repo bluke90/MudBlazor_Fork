@@ -1,0 +1,18 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@ToggleOpen">Open</ProButton>
+<ProSwitch @bind-Value="_open" Color="Color.Primary" />
+<ProToggleIconButton @bind-Toggled="@_open" Icon="@Icons.Material.Filled.Fullscreen" Color="@Color.Primary" ToggledIcon="@Icons.Material.Filled.FullscreenExit" ToggledColor="@Color.Secondary" />
+
+<ProPopover Open="@_open" Fixed="true" Class="px-4 pt-4">
+    <div class="d-flex flex-column">
+        <ProText>Content of the popover can be anything.</ProText>
+        <ProButton OnClick="@ToggleOpen" Class="ml-auto mr-n3 mb-1" Color="Color.Error">Close</ProButton>
+    </div>
+</ProPopover>
+
+@code{
+    private bool _open;
+
+    private void ToggleOpen() => _open = !_open;
+}

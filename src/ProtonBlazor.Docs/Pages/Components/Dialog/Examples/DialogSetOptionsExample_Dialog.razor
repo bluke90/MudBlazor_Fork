@@ -1,0 +1,88 @@
+﻿@using System.Web
+@namespace ProtonBlazor.Docs.Examples
+
+@inject NavigationManager NavigationManager
+
+<ProDialog>
+    <DialogContent>
+        <div class="d-flex flex-column py-1">
+            <ProButton OnClick="ChangeTitleAsync">Change Title</ProButton>
+            <ProButton OnClick="ToggleCloseButtonAsync">Toggle Close Button</ProButton>
+            <ProButton OnClick="ToggleFullWidthAsync">Toggle Full Width</ProButton>
+            <ProButton OnClick="ToggleHeaderAsync">Toggle Header</ProButton>
+            <ProCheckBox TriState="true" T="bool?" Value="ProDialog.Options.CloseOnNavigation" ValueChanged="@(async v => await CloseOnNavigationChangedAsync(v))">Close On Navigation</ProCheckBox>
+            <ProButton OnClick="ChangeUrl">Change Url</ProButton>
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <ProButton Color="Color.Primary" OnClick="Close">OK</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; }
+
+    [SupplyParameterFromQuery(Name = "example")]
+    public int? QueryParameterExample { get; set; }
+
+    protected override void OnParametersSet() {
+        QueryParameterExample ??= 0;
+    }
+
+    private void Close() => ProDialog.Close(DialogResult.Ok(true));
+
+    private Task ChangeTitleAsync() => ProDialog.SetTitleAsync($"Current time is: {DateTime.Now}");
+
+    private Task ToggleCloseButtonAsync()
+    {
+        var options = ProDialog.Options with
+        {
+            CloseButton = !(ProDialog.Options.CloseButton ?? false)
+        };
+
+        return ProDialog.SetOptionsAsync(options);
+    }
+
+    private Task ToggleFullWidthAsync()
+    {
+        var options = ProDialog.Options with
+        {
+            FullWidth = !(ProDialog.Options.FullWidth ?? true)
+        };
+
+        return ProDialog.SetOptionsAsync(options);
+    }
+
+    private Task ToggleHeaderAsync()
+    {
+        var options = ProDialog.Options with
+        {
+            NoHeader = !(ProDialog.Options.NoHeader ?? false)
+        };
+
+        return ProDialog.SetOptionsAsync(options);
+    }
+
+    private void ChangeUrl() {
+        var uri = new Uri(NavigationManager.Uri);
+
+        var query = HttpUtility.ParseQueryString(uri.Query);
+
+        query["example"] = (QueryParameterExample + 1).ToString();
+
+        var newUri = $"{uri.GetLeftPart(UriPartial.Path)}?{query}";
+
+        NavigationManager.NavigateTo(newUri);
+    }
+
+    private Task CloseOnNavigationChangedAsync(bool? closeOnNavigation)
+    {
+        var options = ProDialog.Options with
+        {
+            CloseOnNavigation = closeOnNavigation
+        };
+
+        return ProDialog.SetOptionsAsync(options);
+    }
+}

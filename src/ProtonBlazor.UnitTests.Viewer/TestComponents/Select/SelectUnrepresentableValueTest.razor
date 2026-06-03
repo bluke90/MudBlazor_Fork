@@ -1,0 +1,13 @@
+﻿<ProPopoverProvider />
+
+<ProSelect @bind-Value="_value">
+    <ProSelectItem T="int" Value="1">One</ProSelectItem>
+    <ProSelectItem T="int" Value="2">Two</ProSelectItem>
+    <ProSelectItem T="int" Value="3">Three</ProSelectItem>
+</ProSelect>
+
+@code {
+    public static string __description__ = "Initially, since the value is not in the list of options, it should be shown as text instead of render fragment.";
+
+    private int _value = 17;
+}

@@ -1,4 +1,4 @@
-# AGENTS.md - AI Coding Agent Guide for MudBlazor
+# AGENTS.md - AI Coding Agent Guide for ProtonBlazor
 
 ## Start Here
 
@@ -13,11 +13,11 @@
 
 | Change type | Common locations | Verification | Notes |
 | --- | --- | --- | --- |
-| Component C#/Razor behavior | `src/MudBlazor`, `src/MudBlazor.UnitTests*` | Filtered `dotnet test` on `MudBlazor.UnitTests.csproj` | Use `/p:SkipBunCompile=true` unless assets are affected. |
+| Component C#/Razor behavior | `src/ProtonBlazor`, `src/ProtonBlazor.UnitTests*` | Filtered `dotnet test` on `ProtonBlazor.UnitTests.csproj` | Use `/p:SkipBunCompile=true` unless assets are affected. |
 | Component public API | Component, tests, docs | Unit tests plus relevant docs validation | XML docs and `[Category(...)]` are required. |
-| Docs page/example | `src/MudBlazor.Docs*` | Relevant docs build or generated docs tests | Do not edit generated docs tests. |
+| Docs page/example | `src/ProtonBlazor.Docs*` | Relevant docs build or generated docs tests | Do not edit generated docs tests. |
 | TS/style/assets | `TScripts`, styles, `wwwroot`, asset inputs | Normal scoped build | Do not use `/p:SkipBunCompile=true`. |
-| Analyzer/code fix | `src/MudBlazor.Analyzers*` | Filtered analyzer tests | Keep diagnostics, fixes, and tests aligned. |
+| Analyzer/code fix | `src/ProtonBlazor.Analyzers*` | Filtered analyzer tests | Keep diagnostics, fixes, and tests aligned. |
 | Metadata/prose only | Root markdown, `.github` text | No `dotnet` verification | Do not run build/test/format for prose-only changes. |
 
 ## Scope and Workflow
@@ -37,7 +37,7 @@
 - Do not make `dotnet clean` part of the normal local loop. Use it only when incremental build state is clearly stale or corrupted.
 - If no code, project, test, docs app, or asset-pipeline inputs changed, do not call `dotnet`. Changes limited to files such as `README.md`, changelog text, issue templates, or other repo metadata do not require restore, build, test, or format.
 - Prefer a single scoped `dotnet build` or `dotnet test` command as the first verification step. Split build and test only when you will reuse the build outputs for multiple test runs.
-- Do not build `src/MudBlazor/MudBlazor.csproj` immediately before testing `src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj`; the test project already builds `MudBlazor`, `MudBlazor.UnitTests.Shared`, and `MudBlazor.UnitTests.Viewer`.
+- Do not build `src/ProtonBlazor/ProtonBlazor.csproj` immediately before testing `src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj`; the test project already builds `ProtonBlazor`, `ProtonBlazor.UnitTests.Shared`, and `ProtonBlazor.UnitTests.Viewer`.
 
 ## Before Editing
 
@@ -50,10 +50,10 @@
 ## Repository Layout
 
 - `src/` contains the product code and nearly all project work. Expect the main library, docs app, tests, analyzers, benchmarks, and related support projects to live here.
-- `src/MudBlazor/` is the core component library. Most component, utility, styling, `TScripts`, and `wwwroot` changes land here.
-- `src/MudBlazor.UnitTests*` contains test projects and test support code. Look here for component tests, shared test infrastructure, viewer-only helpers, and docs-related tests.
-- `src/MudBlazor.Docs*` contains the documentation site, examples, and docs build support. Update docs here when component behavior or public API changes.
-- `src/MudBlazor.Analyzers*` contains analyzer, code-fix, and analyzer-test projects.
+- `src/ProtonBlazor/` is the core component library. Most component, utility, styling, `TScripts`, and `wwwroot` changes land here.
+- `src/ProtonBlazor.UnitTests*` contains test projects and test support code. Look here for component tests, shared test infrastructure, viewer-only helpers, and docs-related tests.
+- `src/ProtonBlazor.Docs*` contains the documentation site, examples, and docs build support. Update docs here when component behavior or public API changes.
+- `src/ProtonBlazor.Analyzers*` contains analyzer, code-fix, and analyzer-test projects.
 - Repo-wide build configuration is centered in `src/`, especially `src/Directory.Build.*` and `src/.editorconfig`.
 - Tooling and automation live primarily in `tools/`, `.config/`, and `.github/`.
 - Treat `bin/`, `obj/`, `TestResults/`, generated files, and similar outputs as build artifacts unless the task explicitly targets them.
@@ -67,19 +67,19 @@
 ## Scoped Commands and Verification
 
 ### Project targets
-- Components: `src/MudBlazor/MudBlazor.csproj` and `src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj`
-- Docs: `src/MudBlazor.Docs.Compiler/MudBlazor.Docs.Compiler.csproj`, `src/MudBlazor.Docs/MudBlazor.Docs.csproj`, `src/MudBlazor.Docs.Server/MudBlazor.Docs.Server.csproj`, and `src/MudBlazor.Docs.WasmHost/MudBlazor.Docs.WasmHost.csproj`
-- Docs tests: `src/MudBlazor.UnitTests.Docs/MudBlazor.UnitTests.Docs.csproj`
-- Analyzers and code fixes: `src/MudBlazor.Analyzers/MudBlazor.Analyzers.csproj`, `src/MudBlazor.Analyzers.CodeFixes/MudBlazor.Analyzers.CodeFixes.csproj`, and `src/MudBlazor.UnitTests.Analyzers/MudBlazor.UnitTests.Analyzers.csproj`
+- Components: `src/ProtonBlazor/ProtonBlazor.csproj` and `src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj`
+- Docs: `src/ProtonBlazor.Docs.Compiler/ProtonBlazor.Docs.Compiler.csproj`, `src/ProtonBlazor.Docs/ProtonBlazor.Docs.csproj`, `src/ProtonBlazor.Docs.Server/ProtonBlazor.Docs.Server.csproj`, and `src/ProtonBlazor.Docs.WasmHost/ProtonBlazor.Docs.WasmHost.csproj`
+- Docs tests: `src/ProtonBlazor.UnitTests.Docs/ProtonBlazor.UnitTests.Docs.csproj`
+- Analyzers and code fixes: `src/ProtonBlazor.Analyzers/ProtonBlazor.Analyzers.csproj`, `src/ProtonBlazor.Analyzers.CodeFixes/ProtonBlazor.Analyzers.CodeFixes.csproj`, and `src/ProtonBlazor.UnitTests.Analyzers/ProtonBlazor.UnitTests.Analyzers.csproj`
 
 ### Choose the smallest valid verification loop
 - For repository metadata or prose-only changes outside the build inputs, such as `README.md`, `CHANGELOG.md`, or `.github/` text-only edits: do not run `dotnet`.
-- For component `.cs` or `.razor` changes with behavior coverage: prefer a single filtered `dotnet test --project ... -- --filter ...` run against `src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj` with `/p:SkipBunCompile=true`. Build `src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj` first only when you plan to reuse the outputs for multiple test filters.
-- For component `.cs` or `.razor` changes that only need compile validation: build `src/MudBlazor/MudBlazor.csproj` with `/p:SkipBunCompile=true`.
+- For component `.cs` or `.razor` changes with behavior coverage: prefer a single filtered `dotnet test --project ... -- --filter ...` run against `src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj` with `/p:SkipBunCompile=true`. Build `src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj` first only when you plan to reuse the outputs for multiple test filters.
+- For component `.cs` or `.razor` changes that only need compile validation: build `src/ProtonBlazor/ProtonBlazor.csproj` with `/p:SkipBunCompile=true`.
 - For `TScripts` or `Styles`: run a normal scoped project build.
 - For docs changes: build the relevant docs project. Avoid docs host run loops during agent verification.
-- For docs example or API-page changes that need parity with CI, run `dotnet test --project src/MudBlazor.UnitTests.Docs/MudBlazor.UnitTests.Docs.csproj /p:GenerateDocsTests=true`.
-- For analyzer or code-fix changes: prefer a single filtered `dotnet test --project ... -- --filter ...` run from `src/MudBlazor.UnitTests.Analyzers/MudBlazor.UnitTests.Analyzers.csproj`. Build that project first only when you plan multiple filtered test runs.
+- For docs example or API-page changes that need parity with CI, run `dotnet test --project src/ProtonBlazor.UnitTests.Docs/ProtonBlazor.UnitTests.Docs.csproj /p:GenerateDocsTests=true`.
+- For analyzer or code-fix changes: prefer a single filtered `dotnet test --project ... -- --filter ...` run from `src/ProtonBlazor.UnitTests.Analyzers/ProtonBlazor.UnitTests.Analyzers.csproj`. Build that project first only when you plan multiple filtered test runs.
 - Prefer the narrowest relevant test filter over running an entire test project.
 - Use `dotnet clean <project.csproj>` only when incremental outputs are clearly stale or corrupted.
 
@@ -91,10 +91,10 @@ Run restore only when restore inputs changed, when the target project's `obj/pro
 Restore only the project graph you are about to validate:
 
 ```bash
-dotnet restore src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj
-dotnet restore src/MudBlazor.UnitTests.Analyzers/MudBlazor.UnitTests.Analyzers.csproj
-dotnet restore src/MudBlazor.UnitTests.Docs/MudBlazor.UnitTests.Docs.csproj
-dotnet restore src/MudBlazor.Docs.Server/MudBlazor.Docs.Server.csproj
+dotnet restore src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj
+dotnet restore src/ProtonBlazor.UnitTests.Analyzers/ProtonBlazor.UnitTests.Analyzers.csproj
+dotnet restore src/ProtonBlazor.UnitTests.Docs/ProtonBlazor.UnitTests.Docs.csproj
+dotnet restore src/ProtonBlazor.Docs.Server/ProtonBlazor.Docs.Server.csproj
 dotnet tool restore --tool-manifest .config/dotnet-tools.json
 ```
 
@@ -119,15 +119,15 @@ dotnet tool restore --tool-manifest .config/dotnet-tools.json
 - This repository uses Microsoft.Testing.Platform via `global.json`, so pass runner-specific options after `--` and prefer `--hangdump`/`--hangdump-timeout` instead of the older VSTest blame flags.
 
 ```bash
-dotnet test --project src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj --no-restore /p:SkipBunCompile=true -- --filter "FullyQualifiedName~MenuTests" --output Normal --no-ansi --hangdump --hangdump-timeout 30s
+dotnet test --project src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj --no-restore /p:SkipBunCompile=true -- --filter "FullyQualifiedName~MenuTests" --output Normal --no-ansi --hangdump --hangdump-timeout 30s
 ```
 
 - If you expect to run multiple filtered test commands against the same edits, build once and then reuse the outputs with `--no-build`:
 
 ```bash
-dotnet build src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj --no-restore /p:SkipBunCompile=true --nologo
-dotnet test --project src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj --no-build --no-restore -- --filter "FullyQualifiedName~MenuTests" --output Normal --no-ansi --hangdump --hangdump-timeout 30s
-dotnet test --project src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj --no-build --no-restore -- --filter "FullyQualifiedName~PopoverTests" --output Normal --no-ansi --hangdump --hangdump-timeout 30s
+dotnet build src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj --no-restore /p:SkipBunCompile=true --nologo
+dotnet test --project src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj --no-build --no-restore -- --filter "FullyQualifiedName~MenuTests" --output Normal --no-ansi --hangdump --hangdump-timeout 30s
+dotnet test --project src/ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj --no-build --no-restore -- --filter "FullyQualifiedName~PopoverTests" --output Normal --no-ansi --hangdump --hangdump-timeout 30s
 ```
 
 ### Bun
@@ -143,7 +143,7 @@ dotnet test --project src/MudBlazor.UnitTests/MudBlazor.UnitTests.csproj --no-bu
 ### Formatting
 Run `dotnet format whitespace --no-restore --include <path/to/changed/files>` once at the very end of the task as a final pre-PR pass to catch whitespace/newline/charset/etc mistakes. Do not run it repeatedly during the normal edit-build-test loop.
 
-Run this command from the `src` directory. When using `--include`, pass file paths relative to `src`, for example: `--include MudBlazor/Components/List/MudListItem.razor.cs`.
+Run this command from the `src` directory. When using `--include`, pass file paths relative to `src`, for example: `--include ProtonBlazor/Components/List/ProListItem.razor.cs`.
 
 If `src/.editorconfig` changed, format the whole `src` tree:
 
@@ -216,7 +216,7 @@ public bool Expanded { get; set; }
 [Parameter]
 public EventCallback<bool> ExpandedChanged { get; set; }
 
-public MudExample()
+public ProExample()
 {
     using var registerScope = CreateRegisterScope();
     _expandedState = registerScope.RegisterParameter<bool>(nameof(Expanded))
@@ -237,27 +237,27 @@ private Task ToggleAsync()
 - When generating HTML or ARIA attributes in component code, prefer fallback values so caller-provided attributes can override them whenever feasible; do not hard-force generated attributes unless the behavior truly requires it.
 - Ensure keyboard navigation works for interactive components.
 - Provide accessible names for interactive controls through a label, `aria-label`, or `aria-labelledby`.
-- Components with logic require bUnit tests and a docs page at `src/MudBlazor.Docs/Pages/Components/<ComponentName>.razor`.
+- Components with logic require bUnit tests and a docs page at `src/ProtonBlazor.Docs/Pages/Components/<ComponentName>.razor`.
 
 ## Docs Pages and Examples
 
 - Keep docs in sync with component behavior, public APIs, and parameter changes.
-- Use `src/MudBlazor.Docs/Pages/Components/Button/ButtonPage.razor` or `src/MudBlazor.Docs/Pages/Components/Menu/MenuPage.razor` as a reference for component docs structure.
+- Use `src/ProtonBlazor.Docs/Pages/Components/Button/ButtonPage.razor` or `src/ProtonBlazor.Docs/Pages/Components/Menu/MenuPage.razor` as a reference for component docs structure.
 - Start with basic usage, introduce common variants next, group related scenarios with `SectionSubGroups`, and leave advanced or edge-case behavior for the end.
 - Write each component page as a guided progression rather than a catalog dump. Use clear section titles and short descriptions that explain when and why a feature is useful.
 - Order examples from simple to complex. Start with a small canonical example, then add focused examples for common variants, composition patterns, binding, edge cases, and advanced behavior.
-- Keep examples in `src/MudBlazor.Docs/Pages/Components/<ComponentName>/Examples/` and name them after the component and scenario, such as `<ComponentName>SimpleExample`, `<ComponentName>DenseExample`, or `<ComponentName>TwoWayBindingExample`.
+- Keep examples in `src/ProtonBlazor.Docs/Pages/Components/<ComponentName>/Examples/` and name them after the component and scenario, such as `<ComponentName>SimpleExample`, `<ComponentName>DenseExample`, or `<ComponentName>TwoWayBindingExample`.
 - Do not leave orphaned example components under `Examples/`. Every example should be referenced by the docs page or removed.
 - Prefer minimal examples that demonstrate one concept at a time. Make them realistic enough to teach the workflow, but avoid extra state, styling, or unrelated component features that distract from the documented behavior.
 - Use meaningful labels and sample content in examples. Avoid `Item 1`, `Item 2`, or placeholder text unless the content is irrelevant to the behavior being demonstrated.
 - Reference example components from pages with `Code="@nameof(...)"` so renames stay compiler-checked.
 - Show code for simple, canonical examples by default. Also show code when the markup, binding, accessibility attribute, or event pattern is the behavior being taught. Collapse examples longer than 15 lines, and use `ShowCode="false"` on secondary examples when the rendered behavior is more important than repeating similar markup.
-- Use `CodeInline` for parameter, component, and member names in descriptions. Use `MudLink` for cross-links to related component pages when that helps users continue learning.
+- Use `CodeInline` for parameter, component, and member names in descriptions. Use `ProLink` for cross-links to related component pages when that helps users continue learning.
 - Descriptions and examples must agree with the component's actual defaults and current behavior. Verify ambiguous defaults against the component code or tests before documenting them.
 - Include practical guidance near the relevant example for accessibility-sensitive behavior, keyboard interaction, focus management, and other usage constraints. When prose mentions an accessibility requirement, the example should demonstrate it.
 - Docs examples are exercised by generated tests, so they must render without exceptions.
 - Generated docs tests are emitted as `Generated/*.generated.cs` files and must not be edited by hand.
-- `MudBlazor.UnitTests.Docs` does not generate docs tests in the default local build unless `GenerateDocsTests=true`.
+- `ProtonBlazor.UnitTests.Docs` does not generate docs tests in the default local build unless `GenerateDocsTests=true`.
 
 ## Breaking Changes and Compatibility
 
@@ -283,7 +283,7 @@ private Task ToggleAsync()
 - Use `TaskCompletionSource` gates with `TaskCreationOptions.RunContinuationsAsynchronously`. When an awaited gate could hang, use `[CancelAfter]` and await it with `TestContext.CurrentContext.CancellationToken`, such as `task.WaitAsync(TestContext.CurrentContext.CancellationToken)`.
 - In bUnit component tests, register fake time with `Context.AddFakeTimeProvider()` before rendering. In lower-level unit tests, pass `FakeTimeProvider` directly to the subject under test.
 - Do not use `ConfigureAwait(false)` in bUnit component tests. Use it only in non-bUnit helper code when there is a specific context-free requirement.
-- In dialog tests, do not call `DialogService.ShowAsync` without rendering `MudDialogProvider` unless no-provider behavior is the subject of the test.
+- In dialog tests, do not call `DialogService.ShowAsync` without rendering `ProDialogProvider` unless no-provider behavior is the subject of the test.
 
 ### bUnit rules
 - Never cache `Find()` or `FindAll()` results. Re-query after interactions.
@@ -296,10 +296,10 @@ private Task ToggleAsync()
 - For JS interop behavior, prefer bUnit JSInterop or narrow recording fakes. Assert user-visible behavior first; if call counts matter, snapshot calls after initial render and assert only the delta caused by the action.
 
 ### Test locations and naming
-- Test components belong in `src/MudBlazor.UnitTests.Viewer/TestComponents/<ComponentName>/`.
+- Test components belong in `src/ProtonBlazor.UnitTests.Viewer/TestComponents/<ComponentName>/`.
 - Viewer test component file names should start with the component prefix, use correct component casing, and end with `Test`, optionally followed by an indexer such as `MenuTest1`.
 - Keep viewer test component file names at 40 characters or fewer. Prefer concise scenario names over long descriptive file names.
-- Unit tests belong in `src/MudBlazor.UnitTests/Components/<ComponentName>Tests.cs`.
+- Unit tests belong in `src/ProtonBlazor.UnitTests/Components/<ComponentName>Tests.cs`.
 - Add a viewer test component only when the scenario is too cumbersome to express directly in bUnit C# syntax. In those cases, add the viewer component first, then the unit test.
 - Viewer test components should expose explicit parameters, callbacks, or `TaskCompletionSource` gates for pending, loading, cancellation, or ordering flows instead of simulating latency with sleeps.
 - Test methods should be self-documenting and should not use XML documentation.
@@ -312,7 +312,7 @@ private Task ToggleAsync()
 
 - Fix new warnings instead of suppressing them.
 - Comments should usually explain why a decision exists, not restate what the code already shows or describe straightforward mechanics.
-- Keep `src/MudBlazor/TScripts/entrypoint.js` in sync with files in `src/MudBlazor/TScripts/` except `entrypoint.js`.
+- Keep `src/ProtonBlazor/TScripts/entrypoint.js` in sync with files in `src/ProtonBlazor/TScripts/` except `entrypoint.js`.
 
 ## When Verification Fails
 
@@ -326,7 +326,7 @@ private Task ToggleAsync()
 ## Common Agent Mistakes To Avoid
 
 - Do not run solution-wide commands for routine validation.
-- Do not build `MudBlazor.csproj` immediately before testing `MudBlazor.UnitTests.csproj`.
+- Do not build `ProtonBlazor.csproj` immediately before testing `ProtonBlazor.UnitTests.csproj`.
 - Do not use `/p:SkipBunCompile=true` for TS, style, `package.json`, `bun.lock`, or asset-pipeline changes.
 - Do not edit generated docs tests.
 - Do not cache bUnit `Find()` or `FindAll()` results across interactions.

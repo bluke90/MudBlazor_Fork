@@ -1,0 +1,11 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProSwitch @bind-Value="_checked1" ThumbIcon="@Icons.Custom.Brands.ProtonBlazor">Basic</ProSwitch>
+<ProSwitch @bind-Value="_checked2" ThumbIcon="@Icons.Custom.Brands.ProtonBlazor" ThumbIconColor="Color.Info">Colored</ProSwitch>
+<ProSwitch @bind-Value="_checked3" ThumbIcon="@(_checked3==true ? Icons.Material.Filled.Done : Icons.Material.Filled.Close)" ThumbIconColor="@(_checked3==true ? Color.Success : Color.Error)">Changing</ProSwitch>
+
+@code{
+    bool _checked1 = false;
+    bool _checked2 = false;
+    bool _checked3 = false;
+}

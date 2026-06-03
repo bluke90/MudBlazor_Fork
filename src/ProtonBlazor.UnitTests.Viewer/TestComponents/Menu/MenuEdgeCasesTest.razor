@@ -1,0 +1,179 @@
+﻿<ProPaper Class="py-3" Elevation="0">
+        <ProAppBar Fixed="false">
+            Test Application
+            <ProMenu Class="ml-4" Dense PositionAtCursor>
+                <ActivatorContent>
+                    @{
+                        var priority = "1";
+                        switch (priority)
+                        {
+                            case "1":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #FED6D3" tabindex="0">Priority 1</ProChip>
+                                break;
+                            case "2":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #FDDFCA" tabindex="0">Priority 2</ProChip>
+                                break;
+                            case "3":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #F6E8A7" tabindex="0">Priority 3</ProChip>
+                                break;
+                            case "4":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #C8ECFA" tabindex="0">Priority 4</ProChip>
+                                break;
+                            case "5":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #CEDFFD" tabindex="0">Priority 5</ProChip>
+                                break;
+                            case null:
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" tabindex="0">None</ProChip>
+                                break;
+                        }
+                    }
+                </ActivatorContent>
+                <ChildContent>
+                    <div style="min-width: 100px">
+                        <ProMenuItem style="font-weight: normal; color: black; background-color: #FED6D3">Priority 1</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color: #FDDFCA">Priority 2</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color: #F6E8A7">Priority 3</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color:#C8ECFA">Priority 4</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color:#CEDFFD">Priority 5</ProMenuItem>
+                        <ProMenuItem>None</ProMenuItem>
+                    </div>
+                </ChildContent>
+            </ProMenu>
+            <ProMenu Class="ml-4" Dense PositionAtCursor>
+                <ActivatorContent>
+                    @{
+                        var priority = "1";
+                        switch (priority)
+                        {
+                            case "1":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #FED6D3" tabindex="0">Priority 1</ProChip>
+                                break;
+                            case "2":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #FDDFCA" tabindex="0">Priority 2</ProChip>
+                                break;
+                            case "3":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #F6E8A7" tabindex="0">Priority 3</ProChip>
+                                break;
+                            case "4":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #C8ECFA" tabindex="0">Priority 4</ProChip>
+                                break;
+                            case "5":
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #CEDFFD" tabindex="0">Priority 5</ProChip>
+                                break;
+                            case null:
+                                <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" tabindex="0">None</ProChip>
+                                break;
+                        }
+                    }
+                </ActivatorContent>
+                <ChildContent>
+                    <div style="min-width: 100px">
+                        <ProMenuItem style="font-weight: normal; color: black; background-color: #FED6D3">Priority 1</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color: #FDDFCA">Priority 2</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color: #F6E8A7">Priority 3</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color:#C8ECFA">Priority 4</ProMenuItem>
+                        <ProMenuItem style="font-weight: normal; color: black; background-color:#CEDFFD">Priority 5</ProMenuItem>
+                        <ProMenuItem>None</ProMenuItem>
+                    </div>
+                </ChildContent>
+            </ProMenu>
+        </ProAppBar>
+        <ProPaper style="width: 70px;">
+            @* On initial load these don't respect the mouseover leave event only activating and not deactivating *@
+            <ProNavMenu>
+                @foreach (var menu in _menuList)
+                {
+                    <ProMenu Icon="@Icons.Material.Filled.Mouse" FullWidth="true" ActivationEvent="@MouseEvent.MouseOver"
+                             AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.CenterLeft">
+                        <ChildContent>
+                            <ProText Class="d-flex justify-center">@($"Menu {menu}")</ProText>
+                            <ProDivider Class="mb-2" />
+                            <ProMenuItem Icon="@Icons.Material.Outlined.Dashboard" Label="Sub item 1" />
+                            <ProMenuItem Icon="@Icons.Material.Outlined.Dashboard" Label="Sub item 2" />
+                            <ProMenuItem Icon="@Icons.Material.Outlined.Dashboard" Label="Sub item 3" />
+                            <ProMenuItem Icon="@Icons.Material.Outlined.Dashboard" Label="Sub item 4" />
+                            <ProMenuItem Icon="@Icons.Material.Outlined.Dashboard" Label="Sub item 5" />
+                            <ProMenuItem Icon="@Icons.Material.Outlined.Dashboard" Label="Sub item 6" />
+                        </ChildContent>
+                    </ProMenu>
+                }
+            </ProNavMenu>
+        </ProPaper>
+        <div class="d-flex justify-center align-center pro-height-full">
+            <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => _visible = !_visible)">Click</ProButton>
+            <ProMenu Label="Open Nested Menu" Variant="@Variant.Filled" Class="ml-2" Dense>
+                <ProMenuItem Label="Add reaction" />
+                <ProMenuItem Label="Add bookmark" />
+                <ProMenu Label="Format">
+                    <ProMenu Label="Text" StartIcon="@Icons.Material.Filled.FormatBold">
+                        <ProMenuItem Label="Bold" Icon="@Icons.Material.Filled.FormatBold" />
+                        <ProMenuItem Label="Italic" Icon="@Icons.Material.Filled.FormatItalic" />
+                        <ProMenuItem Label="Underline" Icon="@Icons.Material.Filled.FormatUnderlined" />
+                        <ProMenu Label="Size">
+                            <ProMenuItem Label="Increase font size" />
+                            <ProMenuItem Label="Decrease font size" />
+                        </ProMenu>
+                    </ProMenu>
+                    <ProMenu Label="Points">
+                        <ProMenuItem Label="Bullet" Icon="@Icons.Material.Filled.FormatListBulleted" IconColor="Color.Secondary" />
+                        <ProMenuItem Label="Number" Icon="@Icons.Material.Filled.FormatListNumbered" IconColor="Color.Secondary" />
+                    </ProMenu>
+                    <ProMenu Label="Alignment">
+                        <ProMenuItem Label="Left" Icon="@Icons.Material.Filled.FormatAlignLeft" IconColor="Color.Tertiary" />
+                        <ProMenuItem Label="Right" Icon="@Icons.Material.Filled.FormatAlignRight" IconColor="Color.Tertiary" />
+                    </ProMenu>
+                    <ProMenuItem Label="Clear formatting" />
+                    <ProMenuItem Label="Headers and footers" />
+                </ProMenu>
+            </ProMenu>
+        </div>
+</ProPaper>
+
+<ProDialog Visible="_visible" Style="height: 100%">
+    <DialogContent>
+        <ProMenu Dense PositionAtCursor>
+            <ActivatorContent>
+                @{
+                    var priority = "1";
+                    switch (priority)
+                    {
+                        case "1":
+                            <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #FED6D3">Priority 1</ProChip>
+                            break;
+                        case "2":
+                            <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #FDDFCA">Priority 2</ProChip>
+                            break;
+                        case "3":
+                            <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #F6E8A7">Priority 3</ProChip>
+                            break;
+                        case "4":
+                            <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #C8ECFA">Priority 4</ProChip>
+                            break;
+                        case "5":
+                            <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled" style="font-weight: normal; color: black; background-color: #CEDFFD">Priority 5</ProChip>
+                            break;
+                        case null:
+                            <ProChip T="string" Size="Size.Small" Label="true" Variant="Variant.Filled">None</ProChip>
+                            break;
+                    }
+                }
+            </ActivatorContent>
+            <ChildContent>
+                <div style="min-width: 100px">
+                    <ProMenuItem style="font-weight: normal; color: black; background-color: #FED6D3">Priority 1</ProMenuItem>
+                    <ProMenuItem style="font-weight: normal; color: black; background-color: #FDDFCA">Priority 2</ProMenuItem>
+                    <ProMenuItem style="font-weight: normal; color: black; background-color: #F6E8A7">Priority 3</ProMenuItem>
+                    <ProMenuItem style="font-weight: normal; color: black; background-color:#C8ECFA">Priority 4</ProMenuItem>
+                    <ProMenuItem style="font-weight: normal; color: black; background-color:#CEDFFD">Priority 5</ProMenuItem>
+                    <ProMenuItem>None</ProMenuItem>
+                </div>
+            </ChildContent>
+        </ProMenu>
+    </DialogContent>
+</ProDialog>
+
+@code {
+    public static string __description__ = "4 menu edge cases for visual testing, initial load, in appbar, nested, and in dialog.";
+    private readonly string[] _menuList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    private bool _visible;
+}

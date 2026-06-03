@@ -1,0 +1,34 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Width="300px" Elevation="0">
+    <ProTreeView Hover ReadOnly="@ReadOnly" @bind-SelectedValue="SelectedValue" SelectionMode="@SelectionMode">
+        <ProTreeViewItem Value="@("config")" Expanded Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+            <ProTreeViewItem Value='"launch.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+            <ProTreeViewItem Value='"tasks.json"' Icon="@Icons.Custom.FileFormats.FileCode" />
+        </ProTreeViewItem>
+        <ProTreeViewItem Value="@("images")" Icon="@Icons.Custom.Uncategorized.Folder" IconExpanded="@Icons.Custom.Uncategorized.FolderOpen">
+            <ProTreeViewItem Value="@("logo.png")" Icon="@Icons.Custom.FileFormats.FileImage" />
+        </ProTreeViewItem>
+    </ProTreeView>
+</ProPaper>
+
+<ProStack Row Justify="Justify.Center" Style="width: 100%" Wrap="Wrap.Wrap">
+    <ProRadioGroup @bind-Value="SelectionMode">
+        <ProRadio Value="SelectionMode.SingleSelection" Color="Color.Primary">SingleSelection</ProRadio>
+        <ProRadio Value="SelectionMode.ToggleSelection" Color="Color.Primary">ToggleSelection</ProRadio>
+    </ProRadioGroup>
+    <ProChipSet T="string" @bind-SelectedValue="SelectedValue" Color="Color.Primary" Variant="Variant.Text">
+        <ProChip Text="config"/>
+        <ProChip Text="launch.json"/>
+        <ProChip Text="tasks.json"/>
+        <ProChip Text="images"/>
+        <ProChip Text="logo.png"/>
+    </ProChipSet>
+    <ProSwitch @bind-Value="ReadOnly" Color="Color.Primary">ReadOnly</ProSwitch>    
+</ProStack>
+
+@code {
+    public string SelectedValue = "tasks.json";
+    public bool ReadOnly = false;
+    public SelectionMode SelectionMode = SelectionMode.SingleSelection;
+}

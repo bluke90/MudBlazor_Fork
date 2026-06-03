@@ -1,0 +1,12 @@
+﻿@inject ISnackbar SnackbarService
+
+<ProButton OnClick="@OnClick">Show the snackbar!</ProButton>
+
+@code {
+    public static string __description__ = "Click the button to fire a Snackbar built with a custom component.";
+
+    private void OnClick()
+    {
+        SnackbarService.Add<SnackbarCustomComponent>();
+    }
+}

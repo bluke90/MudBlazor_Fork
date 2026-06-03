@@ -1,0 +1,15 @@
+﻿@using ProtonBlazor.Utilities
+
+<ProPopoverProvider />
+
+<ProForm ValidationDelay="0">
+    <ProColorPicker Required="true" @bind-Value="ColorValue">
+    </ProColorPicker>
+</ProForm>
+
+@code {
+    public static string __description__ = "Form should validate color picker's value.";
+
+    [Parameter]
+    public ProColor ColorValue { get; set; } = new("#000000");
+}

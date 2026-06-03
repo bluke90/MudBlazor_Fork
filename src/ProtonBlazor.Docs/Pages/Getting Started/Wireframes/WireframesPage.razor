@@ -1,0 +1,199 @@
+﻿@page "/getting-started/wireframes"
+
+<DocsPage DisplayFooter="true">
+    <DocsPageHeader Title="Wireframes" SubTitle="These small templates, or as we call them, wireframes, can be copied directly from here or just be used for inspiration." />
+    <DocsPageContent>
+        <DocsPageSection>
+            <ProText>These wireframes are designed to speed up the process of creating new projects and demonstrate different ways to work with ProtonBlazor components.</ProText>
+            <ProText>They are only a starting point and meant for you to build upon.</ProText>
+        </DocsPageSection>
+        <DocsPageSection>
+            <SectionHeader Title="Main Layouts" />
+            <ProGrid Class="my-4">
+                <ProItem>
+                    <div class="wf-layout rounded" @onclick="@((e) => NavigateToWireFrame("/getting-started/wireframes/layout1"))">
+                        <div class="wf-appbar wf-drawer-open-left rounded-tr">
+                            <ProSkeleton SkeletonType="SkeletonType.Circle" Width="12px" Height="12px" Class="mr-2" />
+                            <ProSkeleton Height="12px" Width="40px" />
+                        </div>
+                        <div class="wf-drawer rounded-l pro-elevation-1"></div>
+                        <div class="wf-content"></div>
+                    </div>
+                    <div class="d-flex justify-center align-center mt-8 pl-12">
+                        <ProText Typo="Typo.body1" Class="mx-auto">Drawer left + top appbar</ProText>
+                        <ProTooltip Text="Show/Copy Wireframe">
+                            <ProIconButton Icon="@Icons.Material.Filled.Code" OnClick="@(e => ToggleOverlay(true, "Layout1WireframeExample"))" />
+                        </ProTooltip>
+                    </div>
+                </ProItem>
+                <ProItem>
+                    <div class="wf-layout rounded" @onclick="@((e) => NavigateToWireFrame("/getting-started/wireframes/layout2"))">
+                        <div class="wf-appbar rounded-tr">
+                            <ProSkeleton SkeletonType="SkeletonType.Circle" Width="12px" Height="12px" Class="mr-2" />
+                            <ProSkeleton Height="12px" Width="40px" />
+                        </div>
+                        <div class="wf-drawer rounded-l pro-elevation-1"></div>
+                        <div class="wf-content"></div>
+                    </div>
+                    <div class="d-flex justify-center align-center mt-8 pl-12">
+                        <ProText Typo="Typo.body1" Class="mx-auto">Top appbar with clipped drawer</ProText>
+                        <ProTooltip Text="Show/Copy Wireframe">
+                            <ProIconButton Icon="@Icons.Material.Filled.Code" OnClick="@(e => ToggleOverlay(true, "Layout2WireframeExample"))" />
+                        </ProTooltip>
+                    </div>
+                </ProItem>
+                <ProItem>
+                    <div class="wf-layout rounded" @onclick="@((e) => NavigateToWireFrame("/getting-started/wireframes/layout3"))">
+                        <div class="wf-appbar rounded-tr">
+                            <ProSkeleton Height="12px" Width="40px" />
+                        </div>
+                        <div class="wf-content"></div>
+                    </div>
+                    <div class="d-flex justify-center align-center mt-8 pl-12">
+                        <ProText Typo="Typo.body1" Class="mx-auto">Appbar Only</ProText>
+                        <ProTooltip Text="Show/Copy Wireframe">
+                            <ProIconButton Icon="@Icons.Material.Filled.Code" OnClick="@(e => ToggleOverlay(true, "Layout3WireframeExample"))" />
+                        </ProTooltip>
+                    </div>
+                </ProItem>
+            </ProGrid>
+        </DocsPageSection>
+        <DocsPageSection>
+            <SectionHeader Title="Custom Content" />
+            <ProGrid Class="my-4">
+                <ProItem>
+                    <div class="wf-layout rounded" @onclick="@((e) => NavigateToWireFrame("/getting-started/wireframes/content1"))">
+                        <div class="wf-appbar wf-drawer-open-left rounded-tr">
+                            <ProSkeleton SkeletonType="SkeletonType.Circle" Width="12px" Height="12px" Class="mr-2" />
+                            <ProSkeleton Height="12px" Width="40px" />
+                        </div>
+                        <div class="wf-drawer rounded-l pro-elevation-1"></div>
+                        <div class="wf-content">
+                            <div class="d-flex mt-1">
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="25px" />
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="25px" />
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="25px" />
+                            </div>
+                            <div class="d-flex my-2">
+                                <div>
+                                    <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="124px" Height="25px" />
+                                    <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 mt-1 rounded-sm" Width="124px" Height="25px" />
+                                </div>
+                                <div>
+                                    <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="124px" Height="100%" />
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="40px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-center align-center mt-8 pl-12">
+                        <ProText Typo="Typo.body1" Class="mx-auto">Dashboard Grid</ProText>
+                        <ProTooltip Text="Show/Copy Wireframe">
+                            <ProIconButton Icon="@Icons.Material.Filled.Code" OnClick="@(e => ToggleOverlay(true, "Content1WireframeExample"))" />
+                        </ProTooltip>
+                    </div>
+                </ProItem>
+                <ProItem>
+                    <div class="wf-layout rounded" @onclick="@((e) => NavigateToWireFrame("/getting-started/wireframes/content2"))">
+                        <div class="wf-appbar rounded-tr">
+                            <ProSkeleton Height="12px" Width="50px" />
+                        </div>
+                        <div class="wf-content">
+                            <div class="d-flex justify-center mt-4">
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="50px" Height="8px" />
+                            </div>
+                            <div class="d-flex justify-center mt-2">
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="150px" Height="4px" />
+                            </div>
+                            <div class="d-flex justify-center mt-1">
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="120px" Height="4px" />
+                            </div>
+                            <div class="d-flex mt-2 mx-12">
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="70px" />
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="70px" />
+                                <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="70px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-center align-center mt-8 pl-12">
+                        <ProText Typo="Typo.body1" Class="mx-auto">Pricing</ProText>
+                        <ProTooltip Text="Show/Copy Wireframe">
+                            <ProIconButton Icon="@Icons.Material.Filled.Code" OnClick="@(e => ToggleOverlay(true, "Content2WireframeExample"))" />
+                        </ProTooltip>
+                    </div>
+                </ProItem>
+                <ProItem>
+                    <div class="wf-layout rounded" @onclick="@((e) => NavigateToWireFrame("/getting-started/wireframes/content3"))">
+                        <div class="wf-appbar rounded-tr">
+                            <ProSkeleton Height="12px" Width="40px" />
+                        </div>
+                        <div class="wf-content">
+                            <div class="d-flex justify-center">
+                                <div class="d-flex mt-6">
+                                    <div class="mx-1">
+                                        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="50px" Height="8px" />
+                                        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 mt-1 rounded-sm" Width="150px" Height="8px" />
+                                        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 mt-1 rounded-sm" Width="150px" Height="8px" />
+                                        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 mt-1 rounded-sm" Width="150px" Height="8px" />
+                                        <div class="d-flex mt-1">
+                                            <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="8px" />
+                                            <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="8px" />
+                                        </div>
+                                        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 mt-1 rounded-sm" Width="150px" Height="8px" />
+                                        <div class="d-flex mt-1">
+                                            <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="8px" />
+                                            <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="100%" Height="8px" />
+                                        </div>
+                                        <div class="d-flex justify-center">
+                                            <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 mt-3 rounded-sm" Width="50px" Height="8px" />
+                                        </div>
+                                    </div>
+                                    <div class="mx-1">
+                                        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm" Width="30px" Height="8px" />
+                                        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Class="mx-1 rounded-sm mt-2" Width="50px" Height="80px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-center align-center mt-8 pl-12">
+                        <ProText Typo="Typo.body1" Class="mx-auto">Checkout</ProText>
+                        <ProTooltip Text="Show/Copy Wireframe">
+                            <ProIconButton Icon="@Icons.Material.Filled.Code" OnClick="@(e => ToggleOverlay(true, "Content3WireframeExample"))" />
+                        </ProTooltip>
+                    </div>
+                </ProItem>
+            </ProGrid>
+        </DocsPageSection>
+    </DocsPageContent>
+    <ProOverlay Visible="visible" DarkBackground="true" ZIndex="9999" >
+        <ProContainer MaxWidth="MaxWidth.ExtraLarge">
+            <ProPaper Class="docs-section-wireframe" Elevation="24">
+                <ProIconButton Class="close-button" Icon="@Icons.Material.Filled.Close" Color="Color.Secondary" OnClick="@(e => ToggleOverlay(false))"/>
+                <div class="wireframe-code-container">
+                    <SectionContent Code="@exampleCode"/>
+                </div>
+            </ProPaper>
+        </ProContainer>
+    </ProOverlay>
+</DocsPage>
+
+@code {
+    [Inject] public Microsoft.AspNetCore.Components.NavigationManager UriHelper { get; set; }
+
+    private bool visible;
+    private string exampleCode;
+
+    public void NavigateToWireFrame(string wireframe)
+    {
+        UriHelper.NavigateTo(wireframe);
+    }
+
+    public void ToggleOverlay(bool value, string code = null)
+    {
+        exampleCode = code;
+        visible = value;
+    }
+}

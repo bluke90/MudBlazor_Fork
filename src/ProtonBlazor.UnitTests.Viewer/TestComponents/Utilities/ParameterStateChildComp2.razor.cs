@@ -1,0 +1,36 @@
+﻿// Copyright (c) ProtonBlazor 2021
+// ProtonBlazor licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Components;
+using ProtonBlazor.State;
+
+namespace ProtonBlazor.UnitTests;
+
+public partial class ParameterStateChildComp2 : ProComponentBase
+{
+    private readonly ParameterState<int> _counterState;
+    private readonly List<ParameterChangedEventArgs<int>> _parameterChangedEvents = [];
+
+    public ParameterStateChildComp2()
+    {
+        using var registerScope = CreateRegisterScope();
+        _counterState = registerScope.RegisterParameter<int>(nameof(Counter))
+            .WithParameter(() => Counter)
+            .WithEventCallback(() => CounterChanged)
+            .WithChangeHandler(OnParameterChanged);
+    }
+
+    [Parameter, ParameterState]
+    public int Counter { get; set; } = 0;
+
+    [Parameter]
+    public EventCallback<int> CounterChanged { get; set; }
+
+    private void OnParameterChanged(ParameterChangedEventArgs<int> args)
+    {
+        _parameterChangedEvents.Add(args);
+    }
+
+    private Task OnClickChild2Async() => _counterState.SetValueAsync(_counterState.Value + 1);
+}

@@ -1,0 +1,29 @@
+﻿<ErrorBoundary @ref="_errorBoundary">
+    <ChildContent>
+        <ProButton OnClick="HandleClickAsync">
+            <ProText>ProButton</ProText>
+        </ProButton>
+        <ProFab OnClick="HandleClickAsync" StartIcon="@Icons.Material.Filled.Add">
+            <ProText>ProFab</ProText>
+        </ProFab>
+        <ProIconButton OnClick="HandleClickAsync" Icon="@Icons.Material.Filled.Delete">
+            <ProText>ProFab</ProText>
+        </ProIconButton>
+    </ChildContent>
+    <ErrorContent Context="exception">
+        <ProAlert Severity="Severity.Error">@exception.Message</ProAlert>
+    </ErrorContent>
+</ErrorBoundary>
+
+
+@code {
+    private ErrorBoundary? _errorBoundary;
+
+    public async Task HandleClickAsync()
+    {
+        await Task.Delay(100);
+        throw new Exception("Something went wrong...");
+    }
+
+    public void Recover() => _errorBoundary?.Recover();
+}

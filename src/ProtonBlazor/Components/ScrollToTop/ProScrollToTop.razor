@@ -1,0 +1,10 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+ 
+<span class="@Classname"
+      style="@Style"
+      @attributes="@UserAttributes"
+      @onclick="this.AsNonRenderingEventHandler<MouseEventArgs>(OnButtonClick)">
+    @ChildContent
+</span>
+ 

@@ -1,0 +1,50 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDialog OnKeyDown="OnKeyDownAsync">
+    <DialogContent>
+        <ProText>Select your favourite coffee. Hit Enter to accept or Escape to cancel.</ProText>
+        <ProSelect T="string" Label="Favorite Coffee" @bind-Value="_returnValue">
+            <ProSelectItem Value="@("Cappuccino")" />
+            <ProSelectItem Value="@("Cafe Latte")" />
+            <ProSelectItem Value="@("Espresso")" />
+            <ProSelectItem Value="@("Irish Coffee")" />
+        </ProSelect>
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="Submit">OK</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [Inject] 
+    private IDialogService DialogService { get; set; } // for MessageBox
+
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; }
+
+    private string _returnValue;
+
+    private void Submit() => ProDialog.Close(DialogResult.Ok(_returnValue));
+
+    private void Cancel() => ProDialog.Cancel();
+
+    private async Task OnKeyDownAsync(KeyboardEventArgs args)
+    {
+        switch(args.Key) {
+            case "Enter":
+            case "NumpadEnter":
+                if (string.IsNullOrEmpty(_returnValue)) {
+                    await DialogService.ShowMessageBoxAsync(
+                        "Sorry",
+                        @"You must either select a coffee and close with Enter or cancel with Escape!", 
+                        yesText:"Got it", 
+                        options: new DialogOptions() { CloseOnEscapeKey = true });
+                    return;
+                }
+                Submit();
+                break;
+        }
+    }
+
+}

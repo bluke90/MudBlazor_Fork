@@ -1,0 +1,18 @@
+﻿<ProTabs>
+    <ProTabPanel Text="Item One" />
+    <ProTabPanel Text="Item Two" Visible="@Visible" />
+    <ProTabPanel Text="Item Three" />
+</ProTabs>
+
+<ProText>Hide first item</ProText>
+
+<ProTabs>
+    <ProTabPanel Text="Item One" Visible="false" />
+    <ProTabPanel Text="Item Two" />
+    <ProTabPanel Text="Item Three" />
+</ProTabs>
+
+@code {
+    [Parameter]
+    public bool Visible { get; set; } = true;
+}

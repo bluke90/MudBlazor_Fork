@@ -1,0 +1,66 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProForm @ref="_form" ValidationDelay="0">
+    <ProDataGrid T="Item"
+                 Items="_items"
+                 Validator="@(_bindValidatorToForm ? _form : _defaultValidator)">
+        <Columns>
+            <TemplateColumn Title="Name">
+                <CellTemplate>
+                    <ProTextField @bind-Value="context.Item.Name"
+                                  Immediate="true"
+                                  Validation="(string name) => ValidateName(name)" />
+                </CellTemplate>
+            </TemplateColumn>
+        </Columns>
+    </ProDataGrid>
+</ProForm>
+
+<ProStack Row>
+    <ProSwitch Color="Color.Primary" @bind-Value="_bindValidatorToForm">Bind ProDataGrid.Validator to ProForm?</ProSwitch>
+    <ProSwitch ReadOnly="true" Value="_form?.IsTouched">ProForm.IsTouched</ProSwitch>
+    <ProSwitch ReadOnly="true" Value="_form?.IsValid">ProForm.IsValid</ProSwitch>
+</ProStack>
+
+@code
+{
+    private readonly Interfaces.IForm _defaultValidator = new DataGridRowValidator();
+    private ProForm _form;
+    private bool _bindValidatorToForm = true;
+
+    private Item[] _items =
+    [
+        new() { Name = "valid" },
+        new() { Name = "invalid" }
+    ];
+
+    private static string ValidateName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return "Name is required";
+        }
+
+        if (name == "invalid")
+        {
+            return "Name must not be 'invalid'";
+        }
+
+        return null;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnParametersSetAsync();
+        if (firstRender)
+        {
+            await _form.ValidateAsync();
+            _form.ResetTouched();
+        }
+    }
+
+    public class Item
+    {
+        public string Name { get; set; }
+    }
+}

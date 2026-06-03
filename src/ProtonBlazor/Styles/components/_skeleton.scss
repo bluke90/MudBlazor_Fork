@@ -1,0 +1,44 @@
+
+.pro-skeleton {
+  height: 1.2em;
+  display: block;
+  background-color: var(--pro-palette-skeleton);
+}
+
+.pro-skeleton-text {
+  height: auto;
+  transform: scale(1, 0.60);
+  margin-top: 0;
+  border-radius: var(--pro-default-borderradius);
+  margin-bottom: 0;
+  transform-origin: 0 60%;
+}
+
+.pro-skeleton-text:empty:before {
+  content: "\00a0";
+}
+
+.pro-skeleton-circle {
+  border-radius: 50%;
+}
+
+.pro-skeleton-pulse {
+  animation: pro-skeleton-keyframes-pulse 1.5s ease-in-out 0.5s infinite;
+}
+
+.pro-skeleton-wave {
+  overflow: hidden;
+  position: relative;
+}
+
+.pro-skeleton-wave::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  position: absolute;
+  animation: pro-skeleton-keyframes-wave 1.6s linear 0.5s infinite;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
+}

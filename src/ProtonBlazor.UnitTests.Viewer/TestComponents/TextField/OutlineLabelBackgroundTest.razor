@@ -1,0 +1,37 @@
+﻿<ProStack Class="test-container1" Row>
+    <ProTextField T="string" Variant="Variant.Outlined" Label="Normal"></ProTextField>
+    <ProTextField T="string" Variant="Variant.Outlined" Label="Shrink Normal" ShrinkLabel="true"></ProTextField>
+    <ProTextField T="string" Variant="Variant.Outlined" Margin="Margin.Dense" Label="Dense"></ProTextField>
+    <ProTextField T="string" Variant="Variant.Outlined" Label="Shrink Dense" ShrinkLabel="true" Margin="Margin.Dense"></ProTextField>
+</ProStack>
+
+<ProRTLProvider RightToLeft>
+    <ProStack Class="test-container1" Row>
+        <ProTextField T="string" Variant="Variant.Outlined" Label="Shrink Dense" ShrinkLabel="true" Margin="Margin.Dense"></ProTextField>
+        <ProTextField T="string" Variant="Variant.Outlined" Margin="Margin.Dense" Label="Dense"></ProTextField>
+        <ProTextField T="string" Variant="Variant.Outlined" Label="Shrink Normal" ShrinkLabel="true"></ProTextField>
+        <ProTextField T="string" Variant="Variant.Outlined" Label="Normal"></ProTextField>
+    </ProStack>
+</ProRTLProvider>
+
+<div class="test-container2">
+    <ProTextField T="string" Variant="Variant.Outlined" Label="Shrink Normal" ShrinkLabel="true"></ProTextField>
+</div>
+
+<ProRTLProvider RightToLeft>
+    <div class="test-container2">
+        <ProTextField T="string" Variant="Variant.Outlined" Label="Shrink Normal" ShrinkLabel="true"></ProTextField>
+    </div>
+</ProRTLProvider>
+
+
+<style>
+    .test-container1 {
+        padding: 20px;
+        background-color: deepskyblue;
+    }
+
+    .test-container2 {
+        background-color: deepskyblue;
+    }
+</style>

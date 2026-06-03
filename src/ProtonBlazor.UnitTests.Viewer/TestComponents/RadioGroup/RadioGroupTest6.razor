@@ -1,0 +1,16 @@
+﻿<ProRadioGroup @bind-Value="@_option">
+    <ProRadio Value="@("1")" Dense="true" />
+    <ProRadio Value="@("2")" Size="Size.Small" />
+    <ProRadio Value="@("3")" />
+    <ProRadio Value="@("4")" Size="Size.Large" />
+</ProRadioGroup>
+
+<ProButton OnClick="OnClick" />
+
+@code {
+    public static string __description__ = "RadioGroup should be resettable";
+
+    private string? _option;
+
+    private void OnClick() => _option = null;
+}

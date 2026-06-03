@@ -1,0 +1,34 @@
+﻿
+<ProContainer MaxWidth="MaxWidth.ExtraSmall">
+    <ProButton OnClick="@ToggleForm" Variant="Variant.Filled" Color="Color.Primary">Toggle Form Enable/Disable</ProButton>
+    <ProForm Disabled="@FormDisabled">
+        <ProTabs ActivePanelIndex="9" AlwaysShowScrollButtons="true">
+            <ProTabPanel Text="Tab One">
+                <ProTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" />
+            </ProTabPanel>
+            <ProTabPanel Text="Tab Two">
+                <ProButton Variant="Variant.Filled" Color="Color.Primary">Does nothing</ProButton>
+            </ProTabPanel>
+            <ProTabPanel Text="Three" />
+            <ProTabPanel Text="Four" />
+            <ProTabPanel Text="Five" />
+            <ProTabPanel Text="Six" />
+            <ProTabPanel Text="Seven" />
+            <ProTabPanel Text="Eight" />
+            <ProTabPanel Text="Nine" />
+            <ProTabPanel Text="Ten" />
+            <ProTabPanel Text="Eleven" />
+            <ProTabPanel Text="Thirteen" />
+        </ProTabs>
+    </ProForm>
+</ProContainer>
+
+@code {
+    public static string __description__ = "Tab scroll buttons should remain interactive even when the containing form is disabled.";
+    public bool FormDisabled { get; set; }
+
+    void ToggleForm()
+    {
+        FormDisabled = !FormDisabled;
+    }
+}

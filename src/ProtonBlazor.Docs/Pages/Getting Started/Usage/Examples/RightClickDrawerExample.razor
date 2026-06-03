@@ -1,0 +1,36 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<div @oncontextmenu="ClickForDrawer" @oncontextmenu:preventDefault class="d-flex align-center justify-center" style="height: calc(100vh - 64px); background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);">
+    <ProDrawer @bind-Open="@drawerOpen" Anchor="@Anchor.Right" Elevation="1" Variant="@DrawerVariant.Temporary" Overlay="false">
+        <ProDrawerHeader>
+            <ProText Typo="Typo.h6">My Drawer</ProText>
+        </ProDrawerHeader>
+        <ProCard>
+            <ProCardContent>
+                <ProButton Color="Color.Primary" Variant="Variant.Outlined">New record</ProButton>
+            </ProCardContent>
+        </ProCard>
+        <ProList T="string">
+            <ProListSubheader>List</ProListSubheader>
+            <ProListItem Text="Item 1"></ProListItem>
+        </ProList>
+    </ProDrawer>
+
+    <ProText Class="white-text" Typo="Typo.h6">Right click to somewhere!</ProText>
+</div>
+
+@code{
+    bool drawerOpen;
+
+    private void ClickForDrawer(MouseEventArgs arg)
+    {
+        if (drawerOpen == false)
+        {
+            drawerOpen = true;
+        }
+        else
+        {
+            drawerOpen = false;
+        }
+    }
+}

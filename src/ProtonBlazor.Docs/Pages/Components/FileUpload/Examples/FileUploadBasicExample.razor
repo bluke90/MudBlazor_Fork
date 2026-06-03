@@ -1,0 +1,64 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<style>
+    .pro-file-upload-dragarea {
+        height: 150px;
+        width: 100%;
+    }
+</style>
+
+<ProCard Style="width: 25%;height: 300px;">
+    <ProCardHeader>
+        <ProText Typo="Typo.h6">Default Button</ProText>
+    </ProCardHeader>
+    <ProCardContent>
+        <ProFileUpload @bind-Files="_file"
+                       Disabled="_disabled" />
+    </ProCardContent>
+</ProCard>
+
+<ProCard Style="width: 65%;height:300px;">
+    <ProCardHeader>
+        <ProText Typo="Typo.h6">Drag and Drop</ProText>
+    </ProCardHeader>
+    <ProCardContent>
+        <ProFileUpload @bind-Files="_files"
+                       DragAndDrop="true"
+                       Disabled="_disabled" />
+    </ProCardContent>
+</ProCard>
+
+<ProItem md="12" Class="d-flex justify-center">
+    <ProSwitch T="bool" @bind-Value="_disabled" Label="Disabled" LabelPlacement="Placement.Right" />
+</ProItem>
+
+@code
+{
+    private bool _disabled = false;
+    private IBrowserFile _file = new DummyBrowserFile("test1.jpg", DateTimeOffset.Now, 0, "image/jpeg", []);
+    private IReadOnlyList<IBrowserFile> _files =
+    [
+        new DummyBrowserFile("test1.jpg", DateTimeOffset.Now, 0, "image/jpeg", []),
+        new DummyBrowserFile("test2.jpg", DateTimeOffset.Now, 0, "image/jpeg", []),
+    ];
+
+    public class DummyBrowserFile : IBrowserFile
+    {
+        public string Name { get; }
+        public DateTimeOffset LastModified { get; }
+        public long Size { get; }
+        public string ContentType { get; }
+        public byte[] Content { get; }
+
+        public DummyBrowserFile(string name, DateTimeOffset lastModified, long size, string contentType, byte[] content)
+        {
+            Name = name;
+            LastModified = lastModified;
+            Size = size;
+            ContentType = contentType;
+            Content = content;
+        }
+
+        public Stream OpenReadStream(long maxAllowedSize = 512000, CancellationToken cancellationToken = default) => new MemoryStream(Content);
+    }
+}

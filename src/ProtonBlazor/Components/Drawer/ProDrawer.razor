@@ -1,0 +1,11 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<aside @onpointerenter="this.AsNonRenderingEventHandler(OnPointerEnterAsync)" @onpointerleave="this.AsNonRenderingEventHandler(OnPointerLeaveAsync)" @attributes="UserAttributes" class="@Classname" style="@Stylename">
+    <div @ref="_contentRef" class="pro-drawer-content">
+        <CascadingValue Value="this" IsFixed="true">
+            @ChildContent
+        </CascadingValue>
+    </div>
+</aside>
+<ProOverlay Visible="@OverlayVisible" AutoClose="@OverlayAutoClose" OnClosed="CloseDrawerAsync" Class="@OverlayClass" DarkBackground="true" LockScroll="false" />

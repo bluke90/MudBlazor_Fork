@@ -1,0 +1,33 @@
+﻿@inject IDialogService DialogService
+
+<ProDialog>
+    <TitleContent>
+        Dialog Title
+    </TitleContent>
+    <DialogContent>
+        <ProButton id="show_messagebox_btn" @onclick="DoSomething" Variant="Variant.Filled" Color="Color.Primary">
+            Do Something
+        </ProButton>
+    </DialogContent>
+    <DialogActions>
+        <ProButton Color="Color.Primary" OnClick="Submit">OK</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var newOptions = ProDialog.Options with { CloseOnEscapeKey = true, CloseButton = true };
+        await ProDialog.SetOptionsAsync(newOptions);
+
+        await base.OnInitializedAsync();
+    }
+
+    private void Submit() => ProDialog.Close(DialogResult.Ok(true));
+
+    private Task DoSomething() => DialogService.ShowMessageBoxAsync("Warning", "Are you sure you wish to do something?", yesText: "Do it", cancelText: "Cancel");
+}

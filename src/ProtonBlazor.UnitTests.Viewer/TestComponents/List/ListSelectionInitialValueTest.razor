@@ -1,0 +1,38 @@
+﻿<ProList T="string" Color="Color" @bind-SelectedValue="_selectedValue">
+    <ProListSubheader>
+        Your drink:
+        <ProChip Color="Color.Secondary">
+            @(_selectedValue ?? "You are dry")
+        </ProChip>
+    </ProListSubheader>
+    <ProListItem Text="Sparkling Water" />
+    <ProListItem Text="Teas">
+        <NestedList>
+            <ProListItem Text="Earl Grey" />
+            <ProListItem Text="Matcha" />
+            <ProListItem Text="Pu'er" />
+        </NestedList>
+    </ProListItem>
+    <ProListItem Text="Coffees">
+        <NestedList>
+            <ProListItem Text="Irish Coffee" />
+            <ProListItem Text="Double Espresso" />
+            <ProListItem Text="Cafe Latte" />
+        </NestedList>
+    </ProListItem>
+</ProList>
+
+@code {
+    public static string __description__ = "Sparkling Water should be selected initially.";
+
+    private string? _selectedValue = "Sparkling Water";
+
+    [Parameter]
+    public Color Color { get; set; } = Color.Primary;
+
+    public void SetSelectedValue(string value)
+    {
+        _selectedValue = value;
+        StateHasChanged();
+    }
+}

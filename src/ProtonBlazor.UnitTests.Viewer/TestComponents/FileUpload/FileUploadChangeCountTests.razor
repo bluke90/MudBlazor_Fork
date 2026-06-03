@@ -1,0 +1,32 @@
+﻿<ProFileUpload T="IBrowserFile"
+               FilesChanged="@FilesChanged"
+               OnFilesChanged="@OnFilesChanged">
+    <CustomContent>
+        <ProButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="@context.OpenFilePickerAsync"
+                   StartIcon="@Icons.Material.Filled.CloudUpload">
+        </ProButton>
+    </CustomContent>
+</ProFileUpload>
+
+<ProStack>
+    <ProText>
+        FilesChanged count: @FilesChangedCount
+    </ProText>
+    <ProText>
+        OnFilesChanged count: @OnFilesChangedCount
+    </ProText>
+</ProStack>
+
+@code {
+    public static string __description__ = "Tests FilesChanged and OnFilesChanged callback invocation counts.";
+
+    public int FilesChangedCount { get; private set; }
+
+    public int OnFilesChangedCount { get; private set; }
+
+    private void FilesChanged(IBrowserFile? _) => FilesChangedCount++;
+
+    private void OnFilesChanged(InputFileChangeEventArgs _) => OnFilesChangedCount++;
+}

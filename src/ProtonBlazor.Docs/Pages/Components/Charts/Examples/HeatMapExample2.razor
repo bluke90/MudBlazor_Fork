@@ -1,0 +1,79 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProPaper Class="pa-4">
+    <ProChart ChartType="ChartType.HeatMap" ChartSeries="@_series" ChartOptions="@_options"
+              ChartLabels="@_xLabels" Width="100%" Height="350px"></ProChart>
+</ProPaper>
+<ProPaper Class="pa-4 mt-2 d-flex justify-center">
+    <ProGrid Spacing="2" Class="d-flex">
+        <ProItem xs="4">
+            <ProStack Row AlignItems="AlignItems.Center" Justify="Justify.Center">
+                <ProText Class="pr-1">YAxis Labels</ProText>
+                <ProSelect T="YAxisLabelPosition" @bind-Value="@_yAxisLabelPosition" @bind-Value:after="BuildOptions" FullWidth="true">
+                    <ProSelectItem Value="YAxisLabelPosition.Left">Left</ProSelectItem>
+                    <ProSelectItem Value="YAxisLabelPosition.Right">Right</ProSelectItem>
+                    <ProSelectItem Value="YAxisLabelPosition.None">None</ProSelectItem>
+                </ProSelect>
+            </ProStack>
+        </ProItem>
+        <ProItem xs="4" Class="d-flex align-center justify-center">
+            <ProButton @onclick="RandomizeData" Variant="Variant.Filled" Class="mx-4">Randomize</ProButton>
+        </ProItem>
+        <ProItem xs="4">
+            <ProStack Row AlignItems="AlignItems.Center" Justify="Justify.Center">
+                <ProText Class="pr-1">XAxis Labels</ProText>
+                <ProSelect T="XAxisLabelPosition" @bind-Value="@_xAxisLabelPosition" @bind-Value:after="BuildOptions" FullWidth="true">
+                    <ProSelectItem Value="XAxisLabelPosition.Top">Top</ProSelectItem>
+                    <ProSelectItem Value="XAxisLabelPosition.Bottom">Bottom</ProSelectItem>
+                    <ProSelectItem Value="XAxisLabelPosition.None">None</ProSelectItem>
+                </ProSelect>
+            </ProStack>
+        </ProItem>
+    </ProGrid>
+</ProPaper>
+
+@code {
+    private readonly string[] _colors = ["#5AC8FA", "#34C759", "#007AFF"];
+    private List<ChartSeries<double>> _series = [];
+    private HeatMapChartOptions _options = new();
+    private XAxisLabelPosition _xAxisLabelPosition = XAxisLabelPosition.Top;
+    private YAxisLabelPosition _yAxisLabelPosition = YAxisLabelPosition.Left;
+    private string[] _xLabels = [];
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        BuildOptions();
+        RandomizeData();
+    }
+
+    private void BuildOptions()
+    {
+        var options = new HeatMapChartOptions
+        {
+            ChartPalette = _colors,
+            XAxisLabelPosition = _xAxisLabelPosition,
+            YAxisLabelPosition = _yAxisLabelPosition
+        };
+        _options = options;
+    }
+
+    private void RandomizeData()
+    {
+        string[] xaxis = ["A", "B", "C",];
+        var heatMapSeries = new List<ChartSeries<double>>();
+        var dataPoints = xaxis.Length;
+        foreach (var x in xaxis)
+        {
+            var data = new double[dataPoints];
+            for (int i = 0; i < dataPoints; i++)
+            {
+                data[i] = Math.Round(Random.Shared.NextDouble() * 100, 2);
+            }
+            heatMapSeries.Add(new ChartSeries<double> { Name = x, Data = data });
+        }
+        _xLabels = xaxis;
+        _series = heatMapSeries;
+        BuildOptions();
+    }
+}

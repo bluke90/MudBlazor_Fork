@@ -1,0 +1,17 @@
+﻿<ProPopoverProvider />
+
+<ProSelect T="string" @bind-Value="@_value" @bind-Open="@Open">
+    <ProSelectItem Value="@("1")">1</ProSelectItem>
+    <ProSelectItem Value="@("2")">2</ProSelectItem>
+    <ProSelectItem Value="@("3")">3</ProSelectItem>
+</ProSelect>
+
+<ProSwitch id="switch" Color="Color.Primary" @bind-Value="@Open" Label="Open" />
+
+@code {
+    public static string __description__ = "Tests Open two-way bind.";
+
+    private string? _value = null;
+
+    public bool Open { get; private set; }
+}

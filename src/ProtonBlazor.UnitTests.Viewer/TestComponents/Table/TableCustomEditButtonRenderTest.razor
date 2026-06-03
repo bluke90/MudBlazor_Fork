@@ -1,0 +1,32 @@
+﻿<ProTable T="string" Items="_items" EditTrigger="TableEditTrigger.EditButton" EditButtonPosition="EditButtonPosition" ApplyButtonPosition="ApplyButtonPosition">
+    <HeaderContent>
+        <ProTh>#</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>
+            <div>
+                @context
+            </div>
+        </ProTd>
+    </RowTemplate>
+    <RowEditingTemplate>
+        <ProTd>
+            <ProTextField T="string" @bind-Value="@context"></ProTextField>
+        </ProTd>
+    </RowEditingTemplate>
+    <EditButtonContent Context="button">
+        <ProIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Class="pa-0" OnClick="button.ButtonAction" Disabled="button.ButtonDisabled" />
+    </EditButtonContent>
+</ProTable>
+
+@code {
+    public static string __description__ = "Inline Edit Table: Custom edit button content";
+
+    private readonly string[] _items = ["A", "B", "C"];
+
+    [Parameter]
+    public TableApplyButtonPosition ApplyButtonPosition { get; set; } = TableApplyButtonPosition.End;
+
+    [Parameter]
+    public TableEditButtonPosition EditButtonPosition { get; set; } = TableEditButtonPosition.End;
+}

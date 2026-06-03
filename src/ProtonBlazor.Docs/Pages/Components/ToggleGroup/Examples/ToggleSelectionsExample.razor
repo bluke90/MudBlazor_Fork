@@ -1,0 +1,43 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack>
+    <ProStack>
+        <ProText>Single Selection</ProText>
+        <ProText>Value: @_value1</ProText>
+        <ProToggleGroup T="string" SelectionMode="SelectionMode.SingleSelection" @bind-Value="_value1" Color="Color.Primary" CheckMark FixedContent>
+            <ProToggleItem Value="@("Yes")" Text="Yes" />
+            <ProToggleItem Value="@("No")" Text="No" />
+            <ProToggleItem Value="@("Don't know")" Text="Don't know" />
+        </ProToggleGroup>
+    </ProStack>
+
+    <ProDivider />
+
+    <ProStack>
+        <ProText>Multi Selection</ProText>
+        <ProText>Values: @string.Join(", ", _value2 ?? new List<string>())</ProText>
+        <ProToggleGroup T="string" SelectionMode="SelectionMode.MultiSelection" @bind-Values="_value2" Color="Color.Secondary" CheckMark>
+            <ProToggleItem Value="@("Extra Bag")" UnselectedIcon="@Icons.Material.Filled.CheckBoxOutlineBlank" SelectedIcon="@Icons.Material.Filled.CheckBox"/>
+            <ProToggleItem Value="@("Vegan Menu")" UnselectedIcon="@Icons.Material.Filled.CheckBoxOutlineBlank" SelectedIcon="@Icons.Material.Filled.CheckBox" />
+            <ProToggleItem Value="@("Carbon Offset")" UnselectedIcon="@Icons.Material.Filled.CheckBoxOutlineBlank" SelectedIcon="@Icons.Material.Filled.CheckBox" />
+        </ProToggleGroup>
+    </ProStack>
+
+    <ProDivider />
+
+    <ProStack>
+        <ProText>Toggle Selection</ProText>
+        <ProText>Value: @(_value3 == null ? "null" : _value3.ToString())</ProText>
+        <ProToggleGroup T="int?" SelectionMode="SelectionMode.ToggleSelection" @bind-Value="_value3" Color="Color.Tertiary" CheckMark>
+            <ProToggleItem Value="@((int?)1)" Text="Coffee (1)" />
+            <ProToggleItem Value="@((int?)2)" Text="Tee (2)" />
+            <ProToggleItem Value="@((int?)3)" Text="Water (3)" />
+        </ProToggleGroup>
+    </ProStack>
+</ProStack>
+
+@code {
+    private string _value1 = "Yes";
+    private IEnumerable<string> _value2 = new []{ "Vegan Menu", "Carbon Offset"};
+    private int? _value3;
+}

@@ -1,0 +1,46 @@
+@namespace ProtonBlazor.Docs.Examples
+<ProStack Justify="@Justify.Center"
+          Class="pro-width-full">
+    <ProChipSet T="string"
+                AllClosable="@true"
+                CheckMark="@true"
+                SelectionMode="@SelectionMode.MultiSelection"
+                OnClose="@OnChipClosed">
+        @for (var i = 0; i < _chips.Count; i++)
+        {
+            var localIndex = i;
+            <ProChip Value="@_chips[localIndex]"
+                     Color="@((Color)(localIndex % _numberOfColors))" />
+        }
+    </ProChipSet>
+    <ProButton OnClick="@AddChip"
+               Variant="@Variant.Filled">
+        Add chip
+    </ProButton>
+</ProStack>
+
+<ProDivider />
+
+<ProStack>
+    <ProChip T="string"
+             OnClick="@OpenDialogAsync"
+             Text="Click to open a dialog" />
+</ProStack>
+
+@code {
+    [Inject]
+    private IDialogService DialogService { get; set; }
+
+    private readonly List<string> _chips = ["Chip 1", "Chip 2", "Chip 3"];
+    private int _chipCounter = 3;
+    private int _numberOfColors = Enum.GetValues(typeof(Color)).Length;
+
+    private void AddChip()
+        => _chips.Add($"Chip {++_chipCounter}");
+
+    private void OnChipClosed(ProChip<string> chip)
+        => _chips.Remove(chip.Value);
+
+    private Task OpenDialogAsync()
+        => DialogService.ShowMessageBoxAsync("Dialog", "This is a dialog");
+}

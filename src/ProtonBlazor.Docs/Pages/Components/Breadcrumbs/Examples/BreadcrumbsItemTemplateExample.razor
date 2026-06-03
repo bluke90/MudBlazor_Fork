@@ -1,0 +1,16 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProBreadcrumbs Items="_items">
+    <ItemTemplate Context="item">
+        <ProLink Href="@item.Href">@item.Text.ToUpper()</ProLink>
+    </ItemTemplate>
+</ProBreadcrumbs>
+
+@code {
+    private List<BreadcrumbItem> _items =
+    [
+        new("Home", href: "#"),
+        new("Link 1", href: "#"),
+        new("Link 2", href: null, disabled: true)
+    ];
+}

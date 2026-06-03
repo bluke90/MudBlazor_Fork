@@ -1,0 +1,12 @@
+﻿<ProProgressCircular Color="Color.Default" Indeterminate="true" StrokeWidth="@_width" Size="Size.Large">
+    <ChildContent>
+        @_width
+    </ChildContent>
+</ProProgressCircular>
+<ProSlider Class="mt-4" @bind-Value="@_width" Min="0" Max="20">@($"Stroke-Width: {_width}")</ProSlider>
+
+@code {
+    public static string __description__ = "Circle should render correctly with increasing stroke width";
+
+    int _width = 2;
+}

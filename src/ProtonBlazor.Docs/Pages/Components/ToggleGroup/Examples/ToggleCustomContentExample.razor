@@ -1,0 +1,39 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProToggleGroup  Class="pro-width-full" T="string" SelectedClass="black white-text">
+    <ProToggleItem Value="@("Basic Edition")">
+        <div class="pro-width-full pro-height-full">
+            <div class="d-flex align-center justify-space-between flex-wrap">
+                <ProText Class="ellipsis">Indie Developer</ProText>
+                <ProChip Color="@(context ? Color.Success : Color.Primary)" Icon="@(context ? Icons.Material.Filled.Check : "")">Basic</ProChip>
+            </div>
+            <ProText Typo="Typo.subtitle2">Perfect for lone wolves</ProText>
+        </div>
+    </ProToggleItem>
+    <ProToggleItem Value="@("Pro Edition")">
+        <div class="pro-width-full pro-height-full">
+            <div class="d-flex align-center justify-space-between flex-wrap">
+                <ProText Class="ellipsis">Small Team</ProText>
+                <ProChip Color="@(context ? Color.Success : Color.Primary)" Icon="@(context ? Icons.Material.Filled.Check : "")">Pro</ProChip>
+            </div>
+            <ProText Typo="Typo.subtitle2">Up to five devs and two interns</ProText>
+        </div>
+    </ProToggleItem>
+    <ProToggleItem Value="@("Enterprise Edition")">
+        <div class="pro-width-full pro-height-full">
+            <div class="d-flex align-center justify-space-between flex-wrap">
+                <ProText Class="ellipsis">Corporation</ProText>
+                <ProChip Color="@(context ? Color.Success : Color.Primary)" Icon="@(context ? Icons.Material.Filled.Check : "")">Enterprise</ProChip>
+            </div>
+            <ProText Typo="Typo.subtitle2">Unlimited edition</ProText>
+        </div>
+    </ProToggleItem>
+</ProToggleGroup>
+
+<style>
+    .ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>

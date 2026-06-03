@@ -1,0 +1,26 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProButton Variant="Variant.Filled" Color="Color.Error" OnClick="OnButtonClickedAsync">Delete</ProButton>
+<ProChip T="string">@_state</ProChip>
+
+<ProMessageBox @ref="_proMessageBox" Title="Warning" CancelText="Cancel">
+    <MessageContent>
+        Deleting can <b><i>not</i></b> be undone!
+    </MessageContent>
+    <YesButton>
+        <ProButton Variant="Variant.Filled" Color="Color.Error" StartIcon="@Icons.Material.Filled.DeleteForever">Delete!</ProButton>
+    </YesButton>
+</ProMessageBox>
+
+@code
+{
+    private ProMessageBox _proMessageBox;
+    private string _state = "Message box hasn't been opened yet";
+
+    private async Task OnButtonClickedAsync()
+    {
+        bool? result = await _proMessageBox.ShowAsync();
+        _state = result is null ? "Canceled" : "Deleted!";
+        StateHasChanged();
+    }
+}

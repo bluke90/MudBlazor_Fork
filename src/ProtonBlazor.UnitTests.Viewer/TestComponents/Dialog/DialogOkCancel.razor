@@ -1,0 +1,29 @@
+﻿<ProDialog Class="test-class" ContentClass="content-class" OnKeyDown="OnKeyDown" OnKeyUp="OnKeyUp">
+    <DialogContent>
+        <ProText>Wabalabadubdub!</ProText>
+    </DialogContent>
+    <DialogActions>
+        <ProButton OnClick="Cancel">Cancel</ProButton>
+        <ProButton Color="Color.Primary" OnClick="Submit">OK</ProButton>
+        <ProButton Color="Color.Secondary" OnClick="CloseDefault">OK Default</ProButton>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    public IProDialogInstance ProDialog { get; set; } = null!;
+
+    public KeyboardEventArgs? LastKeyDown { get; private set; }
+
+    public KeyboardEventArgs? LastKeyUp { get; private set; }
+
+    private void Submit() => ProDialog.Close(DialogResult.Ok(true));
+
+    private void CloseDefault() => ProDialog.Close();
+
+    private void Cancel() => ProDialog.Cancel();
+
+    private void OnKeyDown(KeyboardEventArgs arg) => LastKeyDown = arg;
+
+    private void OnKeyUp(KeyboardEventArgs arg) => LastKeyUp = arg;
+}

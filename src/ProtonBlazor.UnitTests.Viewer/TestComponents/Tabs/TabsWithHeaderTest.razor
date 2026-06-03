@@ -1,0 +1,27 @@
+﻿<ProTabs HeaderPosition="@TabHeaderPosition" TabPanelHeaderPosition="@TabPanelHeaderPosition">
+    <ChildContent>
+        <ProTabPanel Text="First Tab" Tag="0">
+            <ProText Typo="Typo.h1">  First Tab Content</ProText>
+        </ProTabPanel>
+        <ProTabPanel Text="Second Tab" Tag="1">
+            <ProText Typo="Typo.h1">Second Tab Content</ProText>
+        </ProTabPanel>
+        <ProTabPanel Text="Third Tab" Tag="2">
+            <ProText Typo="Typo.h1">Third Tab Content</ProText>
+        </ProTabPanel>
+    </ChildContent>
+    <Header>
+        <ProText Typo="Typo.caption" Class="test-header-content">Count: @context.Panels.Count</ProText>
+    </Header>
+    <TabPanelHeader>
+        <ProText Typo="Typo.caption" Class="test-panel-header-content">Index: @context.Tag</ProText>
+    </TabPanelHeader>
+</ProTabs>
+
+@code {
+    [Parameter]
+    public TabHeaderPosition TabHeaderPosition { get; set; } = TabHeaderPosition.After;
+
+    [Parameter]
+    public TabHeaderPosition TabPanelHeaderPosition { get; set; } = TabHeaderPosition.After;
+}

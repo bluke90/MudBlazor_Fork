@@ -1,0 +1,38 @@
+﻿@using System.Net.Http.Json
+@using ProtonBlazor.Examples.Data.Models
+@namespace ProtonBlazor.Docs.Examples
+@inject HttpClient httpClient
+
+<ProTable Items="@Elements" Hover="true" SortLabel="Sort By">
+    <HeaderContent>
+        <ProTh><ProTableSortLabel SortBy="new Func<Element, object>(x=>x.Number)">Nr</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel Enabled="@enabled" SortBy="new Func<Element, object>(x=>x.Sign)">Sign</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Element, object>(x=>x.Name)">Name</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortBy="new Func<Element, object>(x=>x.Position)">Position</ProTableSortLabel></ProTh>
+        <ProTh><ProTableSortLabel SortBy="new Func<Element, object>(x=>x.Molar)">Mass</ProTableSortLabel></ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd DataLabel="Nr">@context.Number</ProTd>
+        <ProTd DataLabel="Sign">@context.Sign</ProTd>
+        <ProTd DataLabel="Name">@context.Name</ProTd>
+        <ProTd DataLabel="Position">@context.Position</ProTd>
+        <ProTd DataLabel="Molar mass">@context.Molar</ProTd>
+    </RowTemplate>
+    <PagerContent>
+        <ProTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
+    </PagerContent>
+</ProTable>
+
+<ProSwitch @bind-Value="enabled" Color="Color.Info">Enable sorting on the Sign Column</ProSwitch>
+
+@code {
+    private bool enabled = true;
+    private IEnumerable<Element> Elements = new List<Element>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Elements = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable");
+    }
+}
+
+

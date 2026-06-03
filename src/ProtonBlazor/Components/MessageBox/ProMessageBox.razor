@@ -1,0 +1,93 @@
+﻿@namespace ProtonBlazor
+@inherits ProComponentBase
+
+@{
+}
+
+<ProDialog @attributes="UserAttributes" Class="@Classname">
+    <TitleContent>
+        @if (TitleContent is null)
+        {
+            <ProText Typo="Typo.h6">@Title</ProText>
+        }
+        else
+        {
+            @TitleContent
+        }
+    </TitleContent>
+    <DialogContent>
+        @if (MessageContent is not null)
+        {
+            @MessageContent
+        }
+        else
+        {
+            @MarkupMessage
+            @Message
+        }
+    </DialogContent>
+    <DialogActions>
+        <div tabindex="-1" class="d-contents">
+            @if (IsButtonOrderReversed)
+            {
+                <ProFocusTrap DefaultFocus="DefaultFocus.FirstChild">
+                    @YesButtonFragment
+                    @NoButtonFragment
+                    @CancelButtonFragment
+                </ProFocusTrap>
+            }
+            else
+            {
+                <ProFocusTrap DefaultFocus="DefaultFocus.LastChild">
+                    @CancelButtonFragment
+                    @NoButtonFragment
+                    @YesButtonFragment
+                </ProFocusTrap>
+            }
+        </div>
+    </DialogActions>
+</ProDialog>
+
+@code {
+    private RenderFragment CancelButtonFragment => 
+    @<text>
+        @if (CancelButton is not null)
+        {
+            <CascadingValue Value="@_cancelCallback">
+                @CancelButton
+            </CascadingValue>
+        }
+        else if (!string.IsNullOrWhiteSpace(CancelText))
+        {
+            <ProButton Class="pro-message-box__cancel-button" OnClick="OnCancelClicked">@CancelText</ProButton>
+        }
+    </text>;
+
+    private RenderFragment NoButtonFragment =>
+    @<text>
+        @if (NoButton is not null)
+        {
+            <CascadingValue Value="@_noCallback">
+                @NoButton
+            </CascadingValue>
+        }
+        else if (!string.IsNullOrWhiteSpace(NoText))
+        {
+            <ProButton Class="pro-message-box__no-button" OnClick="OnNoClicked">@NoText</ProButton>
+        }
+    </text>;
+
+    private RenderFragment YesButtonFragment =>
+    @<text>
+        @if (YesButton is not null)
+        {
+            <CascadingValue Value="@_yesCallback">
+                @YesButton
+            </CascadingValue>
+        }
+        else if (!string.IsNullOrWhiteSpace(YesText))
+        {
+            <ProButton Class="pro-message-box__yes-button" Color="Color.Primary" OnClick="OnYesClicked">@YesText</ProButton>
+        }
+    </text>;
+}

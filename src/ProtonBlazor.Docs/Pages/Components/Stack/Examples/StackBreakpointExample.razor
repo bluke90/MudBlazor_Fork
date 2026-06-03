@@ -1,0 +1,28 @@
+@namespace ProtonBlazor.Docs.Examples
+
+<ProGrid>
+    <ProItem xs="12" md="8">
+        <ProStack Row="@_row" Reverse="@_reverse" Breakpoint="@_breakpoint">
+            <ProPaper Class="pa-3">Item 1</ProPaper>
+            <ProPaper Class="pa-3">Item 2</ProPaper>
+            <ProPaper Class="pa-3">Item 3</ProPaper>
+        </ProStack>
+    </ProItem>
+    <ProItem xs="12" md="4">
+        <ProStack>
+            <ProSwitch Label="Row" @bind-Value="_row" />
+            <ProSwitch Label="Reverse" @bind-Value="_reverse" />
+            <ProSelect T="Breakpoint" @bind-Value="_breakpoint" Label="Breakpoint">
+                @foreach (var value in Enum.GetValues(typeof(Breakpoint)).Cast<Breakpoint>()){
+                    <ProSelectItem T="Breakpoint" Value="value">@value</ProSelectItem>
+                }
+            </ProSelect>
+        </ProStack>
+    </ProItem>
+</ProGrid>
+
+@code {
+    private Breakpoint _breakpoint = Breakpoint.None;
+    private bool _row = false;
+    private bool _reverse = false;
+}

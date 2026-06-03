@@ -1,0 +1,35 @@
+﻿@layout IframeLayout
+@namespace ProtonBlazor.Docs.Examples
+@page "/iframe/docs/examples/appbar/bottom"
+
+<ProLayout>
+    <ProMainContent Class="pt-0">
+        <ProList T="string">
+            <ProListItem Text="App Bookmark Item 1" Icon="@Icons.Material.Filled.Bookmark" />
+            <ProListItem Text="App Bookmark Item 2" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Primary" />
+            <ProListItem Text="App Bookmark Item 3" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Secondary" />
+            <ProListItem Text="App Bookmark Item 4" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Tertiary" />
+            <ProListItem Text="App Bookmark Item 5" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Info" />
+            <ProListItem Text="App Bookmark Item 6" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Success" />
+            <ProListItem Text="App Bookmark Item 7" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Warning" />
+            <ProListItem Text="App Bookmark Item 8" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Error" />
+            <ProListItem Text="App Bookmark Item 9" Icon="@Icons.Material.Filled.Bookmark" IconColor="Color.Dark" />
+        </ProList>
+    </ProMainContent>
+    <ProAppBar Bottom="true" Fixed="true" Color="Color.Primary" Elevation="1">
+        <ProIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+        <ProSpacer />
+        <ProIconButton Icon="@Icons.Material.Filled.FavoriteBorder" Color="Color.Inherit" Edge="Edge.End" />
+        <ProIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </ProAppBar>
+</ProLayout>
+
+
+@code{
+    bool open = false;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+}

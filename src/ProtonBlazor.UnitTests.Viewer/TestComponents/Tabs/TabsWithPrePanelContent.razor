@@ -1,0 +1,20 @@
+﻿<ProPopoverProvider />
+
+<ProTabs @bind-ActivePanelIndex="SelectedIndex" Class="">
+	<ChildContent>
+		<ProTabPanel Text="Tab One">
+			<ProText class="my-text">Some Content</ProText>
+		</ProTabPanel>
+		<ProTabPanel Text="Tab Two">
+			<ProText class="my-text">Another content</ProText>
+		</ProTabPanel>
+	</ChildContent>
+	<PrePanelContent>
+		<ProText Class="pre-panel-content-custom">Selected: @context?.Text</ProText>
+	</PrePanelContent>
+</ProTabs>
+
+@code {
+	[Parameter]
+	public int SelectedIndex { get; set; }
+}

@@ -1,0 +1,13 @@
+﻿<ProBadge Content="3" Overlap="true" Class="mx-6 my-4" OnClick="TestClick">
+    <ProNumericField @bind-Value="_value" />
+</ProBadge>
+
+@code
+{
+    public static string __description__ = "Badge test";
+    private int _value = 0;
+    private void TestClick()
+    {
+        _value = 1;
+    }
+}

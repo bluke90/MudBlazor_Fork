@@ -1,0 +1,25 @@
+﻿<ProTabs KeepPanelsAlive="@KeepPanelsAlive">
+    <ProTabPanel Text="Item One">
+        <TabsKeepAlivePanel ComponentName="Panel 1" FirstRender="@(x => _firstRenders.Add(x))"/>
+    </ProTabPanel>
+    <ProTabPanel Text="Item Two">
+        <TabsKeepAlivePanel ComponentName="Panel 2" FirstRender="@(x => _firstRenders.Add(x))" />
+    </ProTabPanel>
+    <ProTabPanel Text="Item Three">
+        <TabsKeepAlivePanel ComponentName="Panel 3" FirstRender="@(x => _firstRenders.Add(x))" />
+    </ProTabPanel>
+</ProTabs>
+
+<p>
+    @foreach (var firstRender in _firstRenders)
+    {
+        @firstRender<br />
+    }
+</p>
+
+@code {
+    private readonly List<string> _firstRenders = [];
+
+    [Parameter]
+    public bool KeepPanelsAlive { get; set; } = true;
+}

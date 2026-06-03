@@ -1,0 +1,11 @@
+﻿@inherits ProForm
+
+@using ProtonBlazor.Interfaces
+
+<CascadingValue Value="this" IsFixed="true">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    public HashSet<IFormComponent> FormControls => _formControls;
+}

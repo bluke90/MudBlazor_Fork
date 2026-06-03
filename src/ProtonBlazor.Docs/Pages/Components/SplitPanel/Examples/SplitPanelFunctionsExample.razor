@@ -1,0 +1,42 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProStack Class="pro-width-full pro-height-full" Justify="Justify.Center" AlignItems="AlignItems.Center" Style="height: 500px;">
+    <ProSplitPanel @ref="_splitPanel" Class="pro-width-full pro-height-full">
+        <FirstPanel>
+            <ProStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="pro-width-full pro-height-full">
+                <ProText Typo="Typo.h6">First Panel</ProText>
+            </ProStack>
+        </FirstPanel>
+        <SecondPanel>
+            <ProStack Justify="Justify.Center" AlignItems="AlignItems.Center" Class="pro-width-full pro-height-full">
+                <ProText Typo="Typo.h6">Second Panel</ProText>
+            </ProStack>
+        </SecondPanel>
+    </ProSplitPanel>
+    <ProNumericField @bind-Value="_size" Label="Size [px]"/>
+    <ProStack Row="true">
+        <ProButton OnClick="@GetPositionAsync" Variant="Variant.Filled" EndIcon="@Icons.Material.Outlined.Download">Get Pos.</ProButton>
+        <ProButton OnClick="@SetPositionAsync" Variant="Variant.Filled" EndIcon="@Icons.Material.Outlined.Upload">Set Pos.</ProButton>
+        <ProButton OnClick="@ResetPositionAsync" Variant="Variant.Filled" EndIcon="@Icons.Material.Outlined.Replay">Reset Pos.</ProButton>
+    </ProStack>
+</ProStack>
+
+@code {
+    private ProSplitPanel _splitPanel;
+    private int _size;
+
+    private async Task GetPositionAsync()
+    {
+        _size = await _splitPanel.GetDividerPositionAsync();
+    }
+
+    private async Task SetPositionAsync()
+    {
+        await _splitPanel.SetDividerPositionAsync(_size);
+    }
+
+    private async Task ResetPositionAsync()
+    {
+        await _splitPanel.ResetDividerPositionAsync();
+    }
+}

@@ -1,0 +1,26 @@
+﻿<ProChipSet T="string" @bind-SelectedValues="_selectedValues" SelectionMode="SelectionMode.MultiSelection" CheckMark>
+    @if (_extraItem)
+    {
+        <ProChip Value="@("Extra Chip")" Default="true" />
+    }
+    <ProChip Value="@("Primary")" Default="true"/>
+</ProChipSet>
+
+Add chips
+<ProIconButton id="enable-button" Icon="@Icons.Material.Filled.Add" OnClick="Enable">Enable</ProIconButton>
+
+<br />
+@if (_selectedValues is { Count: > 0 }) {
+    <ProText>@string.Join(", ", _selectedValues.OrderBy(x => x))</ProText>
+}
+else {
+    <ProText>Nothing selected</ProText>
+}
+
+@code
+{ 
+    private bool _extraItem;
+    private IReadOnlyCollection<string>? _selectedValues;
+
+    public void Enable() => _extraItem = !_extraItem;
+}

@@ -1,0 +1,21 @@
+﻿<ProBreakpointProvider OnBreakpointChanged="@( (x) => BreakpointChangedHistory.Add(x))">
+    <ProHidden Breakpoint="@Breakpoint">
+        <ProText>ProHidden content 1</ProText>
+    </ProHidden>
+    <ProHidden Breakpoint="@Breakpoint">
+        <ProText>ProHidden content 2</ProText>
+    </ProHidden>
+    <ProHidden Breakpoint="@Breakpoint">
+        <ProText>ProHidden content 3</ProText>
+    </ProHidden>
+    <ProHidden Breakpoint="@Breakpoint">
+        <ProText>ProHidden content 4</ProText>
+    </ProHidden>
+</ProBreakpointProvider>
+
+@code {
+    [Parameter]
+    public Breakpoint Breakpoint { get; set; }
+
+    public List<Breakpoint> BreakpointChangedHistory { get; set; } = [];
+}

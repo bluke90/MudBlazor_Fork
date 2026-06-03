@@ -1,0 +1,61 @@
+﻿@using System.Net.Http.Json
+@using ProtonBlazor.Examples.Data.Models
+@using System.Threading
+@namespace ProtonBlazor.Docs.Examples
+@inject HttpClient httpClient
+
+<ProGrid>
+    <ProItem xs="12" sm="6" md="4">
+        <ProAutocomplete T="Element" Label="Periodic Table Element" @bind-Value="value1"
+                         SearchFunc="@Search" ToStringFunc="@(e=> e==null?null : $"{e.Name} ({e.Sign})")">
+            <MoreItemsTemplate>
+                <ProText Align="Align.Center" Class="px-4 py-1">
+                    Only the first 10 items are shown
+                </ProText>
+            </MoreItemsTemplate>
+        </ProAutocomplete>
+    </ProItem>
+    <ProItem xs="12" sm="6" md="4">
+        <ProAutocomplete T="Element" Label="Periodic Table Element" @bind-Value="value2"
+                         SearchFunc="@SearchEmpty" ToStringFunc="@(e=> e==null?null : $"{e.Name} ({e.Sign})")">
+            <NoItemsTemplate>
+                <ProText Align="Align.Center" Class="px-4 py-1">
+                    No items found
+                </ProText>
+            </NoItemsTemplate>
+        </ProAutocomplete>
+    </ProItem>
+    <ProItem xs="12" sm="6" md="4">
+        <ProAutocomplete T="Element" Label="Periodic Table Element" @bind-Value="value3"
+                         SearchFunc="@Search" ToStringFunc="@(e=> e==null?null : $"{e.Name} ({e.Sign})")">
+            <BeforeItemsTemplate>
+                <ProText Color="Color.Primary" Class="px-4 py-1">Always Shows Before List</ProText>
+            </BeforeItemsTemplate>
+        </ProAutocomplete>
+    </ProItem>
+    <ProItem xs="12" sm="6" md="4">
+        <ProAutocomplete T="Element" Label="Periodic Table Element" @bind-Value="value4"
+                         SearchFunc="@Search" ToStringFunc="@(e=> e==null?null : $"{e.Name} ({e.Sign})")">
+            <AfterItemsTemplate>
+                <div class="pa-2">
+                    <ProButton Color="Color.Primary">Add item (does nothing)</ProButton>
+                </div>
+            </AfterItemsTemplate>
+        </ProAutocomplete>
+    </ProItem>
+</ProGrid>
+
+@code {
+    private Element value1, value2, value3, value4;
+
+    private async Task<IEnumerable<Element>> Search(string value, CancellationToken token)
+    {
+        return await httpClient.GetFromJsonAsync<List<Element>>($"webapi/periodictable/{value}", token);
+    }
+
+    private async Task<IEnumerable<Element>> SearchEmpty(string value, CancellationToken token)
+    {
+        await Task.Delay(5, token);
+        return Array.Empty<Element>();
+    }
+}

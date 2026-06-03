@@ -1,0 +1,72 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProTabs Outlined="true" Elevation="4" Rounded="true" Border="true" 
+         ApplyEffectsToContainer="true" Class="mt-8" TabPanelsClass="pa-6"
+         EnableDragAndDrop="true" Position="@Position">
+    <ProTabPanel Text="One">
+        <ProText Typo="Typo.h6">Tab One</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Two">
+        <ProText Typo="Typo.h6">Tab Two</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Three">
+        <ProText Typo="Typo.h6">Tab Three</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Four">
+        <ProText Typo="Typo.h6">Tab Four</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Five">
+        <ProText Typo="Typo.h6">Tab Five</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Six">
+        <ProText Typo="Typo.h6">Tab Six</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Seven">
+        <ProText Typo="Typo.h6">Tab Seven</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Eight">
+        <ProText Typo="Typo.h6">Tab Eight</ProText>
+    </ProTabPanel>
+    <ProTabPanel Text="Nine">
+        <ProText Typo="Typo.h6">Tab Nine</ProText>
+    </ProTabPanel>
+</ProTabs>
+
+<ProSelect Label="Tabs Position" @bind-Value="Position" Variant="Variant.Outlined">
+    <ProSelectItem T="Position" Value="@Position.Top">Top</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Start">Start</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Left">Left</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Right">Right</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.End">End</ProSelectItem>
+    <ProSelectItem T="Position" Value="@Position.Bottom">Bottom</ProSelectItem>
+</ProSelect>
+   
+@code {
+    public Position Position { get; set; } = Position.Left;
+    public int TabCount { get; set; } = 6;
+
+    private void OnSelectedValue(Position value)
+    {
+        switch (value)
+        {
+            case Position.Top:
+                Position = Position.Top;
+                break;
+            case Position.Start:
+                Position = Position.Start;
+                break;
+            case Position.Left:
+                Position = Position.Left;
+                break;
+            case Position.Right:
+                Position = Position.Right;
+                break;
+            case Position.End:
+                Position = Position.End;
+                break;
+            case Position.Bottom:
+                Position = Position.Bottom;
+                break;
+        }
+    }
+} 

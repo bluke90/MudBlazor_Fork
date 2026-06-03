@@ -1,0 +1,57 @@
+﻿<ProPopoverProvider />
+
+<ProGrid>
+    <ProItem xs="12">
+        <ProSelect T="Coffee" Label="Coffee"
+                   MultiSelection="true"
+                   SelectedValues="_selected" SelectedValuesChanged="SelectedChanged"
+                   Comparer="Comparer"
+                   ToStringFunc="@(x => x?.Name)">
+            <ProSelectItem Value="@(new Coffee("cap","Cappuccino"))" />
+            <ProSelectItem Value="@(new Coffee("lat","Cafe Latte"))" />
+            <ProSelectItem Value="@(new Coffee("esp","Espresso"))" />
+            <ProSelectItem Value="@(new Coffee("ire","Irish Coffee"))" />
+        </ProSelect>
+    </ProItem>
+    <ProItem xs="12">
+        <ProButton id="set-selection-button" OnClick="SetSelection">Set Selection</ProButton>
+    </ProItem>
+</ProGrid>
+
+@code {
+    private static CoffeeComparer Comparer { get; } = new();
+
+    private HashSet<Coffee?> _selected = new(Comparer);
+
+    private void SelectedChanged(IReadOnlyCollection<Coffee?>? newSelected)
+    {
+        _selected.Clear();
+        if (newSelected is not null)
+        {
+            _selected.UnionWith(newSelected);
+        }
+    }
+
+    private void SetSelection()
+    {
+        _selected = new HashSet<Coffee?>(Comparer)
+        {
+            new Coffee("lat", "Selected Cafe Latte"),
+            new Coffee("esp", "Selected Espresso")
+        };
+        StateHasChanged();
+    }
+
+    private class Coffee(string key, string name)
+    {
+        public string Key { get; } = key;
+        public string Name { get; } = name;
+    }
+
+    private class CoffeeComparer : IEqualityComparer<Coffee?>
+    {
+        public bool Equals(Coffee? a, Coffee? b) => a?.Key == b?.Key;
+
+        public int GetHashCode(Coffee? x) => HashCode.Combine(x?.Key);
+    }
+}

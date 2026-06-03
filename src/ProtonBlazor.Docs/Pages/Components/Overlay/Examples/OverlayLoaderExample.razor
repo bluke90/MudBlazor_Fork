@@ -1,0 +1,59 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProCard Class="my-2" Style="position:relative;">
+    @if (!dataLoaded)
+    {
+        <ProSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+        <ProCardContent>
+            <ProSkeleton Width="30%" Height="42px;" />
+            <ProSkeleton Width="80%" />
+            <ProSkeleton Width="100%" />
+        </ProCardContent>
+        <ProCardActions>
+            <ProSkeleton Width="64px" Height="40px" Class="ml-2" />
+            <ProSkeleton Width="105px" Height="40px" Class="ml-3" />
+        </ProCardActions>
+        <ProOverlay Visible="visible" DarkBackground="true" Absolute="true">
+            <ProProgressCircular Color="Color.Secondary" Indeterminate="true" />
+        </ProOverlay>
+    }
+    else
+    {
+        <ProCardMedia Image="images/door.jpg" Height="200" />
+        <ProCardContent>
+            <ProText Typo="Typo.h5">Old Paint</ProText>
+            <ProText Typo="Typo.body2">Old paint found on a stone house door.</ProText>
+            <ProText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</ProText>
+        </ProCardContent>
+        <ProCardActions>
+            <ProButton Variant="Variant.Text" Color="Color.Primary">Share</ProButton>
+            <ProButton Variant="Variant.Text" Color="Color.Primary">Learn more</ProButton>
+        </ProCardActions>
+    }
+</ProCard>
+
+<ProToolBar Gutters="false">
+    <ProButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenOverlay" EndIcon="@Icons.Material.Filled.Refresh">Refresh data</ProButton>
+    <ProSpacer/>
+    <ProButton Variant="Variant.Filled" OnClick="ResetExample">Reset example</ProButton>
+</ProToolBar>
+
+@code { 
+    private bool visible;
+    private bool dataLoaded;
+
+    public async void OpenOverlay()
+    {
+        visible = true;
+        dataLoaded = false;
+        await Task.Delay(3000);
+        dataLoaded = true;
+        visible = false;
+        StateHasChanged();
+    }
+
+    public void ResetExample()
+    {
+        dataLoaded = false;
+    }
+} 

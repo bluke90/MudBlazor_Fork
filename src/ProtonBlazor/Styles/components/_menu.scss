@@ -1,0 +1,100 @@
+.pro-menu {
+  display: inline-flex;
+  align-self: center;
+  position: relative;
+
+  & * {
+    cursor: pointer;
+  }
+
+  & > div.pro-disabled {
+    cursor: default;
+
+    & * {
+      cursor: default;
+    }
+  }
+
+  & > div.pro-menu-activator {
+    display: contents;
+    user-select: none;
+  }
+}
+
+.pro-menu-button-hidden {
+  /* this ensures that the menu div doesn't use any space in the layout */
+  position: absolute;
+}
+
+.pro-menu-list {
+  padding: 4px 0;
+  min-width: 112px;
+
+  > .pro-menu {
+    width: 100%;
+    display: inline;
+  }
+
+  > .pro-divider {
+    margin: 4px 0;
+  }
+}
+
+.pro-menu-item {
+  width: 100%;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  text-align: start;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  padding: 8px 12px;
+
+  > .pro-icon-root {
+    color: var(--pro-palette-action-default);
+  }
+
+  .pro-menu-item-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-inline-end: 12px;
+  }
+
+  .pro-menu-item-text {
+    flex: 1 1 auto;
+    margin: 4px 0;
+  }
+
+  &.pro-menu-item-dense {
+    padding: 2px 12px;
+  }
+
+  &.pro-disabled {
+    color: var(--pro-palette-action-disabled) !important;
+    cursor: default !important;
+    pointer-events: none !important;
+
+    .pro-menu-item-icon {
+      color: var(--pro-palette-action-disabled) !important;
+    }
+  }
+}
+
+// If any menu item has an icon, then give the other ones the same gutters.
+.pro-menu-list:has(.pro-menu-item-icon) .pro-menu-item:not(:has(.pro-menu-item-icon)) .pro-menu-item-text {
+  margin-inline-start: 36px;
+}
+
+.pro-menu-list:has(.pro-menu-submenu-icon) .pro-menu-item:not(:has(.pro-menu-submenu-icon)) .pro-menu-item-text {
+  margin-inline-end: 36px;
+}
+
+.pro-popover:has(> .pro-menu-list) {
+  // Prevent menu item hover effects peeking through rounded popovers.
+  overflow: hidden;
+  // Hide the menu if it doesn't have any content.
+  &:has(> .pro-menu-list:empty) {
+    visibility: hidden;
+  }
+}

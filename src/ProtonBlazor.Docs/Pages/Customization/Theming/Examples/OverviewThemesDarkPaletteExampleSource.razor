@@ -1,0 +1,11 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme"/>
+<ProSwitch @bind-Value="_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode"/>
+
+<ProText Class="ma-4">This is an example text!</ProText>
+
+@code{
+    private ProTheme _theme = new();
+    private bool _isDarkMode;
+}

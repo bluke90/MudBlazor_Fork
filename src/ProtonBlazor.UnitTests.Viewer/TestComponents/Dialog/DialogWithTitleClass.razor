@@ -1,0 +1,12 @@
+﻿<ProDialog TitleClass="@TitleClass">
+    <DialogContent>
+    </DialogContent>
+</ProDialog>
+
+@code {
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; } = null!;
+
+    [Parameter]
+    public string TitleClass { get; set; } = string.Empty;
+}

@@ -1,0 +1,11 @@
+﻿<ProPopoverProvider />
+
+<ProTooltip Text="@TooltipTextContent" ShowOnClick="true" Placement="Placement.Start">
+    <ProButton id="my-tooltip-content">My Button</ProButton>
+</ProTooltip>
+
+@code {
+	[Parameter]
+    public string? TooltipTextContent { get; set; }
+}
+

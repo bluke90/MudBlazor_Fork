@@ -1,0 +1,32 @@
+﻿@using ProtonBlazor.Docs.Extensions
+
+@if (_nonnullableType.IsEnum)
+{
+    <ProTooltip>
+        <ChildContent>@Type.GetTypeDisplayName()</ChildContent>
+        <TooltipContent>
+            enumeration type
+            <ProText Align="Align.Left" Typo="Typo.body2">
+                @foreach (var name in Enum.GetNames(_nonnullableType))
+                {
+                    @(_nonnullableType.Name + "." + name)<br />
+                }
+            </ProText>
+        </TooltipContent>
+    </ProTooltip>
+}
+else
+{
+    @Type.GetTypeDisplayName()
+}
+
+@code {
+    [Parameter] public Type Type { get; set; }
+
+    private Type _nonnullableType;
+
+    protected override void OnInitialized()
+    {
+        _nonnullableType = Nullable.GetUnderlyingType(Type) ?? Type;
+    }
+}

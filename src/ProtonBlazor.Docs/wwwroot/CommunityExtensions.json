@@ -1,0 +1,107 @@
+[
+  {
+    "CategoryComment": "// Valid Categories are Components, Utility, Style, Other,",
+    "Category": "Invalid selections are ignored, Valid options are: Components, Utility, Style, or Other",
+    "Name": "The name of your extension, avoid super long names if possible.",
+    "Description": "A brief description of what the extension does for ProtonBlazor users",
+    "Link": "Your preferred landing page, users will have this link and a link to github automatically generated",
+    "GitHubUserPath": "Your github user",
+    "GitHubRepoPath": "Your github repo"
+  },
+  {
+    "Category": "Style",
+    "Name": "ProX Theme Creator",
+    "Description": "Blazor Theme Creator site for ProtonBlazor library. This app is designed to be used to create and export themes for ProtonBlazor, not as part of your application.",
+    "Link": "https://themes.mudx.org",
+    "GitHubUserPath": "ProXtra",
+    "GitHubRepoPath": "ProXThemeCreator"
+  },
+  {
+    "Category": "Components",
+    "Name": "ProtonBlazor Markdown",
+    "Description": "A Markdown Component for ProtonBlazor.",
+    "Link": "https://github.com/MyNihongo/ProtonBlazor.Markdown",
+    "GitHubUserPath": "MyNihongo",
+    "GitHubRepoPath": "ProtonBlazor.Markdown"
+  },
+  {
+    "Category": "Components",
+    "Name": "CodeBeam ProtonBlazor Extensions",
+    "Description": "ProExtensions has 30+ components and utilities from the core library contributors. There are both unique and extended components that add additional features on current Mud components.",
+    "Link": "https://codebeam-mudextensions.pages.dev/",
+    "GitHubUserPath": "CodeBeamOrg",
+    "GitHubRepoPath": "CodeBeam.ProtonBlazor.Extensions"
+  },
+  {
+    "Category": "Components",
+    "Name": "Fgilde ProtonBlazor Extensions",
+    "Description": "ProtonBlazor.Extensions is a convenient package that extends the capabilities of the ProtonBlazor component library. There are both unique and extended components and utilities that add additional features on current Mud components.",
+    "Link": "https://protonblazor-extensions.pages.dev/",
+    "GitHubUserPath": "fgilde",
+    "GitHubRepoPath": "ProtonBlazor.Extensions"
+  },
+  {
+    "Category": "Components",
+    "Name": "Fgilde ProEx RichTextEditor",
+    "Description": "ProExRichTextEditor is a custom reusable control that allows us to easily consume Quill combining in a ProtonBlazor project Features with ProtonBlazor Theme Support. This compnent also works without a ProtonBlazor Project.",
+    "Link": "https://github.com/fgilde/ProExRichTextEditor",
+    "GitHubUserPath": "fgilde",
+    "GitHubRepoPath": "ProExRichTextEditor"
+  },
+  {
+    "Category": "Components",
+    "Name": "Static Input (for SSR)",
+    "Description": "Tailored specifically for Static Server-Side Rendered (static SSR) pages. It offers seamless integration for some of ProtonBlazor's Component design into your static application pages. Focusing particularly on components designed for forms and edit forms, in situations where interactive components are not feasible.",
+    "Link": "https://github.com/0phois/ProtonBlazor.StaticInput",
+    "GitHubUserPath": "0phois",
+    "GitHubRepoPath": "ProtonBlazor.StaticInput"
+  },
+  {
+    "Category": "Components",
+    "Name": "Heron ProCalendar",
+    "Description": "A simple but powerful calendar component for ProtonBlazor. Calendar includes multiple views (month, week, work week, and day), customizable events, and easy integration with your existing ProtonBlazor project.",
+    "Link": "https://github.com/danheron/Heron.ProCalendar",
+    "GitHubUserPath": "danheron",
+    "GitHubRepoPath": "Heron.ProCalendar"
+  },
+  {
+    "Category": "Style",
+    "Name": "ProBlocks",
+    "Description": "A collection of ProtonBlazor blocks. Predefined, reusable UI elements or layouts designed to simplify development by combining multiple components into cohesive sections; such as headers, footers, forms, cards, or dashboards.",
+    "Link": "https://mudblocks.cc/",
+    "GitHubUserPath": "mouse0270",
+    "GitHubRepoPath": "mudblocks"
+  },
+  {
+    "Category": "Components",
+    "Name": "ProtonBlazor PdfViewer",
+    "Description": "A component for displaying and manipulating PDF documents.",
+    "Link": "https://mudpdf.info",
+    "GitHubUserPath": "tgothorp",
+    "GitHubRepoPath": "ProtonBlazor.PdfViewer"
+  },
+  {
+    "Category": "Utility",
+    "Name": "FormCraft",
+    "Description": "A powerful, type-safe dynamic form library for Blazor applications with fluent API design. Provides seamless integration with ProtonBlazor components, enabling developers to build complex forms with minimal code.",
+    "Link": "https://phmatray.github.io/FormCraft",
+    "GitHubUserPath": "phmatray",
+    "GitHubRepoPath": "FormCraft"
+  },
+  {
+    "Category": "Components",
+    "Name": "ProX Extensions",
+    "Description": "A collection of components designed for ProtonBlazor. SecurityCode for seamless verification code input, Outline for scrollspy navigation, CodeBlock for Prism.js highlighting, and more.",
+    "Link": "https://mudx.org",
+    "GitHubUserPath": "ProXtra",
+    "GitHubRepoPath": "ProX"
+  },
+  {
+    "Category": "Utility",
+    "Name": "Mud MCP",
+    "Description": "A local MCP (Model Context Protocol) server that lets AI assistants query ProtonBlazor documentation (components, parameters, examples) through structured tools.",
+    "Link": "https://github.com/mcbodge/ProMCP",
+    "GitHubUserPath": "mcbodge",
+    "GitHubRepoPath": "ProMCP"
+  }
+]

@@ -1,0 +1,22 @@
+﻿<ProTable @ref="Table" T="string" Items="_items" @bind-SelectedItem="_selectedItem">
+    <HeaderContent>
+        <ProTh>#</ProTh>
+    </HeaderContent>
+    <RowTemplate>
+        <ProTd>@context</ProTd>
+    </RowTemplate>
+    <RowEditingTemplate>
+        <ProTd>
+            <ProTextField T="string" @bind-Value="@context"></ProTextField>
+        </ProTd>
+    </RowEditingTemplate>
+</ProTable>
+
+@code {
+    public static string __description__ = "Inline Edit Table: Basic";
+
+    private string? _selectedItem;
+    private readonly string[] _items = ["A", "B", "C"];
+
+    public ProTable<string> Table { get; private set; } = null!;
+}

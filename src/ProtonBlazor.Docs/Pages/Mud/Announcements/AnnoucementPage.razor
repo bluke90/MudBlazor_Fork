@@ -1,0 +1,34 @@
+﻿@page "/mud/announcements/{Id}"
+
+<DocsPage DisplayFooter="true">
+    <ProContainer Class="announcement-container" MaxWidth="MaxWidth.Medium">
+        @if (_message == null)
+        {
+            <ProProgressCircular Color="Color.Default" Indeterminate="true" />
+        }
+        else
+        {
+            <DocsPageHeader Title="@_message.Title" SubTitle="@_message.Except">
+                <SpecialHeaderContent>
+                    <ProText Typo="Typo.h2" Class="docs-title">@_message.Title&nbsp;</ProText>
+                    <ProText Typo="Typo.subtitle1" Class="docs-title-description">@_message.Except</ProText>
+                    <ProToolBar Gutters="false">
+                        @foreach (var author in _message.Authors)
+                        {
+                            <div class="d-flex justify-start align-center mx-1">
+                                <ProAvatar Style="background: transparent">
+                                    <ProImage Src="@author.AvatarUrl" Alt="Avatar" />
+                                </ProAvatar>
+                                <ProText Typo="Typo.subtitle2" Class="mx-2">@author.DisplayName</ProText>
+                            </div>
+                        }
+                    </ProToolBar>
+                    <ProText Typo="Typo.subtitle2" Class="pro-text-secondary">@_message.PublishDate.ToString("MMM dd, yyyy")</ProText>
+                </SpecialHeaderContent>
+            </DocsPageHeader>
+            <DocsPageContent>
+                <DynamicComponent Type="@_message.ContentComponent" />
+            </DocsPageContent>
+        }
+    </ProContainer>
+</DocsPage>

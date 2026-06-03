@@ -1,0 +1,40 @@
+﻿@namespace ProtonBlazor.Docs.Examples
+
+<ProDialog Style="height: 400px">
+    <DialogContent>
+        @if (_loading)
+        {
+            <ProProgressCircular Indeterminate="true"></ProProgressCircular>
+        }
+        else
+        {
+            <ProText Style="white-space: pre-wrap;">@_licenseText</ProText>
+        }
+    </DialogContent>
+    <DialogActions>
+        <ProButton Color="Color.Primary" OnClick="Ok">Accept</ProButton>
+    </DialogActions>
+</ProDialog>
+
+
+@code {
+    private string _licenseText;
+    private bool _loading;
+
+    [CascadingParameter]
+    private IProDialogInstance ProDialog { get; set; }
+
+    [Inject]
+    private HttpClient HttpClient { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _loading = true;
+        var response = await HttpClient.GetAsync("https://raw.githubusercontent.com/ProtonBlazor/ProtonBlazor/master/LICENSE");
+        _licenseText = await response.Content.ReadAsStringAsync();
+        _loading = false;
+    }
+
+    private void Ok() => ProDialog.Close(DialogResult.Ok(true));
+}

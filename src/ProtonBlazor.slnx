@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/analyzers/">
+    <Project Path="ProtonBlazor.Analyzers.CodeFixes/ProtonBlazor.Analyzers.CodeFixes.csproj" />
+    <Project Path="ProtonBlazor.Analyzers/ProtonBlazor.Analyzers.csproj" />
+  </Folder>
+  <Folder Name="/docs/">
+    <Project Path="ProtonBlazor.Docs.Compiler/ProtonBlazor.Docs.Compiler.csproj" />
+    <Project Path="ProtonBlazor.Docs.Server/ProtonBlazor.Docs.Server.csproj" />
+    <Project Path="ProtonBlazor.Docs.Wasm/ProtonBlazor.Docs.Wasm.csproj" />
+    <Project Path="ProtonBlazor.Docs.WasmHost/ProtonBlazor.Docs.WasmHost.csproj" />
+    <Project Path="ProtonBlazor.Docs/ProtonBlazor.Docs.csproj" />
+    <Project Path="ProtonBlazor.Examples.Data/ProtonBlazor.Examples.Data.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="ProtonBlazor.Analyzers.TestComponents/ProtonBlazor.Analyzers.TestComponents.csproj" />
+    <Project Path="ProtonBlazor.UnitTests.Analyzers/ProtonBlazor.UnitTests.Analyzers.csproj" />
+    <Project Path="ProtonBlazor.UnitTests.Docs.Generator/ProtonBlazor.UnitTests.Docs.Generator.csproj" />
+    <Project Path="ProtonBlazor.UnitTests.Docs/ProtonBlazor.UnitTests.Docs.csproj" />
+    <Project Path="ProtonBlazor.UnitTests.Shared/ProtonBlazor.UnitTests.Shared.csproj" />
+    <Project Path="ProtonBlazor.UnitTests.Viewer/ProtonBlazor.UnitTests.Viewer.csproj" />
+    <Project Path="ProtonBlazor.UnitTests/ProtonBlazor.UnitTests.csproj" />
+  </Folder>
+  <Project Path="ProtonBlazor/ProtonBlazor.csproj" />
+</Solution>
