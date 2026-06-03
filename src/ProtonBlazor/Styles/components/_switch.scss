@@ -50,7 +50,7 @@
   padding: 9px;
   top: 0;
   left: 0;
-  color: #fafafa;
+  color: var(--pro-palette-white);
   z-index: 1;
   position: absolute;
   transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
