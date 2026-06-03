@@ -42,7 +42,7 @@
 
 @media(hover: hover) and (pointer: fine) {
   .pro-breadcrumbs-expander:hover {
-    background-color: #E0E0E0;
+    background-color: var(--pro-palette-gray-lighter);
   }
 }
 
