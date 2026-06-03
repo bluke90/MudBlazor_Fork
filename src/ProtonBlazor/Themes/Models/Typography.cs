@@ -130,11 +130,11 @@ namespace ProtonBlazor
         /// </summary>
         public DefaultTypography()
         {
-            FontFamily = ["Roboto", "Helvetica", "Arial", "sans-serif"];
+            FontFamily = ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"];
             FontSize = ".875rem";
             FontWeight = "400";
-            LineHeight = "1.43";
-            LetterSpacing = ".01071em";
+            LineHeight = "1.5";
+            LetterSpacing = "0";
         }
     }
 
@@ -321,8 +321,8 @@ namespace ProtonBlazor
             FontSize = ".875rem";
             FontWeight = "500";
             LineHeight = "1.75";
-            LetterSpacing = ".02857em";
-            TextTransform = "uppercase";
+            LetterSpacing = "0.025em";
+            TextTransform = "none";
         }
     }
 

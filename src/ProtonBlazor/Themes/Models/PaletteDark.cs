@@ -15,7 +15,7 @@ namespace ProtonBlazor
         public override ProColor Black { get; set; } = "#27272f";
 
         /// <inheritdoc />
-        public override ProColor Primary { get; set; } = "#776be7";
+        public override ProColor Primary { get; set; } = "#818CF8";
 
         /// <inheritdoc />
         public override ProColor Info { get; set; } = "#3299ff";

@@ -8,7 +8,7 @@
         /// <summary>
         /// The default border radius.
         /// </summary>
-        public string DefaultBorderRadius { get; set; } = "4px";
+        public string DefaultBorderRadius { get; set; } = "8px";
 
         /// <summary>
         /// The width of the mini drawer on the left side.

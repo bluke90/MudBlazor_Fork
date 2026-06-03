@@ -44,7 +44,7 @@ namespace ProtonBlazor
         /// <summary>
         /// The primary color.
         /// </summary>
-        public virtual ProColor Primary { get; set; } = "#594AE2";
+        public virtual ProColor Primary { get; set; } = "#4F46E5";
 
         /// <summary>
         /// The contrast text color for the primary color.
@@ -54,7 +54,7 @@ namespace ProtonBlazor
         /// <summary>
         /// The secondary color.
         /// </summary>
-        public virtual ProColor Secondary { get; set; } = Colors.Pink.Accent2;
+        public virtual ProColor Secondary { get; set; } = "#0EA5E9";
 
         /// <summary>
         /// The contrast text color for the secondary color.
@@ -64,7 +64,7 @@ namespace ProtonBlazor
         /// <summary>
         /// The tertiary color.
         /// </summary>
-        public virtual ProColor Tertiary { get; set; } = "#1EC8A5";
+        public virtual ProColor Tertiary { get; set; } = "#10B981";
 
         /// <summary>
         /// The contrast text color for the tertiary color.
@@ -184,7 +184,7 @@ namespace ProtonBlazor
         /// <summary>
         /// The appbar background color.
         /// </summary>
-        public virtual ProColor AppbarBackground { get; set; } = "#594AE2";
+        public virtual ProColor AppbarBackground { get; set; } = "#4F46E5";
 
         /// <summary>
         /// The appbar text color.
