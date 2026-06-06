@@ -1,0 +1,48 @@
+@inherits ProComponentBase
+
+<div class="@_rowClass" @attributes="UserAttributes">
+    @if (Origin == ChatBubbleOrigin.Assistant)
+    {
+        <div class="pro-chat-bubble-avatar" aria-hidden="true">
+            @if (AvatarIcon is not null)
+            {
+                <ProIcon Icon="@AvatarIcon" Size="Size.Small" />
+            }
+            else
+            {
+                <span class="pro-chat-bubble-avatar-initials">@(_initials)</span>
+            }
+        </div>
+    }
+
+    <div class="pro-chat-bubble-body">
+        <div class="@_bubbleClass">
+            @if (IsStreaming && ChildContent is null)
+            {
+                <ProThinkingIndicator />
+            }
+            else
+            {
+                @ChildContent
+            }
+        </div>
+        @if (Timestamp.HasValue)
+        {
+            <div class="pro-chat-bubble-timestamp">@Timestamp.Value.ToLocalTime().ToString("h:mm tt")</div>
+        }
+    </div>
+
+    @if (Origin == ChatBubbleOrigin.User)
+    {
+        <div class="pro-chat-bubble-avatar" aria-hidden="true">
+            @if (AvatarIcon is not null)
+            {
+                <ProIcon Icon="@AvatarIcon" Size="Size.Small" />
+            }
+            else
+            {
+                <span class="pro-chat-bubble-avatar-initials">@(_initials)</span>
+            }
+        </div>
+    }
+</div>
