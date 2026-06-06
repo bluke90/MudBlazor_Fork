@@ -1,0 +1,71 @@
+@namespace ProtonBlazor
+@inherits ProComponentBase
+
+@if (CommandPalette.IsOpen)
+{
+    <div class="pro-command-palette-backdrop" @onclick="HandleBackdropClick">
+        <div class="pro-command-palette" @onclick:stopPropagation="true" role="dialog" aria-modal="true" aria-label="Command palette">
+            <div class="pro-command-palette-search">
+                <ProIcon Icon="@ProIcons.Material.Filled.Search" Class="pro-command-palette-search-icon" />
+                <input @ref="_inputRef"
+                       class="pro-command-palette-input"
+                       type="text"
+                       placeholder="Search commands…"
+                       value="@_query"
+                       @oninput="OnInput"
+                       @onkeydown="HandleKeyDown"
+                       autocomplete="off"
+                       spellcheck="false"
+                       aria-label="Search commands"
+                       aria-autocomplete="list"
+                       role="combobox" />
+                <kbd class="pro-command-palette-esc-hint">Esc</kbd>
+            </div>
+
+            <div class="pro-command-palette-results" role="listbox">
+                @if (_filtered.Count == 0)
+                {
+                    <div class="pro-command-palette-empty">No commands found for "@_query"</div>
+                }
+                else
+                {
+                    var flatIndex = 0;
+                    foreach (var group in _filtered.GroupBy(c => c.Group ?? string.Empty))
+                    {
+                        @if (!string.IsNullOrEmpty(group.Key))
+                        {
+                            <div class="pro-command-palette-group" role="presentation">@group.Key</div>
+                        }
+                        foreach (var item in group)
+                        {
+                            var localIndex = flatIndex;
+                            var localItem = item;
+                            <div class="@GetItemClass(localIndex)"
+                                 role="option"
+                                 aria-selected="@(localIndex == _activeIndex)"
+                                 @onclick="() => ExecuteAsync(localItem)"
+                                 @onmouseenter="() => _activeIndex = localIndex">
+                                @if (!string.IsNullOrEmpty(item.Icon))
+                                {
+                                    <ProIcon Icon="@item.Icon" Class="pro-command-palette-item-icon" />
+                                }
+                                <div class="pro-command-palette-item-content">
+                                    <span class="pro-command-palette-item-label">@item.Label</span>
+                                    @if (!string.IsNullOrEmpty(item.Description))
+                                    {
+                                        <span class="pro-command-palette-item-desc">@item.Description</span>
+                                    }
+                                </div>
+                                @if (!string.IsNullOrEmpty(item.Shortcut))
+                                {
+                                    <kbd class="pro-command-palette-item-shortcut">@item.Shortcut</kbd>
+                                }
+                            </div>
+                            flatIndex++;
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}

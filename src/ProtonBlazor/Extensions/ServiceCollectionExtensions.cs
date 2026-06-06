@@ -12,6 +12,19 @@ namespace ProtonBlazor.Services
     public static class ServiceCollectionExtensions
     {
         /// <summary>
+        /// Adds the Command Palette service as a Scoped instance.
+        /// Also place <c>&lt;ProCommandPalette /&gt;</c> in your root layout to render the palette.
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>Continues the IServiceCollection chain.</returns>
+        public static IServiceCollection AddProtonBlazorCommandPalette(this IServiceCollection services)
+        {
+            services.TryAddScoped<IProCommandPaletteService, ProCommandPaletteService>();
+
+            return services;
+        }
+
+        /// <summary>
         /// Adds a Dialog Service as a Scoped instance.
         /// </summary>
         /// <param name="services">IServiceCollection</param>
