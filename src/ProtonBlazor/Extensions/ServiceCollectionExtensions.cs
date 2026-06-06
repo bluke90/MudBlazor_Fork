@@ -25,6 +25,19 @@ namespace ProtonBlazor.Services
         }
 
         /// <summary>
+        /// Adds the App Progress bar service as a Scoped instance.
+        /// Also place <c>&lt;ProAppProgress /&gt;</c> in your root layout to render the bar.
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>Continues the IServiceCollection chain.</returns>
+        public static IServiceCollection AddProtonBlazorAppProgress(this IServiceCollection services)
+        {
+            services.TryAddScoped<IProAppProgressService, ProAppProgressService>();
+
+            return services;
+        }
+
+        /// <summary>
         /// Adds a Dialog Service as a Scoped instance.
         /// </summary>
         /// <param name="services">IServiceCollection</param>
