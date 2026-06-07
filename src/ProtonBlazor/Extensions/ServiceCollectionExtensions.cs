@@ -12,6 +12,45 @@ namespace ProtonBlazor.Services
     public static class ServiceCollectionExtensions
     {
         /// <summary>
+        /// Adds the Command Palette service as a Scoped instance.
+        /// Also place <c>&lt;ProCommandPalette /&gt;</c> in your root layout to render the palette.
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>Continues the IServiceCollection chain.</returns>
+        public static IServiceCollection AddProtonBlazorCommandPalette(this IServiceCollection services)
+        {
+            services.TryAddScoped<IProCommandPaletteService, ProCommandPaletteService>();
+
+            return services;
+        }
+
+        /// <summary>
+        /// Adds the App Progress bar service as a Scoped instance.
+        /// Also place <c>&lt;ProAppProgress /&gt;</c> in your root layout to render the bar.
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>Continues the IServiceCollection chain.</returns>
+        public static IServiceCollection AddProtonBlazorAppProgress(this IServiceCollection services)
+        {
+            services.TryAddScoped<IProAppProgressService, ProAppProgressService>();
+
+            return services;
+        }
+
+        /// <summary>
+        /// Adds the Notification Center service as a Scoped instance.
+        /// Place <c>&lt;ProNotificationCenter /&gt;</c> wherever you want the bell icon rendered.
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>Continues the IServiceCollection chain.</returns>
+        public static IServiceCollection AddProtonBlazorNotifications(this IServiceCollection services)
+        {
+            services.TryAddScoped<IProNotificationService, ProNotificationService>();
+
+            return services;
+        }
+
+        /// <summary>
         /// Adds a Dialog Service as a Scoped instance.
         /// </summary>
         /// <param name="services">IServiceCollection</param>

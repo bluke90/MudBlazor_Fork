@@ -1,0 +1,23 @@
+@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<div class="@_class" role="status" aria-label="@(Label ?? "Thinking")" @attributes="UserAttributes">
+    @switch (Variant)
+    {
+        case ThinkingVariant.Spinner:
+            <span class="pro-thinking-spinner" aria-hidden="true"></span>
+            break;
+        case ThinkingVariant.Pulse:
+            <span class="pro-thinking-pulse" aria-hidden="true"></span>
+            break;
+        default:
+            <span class="pro-thinking-dot" aria-hidden="true"></span>
+            <span class="pro-thinking-dot" aria-hidden="true"></span>
+            <span class="pro-thinking-dot" aria-hidden="true"></span>
+            break;
+    }
+    @if (Label is not null)
+    {
+        <span class="pro-thinking-label">@Label</span>
+    }
+</div>

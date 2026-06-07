@@ -23,3 +23,4 @@ import "./mudTableCell";
 import "./mudThemeProvider";
 import "./mudTimePicker";
 import "./mudWindow";
+import "./proCommandPalette";

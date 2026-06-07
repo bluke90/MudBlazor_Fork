@@ -1,0 +1,140 @@
+@namespace ProtonBlazor
+@typeparam TItem
+@inherits ProComponentBase
+
+<div class="@_containerClass" @attributes="UserAttributes">
+
+    @if (ShowFilter)
+    {
+        <div class="pro-sdg-toolbar">
+            <input class="pro-sdg-filter"
+                   type="search"
+                   placeholder="@(FilterPlaceholder ?? "Search…")"
+                   @oninput="HandleFilterInput"
+                   aria-label="Filter results" />
+        </div>
+    }
+
+    <div class="pro-sdg-table-wrap">
+        @if (_loading)
+        {
+            <div class="pro-sdg-loading" aria-live="polite" aria-busy="true">
+                <ProThinkingIndicator Variant="ThinkingVariant.Spinner" Label="Loading…" />
+            </div>
+        }
+
+        @if (_error is not null)
+        {
+            <div class="pro-sdg-error" role="alert">
+                <strong>Error:</strong> @_error
+                <button type="button" class="pro-sdg-retry-btn" @onclick="() => _ = LoadDataAsync()">Retry</button>
+            </div>
+        }
+
+        <table class="pro-sdg-table" role="grid" aria-rowcount="@_totalCount" aria-busy="@_loading">
+            <thead class="pro-sdg-thead">
+                <tr>
+                    @foreach (var col in Columns)
+                    {
+                        <th class="@GetHeaderClass(col)"
+                            scope="col"
+                            aria-sort="@GetAriaSortValue(col)"
+                            style="@(col.Width is not null ? $"width:{col.Width}" : null)">
+                            @if (col.SortField is not null)
+                            {
+                                <button type="button" class="pro-sdg-sort-btn" @onclick="async () => await HandleSort(col)">
+                                    @col.Title
+                                    <span class="pro-sdg-sort-icon" aria-hidden="true">@GetSortIndicator(col)</span>
+                                </button>
+                            }
+                            else
+                            {
+                                @col.Title
+                            }
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody class="pro-sdg-tbody">
+                @if (_items.Count == 0 && !_loading)
+                {
+                    <tr>
+                        <td colspan="@Columns.Count" class="pro-sdg-empty">
+                            @if (EmptyContent is not null)
+                            {
+                                @EmptyContent
+                            }
+                            else
+                            {
+                                <span>No results found.</span>
+                            }
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var (item, index) in _items.Select((item, i) => (item, i)))
+                    {
+                        <tr class="@GetRowClass(item)"
+                            @key="@(RowKey?.Invoke(item) ?? (object)index)"
+                            @onclick="async () => await HandleRowClick(item)"
+                            role="row">
+                            @foreach (var col in Columns)
+                            {
+                                <td class="@GetCellClass(col)" role="gridcell">
+                                    @if (col.CellTemplate is not null)
+                                    {
+                                        @col.CellTemplate(item)
+                                    }
+                                    else
+                                    {
+                                        @col.ValueSelector(item)?.ToString()
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (ShowPagination && _totalCount > 0)
+    {
+        <div class="pro-sdg-pagination">
+            <span class="pro-sdg-pagination-info">
+                Showing @(_page * _pageSize + 1)–@(Math.Min((_page + 1) * _pageSize, _totalCount)) of @_totalCount
+            </span>
+            <div class="pro-sdg-pagination-controls">
+                @if (PageSizeOptions is { Length: > 1 })
+                {
+                    <select class="pro-sdg-page-size" @onchange="async e => await HandlePageSizeChange(e)" aria-label="Rows per page">
+                        @foreach (var size in PageSizeOptions)
+                        {
+                            <option value="@size" selected="@(size == _pageSize)">@size per page</option>
+                        }
+                    </select>
+                }
+                <button type="button" class="pro-sdg-page-btn" @onclick="PrevPage" disabled="@(_page == 0)" aria-label="Previous page">&#8249;</button>
+                @foreach (var pageNum in GetPageNumbers())
+                {
+                    @if (pageNum < 0)
+                    {
+                        <span class="pro-sdg-page-ellipsis">…</span>
+                    }
+                    else
+                    {
+                        <button type="button"
+                                class="@(pageNum == _page ? "pro-sdg-page-btn pro-sdg-page-btn--active" : "pro-sdg-page-btn")"
+                                @onclick="async () => await GoToPage(pageNum)"
+                                aria-label="Page @(pageNum + 1)"
+                                aria-current="@(pageNum == _page ? "page" : null)">
+                            @(pageNum + 1)
+                        </button>
+                    }
+                }
+                <button type="button" class="pro-sdg-page-btn" @onclick="NextPage" disabled="@(_page >= TotalPages - 1)" aria-label="Next page">&#8250;</button>
+            </div>
+        </div>
+    }
+</div>

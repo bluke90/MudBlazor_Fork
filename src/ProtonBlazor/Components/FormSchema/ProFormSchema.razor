@@ -1,0 +1,182 @@
+@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<form class="@_formClass" @onsubmit="HandleSubmit" @onsubmit:preventDefault @attributes="UserAttributes" novalidate>
+    @foreach (var field in Schema)
+    {
+        @if (field.Type == FormFieldType.Hidden)
+        {
+            <input type="hidden" name="@field.Key" value="@GetStringValue(field.Key)" />
+        }
+        else
+        {
+            <div class="@GetFieldWrapperClass(field.Key)" @key="field.Key">
+                @switch (field.Type)
+                {
+                    case FormFieldType.Text:
+                    case FormFieldType.Email:
+                    case FormFieldType.Password:
+                        <label class="pro-fs-label" for="@GetFieldId(field.Key)">
+                            @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                        </label>
+                        <input class="pro-fs-input"
+                               type="@GetInputType(field.Type)"
+                               id="@GetFieldId(field.Key)"
+                               value="@GetStringValue(field.Key)"
+                               placeholder="@field.Placeholder"
+                               maxlength="@field.MaxLength"
+                               disabled="@field.Disabled"
+                               required="@field.Required"
+                               @onchange="async e => await OnFieldChange(field, e.Value)" />
+                        break;
+
+                    case FormFieldType.Number:
+                        <label class="pro-fs-label" for="@GetFieldId(field.Key)">
+                            @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                        </label>
+                        <input class="pro-fs-input"
+                               type="number"
+                               id="@GetFieldId(field.Key)"
+                               value="@GetNumberValue(field.Key)"
+                               placeholder="@field.Placeholder"
+                               min="@field.Min"
+                               max="@field.Max"
+                               step="@(field.Step ?? 1)"
+                               disabled="@field.Disabled"
+                               required="@field.Required"
+                               @onchange="async e => await OnFieldChange(field, e.Value)" />
+                        break;
+
+                    case FormFieldType.TextArea:
+                        <label class="pro-fs-label" for="@GetFieldId(field.Key)">
+                            @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                        </label>
+                        <textarea class="pro-fs-input pro-fs-textarea"
+                                  id="@GetFieldId(field.Key)"
+                                  placeholder="@field.Placeholder"
+                                  rows="@(field.Rows ?? 3)"
+                                  maxlength="@field.MaxLength"
+                                  disabled="@field.Disabled"
+                                  required="@field.Required"
+                                  @onchange="async e => await OnFieldChange(field, e.Value)">@GetStringValue(field.Key)</textarea>
+                        break;
+
+                    case FormFieldType.Select:
+                        <label class="pro-fs-label" for="@GetFieldId(field.Key)">
+                            @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                        </label>
+                        <select class="pro-fs-input pro-fs-select"
+                                id="@GetFieldId(field.Key)"
+                                disabled="@field.Disabled"
+                                required="@field.Required"
+                                @onchange="async e => await OnFieldChange(field, e.Value)">
+                            <option value="" disabled selected="@(GetStringValue(field.Key) is null)">
+                                @(field.Placeholder ?? "Select an option…")
+                            </option>
+                            @if (field.Options is not null)
+                            {
+                                @foreach (var opt in field.Options)
+                                {
+                                    <option value="@opt.Value"
+                                            selected="@(GetStringValue(field.Key) == opt.Value)"
+                                            disabled="@opt.Disabled">@opt.Label</option>
+                                }
+                            }
+                        </select>
+                        break;
+
+                    case FormFieldType.Checkbox:
+                        <label class="pro-fs-checkbox-label" for="@GetFieldId(field.Key)">
+                            <input type="checkbox"
+                                   class="pro-fs-checkbox"
+                                   id="@GetFieldId(field.Key)"
+                                   checked="@GetBoolValue(field.Key)"
+                                   disabled="@field.Disabled"
+                                   @onchange="async e => await OnFieldChange(field, e.Value)" />
+                            <span class="pro-fs-checkbox-text">
+                                @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                            </span>
+                        </label>
+                        break;
+
+                    case FormFieldType.Switch:
+                        <label class="pro-fs-switch-label" for="@GetFieldId(field.Key)">
+                            <span class="pro-fs-switch-wrap">
+                                <input type="checkbox"
+                                       class="pro-fs-switch-input"
+                                       id="@GetFieldId(field.Key)"
+                                       checked="@GetBoolValue(field.Key)"
+                                       disabled="@field.Disabled"
+                                       @onchange="async e => await OnFieldChange(field, e.Value)" />
+                                <span class="pro-fs-switch-track" aria-hidden="true">
+                                    <span class="pro-fs-switch-thumb"></span>
+                                </span>
+                            </span>
+                            <span class="pro-fs-switch-text">
+                                @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                            </span>
+                        </label>
+                        break;
+
+                    case FormFieldType.Date:
+                        <label class="pro-fs-label" for="@GetFieldId(field.Key)">
+                            @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                        </label>
+                        <input class="pro-fs-input pro-fs-date"
+                               type="date"
+                               id="@GetFieldId(field.Key)"
+                               value="@GetDateValue(field.Key)"
+                               disabled="@field.Disabled"
+                               required="@field.Required"
+                               @onchange="async e => await OnFieldChange(field, e.Value)" />
+                        break;
+
+                    case FormFieldType.Slider:
+                        <label class="pro-fs-label" for="@GetFieldId(field.Key)">
+                            @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
+                        </label>
+                        <div class="pro-fs-slider-wrap">
+                            <input type="range"
+                                   class="pro-fs-slider"
+                                   id="@GetFieldId(field.Key)"
+                                   value="@(GetNumberValue(field.Key) ?? field.Min ?? 0)"
+                                   min="@(field.Min ?? 0)"
+                                   max="@(field.Max ?? 100)"
+                                   step="@(field.Step ?? 1)"
+                                   disabled="@field.Disabled"
+                                   @oninput="async e => await OnFieldChange(field, e.Value)" />
+                            <output class="pro-fs-slider-output" for="@GetFieldId(field.Key)">
+                                @(GetNumberValue(field.Key) ?? field.Min ?? 0)
+                            </output>
+                        </div>
+                        break;
+                }
+
+                @if (GetFieldError(field.Key) is string errMsg)
+                {
+                    <p class="pro-fs-error" role="alert">@errMsg</p>
+                }
+                else if (field.HelperText is not null)
+                {
+                    <p class="pro-fs-helper">@field.HelperText</p>
+                }
+            </div>
+        }
+    }
+
+    @if (ShowSubmitButton)
+    {
+        <div class="pro-fs-actions">
+            <button type="submit" class="pro-fs-submit" disabled="@IsLoading">
+                @if (IsLoading)
+                {
+                    <ProThinkingIndicator Variant="ThinkingVariant.Spinner" />
+                }
+                else
+                {
+                    @(SubmitLabel ?? "Submit")
+                }
+            </button>
+        </div>
+    }
+</form>

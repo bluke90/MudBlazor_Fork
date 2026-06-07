@@ -1,0 +1,9 @@
+@namespace ProtonBlazor
+@inherits ProComponentBase
+
+@if (Progress.IsVisible)
+{
+    <div class="@_barClass" role="progressbar" aria-label="Page loading" aria-valuemin="0" aria-valuemax="100">
+        <div class="pro-app-progress-bar"></div>
+    </div>
+}

@@ -1,0 +1,5 @@
+@namespace ProtonBlazor
+@inherits ProComponentBase
+
+<span class="@_class" @attributes="UserAttributes">@Content@if (IsStreaming)
+{<span class="pro-streaming-text-cursor" aria-hidden="true"></span>}</span>
