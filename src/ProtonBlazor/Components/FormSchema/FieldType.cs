@@ -4,7 +4,7 @@
 
 namespace ProtonBlazor;
 
-public enum FieldType
+public enum FormFieldType
 {
     Text,
     Email,

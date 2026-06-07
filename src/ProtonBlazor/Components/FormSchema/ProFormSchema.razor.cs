@@ -69,10 +69,10 @@ public partial class ProFormSchema : ProComponentBase
             .AddClass("pro-fs-field--error", GetFieldError(key) is not null)
             .Build();
 
-    private static string GetInputType(FieldType type) => type switch
+    private static string GetInputType(FormFieldType type) => type switch
     {
-        FieldType.Email => "email",
-        FieldType.Password => "password",
+        FormFieldType.Email => "email",
+        FormFieldType.Password => "password",
         _ => "text"
     };
 
@@ -80,11 +80,11 @@ public partial class ProFormSchema : ProComponentBase
     {
         object? typed = field.Type switch
         {
-            FieldType.Number or FieldType.Slider =>
+            FormFieldType.Number or FormFieldType.Slider =>
                 double.TryParse(rawValue?.ToString(), out var d) ? d : null,
-            FieldType.Checkbox or FieldType.Switch =>
+            FormFieldType.Checkbox or FormFieldType.Switch =>
                 rawValue is bool b ? b : bool.TryParse(rawValue?.ToString(), out var bv) && bv,
-            FieldType.Date =>
+            FormFieldType.Date =>
                 DateTime.TryParse(rawValue?.ToString(), out var dt) ? (object?)dt : null,
             _ => rawValue?.ToString()
         };

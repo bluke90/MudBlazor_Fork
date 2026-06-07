@@ -3,7 +3,7 @@
 <form class="@_formClass" @onsubmit="HandleSubmit" @onsubmit:preventDefault @attributes="UserAttributes" novalidate>
     @foreach (var field in Schema)
     {
-        @if (field.Type == FieldType.Hidden)
+        @if (field.Type == FormFieldType.Hidden)
         {
             <input type="hidden" name="@field.Key" value="@GetStringValue(field.Key)" />
         }
@@ -12,9 +12,9 @@
             <div class="@GetFieldWrapperClass(field.Key)" @key="field.Key">
                 @switch (field.Type)
                 {
-                    case FieldType.Text:
-                    case FieldType.Email:
-                    case FieldType.Password:
+                    case FormFieldType.Text:
+                    case FormFieldType.Email:
+                    case FormFieldType.Password:
                         <label class="pro-fs-label" for="@GetFieldId(field.Key)">
                             @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
                         </label>
@@ -29,7 +29,7 @@
                                @onchange="async e => await OnFieldChange(field, e.Value)" />
                         break;
 
-                    case FieldType.Number:
+                    case FormFieldType.Number:
                         <label class="pro-fs-label" for="@GetFieldId(field.Key)">
                             @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
                         </label>
@@ -46,7 +46,7 @@
                                @onchange="async e => await OnFieldChange(field, e.Value)" />
                         break;
 
-                    case FieldType.TextArea:
+                    case FormFieldType.TextArea:
                         <label class="pro-fs-label" for="@GetFieldId(field.Key)">
                             @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
                         </label>
@@ -60,7 +60,7 @@
                                   @onchange="async e => await OnFieldChange(field, e.Value)">@GetStringValue(field.Key)</textarea>
                         break;
 
-                    case FieldType.Select:
+                    case FormFieldType.Select:
                         <label class="pro-fs-label" for="@GetFieldId(field.Key)">
                             @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
                         </label>
@@ -84,7 +84,7 @@
                         </select>
                         break;
 
-                    case FieldType.Checkbox:
+                    case FormFieldType.Checkbox:
                         <label class="pro-fs-checkbox-label" for="@GetFieldId(field.Key)">
                             <input type="checkbox"
                                    class="pro-fs-checkbox"
@@ -98,7 +98,7 @@
                         </label>
                         break;
 
-                    case FieldType.Switch:
+                    case FormFieldType.Switch:
                         <label class="pro-fs-switch-label" for="@GetFieldId(field.Key)">
                             <span class="pro-fs-switch-wrap">
                                 <input type="checkbox"
@@ -117,7 +117,7 @@
                         </label>
                         break;
 
-                    case FieldType.Date:
+                    case FormFieldType.Date:
                         <label class="pro-fs-label" for="@GetFieldId(field.Key)">
                             @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
                         </label>
@@ -130,7 +130,7 @@
                                @onchange="async e => await OnFieldChange(field, e.Value)" />
                         break;
 
-                    case FieldType.Slider:
+                    case FormFieldType.Slider:
                         <label class="pro-fs-label" for="@GetFieldId(field.Key)">
                             @field.Label@if (field.Required){<span class="pro-fs-required" aria-hidden="true"> *</span>}
                         </label>

@@ -8,7 +8,7 @@ public sealed class FieldDefinition
 {
     public required string Key { get; init; }
     public required string Label { get; init; }
-    public FieldType Type { get; init; } = FieldType.Text;
+    public FormFieldType Type { get; init; } = FormFieldType.Text;
     public bool Required { get; init; }
     public bool Disabled { get; init; }
     public string? Placeholder { get; init; }
