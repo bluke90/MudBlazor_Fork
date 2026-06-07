@@ -38,6 +38,19 @@ namespace ProtonBlazor.Services
         }
 
         /// <summary>
+        /// Adds the Notification Center service as a Scoped instance.
+        /// Place <c>&lt;ProNotificationCenter /&gt;</c> wherever you want the bell icon rendered.
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>Continues the IServiceCollection chain.</returns>
+        public static IServiceCollection AddProtonBlazorNotifications(this IServiceCollection services)
+        {
+            services.TryAddScoped<IProNotificationService, ProNotificationService>();
+
+            return services;
+        }
+
+        /// <summary>
         /// Adds a Dialog Service as a Scoped instance.
         /// </summary>
         /// <param name="services">IServiceCollection</param>

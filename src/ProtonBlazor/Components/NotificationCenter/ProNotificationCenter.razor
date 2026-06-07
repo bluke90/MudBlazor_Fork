@@ -1,0 +1,80 @@
+@inherits ProComponentBase
+@implements IDisposable
+
+<div class="@_wrapperClass" @attributes="UserAttributes">
+    <button class="pro-nc-bell"
+            type="button"
+            @onclick="TogglePanel"
+            aria-label="Notifications, @(NotificationService.UnreadCount) unread"
+            aria-expanded="@_isOpen"
+            aria-haspopup="true">
+        <ProIcon Icon="@Icons.Material.Filled.Notifications" />
+        @if (NotificationService.UnreadCount > 0)
+        {
+            <span class="pro-nc-badge" aria-hidden="true">
+                @(NotificationService.UnreadCount > 99 ? "99+" : NotificationService.UnreadCount.ToString())
+            </span>
+        }
+    </button>
+
+    @if (_isOpen)
+    {
+        <div class="pro-nc-backdrop" @onclick="ClosePanel" aria-hidden="true"></div>
+
+        <div class="pro-nc-panel" role="dialog" aria-label="Notifications" aria-modal="false">
+            <div class="pro-nc-panel-header">
+                <span class="pro-nc-panel-title">Notifications</span>
+                <div class="pro-nc-panel-actions">
+                    @if (NotificationService.UnreadCount > 0)
+                    {
+                        <button type="button" class="pro-nc-text-btn" @onclick="MarkAllRead">Mark all read</button>
+                    }
+                    @if (NotificationService.Notifications.Count > 0)
+                    {
+                        <button type="button" class="pro-nc-text-btn pro-nc-text-btn--danger" @onclick="ClearAll">Clear all</button>
+                    }
+                </div>
+            </div>
+
+            @if (NotificationService.Notifications.Count == 0)
+            {
+                <div class="pro-nc-empty">
+                    <ProIcon Icon="@Icons.Material.Outlined.NotificationsNone" />
+                    <span>No notifications</span>
+                </div>
+            }
+            else
+            {
+                <ul class="pro-nc-list" role="list">
+                    @foreach (var n in NotificationService.Notifications)
+                    {
+                        <li class="@GetItemClass(n)" @key="n.Id">
+                            <button type="button" class="pro-nc-item-btn" @onclick="async () => await HandleItemClick(n)">
+                                <span class="pro-nc-item-indicator pro-nc-item-indicator--@n.Severity.ToString().ToLowerInvariant()" aria-hidden="true"></span>
+                                <span class="pro-nc-item-body">
+                                    <span class="pro-nc-item-title">@n.Title</span>
+                                    @if (n.Message is not null)
+                                    {
+                                        <span class="pro-nc-item-message">@n.Message</span>
+                                    }
+                                    <span class="pro-nc-item-time">@FormatTime(n.Timestamp)</span>
+                                </span>
+                                @if (!n.IsRead)
+                                {
+                                    <span class="pro-nc-item-unread-dot" aria-label="Unread"></span>
+                                }
+                            </button>
+                            <button type="button"
+                                    class="pro-nc-item-dismiss"
+                                    @onclick="() => NotificationService.Remove(n.Id)"
+                                    @onclick:stopPropagation
+                                    aria-label="Dismiss">
+                                <ProIcon Icon="@Icons.Material.Filled.Close" Size="Size.Small" />
+                            </button>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    }
+</div>
